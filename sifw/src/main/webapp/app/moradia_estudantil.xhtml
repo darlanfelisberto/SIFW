@@ -1,0 +1,363 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:jsf="http://xmlns.jcp.org/jsf"
+	xmlns:p="http://primefaces.org/ui" template="/public/_template.xhtml">
+
+
+	<ui:define name="header">
+		<!-- h:outputScript library="js" name="meuSaldo.xhtml.js" /-->
+		<ui:include src="/app/header.xhtml" />
+	</ui:define>
+	
+	<ui:define name="nav">
+		<ui:include src="/app/nav.xhtml" />
+	</ui:define>
+	
+	<ui:define name="footer">
+		
+	</ui:define>
+
+
+	<ui:define name="main">
+		<h:form id="frmMain">
+			<!-- prevent submit quando não existe uma action padrao visivel -->
+			<button disabled="disabled" style="display: none"></button>
+			<p:breadCrumb >
+				<p:menuitem outcome="/app/index.xhtml"/>
+            	<p:menuitem value="Moradia Estudantil" outcome="/app/moradia_estudantil.xhtml"/>
+			</p:breadCrumb>
+			
+			<p:growl id="messages">
+				<p:autoUpdate></p:autoUpdate>
+			</p:growl>	
+			
+			<style>
+				.ui-tree.ui-tree-horizontal .ui-treenode {
+					padding: 5px 11px ;
+				}
+				
+				body .ui-tree.ui-tree-horizontal .ui-treenode-content {
+    				padding: 9px;
+    			}
+			</style>
+			<div class="ui-fluid p-formgrid p-grid">
+				<div class="p-col-12 p-md-6">
+					<p:panel header="Filtros">
+						<div class="ui-fluid p-formgrid p-grid">
+							<div class="p-field p-col-12 p-md-12">
+								<p:selectOneRadio id="console" value="#{moradiaEstudantilBean.tipoBusca}" >
+						            <f:selectItem itemLabel="Item" itemValue="1"/>
+						            <f:selectItem itemLabel="Habitante" itemValue="3"/>
+						            <p:ajax />
+						        </p:selectOneRadio>
+							</div>
+							<div class="p-field p-col-12 p-md-12">
+								<label>Buscar por</label>
+								<p:autoComplete id="autoItem"   value="#{moradiaEstudantilBean.treeNodeSearch}" completeMethod="#{moradiaEstudantilBean.filtroAutoComplete}" 
+						         	var="item" itemLabel="#{item.label()}" converter="#{modelConverter}" emptyMessage="Nenhuma correspondência encontrado."
+						         	itemValue="#{item}" scrollHeight="250" minQueryLength="3" pt:placeholder="Digite 3 letras para pesquisar"
+						         	
+						         	>
+						         	<p:ajax event="itemSelect" update="frmMain" listener="#{moradiaEstudantilBean.onSelectFilter2}"/>
+						        </p:autoComplete>
+							</div>
+						</div>
+					</p:panel>
+				
+					<p:panel header="Moradia Estudantil" >
+					
+						<p:tree value="#{moradiaEstudantilBean.root}" var="unidade" orientation="horizontal" dynamic="true" 
+							selectionMode="single" id="treeMoradia" widgetVar="widTreeMoradia"  filterBy="#{unidade.desc}">
+			                
+			                <p:ajax event="select" listener="#{moradiaEstudantilBean.onSelectNode}" update="frmMain:treeMoradia frmMain:panelUnidade"/>
+			                				            
+				            <p:treeNode type="root" icon="pi pi-circle-fill" >
+				                <h:outputText value="#{unidade.desc}"/>
+				            </p:treeNode>
+				            <p:treeNode type="predio" icon="pi pi-building">
+				                <ui:include src="fragmentos/frag_moradia_estudantil/dados_unidade_tree.xhtml" >
+				                	<ui:param name="unidade" value="#{unidade}" />
+				                </ui:include>
+				            </p:treeNode>
+				            <p:treeNode type="apartamento" icon="pi pi-server">
+				                <ui:include src="fragmentos/frag_moradia_estudantil/dados_unidade_tree.xhtml" >
+				                	<ui:param name="unidade" value="#{unidade}" />
+				                </ui:include>
+				            </p:treeNode>
+				            <p:treeNode type="casa" icon="pi pi-home">
+				                <ui:include src="fragmentos/frag_moradia_estudantil/dados_unidade_tree.xhtml" >
+				                	<ui:param name="unidade" value="#{unidade}" />
+				                </ui:include>
+				            </p:treeNode>
+				            
+				            <p:treeNode type="quarto" icon="pi pi-money-bill">
+				            	<ui:include src="fragmentos/frag_moradia_estudantil/dados_unidade_tree.xhtml" >
+				                	<ui:param name="unidade" value="#{unidade}" />
+				                </ui:include>
+				            </p:treeNode>
+						</p:tree>
+					</p:panel>
+				</div>
+				<div class="p-col-12 p-md-6">
+					<p:panel id="panelUnidade">
+						<f:facet name="header">
+							<div style="display: flex; justify-content: space-between; align-content: center;">
+
+								<div> Unidade Selecionada</div>
+
+								<p:commandLink id="btnOptions" icon="pi pi-cog" styleClass="tested rounded-button ui-button-info ui-button-flat" rendered="#{moradiaEstudantilBean.nodeSelecionado != null}">
+									<i class="pi pi-cog"></i>
+								</p:commandLink>
+								
+								<p:tieredMenu overlay="true" trigger="btnOptions" my="left top" at="left bottom" style="width:120px">
+
+									<p:menuitem update="frmMain:treeMoradia frmMain:panelUnidade" value="Excluir" styleClass="ui-button-danger" 
+										actionListener="#{moradiaEstudantilBean.removeUnidadade}" immediate="true" process="@this" icon="pi pi-trash">
+										<p:confirm header="Você tem certeza disso?" message="A exclusão desta unidade, exluira todos as unidades filhas, itens e habitantes de unidades filhas." icon="pi pi-exclamation-triangle"/>
+									</p:menuitem>
+									<p:menuitem value="Mover..." icon="pi pi-directions" actionListener="#{moradiaEstudantilBean.moverPara}"/>
+
+								</p:tieredMenu>
+							</div>  
+						</f:facet>
+						<p:outputPanel rendered="#{moradiaEstudantilBean.nodeSelecionado != null}" id="teste2">
+							<fieldset style="border: 1px solid #dee2e6; margin: 0 0 1rem 0;" >
+								<legend>Dados da unidade</legend>
+								<div class="ui-fluid p-formgrid p-grid">
+									<div class="p-field p-col-12 p-md-12">
+								        <label for="firstname6">Unidade:</label>
+								        <p:inputText value="#{moradiaEstudantilBean.nodeSelecionado.desc}"></p:inputText>
+								    </div>
+								    <div class="p-field p-col-12 p-md-12">
+								        <label for="firstname6">Tipo Unidade:</label>
+								        <p:selectOneMenu value="#{moradiaEstudantilBean.nodeSelecionado.tipoUnidade}" converter="#{modelConverter}" disabled="#{moradiaEstudantilBean.nodeSelecionado.parrent == null}">
+								        	<f:selectItem />
+								        	<f:selectItems value="#{moradiaEstudantilBean.listAllTipoUnidade}" var="tipo" itemLabel="#{tipo.desc}" itemValue="#{tipo}"></f:selectItems>
+								        </p:selectOneMenu>
+								    </div>
+								    <div class="p-field p-col-12 p-md-12">
+								    	<div class="p-field flex-inline-space" >
+							 				<p:commandButton value="Salvar dados" icon="pi pi-save" update="frmMain:treeMoradia" action="#{moradiaEstudantilBean.atualizarUnidade}" styleClass=" ui-button-info"></p:commandButton>
+							 				<p:commandButton value="Cancelar" icon="pi pi-times"  immediate="true" process="@this" update="frmMain" styleClass="ui-button-secondary " actionListener="#{moradiaEstudantilBean.clean}" ></p:commandButton>
+							 			</div>
+								    </div>
+								 </div>
+							</fieldset>
+							<div class="ui-fluid p-formgrid p-grid">
+							    
+							    <div class="p-field p-col-12 p-md-12">
+								    <p:panel toggleable="true" header="Unidades Filhas" id="panel__" styleClass="padding0 panel-add-footer">
+								    	<p:dataTable id="datatable__" value="#{moradiaEstudantilBean.nodeSelecionado.listUnidadeChildren}" var="children" rendered="#{moradiaEstudantilBean.nodeSelecionado != null}"
+							        	emptyMessage="Nenhuma unidade encontrada." size="small">
+								        	<p:column headerText="Descrição">
+								        		<span>#{children.desc}</span>
+								        	</p:column>
+								        	<p:column headerText="Descrição">
+								        		<span>#{children.tipoUnidade.desc}</span>
+								        	</p:column>
+								        	<p:column headerText="Possui unidades?">
+								        		<span>#{children.listUnidadeChildren.isEmpty()?'Não':'Sim'}</span>
+								        	</p:column>
+								        </p:dataTable>
+								        <f:facet name="footer">
+								        	<p:commandButton alt="Novo" icon="pi pi-plus" styleClass="rounded-button ui-button-success btn-footer"  actionListener="#{moradiaEstudantilBean.novaUnidade}" 
+								        		update=":frmMain:dlgNovaUnidade" oncomplete="PF('novaUnidade').show()">
+											</p:commandButton>
+								        </f:facet>
+								    </p:panel>
+							    </div>
+							    <div class="p-field p-col-12 p-md-12">
+								    <p:panel toggleable="true"  header="Itens da Unidade" styleClass="padding0 panel-add-footer" >
+								    	<p:dataTable  value="#{moradiaEstudantilBean.nodeSelecionado.listItemUnidade}" var="item" rendered="#{moradiaEstudantilBean.nodeSelecionado != null}"
+							        	emptyMessage="Nenhum Item encontrado." size="small">
+								        	<p:column headerText="Descrição">
+								        		<span>#{item.desc}</span>
+								        	</p:column>
+								        	<p:column headerText="Patrimônio">
+								        		<span>#{item.patrimonio}</span>
+								        	</p:column>
+								        	<p:column >
+								        		<p:commandButton alt="mover para" icon="pi pi-directions" styleClass="rounded-button ui-button-info ui-button-flat" actionListener="#{moradiaEstudantilBean.moverItemPara}">
+								        			<f:setPropertyActionListener value="#{item}" target="#{moradiaEstudantilBean.itemUnidade}"></f:setPropertyActionListener>
+								        		</p:commandButton>
+												<p:commandButton alt="editar" icon="pi pi-pencil" styleClass="rounded-button ui-button-info ui-button-flat"  actionListener="#{moradiaEstudantilBean.atualizaBean}" update=":frmMain:dlgEditItem" oncomplete="PF('editItem').show()">
+													<f:setPropertyActionListener value="#{item}" target="#{moradiaEstudantilBean.itemUnidade}"></f:setPropertyActionListener>
+												</p:commandButton>
+												<p:commandButton icon="pi pi-trash" process="@this" immediate="true" styleClass="rounded-button ui-button-danger ui-button-flat" action="#{moradiaEstudantilBean.removeItemUnidade}" update=":frmMain" >
+													<f:setPropertyActionListener value="#{item}" target="#{moradiaEstudantilBean.itemUnidade}"></f:setPropertyActionListener>
+													<p:confirm type="popup" header="Confirmar" message="Você tem certeza disso?" icon="pi pi-exclamation-triangle"/>
+												</p:commandButton>
+											</p:column>
+								        </p:dataTable>
+								        <f:facet name="footer">
+								        	<p:commandButton alt="Novo" icon="pi pi-plus" styleClass="rounded-button ui-button-success btn-footer"  actionListener="#{moradiaEstudantilBean.novoItemUnidade}" 
+								        		update=":frmMain:dlgEditItem" oncomplete="PF('editItem').show()">
+											</p:commandButton>
+								        </f:facet>
+								    </p:panel>
+							    </div>
+							    <div class="p-field p-col-12 p-md-12">
+								    <p:panel toggleable="true" header="Habitantes da Unidade" styleClass="padding0 panel-add-footer" >
+								    	<p:dataTable  value="#{moradiaEstudantilBean.nodeSelecionado.listHabitanteUnidade}" var="hab" rendered="#{moradiaEstudantilBean.nodeSelecionado != null}"
+							        	emptyMessage="Nenhuma matrícula encontrado." size="small">
+								        	<p:column headerText="Matrícula" >
+								        		<span>#{hab.matricula.idMatricula}</span>
+								        	</p:column>
+								        	<p:column headerText="Nome" width="40%">
+								        		<span>#{hab.matricula.usuario.cpf} - #{hab.matricula.usuario.nome}</span>
+								        	</p:column>
+								        	<p:column headerText="Entrada">
+								        		<span>#{hab.dtEntradaString}</span>
+								        	</p:column>
+								        	<p:column headerText="Saída">
+								        		<span>#{hab.dtSaidaString}</span>
+								        	</p:column>
+								        	<p:column >
+								        		<p:commandButton alt="mover para" icon="pi pi-directions" styleClass="rounded-button ui-button-info ui-button-flat" actionListener="#{moradiaEstudantilBean.moverHabitantePara}">
+								        			<f:setPropertyActionListener value="#{hab}" target="#{moradiaEstudantilBean.habitanteUnidade}"></f:setPropertyActionListener>
+								        		</p:commandButton>
+												<p:commandButton alt="editar" icon="pi pi-pencil" styleClass="rounded-button ui-button-info ui-button-flat" update=":frmMain:dlgNovoHabitante" oncomplete="PF('novoHabitante').show()">
+													<f:setPropertyActionListener value="#{hab}" target="#{moradiaEstudantilBean.habitanteUnidade}"></f:setPropertyActionListener>
+												</p:commandButton>
+												<p:commandButton icon="pi pi-trash" process="@this" immediate="true" action="#{moradiaEstudantilBean.removeHabitante}" update="frmMain" styleClass="rounded-button ui-button-danger ui-button-flat">
+													<f:setPropertyActionListener value="#{hab}" target="#{moradiaEstudantilBean.habitanteUnidade}"></f:setPropertyActionListener>
+													<p:confirm type="popup" header="Confirmar" message="Você tem certeza disso?" icon="pi pi-exclamation-triangle"/>
+												</p:commandButton>
+											</p:column>
+								        </p:dataTable>
+								        <f:facet name="footer">
+								        	<p:commandButton alt="Novo" icon="pi pi-plus" styleClass="rounded-button ui-button-success btn-footer"  oncomplete="PF('novoHabitante').show()"
+								        		actionListener="#{moradiaEstudantilBean.novoHabitante}" update="frmMain:dlgNovoHabitante">
+											</p:commandButton>
+								        </f:facet>
+								    </p:panel>
+							    </div>
+							</div>
+						</p:outputPanel>
+					</p:panel>
+										
+				</div>
+			</div>
+					
+					
+			<p:dialog widgetVar="editItem" id="dlgEditItem"  styleClass="modal-heders" modal="true" closable="false">
+				<f:facet name="header">
+					<span>
+						Item da unidade: #{moradiaEstudantilBean.nodeSelecionado.desc}
+					</span>
+				</f:facet>
+				
+				<div class="ui-fluid p-formgrid p-grid" jsf:rendered="#{moradiaEstudantilBean.itemUnidade != null}" >
+					<div class="p-field p-col-12 p-md-12">
+						<label>Descrição</label>
+						<p:inputText value="#{moradiaEstudantilBean.itemUnidade.desc}"></p:inputText>
+					</div>
+					<div class="p-field p-col-12 p-md-12">
+						<label>Patrimônio</label>
+						<p:inputNumber value="#{moradiaEstudantilBean.itemUnidade.patrimonio}" decimalPlaces="0"></p:inputNumber>
+					</div>
+					
+				</div>
+				<f:facet name="footer">
+					<div class="p-field flex-inline-space">
+		 				<p:commandButton value="Salvar" icon="pi pi-save" actionListener="#{moradiaEstudantilBean.saveItemUnidade}" styleClass=" ui-button-info" oncomplete="handleHabitanteRequest(xhr, status, args)"  update="frmMain:treeMoradia frmMain:panelUnidade frmMain:messages"></p:commandButton>
+		 				<p:commandButton value="Cancelar" icon="pi pi-times"  immediate="true" actionListener="#{moradiaEstudantilBean.cancelarTudo}" onclick="PF('editItem').hide()" styleClass="ui-button-secondary "></p:commandButton>
+		 			</div>
+	 			</f:facet>
+			</p:dialog>
+			
+			<p:dialog widgetVar="novaUnidade" id="dlgNovaUnidade"  styleClass="modal-heders" modal="true" closable="false">
+				<f:facet name="header">
+					<span>
+						Nova unidade, filha de: #{moradiaEstudantilBean.nodeSelecionado.desc}
+					</span>
+				</f:facet>
+				
+				<div class="ui-fluid p-formgrid p-grid" jsf:rendered="#{moradiaEstudantilBean.nodeOperado != null}">
+					<div class="p-field p-col-12 p-md-12">
+				        <label for="firstname6">Unidade:</label>
+				        <p:inputText value="#{moradiaEstudantilBean.nodeOperado.desc}"></p:inputText>
+				    </div>
+				    <div class="p-field p-col-12 p-md-12">
+				        <label for="firstname6">Tipo Unidade:</label>
+				        <p:selectOneMenu value="#{moradiaEstudantilBean.nodeOperado.tipoUnidade}" converter="#{modelConverter}">
+				        	<f:selectItem />
+				        	<f:selectItems value="#{moradiaEstudantilBean.listAllTipoUnidade}" var="tipo" itemLabel="#{tipo.desc}" itemValue="#{tipo}"></f:selectItems>
+				        </p:selectOneMenu>
+				    </div>
+				 </div>
+				
+				<f:facet name="footer">
+					<div class="p-field flex-inline-space">
+		 				<p:commandButton value="Salvar" icon="pi pi-save" actionListener="#{moradiaEstudantilBean.salvarNovaUnidade}" styleClass=" ui-button-info" oncomplete="handleHabitanteRequest(xhr, status, args)" update="frmMain:treeMoradia frmMain:panelUnidade frmMain:messages"></p:commandButton>
+		 				<p:commandButton value="Cancelar" icon="pi pi-times"  immediate="true" actionListener="#{moradiaEstudantilBean.cancelarTudo}" onclick="PF('novaUnidade').hide()" styleClass="ui-button-secondary "></p:commandButton>
+		 			</div>
+	 			</f:facet>
+			</p:dialog>
+			
+			<p:dialog widgetVar="novoHabitante" id="dlgNovoHabitante"  styleClass="modal-heders" style="max-width:500px" modal="true" closable="false">
+				<f:facet name="header">
+					<span>
+						Novo Habitante da unidade: #{moradiaEstudantilBean.nodeSelecionado.desc}
+					</span>
+				</f:facet>
+				
+				<div class="ui-fluid p-formgrid p-grid" jsf:rendered="#{moradiaEstudantilBean.habitanteUnidade != null}">
+					<div class="p-field p-col-12 p-md-12">
+				        <label for="firstname6">Matrícula:</label>
+				        <p:autoComplete id="autoMatricula" value="#{moradiaEstudantilBean.habitanteUnidade.matricula}" converter="#{modelConverter}" completeMethod="#{moradiaEstudantilBean.autoCompleteMatricla}" 
+				         	var="mat" itemLabel="#{mat.juntaNomeMatricula()}" itemValue="#{mat}" scrollHeight="250" minQueryLength="5" pt:placeholder="Digite 5 letras para pesquisar"/>
+				    </div>
+				    <div class="p-field p-col-12 p-md-3">
+				        <label for="habDtEntrada">Data Entrada:</label>
+				        <p:datePicker id="habDtEntrada" value="#{moradiaEstudantilBean.habitanteUnidade.dtEntrada}"></p:datePicker>
+				    </div>
+				    <div class="p-field p-col-12 p-md-3">
+				        <label for="firstname6">Data Saída:</label>
+				        <p:datePicker value="#{moradiaEstudantilBean.habitanteUnidade.dtSaida}"></p:datePicker>
+				    </div>
+				 </div>
+				
+				<f:facet name="footer">
+					<div class="p-field flex-inline-space">
+		 				<p:commandButton  action="#{moradiaEstudantilBean.salvarHabitanteUnidade}" oncomplete="handleHabitanteRequest(xhr, status, args)" value="Salvar" icon="pi pi-save" styleClass=" ui-button-info" update="frmMain:treeMoradia frmMain:panelUnidade frmMain:messages"></p:commandButton>
+		 				<p:commandButton value="Cancelar" icon="pi pi-times"  immediate="true" actionListener="#{moradiaEstudantilBean.cancelarTudo}" onclick="PF('novoHabitante').hide()" styleClass="ui-button-secondary "></p:commandButton>
+		 			</div>
+	 			</f:facet>
+			</p:dialog>
+					
+					
+						
+			<p:remoteCommand name="dsadsad" id="updateScript" actionListener="#{moradiaEstudantilBean.atualizaBean}" update="frmMain:treeMoradia frmMain:panelUnidade frmMain:messages"  ></p:remoteCommand>
+			
+			<p:confirmPopup global="true">
+	            <p:commandButton value="Não" type="button" styleClass="ui-confirm-popup-no ui-button-flat"/>
+	            <p:commandButton value="Sim" type="button" styleClass="ui-confirm-popup-yes" />
+	        </p:confirmPopup>
+	        
+	        <p:confirmDialog global="true" showEffect="fade" hideEffect="fade" responsive="true" width="350">
+	            <p:commandButton value="Não" type="button" styleClass="ui-confirmdialog-no ui-button-flat"/>
+	            <p:commandButton value="Sim" type="button" styleClass="ui-confirmdialog-yes" />
+	        </p:confirmDialog>
+		</h:form>
+		
+		<script type="text/javascript">
+		    function handleHabitanteRequest(xhr, status, args) {
+		        if(!args.validationFailed){
+		        	PF('novoHabitante').hide();
+		        	PF('editItem').hide();
+		        	PF('novaUnidade').hide();
+		        	
+		        	//pf.ab({s:"frmMain:updateScript",f:"frmMain",u:"frmMain:treeMoradia frmMain:panelUnidade frmMain:messages"});
+		        			        	
+		        	return true;
+		        }
+		        return false;
+		    }
+		</script>
+	</ui:define>
+
+</ui:composition>

@@ -1,0 +1,461 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns="http://xmlns.jcp.org/xml/ns/javaee" 
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd" 
+	id="WebApp_ID" version="4.0">
+
+	<session-config>
+		<session-timeout>15</session-timeout>
+	</session-config>
+
+	<welcome-file-list>
+		<welcome-file>/app/index.xhtml</welcome-file>
+	</welcome-file-list>
+	
+	<mime-mapping>
+	   <extension>xhtml</extension>
+	   <mime-type>photocam/webcam.swf</mime-type>
+	</mime-mapping>    
+
+	<context-param>
+		<param-name>javax.faces.PROJECT_STAGE</param-name>
+		<param-value>Development</param-value>
+		<!--param-value>Development</param-value-->
+		<!-- param-value>Production</param-value -->
+	</context-param>
+
+	<context-param><!-- cache de paginas, ligar online -->
+		<param-name>javax.faces.FACELETS_REFRESH_PERIOD</param-name>
+		<!--param-value>0</param-value--> <!-- producao colacar -1 -->
+		<param-value>0</param-value>
+	</context-param>
+	
+	<context-param>
+	    <param-name>com.sun.faces.defaultResourceMaxAge</param-name>
+	    <param-value>604800000</param-value> <!-- 30 days -->  
+	</context-param>
+	
+	<context-param>
+	    <param-name>primefaces.MOVE_SCRIPTS_TO_BOTTOM</param-name>
+	    <param-value>true</param-value>
+	</context-param>
+
+	<context-param>
+	    <param-name>javax.faces.STATE_SAVING_METHOD</param-name>
+	    <param-value>server</param-value>
+	</context-param>
+	
+	<context-param>
+	    <param-name>com.sun.faces.numberOfViewsInSession</param-name>
+	    <param-value>5</param-value>
+	</context-param>
+	
+	<!-- Disable ViewState compression (better performance but more memory usage) -->
+	<context-param>
+	    <param-name>com.sun.faces.compressViewState</param-name>
+	    <param-value>false</param-value>
+	</context-param>
+
+	<context-param>
+		<param-name>javax.faces.FACELETS_SKIP_COMMENTS</param-name>
+		<param-value>true</param-value>
+	</context-param>
+
+
+	<context-param>
+	    <param-name>primefaces.SUBMIT</param-name>
+	    <param-value>partial</param-value>
+	</context-param>
+	
+	<context-param>
+		<param-name>primefaces.SECRET</param-name>
+		<param-value>-----</param-value>
+	</context-param>
+	
+	<context-param>
+		<param-name>primefaces.THEME</param-name>
+		<param-value>saga</param-value>
+	</context-param>
+	
+	<context-param>
+	    <param-name>primefaces.TOUCHABLE</param-name>
+	    <param-value>false</param-value>
+	</context-param>
+	
+	<context-param>
+	    <param-name>primefaces.FONT_AWESOME</param-name>
+	    <param-value>false</param-value>
+	</context-param>
+
+	<servlet-mapping>
+		<servlet-name>facesServlet</servlet-name>
+		<url-pattern>*.xhtml</url-pattern>
+	</servlet-mapping>
+
+	<context-param>
+		<param-name>javax.faces.INTERPRET_EMPTY_STRING_SUBMITTED_VALUES_AS_NULL</param-name>
+		<param-value>true</param-value>
+	</context-param>
+
+	<context-param>
+		<param-name>primefaces.UPLOADER</param-name>
+		<param-value>native</param-value>
+	</context-param>
+
+	<context-param>
+		<param-name>javax.faces.FACELETS_LIBRARIES</param-name>
+		<param-value>/WEB-INF/secTag.taglib.xml</param-value>
+	</context-param>
+
+	<welcome-file-list>
+		<welcome-file>/app/index.xhtml</welcome-file>
+	</welcome-file-list>
+	
+	<!-- ==========================CACHE==============================================================-->	
+	<filter>
+	    <filter-name>noCache</filter-name>
+	    <filter-class>org.omnifaces.filter.CacheControlFilter</filter-class>
+	</filter>
+	<filter>
+	    <filter-name>cache10dias</filter-name>
+	    <filter-class>org.omnifaces.filter.CacheControlFilter</filter-class>
+	    <init-param>
+	        <param-name>expires</param-name>
+	        <param-value>5d</param-value>
+	    </init-param>
+	</filter>
+
+<filter-mapping>
+    <filter-name>cache10dias</filter-name>
+   	<url-pattern>*.css*</url-pattern>
+	<url-pattern>*.js*</url-pattern>
+</filter-mapping>
+
+
+
+
+
+<!-- ====================================================================================================-->
+<!-- ====================================================================================================-->
+
+	
+	<error-page>
+		<error-code>400</error-code>
+		<location>/public/400.xhtml</location>
+	</error-page>
+	<error-page>
+		<error-code>404</error-code>
+		<location>/public/404.xhtml</location>
+	</error-page>
+	<error-page>
+		<error-code>500</error-code>
+		<location>/public/500.xhtml</location>
+	</error-page>
+	<error-page>
+		<error-code>403</error-code>
+		<location>/public/403.xhtml</location>
+	</error-page>
+	<error-page>
+		<exception-type>javax.faces.application.ViewExpiredException</exception-type>
+		<location>/public/viewexce.xhtml</location>
+	</error-page>
+	<error-page>
+        <exception-type>java.lang.Throwable</exception-type>
+        <location>/public/throwable.xhtml</location>
+    </error-page>
+	<error-page>
+        <exception-type>java.lang.Exception</exception-type>
+        <location>/public/exceptions.xhtml</location>
+    </error-page>
+
+	<login-config>
+        <auth-method>OIDC</auth-method>
+    </login-config>
+
+
+	<!-- _______________ROLES_____________________ -->
+	<security-role>
+		<role-name>default-roles-iffar</role-name>
+	</security-role>
+	<security-role>
+		<role-name>IFFAR_ADMIN</role-name>
+	</security-role>
+	<security-role>
+		<role-name>IFFAR_RU</role-name>
+	</security-role>
+	<security-role>
+		<role-name>IFFAR_RU_CATRACA</role-name>
+	</security-role>
+	<security-role>
+		<role-name>IFFAR_RU_ADMIN</role-name>
+	</security-role>
+	<security-role>
+		<role-name>IFFAR_USER_SEARCH</role-name>
+	</security-role>
+	<security-role>
+		<role-name>IFFAR_MORADIA</role-name>
+	</security-role>
+	
+
+	<!-- _________URLS___________________ -->
+
+
+	<security-constraint>
+		<web-resource-collection>
+			<web-resource-name>RU page</web-resource-name>
+			<url-pattern>/app/index.xhtml</url-pattern>
+		</web-resource-collection>
+		<auth-constraint>
+			<role-name>*</role-name>
+		</auth-constraint>
+		<!-- user-data-constraint>
+			<transport-guarantee>CONFIDENTIAL</transport-guarantee>
+		</user-data-constraint-->
+	</security-constraint>
+	
+	
+	<security-constraint>
+		<web-resource-collection>
+			<web-resource-name>/app/agendamento.xhtml</web-resource-name>
+			<url-pattern>/app/agendamento.xhtml</url-pattern>
+		</web-resource-collection>
+		<auth-constraint>
+			<role-name>IFFAR_RU</role-name>
+		</auth-constraint>
+	</security-constraint>
+	
+	<security-constraint>
+		<web-resource-collection>
+			<web-resource-name>/app/agendamentos_disponibilizados.xhtml</web-resource-name>
+			<url-pattern>/app/agendamentos_disponibilizados.xhtml</url-pattern>
+		</web-resource-collection>
+		<auth-constraint>
+			<role-name>IFFAR_ADMIN__</role-name>
+		</auth-constraint>
+	</security-constraint>
+	
+	<security-constraint>
+		<web-resource-collection>
+			<web-resource-name>/app/agendamento_admin.xhtml</web-resource-name>
+			<url-pattern>/app/agendamento_admin.xhtml</url-pattern>
+		</web-resource-collection>
+		<auth-constraint>
+			<role-name>IFFAR_ADMIN__im</role-name>
+		</auth-constraint>
+	</security-constraint>
+	
+	<security-constraint>
+		<web-resource-collection>
+			<web-resource-name>/app/cardapio.xhtml</web-resource-name>
+			<url-pattern>/app/cardapio.xhtml</url-pattern>
+		</web-resource-collection>
+		<auth-constraint>
+			<role-name>*</role-name>
+		</auth-constraint>		
+	</security-constraint>	
+	
+	<security-constraint>
+		<web-resource-collection>
+			<web-resource-name>/app/cardapio_admin.xhtml</web-resource-name>
+			<url-pattern>/app/cardapio_admin.xhtml</url-pattern>
+		</web-resource-collection>
+		<auth-constraint>
+			<role-name>IFFAR_RU_ADMIN</role-name>
+			<role-name>IFFAR_ADMIN</role-name>
+		</auth-constraint>
+	</security-constraint>
+	
+	<security-constraint>
+		<web-resource-collection>
+			<web-resource-name>/app/catraca.xhtml</web-resource-name>
+			<url-pattern>/app/catraca.xhtml</url-pattern>
+		</web-resource-collection>
+		<auth-constraint>
+			<role-name>IFFAR_RU_CATRACA</role-name>
+		</auth-constraint>
+	</security-constraint>
+	
+	<security-constraint>
+		<web-resource-collection>
+			<web-resource-name>/app/creditos.xhtml</web-resource-name>
+			<url-pattern>/app/creditos.xhtml</url-pattern>
+		</web-resource-collection>
+		<auth-constraint>
+			<role-name>IFFAR_RU_CREDITO</role-name>
+		</auth-constraint>
+	</security-constraint>
+	
+	<security-constraint>
+		<web-resource-collection>
+			<web-resource-name>/app/grupoRefeicoes.xhtml</web-resource-name>
+			<url-pattern>/app/grupoRefeicoes.xhtml</url-pattern>
+		</web-resource-collection>
+		<auth-constraint>
+			<role-name>IFFAR_ADMIN</role-name>
+			<role-name>IFFAR_MORADIA</role-name>
+		</auth-constraint>
+	</security-constraint>
+	
+	<security-constraint>
+		<web-resource-collection>
+			<web-resource-name>/app/importar_usuarios.xhtml</web-resource-name>
+			<url-pattern>/app/importar_usuarios.xhtml.xhtml</url-pattern>
+		</web-resource-collection>
+		<auth-constraint>
+			<role-name>IFFAR_ADMIN</role-name>
+		</auth-constraint>
+	</security-constraint>
+
+	<security-constraint>
+		<web-resource-collection>
+			<web-resource-name>/app/matricula.xhtml</web-resource-name>
+			<url-pattern>/app/matricula.xhtml</url-pattern>
+		</web-resource-collection>
+		<auth-constraint>
+			<role-name>IFFAR_ADMIN</role-name>
+			<role-name>IFFAR_USER_SEARCH</role-name>
+		</auth-constraint>
+	</security-constraint>
+
+	<security-constraint>
+		<web-resource-collection>
+			<web-resource-name>/app/meu_saldo.xhtml</web-resource-name>
+			<url-pattern>/app/meu_saldo.xhtml</url-pattern>
+		</web-resource-collection>
+		<auth-constraint>
+			<role-name>IFFAR_RU</role-name>
+		</auth-constraint>
+	</security-constraint>
+
+
+	<security-constraint>
+		<web-resource-collection>
+			<web-resource-name>/app/transferencia.xhtml</web-resource-name>
+			<url-pattern>/app/transferencia.xhtml</url-pattern>
+		</web-resource-collection>
+		<auth-constraint>
+			<role-name>IFFAR_RU</role-name>
+		</auth-constraint>
+	</security-constraint>
+	
+	<security-constraint>
+		<web-resource-collection>
+			<web-resource-name>/app/transferir_agendamento.xhtml</web-resource-name>
+			<url-pattern>/app/transferir_agendamento.xhtml</url-pattern>
+		</web-resource-collection>
+		<auth-constraint>
+			<role-name>IFFAR_RU</role-name>
+		</auth-constraint>
+	</security-constraint>
+	
+	<security-constraint>
+		<web-resource-collection>
+			<web-resource-name>/app/perfil.xhtml</web-resource-name>
+			<url-pattern>/app/perfil.xhtml</url-pattern>
+		</web-resource-collection>
+		<auth-constraint>
+			<role-name>*</role-name>
+		</auth-constraint>		
+	</security-constraint>	
+	
+	
+	<security-constraint>
+		<web-resource-collection>
+			<web-resource-name>/app/agendamentos.xhtml</web-resource-name>
+			<url-pattern>/app/agendamentos.xhtml</url-pattern>
+		</web-resource-collection>
+		<auth-constraint>
+			<role-name>IFFAR_RU_ADMIN</role-name>
+			<role-name>IFFAR_ADMIN</role-name>
+			<role-name>IFFAR_MORADIA</role-name>
+		</auth-constraint>
+	</security-constraint>
+	
+	<security-constraint>
+		<web-resource-collection>
+			<web-resource-name>/app/relatorios_financeiros.xhtml</web-resource-name>
+			<url-pattern>/app/relatorios_financeiros.xhtml</url-pattern>
+		</web-resource-collection>
+		<auth-constraint>
+			<role-name>IFFAR_RU_ADMIN</role-name>
+			<role-name>IFFAR_MORADIA</role-name>
+		</auth-constraint>
+	</security-constraint>
+	
+	<security-constraint>
+		<web-resource-collection>
+			<web-resource-name>/app/relatorios.xhtml</web-resource-name>
+			<url-pattern>/app/relatorios.xhtml</url-pattern>
+		</web-resource-collection>
+		<auth-constraint>
+			<role-name>IFFAR_RU_ADMIN</role-name>
+			<role-name>IFFAR_MORADIA</role-name>
+		</auth-constraint>
+	</security-constraint>
+	
+	<security-constraint>
+		<web-resource-collection>
+			<web-resource-name>/app/usuarios.xhtml</web-resource-name>
+			<url-pattern>/app/usuarios.xhtml</url-pattern>
+		</web-resource-collection>
+		<auth-constraint>
+			<role-name>IFFAR_ADMIN</role-name>
+			<role-name>IFFAR_USER_SEARCH</role-name>
+		</auth-constraint>
+	</security-constraint>
+
+	<security-constraint>
+		<web-resource-collection>
+			<web-resource-name>/app/vincularAluno.xhtml</web-resource-name>
+			<url-pattern>/app/vincularAluno.xhtml</url-pattern>
+		</web-resource-collection>
+		<auth-constraint>
+			<role-name>IFFAR_ADMIN</role-name>
+			<role-name>IFFAR_MORADIA</role-name>
+		</auth-constraint>
+	</security-constraint>
+
+	<security-constraint>
+		<web-resource-collection>
+			<web-resource-name>/app/visu_aluno_turma.xhtml</web-resource-name>
+			<url-pattern>/app/visu_aluno_turma.xhtml</url-pattern>
+		</web-resource-collection>
+		<auth-constraint>
+			<role-name>IFFAR_ADMIN</role-name>
+			<role-name>IFFAR_USER_SEARCH</role-name>
+			<role-name>IFFAR_DOCENTE</role-name>
+		</auth-constraint>
+	</security-constraint>
+
+	<security-constraint>
+		<web-resource-collection>
+			<web-resource-name>/app/moradia_estudantil.xhtml</web-resource-name>
+			<url-pattern>/app/moradia_estudantil.xhtml</url-pattern>
+		</web-resource-collection>
+		<auth-constraint>
+			<role-name>IFFAR_MORADIA</role-name>
+		</auth-constraint>
+	</security-constraint>
+	
+	<security-constraint>
+		<web-resource-collection>
+			<web-resource-name>/app/moradia_chamada.xhtml</web-resource-name>
+			<url-pattern>/app/moradia_chamada.xhtml</url-pattern>
+		</web-resource-collection>
+		<auth-constraint>
+			<role-name>IFFAR_MORADIA_CHAMADA</role-name>
+		</auth-constraint>
+	</security-constraint>
+		
+
+	<security-constraint>
+		<web-resource-collection>
+			<web-resource-name>/public/*</web-resource-name>
+			<url-pattern>/public/*</url-pattern>
+		</web-resource-collection>
+		<auth-constraint>
+			<role-name>*</role-name>
+		</auth-constraint>		
+	</security-constraint>
+
+</web-app>

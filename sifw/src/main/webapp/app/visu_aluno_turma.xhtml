@@ -1,0 +1,126 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" template="/public/_template.xhtml">
+
+
+	<ui:define name="header">
+		<ui:include src="/app/header.xhtml" />
+	</ui:define>
+
+	<ui:define name="nav">
+		<ui:include src="/app/nav.xhtml" />
+	</ui:define>
+	
+	<ui:define name="main">
+		<h:form id="frmMain" styleClass="">
+			<p:growl showSummary="true">
+				<p:autoUpdate></p:autoUpdate>
+			</p:growl>
+			<p:breadCrumb  model="#{visuUsuariosTurmaBean.breadCrumb.model}" id="breadCrumb">
+				
+			</p:breadCrumb>				
+
+			<p:outputPanel id="otpAnoTurma">
+				<p:panel header="Ano e Turma" rendered="#{visuUsuariosTurmaBean.rendAnoTurma}">
+					<div class="ui-fluid p-formgrid p-grid">
+			 			<div class="p-field p-col-12 p-md-6">
+			 				<label for="somAno">Ano:</label>
+			 				<p:selectOneMenu id="somAno" value="#{visuUsuariosTurmaBean.ano}" required="true" requiredMessage="informe um ano.">
+			 					<f:selectItem />
+			 					<f:selectItems value="#{visuUsuariosTurmaBean.listAnosDispniveis}"></f:selectItems>
+			 					<p:ajax event="change" update="somTurma" listener="#{visuUsuariosTurmaBean.changeYear}"></p:ajax>
+			 				</p:selectOneMenu>
+			 			</div>
+			 			<div class="p-field p-col-12 p-md-6">
+			 				<label for="somTurma">Turma:</label>
+			 				<p:selectOneMenu id="somTurma" value="#{visuUsuariosTurmaBean.turma}" converter="#{modelConverter}" required="true" requiredMessage="Informe uma turma.">
+			 					<f:selectItem itemLabel="Selecione"/>
+			 					<f:selectItems value="#{visuUsuariosTurmaBean.listTurma}" var="t" itemLabel="#{t.numero} - #{t.curso.nome}" itemValue="#{t}" ></f:selectItems>
+			 					<p:ajax event="change" update="frmMain:otpListMatricula frmMain:otpAnoTurma frmMain:breadCrumb frmMain:otpDadosTurma" listener="#{visuUsuariosTurmaBean.changeTurma}"></p:ajax>
+			 				</p:selectOneMenu>
+			 			</div>
+			 		</div>
+			 		<div>
+					 	<div class="p-field flex-inline-space">
+			 				<p:commandButton value="Aplicar"  update="frmMain:otpListMatricula frmMain:otpAnoTurma frmMain:breadCrumb frmMain:otpDadosTurma" actionListener="#{visuUsuariosTurmaBean.changeTurma}">
+			 				</p:commandButton>
+			 			</div>
+					 </div>
+				</p:panel>
+			</p:outputPanel>
+			
+			<p:outputPanel id="otpDadosTurma">
+				<p:panel header="Turma Selecionada" rendered="#{visuUsuariosTurmaBean.rendDadosTurma}">
+					<div class="ui-fluid p-formgrid p-grid">
+			 			<div class="p-field p-col-12 p-md-3">
+			 				<label><b>Turma:</b></label>#{visuUsuariosTurmaBean.turma.numero}
+			 			</div>
+			 			<div class="p-field p-col-12 p-md-3">
+			 				<label><b>Ano:</b></label>#{visuUsuariosTurmaBean.turma.ano}
+			 			</div>
+			 			<div class="p-field p-col-12 p-md-6">
+			 				<label><b>Curso:</b></label>#{visuUsuariosTurmaBean.turma.curso.nome}
+			 			</div>
+			 			<div class="p-field p-col-12 p-md-12">
+			 				<label><b>Descrição:</b></label>#{visuUsuariosTurmaBean.turma.descricao}
+			 			</div>
+			 		</div>
+				</p:panel>
+			</p:outputPanel>
+			
+			<p:outputPanel id="otpListMatricula">
+				<p:dataTable value="#{visuUsuariosTurmaBean.listaMatricula}" var="m"  rowIndexVar="index" 
+					rendered="#{visuUsuariosTurmaBean.rendListMatricula}" emptyMessage="Nenhum registro encontrado.">
+					<p:column headerText="Matricula" style="width:15%">
+						#{m.idMatricula}
+					</p:column>
+					<p:column headerText="CPF" style="width:15%">
+						#{m.usuario.cpf}
+					</p:column>
+					<p:column headerText="Nome">
+						#{m.usuario.nome}
+					</p:column>
+					<p:column headerText="Visu." style="width:15%">
+						<p:commandButton icon="pi pi-arrow-circle-right" actionListener="#{visuUsuariosTurmaBean.selecionaMatricula(index)}"
+							styleClass="rounded-button ui-button-info ui-button-flat" process="@this" update="frmMain:otpListMatricula frmMain:otpDadoAluno frmMain:breadCrumb">
+						</p:commandButton>
+					</p:column>
+				</p:dataTable>
+			</p:outputPanel>
+			
+			<p:outputPanel id="otpDadoAluno">
+				<p:panel header="Dados dos Alunos da turma" rendered="#{visuUsuariosTurmaBean.rendDadosMatricula}">
+					<div class="ui-fluid p-formgrid p-grid">
+			 			<div class="p-field p-col-12 p-md-8">
+				 			<div style="width: 300px;">
+				 				<p:graphicImage value="#{visuUsuariosTurmaBean.imagen.img}" stream="false" style="width:100%"></p:graphicImage>
+				 			</div>
+			 			</div>
+			 			
+			 			<div class="p-field p-col-12 p-md-4">
+			 				<div class="ui-fluid p-formgrid p-grid">
+			 					<div class="p-field p-col-12 p-md-12">
+			 						<b>Matricula:</b> #{visuUsuariosTurmaBean.matricula.idMatricula}  
+			 					</div>
+			 					<div class="p-field p-col-12 p-md-12">
+			 						<b>Nome:</b> #{visuUsuariosTurmaBean.matricula.usuario.nome} 
+			 					</div>
+			 					<div class=" p-field p-col-12 p-md-12">
+			 						<b>CPF:</b> #{visuUsuariosTurmaBean.matricula.usuario.cpf}
+			 					</div>
+			 				</div>			 				
+			 			</div>
+			 		</div>
+			 		<div class="p-field flex-inline-space">
+			 			<p:commandButton value="Anterior" icon="pi pi-chevron-circle-left" actionListener="#{visuUsuariosTurmaBean.anterior}" update="frmMain:otpDadoAluno"></p:commandButton>
+			 			<p:commandButton value="Proximo" icon="pi pi-chevron-circle-right" actionListener="#{visuUsuariosTurmaBean.proximo}" update="frmMain:otpDadoAluno"></p:commandButton>
+			 		</div>
+				</p:panel>
+			</p:outputPanel>
+			
+		</h:form>
+	</ui:define>
+
+</ui:composition>

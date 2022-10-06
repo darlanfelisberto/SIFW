@@ -1,0 +1,45 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:jsf="http://xmlns.jcp.org/jsf"
+	xmlns:p="http://primefaces.org/ui" template="/public/_template.xhtml">
+
+
+	<ui:define name="header">
+		<ui:include src="/app/header.xhtml" />
+	</ui:define>
+
+	<ui:define name="nav">
+		<ui:include src="/app/nav.xhtml" />
+	</ui:define>
+
+	<ui:define name="main">
+		<script type="text/javascript">
+			function oi(event,th){
+				if(th.value == 2){
+					PF('dialogUpFile').show();
+				}else{
+					PF('dialogUpFile').hide();
+				}
+			}
+		</script>
+
+		<h:form id="frmMain">
+			<p:growl showSummary="true">
+				<p:autoUpdate></p:autoUpdate>
+			</p:growl>
+						
+			<p:breadCrumb model="#{agendamentoAdminBean.breadCrumb.model}"  id="breadcrumb">
+				<p:autoUpdate />
+			</p:breadCrumb>	
+			
+			<ui:include src="/app/fragmentos/busca_usuario.xhtml">
+				<ui:param name="bean" value="#{agendamentoAdminBean}" />
+				<ui:param name="fragmento" value="#{agendamentoAdminBean.fragmentoBuscaUsuario}" />
+			</ui:include>
+				
+						
+		</h:form>
+	</ui:define>
+</ui:composition>

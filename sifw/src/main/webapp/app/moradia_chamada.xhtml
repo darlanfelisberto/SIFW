@@ -1,0 +1,228 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:jsf="http://xmlns.jcp.org/jsf"
+	xmlns:p="http://primefaces.org/ui" template="/public/_template.xhtml">
+
+
+	<ui:define name="header">
+		<ui:include src="/app/header.xhtml" />
+	</ui:define>
+	
+	<ui:define name="nav">
+		<ui:include src="/app/nav.xhtml" />
+	</ui:define>
+	
+	<ui:define name="footer">
+		
+	</ui:define>
+
+
+	<ui:define name="main">
+		<h:form id="frmMain">
+			<!-- prevent submit quando não existe uma action padrao visivel -->
+			<button disabled="disabled" style="display: none"></button>
+			<p:breadCrumb >
+				<p:menuitem outcome="/app/index.xhtml"/>
+            	<p:menuitem value="Chamada da Moradia Estudantil" outcome="/app/moradia_estudantil.xhtml"/>
+			</p:breadCrumb>
+			
+			<p:growl id="messages" showDetail="true" showSummary="true" skipDetailIfEqualsSummary="true">
+			</p:growl>	
+			
+			<style>
+				.ui-tree.ui-tree-horizontal .ui-treenode {
+					padding: 5px 11px ;
+				}
+				
+				body .ui-tree.ui-tree-horizontal .ui-treenode-content {
+    				padding: 9px;
+    			}
+			</style>
+			<div class="ui-fluid p-formgrid p-grid">
+				<div class="p-col-12 p-md-6">
+					<p:panel header="Filtros">
+						<div class="ui-fluid p-formgrid p-grid">
+							<div class="p-field p-col-12 p-md-12">
+								<p:selectOneRadio id="console" value="#{moradiaChamadaBean.tipoBusca}" >
+						            <f:selectItem itemLabel="Item" itemValue="1"/>
+						            <f:selectItem itemLabel="Habitante" itemValue="3"/>
+						            <p:ajax />
+						        </p:selectOneRadio>
+							</div>
+							<div class="p-field p-col-12 p-md-12">
+								<label>Buscar</label>
+								<p:autoComplete id="autoItem"   value="#{moradiaChamadaBean.treeNodeSearch}" completeMethod="#{moradiaChamadaBean.filtroAutoComplete}" 
+						         	var="item" itemLabel="#{item.label()}" converter="#{modelConverter}" emptyMessage="Nenhuma correspondência encontrado."
+						         	itemValue="#{item}" scrollHeight="250" minQueryLength="3" pt:placeholder="Digite 3 letras para pesquisar">
+						         	<p:ajax event="itemSelect" update="frmMain" listener="#{moradiaChamadaBean.onSelectFilter2}"/>
+						        </p:autoComplete>
+							</div>
+						</div>
+					</p:panel>
+				
+					<p:panel header="Moradia Estudantil" id="treeMoradia" >
+					
+						<p:tree value="#{moradiaChamadaBean.root}" var="unidade" orientation="horizontal"  
+							selectionMode="single"  widgetVar="widTreeMoradia" dynamic="true">
+			                
+			                <p:ajax event="select" listener="#{moradiaChamadaBean.onSelectNode}" update="frmMain:panelUnidade"/>
+			                	            
+				            <p:treeNode type="root" icon="pi pi-circle-fill" >
+				                <h:outputText value="#{unidade.desc}"/>
+				            </p:treeNode>
+				            <p:treeNode type="predio" icon="pi pi-building">
+				                <ui:include src="fragmentos/frag_moradia_estudantil/dados_unidade_tree.xhtml" >
+				                	<ui:param name="unidade" value="#{unidade}" />
+				                </ui:include>
+				            </p:treeNode>
+				            <p:treeNode type="apartamento" icon="pi pi-server">
+				                <ui:include src="fragmentos/frag_moradia_estudantil/dados_unidade_tree.xhtml" >
+				                	<ui:param name="unidade" value="#{unidade}" />
+				                </ui:include>
+				            </p:treeNode>
+				            <p:treeNode type="casa" icon="pi pi-home">
+				                <ui:include src="fragmentos/frag_moradia_estudantil/dados_unidade_tree.xhtml" >
+				                	<ui:param name="unidade" value="#{unidade}" />
+				                </ui:include>
+				            </p:treeNode>
+				            
+				            <p:treeNode type="quarto" icon="pi pi-money-bill">
+				            	<ui:include src="fragmentos/frag_moradia_estudantil/dados_unidade_tree.xhtml" >
+				                	<ui:param name="unidade" value="#{unidade}" />
+				                </ui:include>
+				            </p:treeNode>
+						</p:tree>
+					</p:panel>
+				</div>
+				<div class="p-col-12 p-md-6">
+					<p:panel header="Dia da Chamada">
+						<div class="ui-fluid p-formgrid p-grid">
+							<div class="p-field p-col-12 p-md-12">
+						        <label for="firstname6">Data de referência da Chamada:</label>
+						        <p:datePicker value="#{moradiaChamadaBean.dtReferencia}">
+						        	<p:ajax update="frmMain" listener="#{moradiaChamadaBean.trocaData}"></p:ajax>
+						        </p:datePicker>
+						    </div>
+						    <div class="p-field">
+								<p:commandButton value="Chamada" icon="pi pi-download"  ajax="false" onclick="PrimeFaces.monitorDownload(start, stop);">
+									<p:fileDownload value="#{moradiaChamadaBean.downloadChamada}"></p:fileDownload>
+								</p:commandButton>
+						    </div>
+						 </div>
+					</p:panel>
+				
+					<p:panel id="panelUnidade">
+						<f:facet name="header">
+							<div> Unidade Selecionada</div> 
+						</f:facet>
+						<p:outputPanel rendered="#{moradiaChamadaBean.nodeSelecionado != null}" id="teste2">
+							<fieldset style="border: 1px solid #dee2e6; margin: 0 0 1rem 0;" >
+								<legend>Dados da unidade</legend>
+								<div class="ui-fluid p-formgrid p-grid">
+									<div class="p-field p-col-12 p-md-12">
+								        <label for="firstname6">Unidade: #{moradiaChamadaBean.nodeSelecionado.desc}</label>
+								    </div>
+								    <div class="p-field p-col-12 p-md-12">
+								        <label for="firstname6">Tipo Unidade: #{moradiaChamadaBean.nodeSelecionado.desc}</label>
+								    </div>
+								 </div>
+							</fieldset>
+							<div class="ui-fluid p-formgrid p-grid">
+							    <div class="p-field p-col-12 p-md-12">
+								    <p:panel toggleable="true" header="Habitantes da Unidade" styleClass="padding0 panel-add-footer" >
+								    	<p:dataTable  value="#{moradiaChamadaBean.nodeSelecionado.listHabitanteUnidade}" var="hab" rendered="#{moradiaChamadaBean.nodeSelecionado != null}"
+							        	emptyMessage="Nenhuma matrícula encontrado." size="small">
+								        	<p:column headerText="Nome">
+								        		<span>#{hab.matricula.usuario.nome} - #{hab.matricula.usuario.cpf}</span>
+								        	</p:column>
+								        	<p:column width="70px" headerText="Presente">
+								        		<p:commandLink action="#{moradiaChamadaBean.novaAusencia}" update="frmMain:otpAusencia" oncomplete="PF('wDlgAusencia').show()" rendered="#{hab.ausencia == null}" value="??">
+								        			<f:setPropertyActionListener value="#{hab}" target="#{moradiaChamadaBean.habitanteUnidade}" for="linkAction"></f:setPropertyActionListener>
+								        		</p:commandLink>
+								        		
+								        		<p:commandLink value="#{hab.ausencia.presente?'Sim':'Não'}" rendered="#{hab.ausencia != null}" update="frmMain:otpAusencia" oncomplete="PF('wDlgAusencia').show()">
+								        			<f:setPropertyActionListener value="#{hab}" target="#{moradiaChamadaBean.habitanteUnidade}" for="linkAction"></f:setPropertyActionListener>
+								        			<f:setPropertyActionListener value="#{hab.ausencia}" target="#{moradiaChamadaBean.presenca}"></f:setPropertyActionListener>
+								        		</p:commandLink>
+											</p:column>
+								        </p:dataTable>
+								    </p:panel>
+							    </div>
+							</div>
+						</p:outputPanel>
+					</p:panel>
+				</div>
+			</div>
+			
+			<p:dialog widgetVar="wDlgAusencia" id="dlgAusencia"  styleClass="modal-heders" style="max-width:500px" modal="true" closable="false">
+				<f:facet name="header">
+					<span>
+						Presença de aluno na unidade
+					</span>
+				</f:facet>
+				<p:outputPanel id="otpAusencia">				
+					<div class="ui-fluid p-formgrid p-grid" jsf:rendered="#{moradiaChamadaBean.presenca != null}">
+						<div class="p-field p-col-12 p-md-12">
+					        <label for="firstname6">Matrícula:</label>
+					        <h:outputText value="#{moradiaChamadaBean.presenca.habitanteUnidade.matricula.juntaNomeMatricula()}" />
+					    </div>
+					    <div class="p-field p-col-12 p-md-6" style="display: grid;">
+					        <label for="dtReferencia">Data da Chamada:</label>
+					        <p:datePicker value="#{moradiaChamadaBean.dtReferencia}" disabled="true">
+					        </p:datePicker>
+					    </div>
+					    <div class="p-field p-col-12 p-md-6" style="display: grid;">
+					        <label for="dtRealizada">Presente:</label>
+					        <p:selectOneRadio value="#{moradiaChamadaBean.presenca.presente}">
+					        	<f:selectItem itemLabel="Sim" itemValue="true"/>
+					        	<f:selectItem itemLabel="Não" itemValue="false"/>
+					        </p:selectOneRadio>
+					    </div>
+					    <div class="p-field p-col-12 p-md-12">
+					        <label for="habDtEntrada">Justificativa:</label>
+					        <h:inputTextarea value="#{moradiaChamadaBean.presenca.justificativa}" style="width: 100%;height: 50px;"/>
+					    </div>
+					 </div>
+					 <div class="p-field flex-inline-space">
+		 				<p:commandButton actionListener="#{moradiaChamadaBean.removerAusencia}"  styleClass="ui-button-outlined ui-button-danger"
+		 					oncomplete="handleAusenciaRequest(xhr, status, args)" value="Remover" icon="pi pi-trash"
+		 					update="frmMain:panelUnidade frmMain:messages" rendered="#{!moradiaChamadaBean.presenca.novo}">
+		 					<p:confirm type="popup" header="Confirmação" message="Tem certeza que deseja excluir a prsença?"/>	
+		 				</p:commandButton>
+		 				<p:commandButton actionListener="#{moradiaChamadaBean.salvarAusencia}"  oncomplete="handleAusenciaRequest(xhr, status, args)" value="Salvar" icon="pi pi-save" styleClass=" ui-button-info" update="frmMain:panelUnidade frmMain:messages">
+		 					<p:confirm type="popup" header="Confirmação"  message="Tem certeza que deseja salvar a prsença?"/>
+		 				</p:commandButton>
+		 				<p:commandButton value="Cancelar" icon="pi pi-times"  onclick="PF('wDlgAusencia').hide()" styleClass="ui-button-secondary " process="@this"></p:commandButton>
+		 			</div>
+				 </p:outputPanel>
+				
+			</p:dialog>
+					
+			
+			<p:confirmPopup global="true">
+	            <p:commandButton value="Não" type="button" styleClass="ui-confirm-popup-no ui-button-flat"/>
+	            <p:commandButton value="Sim" type="button" styleClass="ui-confirm-popup-yes" />
+	        </p:confirmPopup>
+	        
+	        <p:confirmDialog global="true" showEffect="fade" hideEffect="fade" responsive="true" width="350">
+	            <p:commandButton value="Não" type="button" styleClass="ui-confirmdialog-no ui-button-flat"/>
+	            <p:commandButton value="Sim" type="button" styleClass="ui-confirmdialog-yes" />
+	        </p:confirmDialog>
+		</h:form>
+		
+		<script type="text/javascript">
+		    function handleAusenciaRequest(xhr, status, args) {
+		        if(!args.validationFailed){
+		        	PF('wDlgAusencia').hide();		        	
+		        	//pf.ab({s:"frmMain:updateScript",f:"frmMain",u:"frmMain:treeMoradia frmMain:panelUnidade frmMain:messages"});
+		        	return true;
+		        }
+		        return false;
+		    }
+		</script>
+	</ui:define>
+
+</ui:composition>

@@ -1,0 +1,1 @@
+.credito-entrada{border-left:3px solid blue;margin:10px 0 10px 0}.credito-saida{border-left:3px solid red;margin:10px 0 10px 0}.credito-trans{border-left:3px solid #ff0;margin:10px 0 10px 0}.iff-pnl-movimentacao{display:flex}.iff-direction{flex-direction:unset}@media(max-width: 576px){.iff-direction{flex-direction:column}}

@@ -1,0 +1,202 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" 
+	xmlns:jsf="http://xmlns.jcp.org/jsf"
+	template="/public/_template.xhtml">
+
+
+	<ui:define name="header">
+		<ui:include src="/app/header.xhtml" />
+	</ui:define>
+
+	<ui:define name="nav">
+		<ui:include src="/app/nav.xhtml" />
+	</ui:define>
+
+
+	<ui:define name="main">
+		<h:form id="frmMain">
+			<p:breadCrumb model="#{grupoRefeicoesBean.breadCrumb.model}"  id="breadcrumb">
+				<p:autoUpdate />
+			</p:breadCrumb>	
+			<p:growl showSummary="true">
+				<p:autoUpdate />
+			</p:growl>
+			
+			<p:outputPanel id="otpBusca">
+				<p:panel header="Busca de grupo" rendered="#{grupoRefeicoesBean.rendOtpBusca}">
+					<div class="ui-fluid p-formgrid p-grid">
+			 			<div class="p-field p-col-12 p-md-6">
+			 				<label for="iptName">Grupo:</label>
+			 				<p:inputText id="iptName" value="#{grupoRefeicoesBean.descGrupo}"></p:inputText>
+			 			</div>
+			 		</div>
+			 		<div class="p-field flex-inline-space">
+		 				<p:commandButton id="btnBusca" value="Buscar" icon="pi pi-search" actionListener="#{grupoRefeicoesBean.searchGroups}" update="frmMain:otpBusca frmMain:otpListGroup" styleClass="ui-button-info"></p:commandButton>
+		 				<p:commandButton id="btnNovoGrupo" value="Novo" icon="pi pi-plus" actionListener="#{grupoRefeicoesBean.novoGrupoRefeicoes}" update="frmMain:otpBusca frmMain:otpGrupoRefeicoe" immediate="true" process="@this" styleClass="ui-button-info"></p:commandButton>
+		 			</div>
+				</p:panel>
+			</p:outputPanel>
+			<p:outputPanel id="otpListGroup">
+				<p:panel header="Lista de Resultado da Busca" rendered="#{grupoRefeicoesBean.rendOtpListaGrupoRefeicoes}">
+					<p:dataTable emptyMessage="Nenhum resultado encontrado." value="#{grupoRefeicoesBean.listGrupoResfeicoes}" var="gr">
+						<p:column headerText="Descrição">
+							<h:outputText value="#{gr.descricao}" />
+						</p:column>
+						<p:column headerText="Opções">
+							<p:commandButton alt="editar" icon="pi pi-pencil" action="#{grupoRefeicoesBean.editGroup}" update="frmMain:otpGrupoRefeicoe frmMain:otpListGroup" styleClass="rounded-button ui-button-info ui-button-flat">
+								<f:setPropertyActionListener value="#{gr}" target="#{grupoRefeicoesBean.grupoRefeicoes}"></f:setPropertyActionListener>
+							</p:commandButton>
+							<p:commandButton icon="pi pi-trash" action="#{grupoRefeicoesBean.deleteGrupoRefeicao}" update="frmMain:otpListGroup" process="@this" styleClass="rounded-button ui-button-danger ui-button-flat">				 									
+								<f:setPropertyActionListener value="#{gr}" target="#{grupoRefeicoesBean.grupoRefeicoes}"></f:setPropertyActionListener>
+							</p:commandButton>
+						</p:column>
+					</p:dataTable>
+				</p:panel>
+			</p:outputPanel>
+			
+			<p:outputPanel id="otpGrupoRefeicoe">
+ 				<p:panel header="Grupo de Refeições" rendered="#{grupoRefeicoesBean.rendOtpGrupoRefeicoes}">
+	 				<div class="p-grid">
+	 					<div class="p-col-12 p-md-12">
+		 					<div class="ui-fluid p-formgrid p-grid">
+	 							<div class="p-field p-col-12 p-md-12">
+				 					<label for="iptDescri">Descrição:</label>
+				 					<p:inputText id="iptDescri" value="#{grupoRefeicoesBean.grupoRefeicoes.descricao}"></p:inputText>
+			 					</div>
+			 					<div class="p-field p-col-12 p-md-2">
+				 					<label for="iptDescri">Sigla:</label>
+				 					<p:inputText id="iptSigla" value="#{grupoRefeicoesBean.grupoRefeicoes.sigla}"></p:inputText>
+			 					</div>
+			 					<div class="p-field p-col-12 p-md-2" style="display: flex;flex-direction: column;">	
+			 						<label for="iptVinculo">Vínculo Automático:</label>
+			 						<p:selectBooleanCheckbox value="#{grupoRefeicoesBean.grupoRefeicoes.vinculoAutomatico}" disabled="#{!grupoRefeicoesBean.grupoRefeicoes.novo}">
+			 							<p:ajax update="somTipoVinculo"/>
+			 						</p:selectBooleanCheckbox>
+			 					</div>
+			 					<div class="p-field p-col-12 p-md-4">
+				 					<label for="iptVinculo">Tipo de Vínculo:</label>
+				 					<p:selectOneMenu id="somTipoVinculo" value="#{grupoRefeicoesBean.grupoRefeicoes.tipoVinculo}" converter="#{modelConverter}" disabled="#{!grupoRefeicoesBean.grupoRefeicoes.vinculoAutomatico or !grupoRefeicoesBean.grupoRefeicoes.novo}">
+				 						<f:selectItem />
+				 						<f:selectItems value="#{grupoRefeicoesBean.listTipoVinculo}" var="tv" itemLabel="#{tv.desc}" itemValue="#{tv}"></f:selectItems>
+				 					</p:selectOneMenu>
+			 					</div>
+			 				</div>
+			 			</div>
+			 		</div>
+			 				
+			 		<div class="p-grid">
+	 					<div class="p-col-12 p-md-12">
+	 						<div class="p-grid">
+	 							<div class="p-col-12 p-md-12">
+			 						<p:dataTable emptyMessage="Nenhum tipo de refeicao encontrado." value="#{grupoRefeicoesBean.grupoRefeicoes.listRefeicao}" var="tr">
+				 						<f:facet name="header">
+				 							Refeições
+				 						</f:facet>
+			 							<p:column headerText="Tipo">
+			 								#{tr.tipoRefeicao.descricao}
+			 							</p:column>
+			 							<p:column headerText="Valor">
+			 								<h:outputText value="#{tr.valor}"  >
+			 									<f:convertNumber type="currency" />
+			 								</h:outputText>				 								
+			 							</p:column>
+			 							<p:column headerText="Bloquear">
+			 								#{tr.bloquear} horas. 
+			 							</p:column>
+			 							<p:column headerText="Dia Util">
+			 								#{tr.horaInicioUtil}
+			 							</p:column>
+			 							<p:column headerText="Final. semana">
+			 								#{tr.horaInicioFind}
+			 							</p:column>
+			 							<p:column headerText="Termino">
+			 								#{tr.termino} minutos. 
+			 							</p:column>
+			 							<p:column headerText="">
+			 								<p:commandButton icon="pi pi-pencil" action="#{grupoRefeicoesBean.telaEditTipoRefeicao}" update="frmMain:otpTipoRefeicao frmMain:otpGrupoRefeicoe" process="@this" styleClass="rounded-button ui-button-info ui-button-flat">
+			 									<f:setPropertyActionListener value="#{tr}" target="#{grupoRefeicoesBean.refeicao}"></f:setPropertyActionListener>
+			 								</p:commandButton>
+			 								<p:commandButton icon="pi pi-trash" action="#{grupoRefeicoesBean.deleteRefeicao}" update="frmMain:otpGrupoRefeicoe" process="@this" styleClass="rounded-button ui-button-danger ui-button-flat">				 									
+			 									<f:setPropertyActionListener value="#{tr}" target="#{grupoRefeicoesBean.refeicao}"></f:setPropertyActionListener>
+			 								</p:commandButton>
+			 							</p:column>				 						
+			 						</p:dataTable>		 					
+						 			<div class="p-field ">
+						 				<p:commandButton value="Adicionar Refeição" actionListener="#{grupoRefeicoesBean.novaRefeicao}" update="frmMain:otpGrupoRefeicoe frmMain:otpTipoRefeicao" icon="pi pi-plus" styleClass="rounded-button ui-button-info ui-button-flat"></p:commandButton>
+						 			</div>
+	 							</div>
+ 							</div>
+ 						</div>
+ 					</div>
+ 					<div class="p-field flex-inline-space">
+		 				<p:commandButton value="Salvar" icon="pi pi-check" styleClass="ui-button-success" update="frmMain" actionListener="#{grupoRefeicoesBean.salvarGrupoRefeicao}"></p:commandButton>
+		 				<p:commandButton value="Cancelar" immediate="true" process="@this" update="frmMain" actionListener="#{grupoRefeicoesBean.telaBuscaGrupoRefeicoes}" icon="pi pi-times" styleClass="ui-button-secondary"></p:commandButton>
+		 			</div>
+ 				</p:panel>
+			</p:outputPanel>
+			
+			<p:outputPanel id="otpTipoRefeicao">
+				<p:outputPanel rendered="#{grupoRefeicoesBean.rendOtpTipoRefeicao}">
+					<p:panel header="Grupo de refeições selecionado">
+						<div class="ui-fluid p-formgrid p-grid">
+	 						<div class="p-field p-col-12 p-md-6">
+	 							<label><b>Descrição:</b></label>
+	 							#{grupoRefeicoesBean.grupoRefeicoes.descricao}
+	 						</div>
+	 						<div class="p-field p-col-12 p-md-6">
+	 							<label><b>Vinculo automatico:</b></label>
+	 							#{grupoRefeicoesBean.grupoRefeicoes.vinculoAutomatico?'Sim':'Não'}
+	 						</div>
+	 						<div class="p-field p-col-12 p-md-6" jsf:rendered="#{grupoRefeicoesBean.grupoRefeicoes.vinculoAutomatico}">
+	 							<label><b>Tipo do vinculo:</b></label>
+	 							#{grupoRefeicoesBean.grupoRefeicoes.tipoVinculo.descricao}
+	 						</div>
+	 					</div>				
+					</p:panel>
+					<p:panel header="Refeição">
+	 					<div class="ui-fluid p-formgrid p-grid">
+	 						<div class="p-field p-col-12 p-md-6">
+								<label>Tipo de Refeição:</label>
+								<p:selectOneMenu value="#{grupoRefeicoesBean.refeicao.tipoRefeicao}" converter="#{modelConverter}">
+									<f:selectItem />
+									<f:selectItems value="#{grupoRefeicoesBean.listTipoRefeicao}" var="tr" itemLabel="#{tr.descricao}" itemValue="#{tr}"></f:selectItems>
+									<p:ajax update="dpiUtil dpiFind"></p:ajax>
+								</p:selectOneMenu>
+							</div>
+							<div class="p-field p-col-6 p-md-6">
+								<label>Valor(R$):</label>
+								<p:inputNumber id="input2" value="#{grupoRefeicoesBean.refeicao.valor}" decimalSeparator="," thousandSeparator="." />
+							</div>							
+							<div class="p-field p-col-12 p-md-6">
+								<label>Início em dias uteis:</label>
+								<p:datePicker id="dpiUtil" timeOnly="true" value="#{grupoRefeicoesBean.refeicao.horaInicioUtil}" ></p:datePicker>
+							</div>
+							<div class="p-field p-col-12 p-md-6">
+								<label>Início em finais de semana:</label>
+								<p:datePicker id="dpiFind" timeOnly="true" value="#{grupoRefeicoesBean.refeicao.horaInicioFind}" ></p:datePicker>
+							</div>
+							<div class="p-field p-col-6 p-md-6">
+								<label><abbt title="Tempo, em horas, que não será permitido realizar agendamentos/alterações para este tipo de refeição.">Bloquear:</abbt></label> 
+								<p:inputNumber  value="#{grupoRefeicoesBean.refeicao.bloquear}"  symbol=" horas" symbolPosition="s" decimalPlaces="0" />
+							</div>							
+							<div class="p-field p-col-6 p-md-6">
+								<label>Término:</label>
+								<p:inputNumber  value="#{grupoRefeicoesBean.refeicao.termino}"  symbol=" minutos" symbolPosition="s" decimalPlaces="0" />
+							</div>
+						</div>
+						<div class="p-field flex-inline-space">
+			 				<p:commandButton value="Ok" icon="pi pi-check" update="frmMain" action="#{grupoRefeicoesBean.addRefeicaoOrUpdate}" styleClass=" ui-button-info"></p:commandButton>
+			 				<p:commandButton value="Cancelar" icon="pi pi-times"  immediate="true" actionListener="#{grupoRefeicoesBean.cancelarAddTipoRefeicao}" update="frmMain" styleClass="ui-button-secondary "></p:commandButton>
+			 			</div>
+	 				</p:panel>				
+				</p:outputPanel>
+ 			</p:outputPanel>
+			
+		</h:form>
+		
+	</ui:define>
+
+</ui:composition>

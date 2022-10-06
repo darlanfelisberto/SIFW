@@ -1,0 +1,13 @@
+api.protocolo=https://
+api.ip=debian
+api.root=/webservice/
+api.porta=
+api.path_catra_auth_api=/auth/catracaAPI
+
+api.keycloak.realm=iffar
+api.keycloak.auth-server-url=https://debian/auth/
+api.keycloak.ssl-required=external
+api.keycloak.resource=cli_catra
+api.keycloak.credentials.secret=s6oRpyjB3QME65hAgUJ7NqZxV4XZye58
+#api.keycloak.confidential-port=0
+#api.keycloak.enable-pkce=true

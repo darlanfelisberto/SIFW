@@ -1,0 +1,136 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" template="/public/_template.xhtml">
+
+
+	<ui:define name="header">
+		<ui:include src="/app/header.xhtml" />
+	</ui:define>
+
+	<ui:define name="nav">
+		<ui:include src="/app/nav.xhtml" />
+	</ui:define>
+	
+	<ui:define name="main">
+		<h:form id="frmMain" styleClass="">
+			<p:breadCrumb model="#{creditoAdminBean.breadCrumb.model}"  id="bread">
+			</p:breadCrumb>			
+			<p:growl showSummary="true">
+				<p:autoUpdate></p:autoUpdate>
+			</p:growl>	
+			<p:outputPanel id="optBuscaUsuarios" rendered="#{creditoAdminBean.rendTelaFiltro}">
+				<p:panel header="Busca de Usuário">	
+					<div class="ui-fluid p-formgrid p-grid">	
+						<div class="p-field p-col-12 p-md-12">
+							<label>Tipo da busca:</label>
+							<p:selectOneRadio value="#{creditoAdminBean.tipoBusca}">
+								<f:selectItem itemValue="1" itemLabel="CPF"/>
+								<f:selectItem itemValue="2" itemLabel="Nome"/>
+								<p:ajax event="change" update="frmMain:otpInputBusca" process="@this"/>
+							</p:selectOneRadio>
+						</div>
+						<div class="p-field p-col-12 p-md-6">
+							<p:outputPanel id="otpInputBusca" >
+								<p:inputMask label="CPF" mask="999.999.999-99" value="#{creditoAdminBean.buscaIsso}" rendered="#{creditoAdminBean.tipoBusca == 1}" required="true"/>
+								<p:inputText label="Nome" id="iptNome" value="#{creditoAdminBean.buscaIsso}" rendered="#{creditoAdminBean.tipoBusca == 2}" required="true" >
+									<f:validateLength minimum="5" for="iptNome" ></f:validateLength>
+								</p:inputText>
+							</p:outputPanel>
+						</div>
+					</div>
+					<div class="p-field flex-inline-space">
+						<p:commandButton value="Buscar" actionListener="#{creditoAdminBean.buscar()}" update="frmMain" icon="pi pi-search" styleClass="ui-button-info"></p:commandButton>
+					</div>
+				</p:panel>
+			</p:outputPanel>
+<!-- list useres -->
+			<p:outputPanel id="optListaUsuarios" rendered="#{creditoAdminBean.rendTelaList}">
+				<p:dataTable value="#{creditoAdminBean.listUsuario}" var="user" sortMode="multiple" emptyMessage="Nenhum Usuário foi encontrado.">
+					<f:facet name="header">
+						Lista de Usuários
+					</f:facet>
+				
+					<p:column headerText="Nome" sortBy="#{user.nome}">
+						<h:outputText value="#{user.nome}" />
+					</p:column>
+					<p:column headerText="Cpf" sortBy="#{user.cpf}">
+						<h:outputText value="#{user.cpf}" />
+					</p:column>
+					<p:column headerText="E-mail" sortBy="#{user.email}">
+						<h:outputText value="#{user.email}" />
+					</p:column>
+					<p:column>
+						<p:commandButton icon="pi pi-arrow-circle-right" title="Selecionar" update="frmMain" action="#{creditoAdminBean.selecionaUser}" styleClass="rounded-button ui-button-info ui-button-flat">
+							<f:setPropertyActionListener value="#{user}" target="#{creditoAdminBean.userSelect}" />
+						</p:commandButton>
+					</p:column>
+				</p:dataTable>
+			</p:outputPanel>
+			
+			<p:outputPanel rendered="#{creditoAdminBean.rendTelaCredito}">
+				<p:panel header="Adicionar créditos a usúario">
+					
+					<div class="p-formgroup-inline">
+    					<div class="p-field">
+							<label>Valor:</label>
+							<p:inputNumber id="inpValor" label="Valor" value="#{creditoAdminBean.newCred.valor}" required="true" symbol="R$ " decimalSeparator="," thousandSeparator="." />
+						</div>
+						<div class="p-field">
+							<p:commandButton id="btnCredDinheiro" value="Crédito em Dinheiro" actionListener="#{creditoAdminBean.addCreditoDinheiro}" update="frmMain" styleClass="ui-button-success" icon="pi pi-check">
+								<p:confirm type="popup" header="Confirmação" message="Você esta certo disso?" icon="pi pi-exclamation-triangle"/>
+							</p:commandButton>
+						</div>
+						<div class="p-field">
+							<p:commandButton id="dynaButton" value="Devoluções" type="button" icon="pi pi-window-minimize" onclick="mostraGrupoOpcoes()"/>
+						</div>
+						<div id="grupoOpcoes" class="p-formgroup-inline" style="display: none">
+							<div class="p-field">
+								<p:commandButton id="btnRetTotal" value="Total" actionListener="#{creditoAdminBean.retiradaTotal(true)}" update="frmMain" styleClass="ui-button-danger" icon="pi pi-circle-off" immediate="true">
+									<p:confirm type="popup" header="Confirmação" message="Você esta certo disso?" icon="pi pi-exclamation-triangle"/>
+								</p:commandButton>
+							</div>
+							<div class="p-field">
+								<p:commandButton id="btnRetParcial" value="Parcial" actionListener="#{creditoAdminBean.retiradaTotal(false)}" update="frmMain" styleClass="ui-button-danger" icon="pi pi-minus-circle">
+									<p:confirm type="popup" header="Confirmação" message="Você esta certo disso?" icon="pi pi-exclamation-triangle"/>
+								</p:commandButton>
+							</div>
+						</div>
+					</div>
+					
+					<p:confirmPopup global="true">
+			            <p:commandButton value="Não" type="button" styleClass="ui-confirm-popup-no ui-button-flat"/>
+			            <p:commandButton value="Sim" type="button" styleClass="ui-confirm-popup-yes" />
+			        </p:confirmPopup>
+				</p:panel>
+				
+				<p:outputPanel>
+					<ui:include src="/app/fragmentos/infUser.xhtml" >
+						<ui:param name="frag" value="#{creditoAdminBean.saldoUserF}" />
+					</ui:include>
+				</p:outputPanel>
+				<p:outputPanel>
+					<p:panel header="Tela do usuário">
+						<ui:include src="/app/fragmentos/saldoUser.xhtml">
+							<ui:param name="fragmento" value="#{creditoAdminBean.saldoUserF}" />
+						</ui:include>
+					</p:panel>
+				</p:outputPanel>
+				
+			</p:outputPanel>
+		</h:form>
+		
+		<script type="text/javascript">
+			function mostraGrupoOpcoes(){
+				let grupoOpcoes = document.getElementById('grupoOpcoes');
+				if(grupoOpcoes.style.display == 'none'){
+					grupoOpcoes.style.display = 'flex';
+				}else{
+					grupoOpcoes.style.display = 'none';
+				}
+			}
+		</script>
+	</ui:define>
+
+</ui:composition>

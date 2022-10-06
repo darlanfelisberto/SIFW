@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" 
+xmlns:h="http://java.sun.com/jsf/html" 
+xmlns:f="http://java.sun.com/jsf/core" 
+xmlns:ui="http://java.sun.com/jsf/facelets" 
+xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<ui:insert name="links"></ui:insert>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+    <link href="https://www.iffarroupilha.edu.br/templates/layoutI-iff/favicon.ico" rel="shortcut icon" type="image/vnd.microsoft.icon" />
+    
+	<h:outputStylesheet library="css" name="main_.css" />
+	<h:outputStylesheet library="primefaces" name="texteditor/texteditor.css" />
+	<h:outputScript name="locales/locale-pt.js" library="primefaces"/>
+	<ui:insert name="title"></ui:insert>
+</h:head>
+
+<h:body>
+	<ui:insert name="header"></ui:insert>
+	
+	<main class="">
+		<ui:insert name="nav"></ui:insert>
+		
+		<div class="main min-main">
+			<noscript>
+				<div class="ui-messages ui-widget" >
+					<div class="ui-messages-warn ui-corner-all">
+						<span class="ui-messages-warn-icon"></span>
+						<ul>
+							<li role="alert" aria-atomic="true">
+								<span class="ui-messages-warn-summary"></span>
+								<span class="ui-messages-warn-detail">Habilite o suporte a javascript no seu navegador.</span>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</noscript>
+
+			<ui:insert name="breadCramb"></ui:insert>
+		
+			<ui:insert name="main"></ui:insert>
+		</div>
+	</main>
+	
+	<footer>
+		<ui:insert name="footer"></ui:insert>
+	</footer>
+ 	<script type="text/javascript">
+
+ 		var agora = Date.now();
+ 		var session = 15;
+
+		function showMenuNavEsquesdo(){
+			if(document.body.classList.length == 0){
+				document.body.classList.add('show-menu')
+				return;
+			}
+
+			if(document.body.classList.contains('oculta-menu')){
+				document.body.classList.remove('oculta-menu')
+				document.body.classList.add('show-menu')
+				return;
+			}
+			
+			if(document.body.classList.contains('show-menu')){
+				document.body.classList.remove('show-menu')
+				document.body.classList.add('oculta-menu')
+				return;
+			}
+		}
+
+		$(document).on('pfAjaxSuccess', function(xhr, settings) {
+			agora = Date.now();
+		    console.log('pfAjaxSuccess!');
+		});
+
+		var originalHandler = PrimeFaces.ajax.Request.handle;
+		
+		PrimeFaces.ajax.Request.handle = function(cfg,partial){
+			let diferenca = (Date.now() - agora)
+			var min = Math.round(((diferenca % 86400000) % 3600000) / 60000);
+			//console.log(diferenca + " - " +min);
+			if(min >= session){
+				console.log(diferenca + " - " +min);
+				PrimeFaces.ajax.Queue.abortAll();
+				PF("dlgSession").show();
+				return ;
+			}else{
+				return originalHandler(cfg,partial);
+			}
+		}
+
+	    PrimeFaces.env.touch = false;
+
+	    //<![CDATA[
+	    function start() {
+	        PF('statusDialog').show();
+	    }
+
+	    function stop() {
+	        PF('statusDialog').hide();
+	    }
+	    //]]>
+	    
+ 	</script>
+ 	
+ 	<p:dialog minHeight="40" width="350" showEffect="fade" modal="true" widgetVar="dlgSession" header="Sessão Expirada!" closable="true">
+ 		<button class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-left" onclick="window.location.href = window.location.href.replace('#','')" type="button" role="button" aria-disabled="false">
+ 			<span class="ui-button-icon-left ui-icon ui-c pi pi-refresh">
+	 		</span><span class="ui-button-text ui-c">Recarregar</span>
+ 		</button>
+    </p:dialog>
+    
+    <p:ajaxStatus onstart="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" onerror="console.log('ERRO')"/>
+
+    
+    <p:dialog modal="false" widgetVar="statusDialog"  draggable="false" closable="false" resizable="false" >
+    	<i class="pi pi-spinner pi-spin" style="font-size:3rem"></i>
+    </p:dialog>
+
+
+
+</h:body>
+</html>

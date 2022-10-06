@@ -1,0 +1,65 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:sec="http://www.iffarroupilha.edu.br/secTag"
+	xmlns:p="http://primefaces.org/ui" template="/public/_template.xhtml">
+
+
+	<ui:define name="header">
+		<ui:include src="/app/header.xhtml" />
+	</ui:define>
+
+	<ui:define name="nav">
+		<ui:include src="/app/nav.xhtml" />
+	</ui:define>
+	
+	<ui:define name="main">
+		<h:form id="frmMain" styleClass="">
+			<p:growl showSummary="true" id="message">
+				<p:autoUpdate></p:autoUpdate>
+			</p:growl>
+			
+			<p:breadCrumb >
+				<p:menuitem outcome="/app/index.xhtml"/>
+            	<p:menuitem value="Relatórios Financeiros" process="@none"/>
+			</p:breadCrumb>	
+
+			<p:outputPanel>
+				<p:panel header="Relatórios de Financeiros">
+					<div class="card">
+					
+						<div class="ui-fluid p-formgrid p-grid">
+		        			<div class="p-field p-col-12 p-md-2">
+						        <label for="firstname">Início:<span class="obrigatorio">*</span></label>
+						        <p:datePicker value="#{relatorioBean.dtInicio}"/>
+						    </div>
+						    <div class="p-field p-col-12 p-md-2">
+						        <label for="firstname">Fim:<span class="obrigatorio">*</span></label>
+						        <p:datePicker value="#{relatorioBean.dtFim}"/>
+						    </div>
+						</div>
+						<div class="ui-outputpanel ui-widget">
+							<div class="p-field ">
+								<p:commandButton value="Movimentações Diárias" icon="pi pi-download"  ajax="false" onclick="PrimeFaces.monitorDownload(start, stop);">
+									<p:fileDownload value="#{relatorioBean.pdfMovimentacoesDiarias}"></p:fileDownload>
+								</p:commandButton>
+							</div>
+						</div>
+					    
+					    					    
+					</div>	
+					
+					<p>
+						<span class="obrigatorio">*</span> Campo Obrigatório.
+					</p>
+					<p>
+						O relatório Movimentações Diárias será removido/substituído em breve.
+					</p>
+				</p:panel>
+			</p:outputPanel>
+			
+		</h:form>
+	</ui:define>
+
+</ui:composition>

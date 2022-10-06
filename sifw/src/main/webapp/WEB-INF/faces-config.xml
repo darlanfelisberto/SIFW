@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='UTF-8'?>
+ <faces-config xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_3.xsd"
+       version="2.3">
+ 
+	<application>
+		<message-bundle>br.edu.iffar.fw.comendo.MensagensPersonalizadas</message-bundle>
+		
+		<locale-config>
+	    	<default-locale>pt_br</default-locale>
+	  	</locale-config>
+	  	
+	  	<el-resolver>
+	        org.primefaces.application.exceptionhandler.PrimeExceptionHandlerELResolver
+	    </el-resolver>
+	</application>
+	
+	<factory>
+	    <exception-handler-factory>
+	    org.primefaces.application.exceptionhandler.PrimeExceptionHandlerFactory
+	    </exception-handler-factory>
+	</factory>
+	
+	<lifecycle>
+	    <phase-listener>
+	        org.primefaces.component.lifecycle.LifecyclePhaseListener
+	    </phase-listener>
+	</lifecycle>
+	
+
+</faces-config>

@@ -1,0 +1,121 @@
+$bgDark :#252b3b !important;
+
+//dir{
+//	padding: 0;
+//	margin: 0;
+//}
+
+.btn{
+	font-family: "Roboto Condensed", Helvetica, Arial, sans-serif;
+}
+
+body {
+    background-color: #f1f5f7 !important;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+}
+
+.obrigatorio{
+	color:red;
+}
+
+.perfil{
+	display: flex;
+    flex-direction: row;
+}
+
+.perfil>img{
+	width: 3rem;
+    height: 3rem;
+	background-color: #fff;
+    border-radius: 100%;
+}
+
+.bg-dark{
+	background-color:  $bgDark;
+	box-shadow: 0 0.325rem 0.55rem rgb(51 51 51 / 36%) !important;
+	color: white;
+}
+
+main{
+	flex-direction: row;
+	display: flex;
+	flex: 1;
+}
+
+.main{
+	padding: .5rem 0 0 .5rem;
+	height: 100%;
+	flex:1;
+}
+
+.min-main{
+	min-width: 350px;	
+}
+
+body {
+    margin: 0;
+    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+    font-size: 1rem;
+    font-weight: 400;
+//    line-height: 1.5;
+    color: #212529;
+    text-align: left;
+    background-color: #fff;
+}
+
+body.show-menu .menu-lateral {
+    display: flex;
+}
+
+
+body.oculta-menu .menu-lateral {
+    display: none;
+}
+
+@media (max-width: $sm){
+	
+	.esconde{
+		display: none;
+	}
+
+	.menu-lateral{
+		display: none ;
+	}
+}
+
+@media  (max-width: $md){
+	.esconde{
+		display: none;
+	}
+
+	.menu-lateral{
+		display: none ;
+	}
+	body.show-menu > main > div.main{
+		margin: 0;	
+		padding: .5rem 0 0 .5rem;
+	}
+	
+	.main{
+		margin: 0;	
+		padding: .5rem 0 0 0;
+	}
+		
+	.p-grid > div[class*="p-col-"]{
+		padding: 0 !important;
+	}	
+}
+
+@media (max-width: $lg){
+
+	.menu-lateral{
+		display: none ;
+	}	
+}
+
+@media (min-width: $xl){
+
+}

@@ -1,0 +1,43 @@
+.button-red{
+	background-color:rgb(204, 0, 0) !important;
+}
+
+//.form-principal{
+//	border: 1px solid #c8c8c8;
+    //background-color: #fff;
+//}
+
+.flex-inline-space > button{
+	margin-right: 10px;
+}
+
+
+//primeflex 2.0.0
+@import './src/_variables';
+@import './src/_grid';
+@import './src/_formlayout';
+@import './src/_display';
+@import './src/_text';
+@import './src/flexbox/_flexbox';
+@import './src/_spacing';
+@import './src/_elevation';
+
+
+@import "template.scss";
+@import "moradia_estudantil.scss";
+@import "header.scss";
+@import "login.scss";
+@import "nav.scss";
+@import "app_index.scss";
+@import "agendamento.scss";
+@import "breadcrumb.scss";
+@import "perfil.scss";
+@import "saldoUser.scss";
+@import "bugs.scss";
+@import "grid.scss";
+@import "componentesPrimeFaces.scss";
+@import "catraca.scss";
+@import "usuario.scss";
+@import "moradia_chamada.scss";
+@import "relatorios.scss";
+

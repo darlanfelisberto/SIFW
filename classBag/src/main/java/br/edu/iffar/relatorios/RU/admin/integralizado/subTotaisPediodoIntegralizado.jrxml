@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.18.1.final using JasperReports Library version 6.18.1-9d75d1969e774d4f179fb3be8401e98a0e6d1611  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="subTotaisPeriodointegralizado" columnCount="7" printOrder="Horizontal" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="120" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="fbc79a61-95e4-48b9-8cff-3a80a52c3505">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="DataAdapter.xml"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<parameter name="dataInicio" class="java.util.Date"/>
+	<parameter name="dataFim" class="java.util.Date"/>
+	<parameter name="where_adicional" class="java.lang.String">
+		<defaultValueExpression><![CDATA[""]]></defaultValueExpression>
+	</parameter>
+	<parameter name="where_tipo_refeicao" class="java.lang.String">
+		<defaultValueExpression><![CDATA[""]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select *,
+(
+	coalesce (
+		(select count(a.agendamento_id) from agendamentos a
+		inner join refeicao r on r.refeicao_id = a.refeicao_id 
+		inner join tipo_refeicao tr on tr.tipo_refeicao_id = r.tipo_refeicao_id 
+		inner join grupo_refeicoes gr on gr.grupo_refeicoes_id =r.grupo_refeicoes_id 
+		left join matricula m on m.matricula_id = a.matricula_id
+		left join servidor s ON s.servidor_id = a.servidor_id 
+		left join tipo_vinculo tvS on tvS.tipo_vinculo_id = s.tipo_vinculo_id
+		left join tipo_vinculo tvM on tvM.tipo_vinculo_id = m.tipo_vinculo_id 
+		where tr.tipo_refeicao_id = tipoR.tipo_refeicao_id 
+		and a.dt_agendamento between $P{dataInicio} and $P{dataFim}
+		$P!{where_adicional}
+		group by tr.tipo_refeicao_id
+	)::varchar ,'-')
+)as agendados,
+(
+	coalesce (
+		(select count(a.agendamento_id) from agendamentos a
+		inner join refeicao r on r.refeicao_id = a.refeicao_id 
+		inner join tipo_refeicao tr on tr.tipo_refeicao_id = r.tipo_refeicao_id
+		inner join grupo_refeicoes gr on gr.grupo_refeicoes_id =r.grupo_refeicoes_id  
+				left join matricula m on m.matricula_id = a.matricula_id
+		left join servidor s ON s.servidor_id = a.servidor_id 
+		left join tipo_vinculo tvS on tvS.tipo_vinculo_id = s.tipo_vinculo_id
+		left join tipo_vinculo tvM on tvM.tipo_vinculo_id = m.tipo_vinculo_id 
+		where tr.tipo_refeicao_id =tipoR.tipo_refeicao_id 
+		and a.dt_agendamento between $P{dataInicio} and $P{dataFim}
+		and a.credito_id is not null
+		$P!{where_adicional}
+		group by tr.tipo_refeicao_id 
+	)::varchar ,'-')
+)as efetivados,
+(
+	coalesce (
+		(select count(a.agendamento_id) from agendamentos a
+		inner join refeicao r on r.refeicao_id = a.refeicao_id 
+		inner join tipo_refeicao tr on tr.tipo_refeicao_id = r.tipo_refeicao_id
+		inner join grupo_refeicoes gr on gr.grupo_refeicoes_id =r.grupo_refeicoes_id  
+				left join matricula m on m.matricula_id = a.matricula_id
+		left join servidor s ON s.servidor_id = a.servidor_id 
+		left join tipo_vinculo tvS on tvS.tipo_vinculo_id = s.tipo_vinculo_id
+		left join tipo_vinculo tvM on tvM.tipo_vinculo_id = m.tipo_vinculo_id 
+		where tr.tipo_refeicao_id = tipoR.tipo_refeicao_id 
+		and a.dt_agendamento between $P{dataInicio} and $P{dataFim}
+		and a.credito_id is null	
+		and current_timestamp >= (a.dt_agendamento + tr.hora_inicio)
+		$P!{where_adicional}  
+		group by tr.tipo_refeicao_id 
+	)::varchar ,'-')
+)as frustrados
+from tipo_refeicao tipoR 
+$P!{where_tipo_refeicao} 
+order by tipoR.descricao]]>
+	</queryString>
+	<field name="tipo_refeicao_id" class="java.util.UUID">
+		<property name="com.jaspersoft.studio.field.name" value="tipo_refeicao_id"/>
+		<property name="com.jaspersoft.studio.field.label" value="tipo_refeicao_id"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="tipo_refeicao"/>
+	</field>
+	<field name="descricao" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="descricao"/>
+		<property name="com.jaspersoft.studio.field.label" value="descricao"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="tipo_refeicao"/>
+	</field>
+	<field name="style_class" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="style_class"/>
+		<property name="com.jaspersoft.studio.field.label" value="style_class"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="tipo_refeicao"/>
+	</field>
+	<field name="background_color" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="background_color"/>
+		<property name="com.jaspersoft.studio.field.label" value="background_color"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="tipo_refeicao"/>
+		<fieldDescription><![CDATA[em hexa]]></fieldDescription>
+	</field>
+	<field name="cor_fonte" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="cor_fonte"/>
+		<property name="com.jaspersoft.studio.field.label" value="cor_fonte"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="tipo_refeicao"/>
+	</field>
+	<field name="hora_inicio" class="java.sql.Time">
+		<property name="com.jaspersoft.studio.field.name" value="hora_inicio"/>
+		<property name="com.jaspersoft.studio.field.label" value="hora_inicio"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="tipo_refeicao"/>
+	</field>
+	<field name="hora_fim" class="java.sql.Time">
+		<property name="com.jaspersoft.studio.field.name" value="hora_fim"/>
+		<property name="com.jaspersoft.studio.field.label" value="hora_fim"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="tipo_refeicao"/>
+	</field>
+	<field name="agendados" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="agendados"/>
+		<property name="com.jaspersoft.studio.field.label" value="agendados"/>
+	</field>
+	<field name="efetivados" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="efetivados"/>
+		<property name="com.jaspersoft.studio.field.label" value="efetivados"/>
+	</field>
+	<field name="frustrados" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="frustrados"/>
+		<property name="com.jaspersoft.studio.field.label" value="frustrados"/>
+	</field>
+	<detail>
+		<band height="13" splitType="Stretch">
+			<textField isBlankWhenNull="true">
+				<reportElement x="0" y="0" width="40" height="13" uuid="173b9ef1-6968-41c6-8bb3-929186306e7b">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="c2b859cd-282e-4084-a5ed-00fc8b685e27"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="html">
+					<font fontName="Monospaced" size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{agendados}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="40" y="0" width="36" height="13" uuid="8481c0d5-eea1-450c-9fa7-6cdc477fe8c6">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="1f664918-a00d-46c0-ade6-31eff06450d8"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Monospaced" size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{efetivados}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="76" y="0" width="44" height="13" uuid="3a317f62-ca61-4498-bff7-2e805066b4d2">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="81493e9c-1abc-41e6-bdda-5c7f4364d527"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Monospaced" size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{frustrados}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

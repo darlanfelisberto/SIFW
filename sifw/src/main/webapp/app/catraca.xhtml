@@ -1,0 +1,190 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:jsf="http://xmlns.jcp.org/jsf"
+	xmlns:p="http://primefaces.org/ui" template="/public/_template.xhtml">
+
+
+	<ui:define name="header">
+		<ui:include src="/app/header.xhtml" />
+	</ui:define>
+
+	<ui:define name="nav">
+		<ui:include src="/app/nav.xhtml" />
+	</ui:define>
+
+	<ui:define name="main">
+		<h:form id="frmMain">
+			<p:breadCrumb  id="breadcrumb" rendered="false">
+				<p:menuitem></p:menuitem>
+				<p:menuitem value="Catraca online"></p:menuitem>
+			</p:breadCrumb>	
+		
+			<p:messages showSummary="true" showDetail="true" skipDetailIfEqualsSummary="true">
+				<p:autoUpdate></p:autoUpdate>
+			</p:messages>
+			
+			<p:remoteCommand actionListener="#{catracaBean.atualizaBean}" name="atualizaBean" immediate="true" process="@this"> </p:remoteCommand>
+			
+			<div class="ui-fluid p-formgrid p-grid">
+				<div class="p-field p-col-12 p-md-4">
+					<p:panel header="Scanner">
+						<div id="reader" style="width: 300px" ></div>
+						<p:outputPanel id="otpBusca">
+							<div class="ui-fluid p-formgrid p-grid">
+								<div class="p-field p-col-12 p-md-12">
+									
+								</div>
+								
+								<div class="p-field p-col-12 p-md-12">
+									<p:outputLabel value="Data de Referência:" for="dtReferencia"/>
+									<p:datePicker id="dtReferencia" value="#{catracaBean.dtReferencia}" required="true" disabled="#{not hasRoleBean.hasIffarAdmin or not hasRoleBean.hasIffarMoradia}">
+									</p:datePicker>
+								</div>
+								
+					 			<div class="p-field p-col-12 p-md-12" >
+									<p:outputLabel value="Refeição do dia:" for="somRefeicao"/>
+									<p:selectOneMenu id="somRefeicao" value="#{catracaBean.tipoRefeicao}" converter="#{modelConverter}" required="true">
+										<f:selectItem/>
+										<f:selectItems value="#{catracaBean.listTipoRefeicao}" var="t" itemValue="#{t}" itemLabel="#{t.descricao}"></f:selectItems>
+									</p:selectOneMenu>
+								</div>
+					 			
+					 			<div class="p-field p-col-12 p-md-12" jsf:id="tokenId" >
+									<p:outputLabel value="Usuário:" for="teste" />
+									<p:inputText id="teste" value="#{catracaBean.token}" ></p:inputText>
+								</div>
+								
+								<div class="p-field p-col-12 p-md-12" >
+									<div class="grid-inline">
+						 				<p:commandButton id="btnBusca" value="Buscar" icon="pi pi-search" update="frmMain:otpDados" actionListener="#{catracaBean.buscarUsuario}" 
+						 				process="dtReferencia,somRefeicao,teste,@this"/>
+						 				<p:commandButton id="btnCancelar" value="Cancelar" actionListener="#{catracaBean.btnCancelar()}" icon="pi pi-times" styleClass="ui-button-secondary"
+						 				onclick="document.getElementById('frmMain:teste').value = ''" immediate="true" process="@this"  
+						 				update="frmMain:otpDados frmMain:tokenId"></p:commandButton>
+					 				</div>
+					 			</div>
+							</div>	
+						</p:outputPanel>
+					</p:panel>
+				</div>
+				
+				<div class="p-field p-col-12 p-md-8">
+					<p:panel header="Informações do Usuário" id="otpDados">
+						
+						<div class="boaRefeicao" jsf:rendered="#{catracaBean.boaRefeicao != null}" >
+							<div class="ui-message ui-widget ui-corner-all" style="width: 100%;">
+								<i class="pi pi-check"></i>
+								<span class="ui-message-info-summary"></span>
+								<span class="ui-message-info-detail" style="font-weight: 100;font-size: 16pt;">
+									<h:outputText value="#{catracaBean.boaRefeicao}" escape="false"/>
+								</span>
+							</div>
+						</div>
+						<p:outputPanel style="display: flex; flex-direction: row; align-items: center; padding-top: 15px"  rendered="#{catracaBean.usuario != null}">
+							
+							<p:outputPanel id="optImage">
+								<div style="width: 300px;height: 300px;">
+									<p:graphicImage value="#{catracaBean.imagen.imageForCatraca}" alt="user" stream="false"  style="max-width: 100%;max-height: 100%;">
+									</p:graphicImage>
+								</div>
+							</p:outputPanel>
+							
+							<p:outputPanel id="otpDadosUsuario">
+								<div class="ui-fluid p-formgrid p-grid" style="padding-left: 20px">
+						 			<div class="p-field p-col-12 p-md-12">
+										<label ><b>Nome:</b></label>
+										<SPAN class="ui-inputnumber">
+											<h:outputText value="#{catracaBean.usuario.nome}" />
+										</SPAN>
+									</div>
+									
+									<div class="p-field p-col-12 p-md-12" jsf:rendered="#{not catracaBean.agendamento.novo}">
+										<label ><b>Agendado como:</b></label>
+										<SPAN class="ui-inputnumber">
+											<h:outputText value="#{catracaBean.agendamento.vinculosAtivosUsuario.label}" />
+										</SPAN>
+									</div>
+									
+									<div class="p-field p-col-12 p-md-12">
+										<label><b>Saldo:</b></label>
+										<h:outputText value="#{catracaBean.saldo.saldo}" />
+									</div>
+									
+									<div class="p-field p-col-12 p-md-12">
+										<label><b>Agendamento:</b> </label>
+										<h:outputText value="#{catracaBean.agendamento.agendado ? catracaBean.agendamento.description : ' Não Agendado.'}"  rendered="#{catracaBean.usuario != null and catracaBean.credito == null}"/>
+									</div>
+																		
+									<p:outputPanel styleClass="p-field p-col-12 p-md-12" rendered="#{catracaBean.credito != null}">
+										<label><b>Entrada(crédito):</b></label>
+										<h:outputText value="#{catracaBean.credito.dtCredito}" >
+											<f:convertDateTime type="localDate" pattern="'Dia' dd/MM/YYYY 'às' HH:mm"/>
+										</h:outputText>
+									</p:outputPanel>
+									
+								</div>
+								<div class="ui-fluid p-formgrid p-grid" style="padding-left: 20px" jsf:rendered="#{catracaBean.rendCreditar}">
+									<div class="p-field p-col-12 p-md-12">
+										<p:outputPanel rendered="#{catracaBean.agendamento.novo and catracaBean.listVinculosAtivosUsuario.size()>1}">
+											<label><b>Vínculo:</b></label>
+											<p:selectOneMenu id="somVinvulo" value="#{catracaBean.vinculoSelecionado}" required="true" converter="#{modelConverter}" label="Vínculo">
+												<f:selectItem />
+												<f:selectItems value="#{catracaBean.listVinculosAtivosUsuario}" var="vinc" itemValue="#{vinc}" itemLabel="#{vinc.label}"></f:selectItems>
+												<p:ajax event="valueChange" listener="#{catracaBean.selecionouVinculo}" update="somRefeicaoNaoAgendada" />
+												
+											</p:selectOneMenu>
+										</p:outputPanel>
+									</div>
+									
+									<div class="p-field p-col-12 p-md-12">
+										<p:outputPanel rendered="#{catracaBean.agendamento.novo}">
+											<label><b>Refeição:</b></label>
+											<p:selectOneMenu id="somRefeicaoNaoAgendada" value="#{catracaBean.agendamento.refeicao}" required="true" converter="#{modelConverter}" label="Refeição">
+												<f:selectItem />
+												<f:selectItems value="#{catracaBean.refeicoesDoUsuario}" var="r" itemValue="#{r}" itemLabel="#{r.label()}"></f:selectItems>
+											</p:selectOneMenu>
+										</p:outputPanel>
+									</div>
+									
+									<div class="p-field p-col-12 p-md-12" >
+										<div class="grid-inline">
+							 				<p:commandButton id="btn1" value="Creditar" icon="pi pi-credit-card" actionListener="#{catracaBean.creditar}" update="frmMain:otpBusca frmMain:otpDados" 
+							 					process="somVinvulo,somRefeicaoNaoAgendada,@this">
+							 					<p:confirm type="popup" header="Confirmação" message="Tem certeza que deseja realizar esta operação?" icon="pi pi-info-circle"/>
+							 				</p:commandButton>
+						 				</div>
+						 			</div>
+								</div>	
+							</p:outputPanel>
+						</p:outputPanel>
+					</p:panel>
+				</div>
+			</div>
+			<script type="text/javascript">
+				window.setInterval(function() {
+					let diferenca = (Date.now() - agora)
+					var min = (((diferenca % 86400000) % 3600000) / 60000);
+					//console.log(diferenca + " - "+min + " - "+session);
+					if(min >= (session-1)){
+						try {
+							console.log("atualiza: "+diferenca + " - "+min + " - "+session);
+							atualizaBean();	
+						} catch (e) {
+							console.log(e);
+						}
+					}else{
+						//console.log('não atualiza');
+					}
+				}, 10000)
+			</script>			   	
+		    <p:confirmPopup global="true">
+	            <p:commandButton value="Não" type="button" styleClass="ui-confirm-popup-no ui-button-flat"/>
+	            <p:commandButton value="Sim" type="button" styleClass="ui-confirm-popup-yes" />
+	        </p:confirmPopup>
+		    <h:outputScript library="js" name="html5-qrcode.min.js"></h:outputScript>
+			<h:outputScript library="js" name="instascan.min.js"></h:outputScript>	
+		</h:form>	
+	</ui:define>
+</ui:composition>

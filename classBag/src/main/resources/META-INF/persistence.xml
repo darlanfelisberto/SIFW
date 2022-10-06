@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.2" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="
+        http://xmlns.jcp.org/xml/ns/persistence
+        http://xmlns.jcp.org/xml/ns/persistence/persistence_2_2.xsd">
+	<persistence-unit name="baseUnit" transaction-type="JTA">
+		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+		<jta-data-source>java:jboss/datasources/baseDS</jta-data-source>
+
+		<class>br.edu.iffar.fw.classBag.db.model.Agendamento</class>
+		<class>br.edu.iffar.fw.classBag.db.model.AlteracoesAgendamentos</class>
+		<class>br.edu.iffar.fw.classBag.db.model.AltenacoesCreditos</class>
+		<class>br.edu.iffar.fw.classBag.db.model.Presenca</class>
+		<class>br.edu.iffar.fw.classBag.db.model.Cardapio</class>
+		<class>br.edu.iffar.fw.classBag.db.model.Cidade</class>
+		<class>br.edu.iffar.fw.classBag.db.model.Credito</class>
+		<class>br.edu.iffar.fw.classBag.db.model.Curso</class>
+		<class>br.edu.iffar.fw.classBag.db.model.Estado</class>
+		<class>br.edu.iffar.fw.classBag.db.model.GrupoRefeicoes</class>
+		<class>br.edu.iffar.fw.classBag.db.model.Imagen</class>
+		<class>br.edu.iffar.fw.classBag.db.model.ItemUnidade</class>
+		<class>br.edu.iffar.fw.classBag.db.model.HabitanteUnidade</class>
+		<class>br.edu.iffar.fw.classBag.db.model.Log</class>
+		<class>br.edu.iffar.fw.classBag.db.model.Matricula</class>
+		<class>br.edu.iffar.fw.classBag.db.model.Parametros</class>
+		<class>br.edu.iffar.fw.classBag.db.model.Refeicao</class>
+		<class>br.edu.iffar.fw.classBag.db.model.Saldo</class>
+		<class>br.edu.iffar.fw.classBag.db.model.Servidor</class>
+		<class>br.edu.iffar.fw.classBag.db.model.SituacaoMatricula</class>
+		<class>br.edu.iffar.fw.classBag.db.model.TipoCredito</class>
+		<class>br.edu.iffar.fw.classBag.db.model.TipoRefeicao</class>
+		<class>br.edu.iffar.fw.classBag.db.model.TipoUnidade</class>
+		<class>br.edu.iffar.fw.classBag.db.model.TipoVinculo</class>
+		<class>br.edu.iffar.fw.classBag.db.model.Turma</class>
+		<class>br.edu.iffar.fw.classBag.db.model.Unidade</class>
+		<class>br.edu.iffar.fw.classBag.db.model.Usuario</class>
+		
+
+		<!--class>br.edu.iffar.fw.classBag.db.model.api.APIMatricula</class>
+		<class>br.edu.iffar.fw.classBag.db.model.api.APIRefeicao</class>
+		<class>br.edu.iffar.fw.classBag.db.model.api.APIServidor</class>
+		<class>br.edu.iffar.fw.classBag.db.model.api.APIGrupoRefeicoes</class-->
+		<class>br.edu.iffar.fw.classBag.db.model.api.APIAgendamento</class>
+		<class>br.edu.iffar.fw.classBag.db.model.api.APIAgendamentosDisponibilizados</class>
+		<class>br.edu.iffar.fw.classBag.db.model.api.APICredito</class>
+		<class>br.edu.iffar.fw.classBag.db.model.api.APIImagen</class>
+		<class>br.edu.iffar.fw.classBag.db.model.api.APIRefeicao2</class>
+		<class>br.edu.iffar.fw.classBag.db.model.api.APISaldo</class>
+		<class>br.edu.iffar.fw.classBag.db.model.api.APISincronizado</class>
+		<class>br.edu.iffar.fw.classBag.db.model.api.APIUsuario</class>
+		<class>br.edu.iffar.fw.classBag.db.model.api.APIUsuarioRefeicao</class>
+		<class>br.edu.iffar.fw.classBag.db.model.api.APIUsuarioRefeicaoPK</class>
+
+		<shared-cache-mode>ENABLE_SELECTIVE</shared-cache-mode>
+		<properties>
+			<!-- property name="javax.persistence.schema-generation.database.action" value="update"/-->
+			<!--property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/-->
+			<!--property name="hibernate.generate_statistics" value="true"/--> 
+			<property name="hibernate.enable_lazy_load_no_trans" value="true" />
+			<property name="wildfly.jpa.default-unit" value="true" />
+			<property name="hibernate.show_sql" value="true" />
+			<property name="hibernate.dialect" value="org.hibernate.dialect.PostgresPlusDialect" />
+			
+			<!-- -->
+			<property name="hibernate.cache.use_second_level_cache" value="true" />
+            <property name="hibernate.cache.use_query_cache" value="true" />  
+            <!-- -->
+
+			<property name="hibernate.ejb.interceptor" value="br.edu.iffar.fw.classBag.db.HInterceptor" />
+		</properties>
+	</persistence-unit>
+</persistence>

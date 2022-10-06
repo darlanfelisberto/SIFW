@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.18.1.final using JasperReports Library version 6.18.1-9d75d1969e774d4f179fb3be8401e98a0e6d1611  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="agendamentos_integralizados" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" isSummaryWithPageHeaderAndFooter="true" uuid="f7e60758-3e70-4857-8ddf-fce8c4e0c214">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="DataAdapter.xml"/>
+	<parameter name="dataInicio" class="java.util.Date"/>
+	<parameter name="dataFim" class="java.util.Date"/>
+	<parameter name="header" class="java.lang.String"/>
+	<parameter name="where_adicional" class="java.lang.String">
+		<defaultValueExpression><![CDATA[" "]]></defaultValueExpression>
+	</parameter>
+	<parameter name="where_tipo_refeicao" class="java.lang.String" evaluationTime="Early">
+		<defaultValueExpression><![CDATA[" "]]></defaultValueExpression>
+	</parameter>
+	<parameter name="filtros" class="java.lang.String"/>
+	<queryString language="SQL">
+		<![CDATA[select *,
+case when dia_semana = 0 then 'Dom'
+	when dia_semana = 1 then 'Seg'
+	when dia_semana = 2 then 'Ter'
+	when dia_semana = 3 then 'Qua'
+	when dia_semana = 4 then 'Qui'
+	when dia_semana = 5 then 'Sex'
+else 'Sab' end as dia_semana_desc 
+from(
+	select dia, extract(dow from dia)as dia_semana from (
+		select generate_series( $P{dataInicio}::date ,  $P{dataFim}::date  ,'1 day')::date as data
+	)as dias(dia)
+)as foo]]>
+	</queryString>
+	<field name="dia" class="java.sql.Date">
+		<property name="com.jaspersoft.studio.field.name" value="dia"/>
+		<property name="com.jaspersoft.studio.field.label" value="dia"/>
+	</field>
+	<field name="dia_semana" class="java.lang.Double">
+		<property name="com.jaspersoft.studio.field.name" value="dia_semana"/>
+		<property name="com.jaspersoft.studio.field.label" value="dia_semana"/>
+	</field>
+	<field name="dia_semana_desc" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="dia_semana_desc"/>
+		<property name="com.jaspersoft.studio.field.label" value="dia_semana_desc"/>
+	</field>
+	<title>
+		<band height="52" splitType="Stretch">
+			<subreport isUsingCache="false" runToBottom="false">
+				<reportElement stretchType="ElementGroupHeight" x="0" y="0" width="799" height="40" isPrintWhenDetailOverflows="true" uuid="6e152a68-82c9-44a7-ae72-11745d354ac7"/>
+				<subreportParameter name="nome_relatorio">
+					<subreportParameterExpression><![CDATA["Agendamentos Integralizados"]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[this.getClass().getResourceAsStream("br/edu/iffar/relatorios/header_small.jasper")]]></subreportExpression>
+			</subreport>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="26" splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			<staticText>
+				<reportElement x="0" y="0" width="50" height="26" uuid="6fb0f0be-6cfd-4eae-b0c1-963f44377762">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="55f93b7c-81e3-440b-9e24-81aa435f731a"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Monospaced" size="7"/>
+				</textElement>
+				<text><![CDATA[Data]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="50" y="0" width="39" height="26" uuid="317f2bcc-3542-4f9e-b7b0-be27d8a347e2">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="e375f565-a9c3-4eec-8273-77b56aa2b446"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Monospaced" size="7"/>
+				</textElement>
+				<text><![CDATA[Dia da Semana]]></text>
+			</staticText>
+			<subreport>
+				<reportElement x="89" y="0" width="712" height="26" uuid="340f5988-a542-4498-8c83-4dc076af311f">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<subreportParameter name="where_tipo_refeicao">
+					<subreportParameterExpression><![CDATA[$P{where_tipo_refeicao}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[this.getClass().getResourceAsStream("br/edu/iffar/relatorios/RU/admin/integralizado/subLabelsVisaoGeralAgendamento.jasper")]]></subreportExpression>
+			</subreport>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="13" splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			<textField>
+				<reportElement mode="Opaque" x="0" y="0" width="50" height="13" forecolor="#000000" uuid="9e84fb4f-920f-4bac-a486-a8a76583b507">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="55f93b7c-81e3-440b-9e24-81aa435f731a"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Monospaced" size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[DATEFORMAT($F{dia},"dd/MM/yy")]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement mode="Opaque" x="50" y="0" width="39" height="13" uuid="8cbcf05b-967d-4080-a7df-8a568b2c6184">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="e375f565-a9c3-4eec-8273-77b56aa2b446"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Monospaced" size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{dia_semana_desc}]]></textFieldExpression>
+			</textField>
+			<subreport isUsingCache="false">
+				<reportElement x="89" y="0" width="711" height="13" uuid="7a471f70-5558-4e5f-97c0-259c89311e81">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<subreportParameter name="dataReferencia">
+					<subreportParameterExpression><![CDATA[$F{dia}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="where_adicional">
+					<subreportParameterExpression><![CDATA[$P{where_adicional}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="where_tipo_refeicao">
+					<subreportParameterExpression><![CDATA[$P{where_tipo_refeicao}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[this.getClass().getResourceAsStream("br/edu/iffar/relatorios/RU/admin/integralizado/subTotaisVisaoGeralAgendamento.jasper")]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="32">
+			<textField>
+				<reportElement x="720" y="3" width="58" height="15" uuid="362740e5-ecb8-459b-853e-d33c34c455f3">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Right">
+					<font fontName="Monospaced" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Página " + $V{PAGE_NUMBER} + " de "]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="780" y="3" width="21" height="15" uuid="6cde649c-0f20-4dc6-ae01-d5feaf518fbf">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement>
+					<font fontName="Monospaced" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="4" width="680" height="10" uuid="8b4027f5-c5b1-4bf7-8daa-038b7808b51c"/>
+				<textElement>
+					<font fontName="Monospaced" size="7"/>
+				</textElement>
+				<text><![CDATA[** Agendamentos frustrados somente devem ser considerados após a ocorrência da refeição.]]></text>
+			</staticText>
+			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
+				<reportElement x="0" y="14" width="679" height="15" uuid="35e40bb4-5006-4a2e-a3ce-a29744ad5c03">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Monospaced" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{filtros}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="88">
+			<subreport>
+				<reportElement x="88" y="70" width="712" height="10" uuid="e672cb5c-2fc0-46d3-8031-6dfe06925d07">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<subreportParameter name="dataInicio">
+					<subreportParameterExpression><![CDATA[$P{dataInicio}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="dataFim">
+					<subreportParameterExpression><![CDATA[$P{dataFim}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="where_adicional">
+					<subreportParameterExpression><![CDATA[$P{where_adicional}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="where_tipo_refeicao">
+					<subreportParameterExpression><![CDATA[$P{where_tipo_refeicao}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[this.getClass().getResourceAsStream("br/edu/iffar/relatorios/RU/admin/integralizado/subTotaisPediodoIntegralizado.jasper")]]></subreportExpression>
+			</subreport>
+			<textField>
+				<reportElement x="89" y="15" width="710" height="20" uuid="119a1453-1f0c-4be2-832e-41c635c2a0da"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Monospaced" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Totais de " + DATEFORMAT($P{dataInicio},"dd/MM/yyyy") +" até " +DATEFORMAT($P{dataFim},"dd/MM/yyyy")]]></textFieldExpression>
+			</textField>
+			<subreport>
+				<reportElement x="88" y="44" width="712" height="26" uuid="ca119398-2edd-452f-a01f-363459f91ab6">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<subreportParameter name="where_tipo_refeicao">
+					<subreportParameterExpression><![CDATA[$P{where_tipo_refeicao}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[this.getClass().getResourceAsStream("br/edu/iffar/relatorios/RU/admin/integralizado/subLabelsVisaoGeralAgendamento.jasper")]]></subreportExpression>
+			</subreport>
+		</band>
+	</summary>
+</jasperReport>

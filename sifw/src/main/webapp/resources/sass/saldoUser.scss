@@ -1,0 +1,47 @@
+.esconde-header > .ui-dataview-header{
+	display: none !important;
+}
+
+.ui-menuitem-text {
+	display: inline !important;
+}
+
+.marker{
+	display: flex;
+	width: 2rem;
+	height: 2rem;
+	align-items: center;
+	justify-content: center;
+	color:#fff;
+	border-radius: 50%;
+	z-index: 1;
+}
+
+.marker-saida{
+	display: flex;
+	width: 2rem;
+	height: 2rem;
+	align-items: center;
+	justify-content: center;
+	color: #fff;
+	border-radius: 50%;
+	z-index: 1;
+	background-color: #dd0000;
+}
+
+.marker-trans{
+	display: flex;
+	width: 2rem;
+	height: 2rem;
+	align-items: center;
+	justify-content: center;
+	color: #fff;
+	border-radius: 50%;
+	z-index: 1;
+	background-color: #f24400;
+}
+
+.b-{
+	border-left: 2px solid red;
+}
+

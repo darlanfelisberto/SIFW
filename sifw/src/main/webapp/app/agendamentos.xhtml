@@ -1,0 +1,50 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" template="/public/_template.xhtml">
+
+
+	<ui:define name="header">
+		<ui:include src="/app/header.xhtml" />
+	</ui:define>
+
+	<ui:define name="nav">
+		<ui:include src="/app/nav.xhtml" />
+	</ui:define>
+	
+	<ui:define name="main">
+		<h:form id="frmMain" styleClass="">
+			<p:growl showSummary="true" id="message">
+			</p:growl>			
+
+			<p:breadCrumb >
+				<p:menuitem outcome="/app/index.xhtml"/>
+            	<p:menuitem value="Agendamentos" outcome="/app/agendamentos.xhtml"/>
+			</p:breadCrumb>	
+
+			<p:outputPanel id="otpGrafico">
+				<p:panel header="Total de agendamentos por tipo de refeição em uma data">
+					<div class="card">
+						<div class="ui-fluid p-formgrid p-grid">
+		        			<div class="p-field p-col">
+						        <label for="firstname">Início:</label>
+						        <p:datePicker value="#{relatorioBean.dtInicio}"/>
+						    </div>
+						    <div class="p-field p-col">
+						        <label for="firstname">Fim:</label>
+						        <p:datePicker value="#{relatorioBean.dtFim}"/>
+						    </div>
+						    <div class="p-field" style="display: flex; align-items: flex-end;">
+						    	<p:commandButton value="Aplicar" actionListener="#{relatorioBean.novoPediodo}" update="frmMain:message frmMain:otpGrafico"></p:commandButton>
+						    </div>
+						</div>
+					    <p:barChart model="#{relatorioBean.barModel}" style="width: 100%; height: 500px;"/>
+					</div>	
+				</p:panel>
+			</p:outputPanel>
+						
+		</h:form>
+	</ui:define>
+
+</ui:composition>

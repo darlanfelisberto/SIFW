@@ -1,0 +1,180 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" 
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	template="/public/_template.xhtml">
+
+
+	<ui:define name="header">
+		<ui:include src="/app/header.xhtml" />
+	</ui:define>
+
+	<ui:define name="nav">
+		<ui:include src="/app/nav.xhtml" />
+	</ui:define>
+
+
+	<ui:define name="main">
+		<h:form id="frmMain">
+			<nav  class="ui-breadcrumb ui-module ui-widget ui-widget-header ui-helper-clearfix ui-corner-all" aria-label="Breadcrumb">
+				<ol class="ui-breadcrumb-items">
+					<li>
+						<a tabindex="0" class="ui-menuitem-link ui-corner-all ui-breadcrumb-home-icon ui-icon ui-icon-home" href="index.xhtml"></a>
+					</li>
+					<li>
+						<a tabindex="0" aria-current="page" class="ui-menuitem-link ui-corner-all" href="#" >
+						<span class="ui-menuitem-text">Transferência de agendamento</span>
+						</a>
+					</li>
+				</ol>
+			</nav>
+			
+			<p:growl showSummary="true" id="messages">
+			</p:growl>
+			<p:outputPanel id="otpTranferirAge">
+				
+				<p:panel header="Transferir Agendamento" >
+					<div class="card">
+						<div class="ui-fluid p-formgrid p-grid">
+			 				<div class="p-field p-col-12 p-md-6">
+	    						<label for="somAgenTrans">Agen. Transferíveis:</label>
+	    						<p:selectOneMenu id="somAgenTrans" converter="#{modelConverter}" value="#{transferirAgendamentosBean.altAgendamento.agendamento}" required="true" 
+		    						requiredMessage="Selecione um Agendamento." >
+	    							<f:selectItem />
+	    							<f:selectItems value="#{transferirAgendamentosBean.listAgendTransferiveis}" var="a" itemLabel="#{a.description}" itemValue="#{t}"></f:selectItems>
+	    						</p:selectOneMenu>
+	    					</div>
+	    					<div class="p-field p-col-12 p-md-6">
+	    						<label for="autoNomeCpf">Destino(Nome/CPF):</label>
+	    						<p:autoComplete id="autoNomeCpf" minQueryLength="11" completeMethod="#{transferirAgendamentosBean.buscarUserDestino}"
+	    							value="#{transferirAgendamentosBean.altAgendamento.usuarioDestino}" converter="#{modelConverter}" required="true" 
+	    							emptyMessage="Nenhum registro encontrado." requiredMessage="Informe o usuário de Destino." 
+	    							pt:placeholder="Digite 11 letras para pesquisar" var="u" itemLabel="#{u.nomeCpf}" itemValue="#{u}" ></p:autoComplete>
+	    					</div>
+						</div>
+						
+						<div class="p-field flex-inline-space">
+    						<p:commandButton value="Transferír" update="frmMain:messages frmMain:otpTranferirAge frmMain:otpEnviRece" icon="pi pi-send" actionListener="#{transferirAgendamentosBean.transferirAgendamento}"
+    							process="somAgenTrans autoNomeCpf @this" styleClass="ui-button-success">
+    							<p:confirm type="popup" header="Atenção" message="Você esta certo disso?" icon="pi pi-exclamation-triangle"></p:confirm>
+    						</p:commandButton>
+    						<p:commandButton value="Cancelar" actionListener="#{transferirAgendamentosBean.brnCancelarTransferencia}" styleClass="ui-button-secondary" 
+    							icon="pi pi-times" update="frmMain:otpTranferirAge" immediate="true"/>
+    					</div>
+    					<div class="p-field flex-inline-space">
+							* As transferências de agendamentos podem ser realizadas até o termino da respectiva refeição. 
+						</div>	
+					</div>
+				</p:panel>
+			</p:outputPanel>
+			
+			<p:outputPanel id="otpEnviRece" style="border: 1px solid #dee2e6;">
+				<p:dataTable emptyMessage="Nenhum agendamento recebido." value="#{transferirAgendamentosBean.listAlteracoesAgendamentos}"
+					var="aa" >
+					<f:facet name="header">Agendamentos Recebidos/Enviados</f:facet>
+					
+					<p:column headerText="Origem">
+						#{aa.usuarioOrigem.nome}
+					</p:column>
+					<p:column headerText="Destino">
+						#{aa.usuarioDestino.nome}
+					</p:column>
+					<p:column headerText="Realizada" styleClass="esconde">
+						<h:outputText value="#{aa.dtTranferencia}" >
+							<f:convertDateTime pattern="dd/MM/yy HH:mm" type="localDateTime"/>
+						</h:outputText>
+					</p:column>
+					<p:column headerText="Agend.">
+						<h:outputText value="#{aa.agendamento.dtAgendamento}" >
+							<f:convertDateTime pattern="dd/MM/yy" type="localDate"/>
+						</h:outputText> - 
+						#{aa.agendamento.refeicao.tipoRefeicao.descricao}
+					</p:column>
+					
+					<p:column width="60"  style="padding:0" headerText="Status">
+						<h:outputText value="#{aa.label()}" rendered="#{aa.aceito != null}" />
+						<p:outputPanel rendered="#{aa.aceito == null and !transferirAgendamentosBean.userLogado.equals(aa.usuarioOrigem)}">
+							<p:commandButton styleClass="rounded-button ui-button-outlined" icon="pi pi-chevron-circle-right"  alt="selecionar"
+								action="#{transferirAgendamentosBean.selecionouAgendamento}" process="@this" oncomplete="PF('dlgRecebimeno').show()"
+								update="frmMain:dlgAceitar frmMain:otpDlgAceitar">
+								<f:setPropertyActionListener value="#{aa}" target="#{transferirAgendamentosBean.altAgendamento}"></f:setPropertyActionListener>
+							</p:commandButton>
+						</p:outputPanel>
+						<p:outputPanel rendered="#{aa.aceito == null and transferirAgendamentosBean.userLogado.equals(aa.usuarioOrigem)}">
+							<p:commandButton alt="Cancelar" icon="pi pi-trash" action="#{transferirAgendamentosBean.cancelarTransRealizada}"
+								update="frmMain:messages frmMain:otpEnviRece frmMain:otpTranferirAge" process="@this" styleClass="rounded-button ui-button-outlined">
+								<f:setPropertyActionListener value="#{aa}" target="#{transferirAgendamentosBean.altAgendamento}"></f:setPropertyActionListener>
+								<p:confirm type="popup" header="Atenção" message="Você vai cancelar esta transferência, está certo disso?" icon="pi pi-exclamation-triangle"></p:confirm>
+							</p:commandButton>
+						</p:outputPanel>
+					</p:column>
+				</p:dataTable>	
+			</p:outputPanel>
+			
+			<p:dialog header="Recebimento de Transferência de Agendamento" widgetVar="dlgRecebimeno" id="dlgAceitar" modal="true" style="max-width:405px">
+				<p:outputPanel id="otpDlgAceitar">
+					<div class="ui-fluid p-formgrid p-grid">
+						<div class="p-field p-col-12 p-md-12">
+							<label>Data do Agendamento:</label>
+							<b>
+								<h:outputText value="#{transferirAgendamentosBean.altAgendamento.agendamento.dtAgendamento}" >
+									<f:convertDateTime type="localDate" pattern="dd/MM/yyyy"></f:convertDateTime>
+								</h:outputText>
+							</b>
+						</div>
+						<div class="p-field p-col-12 p-md-12">
+							<label>Usuário de Origem:</label>
+							<span><b>#{transferirAgendamentosBean.altAgendamento.usuarioOrigem.nome}</b></span>
+						</div>
+						<div class="p-field p-col-12 p-md-12">
+						</div>
+				 		<div class="p-field p-col-12 p-md-12">
+				 			<label>Refeições Disponíveis:</label>
+				 			<p:selectOneMenu value="#{transferirAgendamentosBean.altAgendamento.agendamento.refeicao}" id="somRefeicaoDisponivel" required="true" label="Refeição Disponível" 
+				 				converter="#{modelConverter}">
+				 				<f:selectItem />
+				 				<f:selectItems value="#{transferirAgendamentosBean.listRefeicoes}" var="r" itemValue="#{r}" itemLabel="#{r.label()}"></f:selectItems>
+				 			</p:selectOneMenu>
+				 		</div>
+				 		<div class="p-field p-col-12 p-md-12">
+				 		</div>
+				 		
+				 	</div>
+				 	<div class="p-field flex-inline-space">
+				 		<p:commandButton value="Aceitar" icon="pi pi-check" styleClass="ui-button-success" actionListener="#{transferirAgendamentosBean.aceitarTransferencia}"
+				 			process="somRefeicaoDisponivel @this" update="frmMain:messages frmMain:otpEnviRece frmMain:otpDlgAceitar" oncomplete="handleOpenDlg(xhr, status, args)">
+							<p:confirm type="popup" header="Atenção" message="Você esta certo disso?" icon="pi pi-exclamation-triangle"></p:confirm>
+				 		</p:commandButton>
+				 		<p:commandButton value="Recusar" icon="pi pi-times-circle" styleClass="ui-button-danger" actionListener="#{transferirAgendamentosBean.recusarTransferencia}"
+				 			process="@this" oncomplete="handleOpenDlg(xhr, status, args)" update="frmMain:messages frmMain:otpEnviRece frmMain:otpDlgAceitar">
+				 			<p:confirm type="popup" header="Atenção" message="Você esta certo disso?" icon="pi pi-exclamation-triangle"></p:confirm>
+				 		</p:commandButton>
+				 		<p:commandButton value="Cancelar" icon="pi pi-times" styleClass="ui-button-secondary" rendered="false">
+				 		
+				 		</p:commandButton>
+				 	</div>
+			 	</p:outputPanel>
+			</p:dialog>
+			
+			
+	        <p:confirmPopup global="true">
+	            <p:commandButton value="Não" type="button" styleClass="ui-confirm-popup-no ui-button-flat"/>
+	            <p:commandButton value="Sim" type="button" styleClass="ui-confirm-popup-yes" />
+	        </p:confirmPopup>
+		</h:form>
+		
+		<script type="text/javascript">
+		    function handleOpenDlg(xhr, status, args) {
+		        if(!args.validationFailed){
+		        	PF('dlgRecebimeno').hide();
+		        	return true;
+		        }
+		        return false;
+		    }
+		</script>
+		
+	</ui:define>
+
+</ui:composition>

@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.16.0.final using JasperReports Library version 6.16.0-48579d909b7943b64690c65c71e07e0b80981928  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="carterinha" pageWidth="191" pageHeight="300" orientation="Landscape" whenNoDataType="AllSectionsNoDetail" columnWidth="183" leftMargin="4" rightMargin="4" topMargin="4" bottomMargin="4" uuid="ca0d01ae-34b5-4834-aa1b-9348ce33fccd">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="base"/>
+	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w1" value="267"/>
+	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w2" value="725"/>
+	<parameter name="WHERE" class="java.lang.String">
+		<defaultValueExpression><![CDATA[""]]></defaultValueExpression>
+	</parameter>
+	<parameter name="PATH" class="java.lang.String">
+		<defaultValueExpression><![CDATA["/opt/app/imagen_sifw/"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="EXTENSAO" class="java.lang.String">
+		<defaultValueExpression><![CDATA[".png"]]></defaultValueExpression>
+	</parameter>
+	<queryString language="SQL">
+		<![CDATA[SELECT u.*
+,coalesce( i.file_name,'semfoto') AS file_name
+,m.matricula
+,m.matricula_id
+FROM matricula m 
+left join usuarios u on u.usuario_id =m.usuario_id
+left join imagen i ON i.usuario_id = u.usuario_id 
+$P!{WHERE}]]>
+	</queryString>
+	<field name="usuario_id" class="java.util.UUID">
+		<property name="com.jaspersoft.studio.field.name" value="usuario_id"/>
+		<property name="com.jaspersoft.studio.field.label" value="usuario_id"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="usuarios"/>
+	</field>
+	<field name="cpf" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="cpf"/>
+		<property name="com.jaspersoft.studio.field.label" value="cpf"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="usuarios"/>
+	</field>
+	<field name="dt_nasc" class="java.sql.Date">
+		<property name="com.jaspersoft.studio.field.name" value="dt_nasc"/>
+		<property name="com.jaspersoft.studio.field.label" value="dt_nasc"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="usuarios"/>
+	</field>
+	<field name="email" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="email"/>
+		<property name="com.jaspersoft.studio.field.label" value="email"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="usuarios"/>
+	</field>
+	<field name="nome" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="nome"/>
+		<property name="com.jaspersoft.studio.field.label" value="nome"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="usuarios"/>
+	</field>
+	<field name="token_ru" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="token_ru"/>
+		<property name="com.jaspersoft.studio.field.label" value="token_ru"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="usuarios"/>
+	</field>
+	<field name="username" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="username"/>
+		<property name="com.jaspersoft.studio.field.label" value="username"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="usuarios"/>
+	</field>
+	<field name="file_name" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="file_name"/>
+		<property name="com.jaspersoft.studio.field.label" value="file_name"/>
+	</field>
+	<field name="matricula" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="matricula"/>
+		<property name="com.jaspersoft.studio.field.label" value="matricula"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="matricula"/>
+	</field>
+	<field name="matricula_id" class="java.util.UUID">
+		<property name="com.jaspersoft.studio.field.name" value="matricula_id"/>
+		<property name="com.jaspersoft.studio.field.label" value="matricula_id"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="matricula"/>
+	</field>
+	<detail>
+		<band height="48" splitType="Stretch">
+			<property name="com.jaspersoft.studio.layout"/>
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
+				<reportElement positionType="Float" stretchType="ElementGroupHeight" x="39" y="35" width="144" height="12" isRemoveLineWhenBlank="true" isPrintWhenDetailOverflows="true" uuid="b55d2084-183c-470e-976b-15a941d4d267">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" markup="html">
+					<font fontName="Monospaced" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nome}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement stretchType="ElementGroupHeight" x="0" y="35" width="39" height="12" isPrintWhenDetailOverflows="true" uuid="77fba883-fd23-4e57-9ca7-1d8920f7dc96">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement markup="none">
+					<font fontName="Monospaced" size="10"/>
+				</textElement>
+				<text><![CDATA[Nome:]]></text>
+			</staticText>
+			<image>
+				<reportElement x="-2" y="1" width="30" height="30" isPrintWhenDetailOverflows="true" uuid="f90cbec9-1181-49b7-8f0d-84a5febdc7bd"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<imageExpression><![CDATA[this.getClass().getResourceAsStream("br/edu/iffar/relatorios/logo_iff.png")]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="29" y="1" width="134" height="12" isPrintWhenDetailOverflows="true" uuid="f3db1b36-2b40-4ec0-aefd-1c2da7f6d0de">
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement verticalAlignment="Bottom">
+					<font fontName="Monospaced" size="10"/>
+				</textElement>
+				<text><![CDATA[INSTITUTO FEDERAL]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="29" y="14" width="90" height="12" isPrintWhenDetailOverflows="true" uuid="613859dd-332e-4e1f-844f-0b19ed027ea6">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement>
+					<font fontName="Monospaced" size="10"/>
+				</textElement>
+				<text><![CDATA[Farroupilha]]></text>
+			</staticText>
+		</band>
+		<band height="13">
+			<textField isBlankWhenNull="true">
+				<reportElement positionType="Float" stretchType="ElementGroupHeight" x="39" y="0" width="144" height="12" isRemoveLineWhenBlank="true" isPrintWhenDetailOverflows="true" uuid="a806d95c-0660-4b5e-bff8-79d0262d4140"/>
+				<box padding="0">
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Monospaced" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cpf}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement positionType="Float" stretchType="ElementGroupHeight" x="0" y="0" width="39" height="12" isRemoveLineWhenBlank="true" isPrintWhenDetailOverflows="true" uuid="fd8748be-82d5-4495-988a-4062854ece2f">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Monospaced" size="10"/>
+				</textElement>
+				<text><![CDATA[CPF:]]></text>
+			</staticText>
+		</band>
+		<band height="10" splitType="Stretch">
+			<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.FreeLayout"/>
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			<subreport isUsingCache="false">
+				<reportElement positionType="Float" stretchType="ContainerHeight" isPrintRepeatedValues="false" x="0" y="1" width="183" height="9" isPrintWhenDetailOverflows="true" uuid="49a74087-97df-4bdb-b751-66559161f6a6">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+				<subreportParameter name="usuario_id">
+					<subreportParameterExpression><![CDATA[$F{usuario_id}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="matricula_id">
+					<subreportParameterExpression><![CDATA[$F{matricula_id}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[this.getClass().getResourceAsStream("br/edu/iffar/relatorios/RU/carterinha/subCurso.jasper")]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="10" splitType="Stretch">
+			<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.FreeLayout"/>
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			<subreport isUsingCache="false">
+				<reportElement stretchType="ElementGroupHeight" isPrintRepeatedValues="false" x="0" y="0" width="183" height="9" isPrintWhenDetailOverflows="true" uuid="8d8e645e-c87d-460d-aea2-fbb28a3ab053">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<subreportParameter name="usuario_id">
+					<subreportParameterExpression><![CDATA[$F{usuario_id}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[this.getClass().getResourceAsStream("br/edu/iffar/relatorios/RU/carterinha/subServidor.jasper")]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="99">
+			<image scaleImage="FillFrame" hAlign="Center" onErrorType="Blank">
+				<reportElement stretchType="ContainerHeight" x="93" y="5" width="90" height="90" isPrintWhenDetailOverflows="true" uuid="fd30b933-d4ec-4206-ab37-63a97b644218">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+				<imageExpression><![CDATA[CONCATENATE($P{PATH},$F{file_name},$P{EXTENSAO})]]></imageExpression>
+			</image>
+			<componentElement>
+				<reportElement key="" stretchType="ContainerHeight" x="0" y="5" width="90" height="90" isRemoveLineWhenBlank="true" isPrintWhenDetailOverflows="true" uuid="423ace54-ca6c-45f5-89e6-6cced4b418e2">
+					<property name="com.jaspersoft.studio.unit.margin" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<jr:QRCode xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" margin="0">
+					<jr:codeExpression><![CDATA[$F{username}+":" + $F{token_ru}]]></jr:codeExpression>
+				</jr:QRCode>
+			</componentElement>
+		</band>
+	</detail>
+</jasperReport>

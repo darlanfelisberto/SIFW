@@ -1,0 +1,60 @@
+div.padding0 > .ui-panel-content {
+    padding: 0 !important;
+}
+
+.com_habitantes > .ui-treenode-content{
+	background-color: darkgoldenrod !important;
+}
+
+.modal-heders > .ui-dialog-titlebar {
+    border: 1px solid #dee2e6 !important;
+    border-bottom: 0 none !important;
+    background: #f8f9fa !important;
+    color: #495057 !important;        
+}
+
+.modal-heders > .ui-dialog-content{
+	padding: 1.5rem !important;
+}
+
+.panel-add-footer > .ui-panel-footer{
+	padding: 0.5em 1em !important;
+}
+
+button.btn-footer{
+	width: 1.8rem !important;
+	height: 1.8rem !important;
+}
+
+.badge-reset{
+	background: unset !important;
+    color: green !important;
+}
+
+.sifw-badge-ajust{
+	padding-top: 10px;
+	border-top: 1px solid #bdbdbd;
+}
+
+.sifw-badge-ajust div {
+    padding-left: 10px;
+}
+
+.sifw-badge-ajust div:first-child {
+    padding-left: unset;
+}
+
+.show-vertical{
+	display: flex;
+	width: 100%;
+}
+
+ div.show-vertical > div {
+	width: 50%;
+}
+
+.flex-inline-space >button{
+	width: unset !important;
+	
+}
+

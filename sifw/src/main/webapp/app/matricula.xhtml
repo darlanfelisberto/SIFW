@@ -1,0 +1,215 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:jsf="http://xmlns.jcp.org/jsf"
+	xmlns:p="http://primefaces.org/ui" template="/public/_template.xhtml">
+
+
+	<ui:define name="header">
+		<ui:include src="/app/header.xhtml" />
+	</ui:define>
+
+	<ui:define name="nav">
+		<ui:include src="/app/nav.xhtml" />
+	</ui:define>
+
+	<ui:define name="main">
+		<script type="text/javascript">
+			
+		</script>
+		<h:form id="frmMain">
+			<p:growl showSummary="true">
+				<p:autoUpdate></p:autoUpdate>
+			</p:growl>
+						
+			<p:breadCrumb model="#{matriculaBean.breadCrumb.model}"  id="breadcrumb">
+				<p:autoUpdate />
+			</p:breadCrumb>	
+			
+			<p:outputPanel>
+				<p:panel header="Busca de usuários" rendered="#{matriculaBean.rendBusca}">
+					<div class="ui-fluid p-formgrid p-grid">	
+						<div class="p-field p-col-12 p-md-12">
+							<p:selectOneRadio value="#{matriculaBean.tipoBusca}" immediate="true">
+								<f:selectItems value="#{matriculaBean.listSelectIten}"/>
+								<p:ajax  update="frmMain:otpFiltros"/>
+							</p:selectOneRadio>
+						</div>
+					</div>
+					<p:outputPanel id="otpFiltros">
+						<p:outputPanel >
+							<div class="ui-fluid p-formgrid p-grid">
+								<div class="p-field p-col-12 p-md-6">
+									<p:outputPanel id="otpInputBusca" rendered="#{matriculaBean.tipoBusca == 1}">
+										<p:inputMask label="CPF" mask="999.999.999-99" value="#{matriculaBean.busca}" required="true" />
+									</p:outputPanel>
+									<p:outputPanel  rendered="#{matriculaBean.tipoBusca == 4}" >
+										<p:inputText label="Nome" value="#{matriculaBean.busca}" required="true" />
+									</p:outputPanel>
+								</div>
+							</div>
+							<div class="p-field flex-inline-space">
+								<p:commandButton value="Buscar" actionListener="#{matriculaBean.buscarUsuarioProCpf}" update="frmMain" icon="pi pi-search" styleClass="ui-button-info"></p:commandButton>
+							</div>
+						</p:outputPanel>
+						
+					</p:outputPanel>
+				</p:panel>
+			</p:outputPanel>
+			
+			<p:outputPanel rendered="#{matriculaBean.rendResultadoBusca}">
+			
+				<p:dataTable value="#{matriculaBean.listUsuarios}" var="user">
+					<p:column headerText="Nome">
+						<span>#{user.nome}</span>
+					</p:column>
+					<p:column headerText="CPF">
+						<span>#{user.cpf}</span>
+					</p:column>
+					<p:column >
+						<p:commandButton icon="pi pi-arrow-circle-right" action="#{matriculaBean.selecionaUsuario}" update="frmMain"
+							styleClass="rounded-button ui-button-info ui-button-flat">
+							<f:setPropertyActionListener value="#{user}" target="#{matriculaBean.user}"></f:setPropertyActionListener>
+						</p:commandButton>
+					</p:column>
+				</p:dataTable>
+			</p:outputPanel>
+			
+			<p:outputPanel id="optDadosUsuario">
+				<p:panel header="Informações de Usuário"  rendered="#{matriculaBean.rendDadosUsuario}">
+					<div class="ui-g">
+						<div class="ui-g-12 ui-md-6 ui-lg-6">
+						    <div class="">
+						    	<label>Nome:</label>
+						    	<h:outputText value="#{matriculaBean.user.nome}" id="optNome" />
+						    </div>
+						</div>
+						<div class="ui-g-12 ui-md-6 ui-lg-3">
+						    <div class="">
+						    	<label>CPF: </label>
+						    	<h:outputText value="#{matriculaBean.user.cpf}" id="otpCpf" />
+						    </div>
+						</div>
+					</div>
+				</p:panel>
+			</p:outputPanel>
+			
+			<div jsf:id="otpListMatricula">
+				<p:panel rendered="#{matriculaBean.rendDadosUsuario}" styleClass="sem-padding_" header="Lista de Matrículas">
+				 		<p:dataTable value="#{matriculaBean.user.listMatricula}" var ="mat" showGridlines="true" size="small" lazy="false">
+
+					        <f:facet name="footer" >
+						        <div style="display: flex;justify-content: flex-end;">
+						        	<p:commandButton actionListener="#{matriculaBean.addMatricula}"  icon="pi pi-plus" styleClass="rounded-button ui-button-info ui-button-flat" alt="Nova matrícula"
+									 value="Nova matrícula" process="@this" update="frmMain:otpListMatricula frmMain:otpDadosMatricula"></p:commandButton>
+						        </div>
+					        </f:facet>
+				 			<p:column headerText="Matrícula"  width="100px">
+				 				<h:outputText value="#{mat.idMatricula}" />
+				 			</p:column>
+				 			<p:column headerText="Curso">
+				 				<h:outputText value="#{mat.curso.nome} - #{mat.curso.tipoVinculo.descricao}" />
+				 			</p:column>
+				 			<p:column headerText="Situação" width="200px">
+				 				<h:outputText value="#{mat.ultimaSituacao.situacao.desc}" />
+				 				-
+				 				<h:outputText value="#{mat.ultimaSituacao.momento}" >
+			                    	<f:convertDateTime type="localDateTime" pattern="dd/MM/yyyy"/>
+			                    </h:outputText>
+				 			</p:column>
+				 			<p:column width="80px">
+								<p:commandButton alt="editar" icon="pi pi-pencil" action="#{matriculaBean.telaDadosMatricula}" update="frmMain:otpListMatricula frmMain:otpDadosMatricula" styleClass="rounded-button ui-button-info ui-button-flat">
+									<f:setPropertyActionListener value="#{mat}" target="#{matriculaBean.matricula}"></f:setPropertyActionListener>
+								</p:commandButton>
+								<p:commandButton icon="pi pi-trash" action="#{matriculaBean.removeMatricula}" process="@this" styleClass="rounded-button ui-button-danger ui-button-flat" update="frmMain:otpListMatricula frmMain:otpDadosMatricula">
+									<f:setPropertyActionListener value="#{mat}" target="#{matriculaBean.matricula}"></f:setPropertyActionListener>
+									<p:confirm type="popup" header="Confirmation" message="Está operação não poderá ser desfeita, você tem certeza disso?" icon="pi pi-exclamation-triangle"/>
+								</p:commandButton>
+							</p:column>
+				 		</p:dataTable>	
+					 		<div class="p-field flex-inline-space" style="padding-top: 20px">
+				 				<p:commandButton value="Salvar" icon="pi pi-check" update="frmMain" actionListener="#{matriculaBean.salvarMatricula}" styleClass="ui-button-success">
+				 				</p:commandButton>
+				 				<p:commandButton value="Cancelar" immediate="true" process="@this" update="frmMain" actionListener="#{matriculaBean.telaFiltroBusca}" icon="pi pi-times" styleClass="ui-button-secondary"></p:commandButton>
+				 			</div>	
+				</p:panel>
+			</div>
+			
+			
+			<p:outputPanel  id="otpDadosMatricula">
+				<p:outputPanel rendered="#{matriculaBean.rendDadosMatricula}">
+				 		<p:panel header="Dados da Matricula">
+				 			<div class="ui-fluid p-formgrid p-grid">
+					 			<div class="p-field p-col-12 p-md-6">
+					 				<p:outputLabel for="idMatrcula" value="Matrícula:"></p:outputLabel>
+					 				<p:inputNumber id="idMatrcula" value="#{matriculaBean.matricula.idMatricula}" decimalPlaces="0" thousandSeparator="" maxValue="2147483647" maxlength="10"/>
+					 			</div>
+					 			<div class="p-field p-col-12 p-md-6">
+					 				<p:outputLabel for="curso" value="Curso:"/>
+					 				<p:selectOneMenu id="curso" value="#{matriculaBean.matricula.curso}" converter="#{modelConverter}">
+					 					<f:selectItem />
+					 					<f:selectItems value="#{matriculaBean.listCurso}" var="cur" itemLabel="#{cur.nome} - #{cur.tipoVinculo.desc}" itemValue="#{cur}"></f:selectItems>
+					 				</p:selectOneMenu>
+					 			</div>
+					 			<div class="p-field p-col-12 p-md-6">
+					 				<p:outputLabel for="tipoVinculomat" value="Tipo Vínculo:"/>
+					 				<p:selectOneMenu id="tipoVinculomat"  value="#{matriculaBean.matricula.tipoVinculo}" converter="#{modelConverter}">
+					 					<f:selectItem />
+					 					<f:selectItems value="#{matriculaBean.listTipoVinculoAlunos}" var="cur" itemLabel="#{cur.desc}" itemValue="#{cur}"></f:selectItems>
+					 				</p:selectOneMenu>
+					 			</div>
+					 			
+					 			<div class="p-field p-col-12 p-md-12">
+					 				<p:dataTable value="#{matriculaBean.matricula.listSituacaoMatricula}" var="sit" id="dtbListSituacao"  lazy="false">
+					 					<p:column headerText="Situação">
+					 						#{sit.situacao.desc}
+					 					</p:column>
+					 					<p:column headerText="Data">
+					 						<h:outputText value="#{sit.momento}" >
+												<f:convertDateTime type="localDate" pattern="dd/MM/YYYY"/>
+											</h:outputText>
+					 					</p:column>
+					 					<f:facet name="header">
+					 						Lista de Situações da Matrícula
+					 					</f:facet>
+					 					<f:facet name="footer">
+					 						<div class="p-field flex-inline-space" style="display: flex;justify-content: flex-end;">
+						 						<p:commandButton actionListener="#{matriculaBean.addSituacaoAtiva}" update="dtbListSituacao" value="Ativa" process="@this"
+						 						 styleClass=" ui-button-text-only rounded-button ui-button-info">
+						 						</p:commandButton>
+						 						<p:commandButton actionListener="#{matriculaBean.addSituacaoInativa}" update="dtbListSituacao" value="Inativa" process="@this"
+						 						 styleClass=" ui-button-text-only rounded-button ui-button-warning">
+						 						</p:commandButton>
+						 					</div>
+					 					</f:facet>
+					 				</p:dataTable>
+					 			</div>
+					 		</div>
+					 		<div class="p-field flex-inline-space">
+								<p:commandButton value="Ok" actionListener="#{matriculaBean.addMatriculaListaUsuario}"  icon="pi pi-plus" styleClass="ui-button-info" 
+								 update="frmMain:otpDadosMatricula frmMain:otpListMatricula"></p:commandButton>
+								<p:commandButton value="Cancelar" immediate="true" update="frmMain:otpDadosMatricula frmMain:otpListMatricula" actionListener="#{matriculaBean.telaDadosUsuario}" 
+								icon="pi pi-times" styleClass="ui-button-secondary"></p:commandButton>
+							</div>
+				 		</p:panel>
+					</p:outputPanel>
+			</p:outputPanel>
+			
+			<p:outputPanel rendered="false">
+				<p:autoUpdate></p:autoUpdate>
+			 	<div class="p-field flex-inline-space" jsf:rendered="#{matriculaBean.rendDadosUsuario}">
+	 				<p:commandButton value="Salvar" icon="pi pi-check" update="frmMain" actionListener="#{matriculaBean.salvarMatricula}" styleClass="ui-button-raised ui-button-success"> </p:commandButton>
+	 				<p:commandButton value="Cancelar" immediate="true" process="@this" update="frmMain" actionListener="#{matriculaBean.telaFiltroBusca}" icon="pi pi-times" styleClass="ui-button-secondary"></p:commandButton>
+	 			</div>
+			</p:outputPanel>
+			
+			
+			<p:confirmPopup global="true">
+	            <p:commandButton value="Não" type="button" styleClass="ui-confirm-popup-no ui-button-flat"/>
+	            <p:commandButton value="Sim" type="button" styleClass="ui-confirm-popup-yes" />
+	        </p:confirmPopup>
+			
+		</h:form>
+	</ui:define>
+</ui:composition>

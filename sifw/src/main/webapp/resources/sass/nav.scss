@@ -1,0 +1,33 @@
+$sizeMenu: 16rem;
+
+
+.nav-list-item .nav-list-item {
+    border-top-width: 0;
+}
+
+.nav-list-item {
+    display: block;
+    padding: .2rem 0.7rem;
+    text-decoration: none;
+    background-color: #fff;
+    border: 1px solid rgba(0,0,0,.125);
+}
+
+.nav-list-item-action {
+    width: 100%;
+    color: #495057;
+    text-align: inherit;
+}
+
+.nav-width{
+	min-width: $sizeMenu;
+}
+
+nav{	
+	//display: flex;	
+    flex-direction: column;
+}
+
+.links-menu .ui-panelmenu-panel * {
+    border-radius: unset !important;
+}

@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.16.0.final using JasperReports Library version 6.16.0-48579d909b7943b64690c65c71e07e0b80981928  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="principal" columnCount="3" pageWidth="595" pageHeight="842" columnWidth="191" leftMargin="10" rightMargin="10" topMargin="10" bottomMargin="10" uuid="9b2b84f2-ac23-48df-8672-e86d794e7d72">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="base"/>
+	<parameter name="PATH" class="java.lang.String">
+		<defaultValueExpression><![CDATA["/opt/app/imagen_sifw/"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="EXTENSAO" class="java.lang.String">
+		<defaultValueExpression><![CDATA[".png"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="WHERE" class="java.lang.String">
+		<defaultValueExpression><![CDATA[""]]></defaultValueExpression>
+	</parameter>
+	<parameter name="SUB_MY_QRCODE" class="java.lang.String">
+		<defaultValueExpression><![CDATA["br/edu/iffar/relatorios/RU/carterinha/subCarterinha.jasper"]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select  u.* ,m.matricula_id from matricula m 
+inner join cursos c on c.curso_id =m.curso_id 
+inner join usuarios u ON m.usuario_id = u.usuario_id
+inner join (
+	select max(momento) as momento,sm.matricula_id from situacao_matricula sm
+	group by sm.matricula_id 
+) as foo on foo.matricula_id = m.matricula_id
+inner join situacao_matricula sm on sm.matricula_id = m.matricula_id and sm.momento = foo.momento
+where  sm.situacao ='ATIVA'
+$P!{WHERE}
+order by c.nome,u.nome]]>
+	</queryString>
+	<field name="usuario_id" class="java.util.UUID">
+		<property name="com.jaspersoft.studio.field.name" value="usuario_id"/>
+		<property name="com.jaspersoft.studio.field.label" value="usuario_id"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="usuarios"/>
+	</field>
+	<field name="cpf" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="cpf"/>
+		<property name="com.jaspersoft.studio.field.label" value="cpf"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="usuarios"/>
+	</field>
+	<field name="dt_nasc" class="java.sql.Date">
+		<property name="com.jaspersoft.studio.field.name" value="dt_nasc"/>
+		<property name="com.jaspersoft.studio.field.label" value="dt_nasc"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="usuarios"/>
+	</field>
+	<field name="email" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="email"/>
+		<property name="com.jaspersoft.studio.field.label" value="email"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="usuarios"/>
+	</field>
+	<field name="nome" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="nome"/>
+		<property name="com.jaspersoft.studio.field.label" value="nome"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="usuarios"/>
+	</field>
+	<field name="token_ru" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="token_ru"/>
+		<property name="com.jaspersoft.studio.field.label" value="token_ru"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="usuarios"/>
+	</field>
+	<field name="username" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="username"/>
+		<property name="com.jaspersoft.studio.field.label" value="username"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="usuarios"/>
+	</field>
+	<field name="matricula_id" class="java.util.UUID">
+		<property name="com.jaspersoft.studio.field.name" value="matricula_id"/>
+		<property name="com.jaspersoft.studio.field.label" value="matricula_id"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="matricula"/>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<detail>
+		<band height="251" splitType="Stretch">
+			<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.FreeLayout"/>
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			<subreport isUsingCache="false" overflowType="Stretch">
+				<reportElement x="0" y="0" width="198" height="250" isPrintWhenDetailOverflows="true" uuid="fd2d04a0-7744-4c74-854b-88be4ee33ed0">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<subreportParameter name="WHERE">
+					<subreportParameterExpression><![CDATA[" where m.matricula_id =  cast('"+$F{matricula_id} + "' as uuid) "]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="PATH">
+					<subreportParameterExpression><![CDATA[$P{PATH}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="EXTENSAO">
+					<subreportParameterExpression><![CDATA[$P{EXTENSAO}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[this.getClass().getResourceAsStream("br/edu/iffar/relatorios/RU/carterinha/subCarterinha.jasper")]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+</jasperReport>

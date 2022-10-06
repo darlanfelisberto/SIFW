@@ -1,0 +1,141 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" template="/public/_template.xhtml">
+
+
+	<ui:define name="header">
+		<ui:include src="/app/header.xhtml" />
+	</ui:define>
+
+	<ui:define name="nav">
+		<ui:include src="/app/nav.xhtml" />
+	</ui:define>
+	
+	<ui:define name="main">
+		<h:form id="frmMain" styleClass="">
+		
+			<p:growl >
+				<p:autoUpdate></p:autoUpdate>
+			</p:growl>
+			<p:breadCrumb model="#{cardapioAdminBean.breadCrumb.model}">
+			</p:breadCrumb>
+			
+			<p:outputPanel rendered="#{cardapioAdminBean.rendTelaFiltro}">
+				<p:panel 	header="Buscar Cardápio">
+					<div class="ui-fluid p-formgrid p-grid">
+						<div class="p-field p-col-12 p-md-6">
+					        <label for="firstname">Data:</label>
+					        <p:datePicker showTime="false" value="#{cardapioAdminBean.data}"></p:datePicker>
+					    </div>
+					</div>
+					<div class="p-field flex-inline-space">
+						<p:commandButton value="Novo" icon="pi pi-plus" actionListener="#{cardapioAdminBean.newCardapio}" process="@this" update="frmMain"></p:commandButton>
+						<p:commandButton value="Buscar" icon="pi pi-search" actionListener="#{cardapioAdminBean.buscar}" process="@this" update="frmMain"></p:commandButton>
+					</div>
+
+				</p:panel>
+			</p:outputPanel>
+			
+			<p:outputPanel rendered="#{cardapioAdminBean.rendTelaList}">
+				<p:panel header="Lista de Cardápios">
+					<p:dataTable value="#{cardapioAdminBean.listCardapio}" var="cardapio">
+						<p:column headerText="Semana">
+							<h:outputText value="#{cardapio.semana}" >
+							</h:outputText>
+						</p:column>
+						
+						<p:column headerText="Data inícial">
+							<h:outputText value="#{cardapio.dtInicio}" >
+								<f:convertDateTime type="localDate" pattern="dd/MM/YYYY"/>
+							</h:outputText>
+						</p:column>
+						
+						<p:column headerText="Data final">
+							<h:outputText value="#{cardapio.dtFim}" >
+								<f:convertDateTime type="localDate" pattern="dd/MM/YYYY"/>
+							</h:outputText>
+						</p:column>
+						
+						<p:column headerText="Opções">
+								<p:commandButton alt="editar" icon="pi pi-pencil" action="#{cardapioAdminBean.editCardapio}" update="frmMain" styleClass="rounded-button ui-button-info ui-button-flat">
+									<f:setPropertyActionListener value="#{cardapio}" target="#{cardapioAdminBean.cardapio}"></f:setPropertyActionListener>
+								</p:commandButton>
+								<p:commandButton icon="pi pi-trash" action="#{cardapioAdminBean.removerCardapio}" update="frmMain" process="@this" styleClass="rounded-button ui-button-danger ui-button-flat">				 									
+									<f:setPropertyActionListener value="#{cardapio}" target="#{cardapioAdminBean.cardapio}"></f:setPropertyActionListener>
+								</p:commandButton>
+							</p:column>
+					</p:dataTable>
+				</p:panel>
+			</p:outputPanel>
+			
+			<p:outputPanel rendered="#{cardapioAdminBean.rendTelaCardapio}">
+				<p:panel header="Editar/Novo Cardápio">
+					<div class="ui-fluid p-formgrid p-grid">
+						<div class="p-field p-col-12 p-md-6">
+							<p:outputLabel for="dtInicio">Data de Início:</p:outputLabel>
+							<p:datePicker id="dtInicio" value="#{cardapioAdminBean.cardapio.dtInicio}" required="true" label="Data de início">
+								<p:ajax/>
+							</p:datePicker>
+						</div>
+						<div class="p-field p-col-12 p-md-6">
+							<p:outputLabel for="dtFim">Data de Fim:</p:outputLabel>
+							<p:datePicker id="dtFim" value="#{cardapioAdminBean.cardapio.dtFim}" required="true" label="Data de fim">
+								<p:ajax/>
+							</p:datePicker>
+						</div>
+						<div class="p-field p-col-12 p-md-6">
+							<p:outputLabel for="somDia">Texto do cardápio para o dia de:</p:outputLabel>
+							<p:selectOneMenu id="somDia" value="#{cardapioAdminBean.diaDaSemana}" onfocus="document.getElementById('frmMain:btnSendText').click()">
+								<f:selectItems value="#{cardapioAdminBean.fieldsCardapio}" var="dia" itemLabel="#{dia.descricao}" itemValue="#{dia}"></f:selectItems>
+								<p:ajax update="frmMain:txtEDia"></p:ajax>
+							</p:selectOneMenu>
+						</div>
+						<div class="p-field p-col-12 p-md-12">
+							<p:textEditor id="txtEDia" value="#{cardapioAdminBean.textoEmEdicao}" height="300" >
+								<f:facet name="toolbar">
+									<span class="ql-formats" style="width: 100px">
+										<p:commandButton id="btnSendText" icon="pi pi-send" styleClass="ui-button-success ui-button-flat" alt="Enviar" ariaLabel="Enviar"  update="frmMain:otpPreVisualizar" value="Visualizar"></p:commandButton>
+									</span>
+									<span class="ql-formats"></span>
+									<span class="ql-formats">
+						                <button class="ql-bold"></button>
+						                <button class="ql-italic"></button>
+						                <button class="ql-underline"></button>
+						                <button class="ql-strike"></button>
+						            </span>
+						            <span class="ql-formats">
+						                <select class="ql-font"></select>
+						                <select class="ql-size"></select>
+							            <select class="ql-color"></select>
+							            <select class="ql-align"></select>
+										<button class="ql-list" value="ordered" type="button"/>
+										<button class="ql-list" value="bullet" type="button"/>
+										<button class="ql-indent" value="-1" type="button"/>
+										<button class="ql-indent" value="+1" type="button"/>
+									</span>
+								</f:facet>
+							</p:textEditor>
+						</div>
+					</div>
+					<div class="p-field flex-inline-space">
+		 				<p:commandButton value="Salvar" icon="pi pi-check" styleClass="ui-button-success" update="frmMain" actionListener="#{cardapioAdminBean.salvarCardapio}"></p:commandButton>
+		 				<p:commandButton value="Cancelar" immediate="true" process="@this" update="frmMain" actionListener="#{cardapioAdminBean.telaFiltro()}" icon="pi pi-times" styleClass="ui-button-secondary"></p:commandButton>
+		 			</div>
+				</p:panel>		
+				<p:outputPanel>
+					<ui:include src="/app/fragmentos/visualizar_cardapio.xhtml">
+						<ui:param name="cardapio" value="#{cardapioAdminBean.cardapio}" />
+					</ui:include>
+				</p:outputPanel>
+			</p:outputPanel>
+
+			
+			<p:outputPanel>
+				
+			</p:outputPanel>
+		</h:form>
+	</ui:define>
+
+</ui:composition>

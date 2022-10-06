@@ -1,0 +1,164 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" 
+	template="/public/_template.xhtml">
+
+
+	<ui:define name="header">
+		<ui:include src="/app/header.xhtml" />
+	</ui:define>
+
+	<ui:define name="nav">
+		<ui:include src="/app/nav.xhtml" />
+	</ui:define>
+
+
+	<ui:define name="main">
+		<script type="text/javascript">
+		    function handleLoginRequest(xhr, status, args) {
+		        if(!args.validationFailed){
+		        	PF('eventDialog').hide();
+		        	PF('myschedule').update();
+		        	return true;
+		        }
+		        return false;
+		    }
+		</script>
+		<h:form id="frmMain">
+			
+			<p:growl >
+				<p:autoUpdate></p:autoUpdate>
+			</p:growl>
+			
+			<nav  class="ui-breadcrumb ui-module ui-widget ui-widget-header ui-helper-clearfix ui-corner-all" aria-label="Breadcrumb">
+				<ol class="ui-breadcrumb-items">
+					<li>
+						<a tabindex="0" class="ui-menuitem-link ui-corner-all ui-breadcrumb-home-icon ui-icon ui-icon-home" href="index.xhtml"></a>
+					</li>
+					<li>
+						<a tabindex="0" aria-current="page" class="ui-menuitem-link ui-corner-all" href="#" >
+						<span class="ui-menuitem-text">Agendamento</span>
+						</a>
+					</li>
+				</ol>
+			</nav>
+			
+			<p:outputPanel >
+				<div class="ui-panel ui-widget ui-widget-content ui-corner-all">
+					<p:panel header="Horários e refeições disponiveis para agendamento">
+						<p:dataTable value="#{agendamentoBean.listRefeicao}" var="r" size="small">
+							<p:column headerText="Refeição" responsivePriority="0" width="55%">
+								#{r.label()}
+							</p:column>
+							<p:column headerText="Ex. bloqueio base hoje*" responsivePriority="1" width="15%" >
+								<abbr title="Eu devo agendar o/a #{r.tipoRefeicao.descricao} para hoje, antes das #{r.exemploBloqueioHoraLimitePara}.">
+									#{r.exemploBloqueioHoraLimitePara}
+								</abbr>
+							</p:column>
+							<p:column headerText="Hora limite*" responsivePriority="1" width="15%">
+								#{r.bloquear}
+							</p:column>
+							<p:column headerText="Hora de início(Util)" responsivePriority="2" width="15%">
+								#{r.horaInicioUtil}
+							</p:column>
+							<p:column headerText="Hora de início(Find.)" responsivePriority="3" width="15%">
+								#{r.horaInicioFind}
+							</p:column>
+						</p:dataTable>
+						<p>
+							* A hora limite é usada para bloquear a alteração de agendamentos X horas antes do horário de início da refeição agendada, a coluna "Ex. bloqueio..." indica o dia/horário   
+						</p>
+					</p:panel>
+				</div>
+				<p:outputPanel>
+					<p:panel header="Agendamento de refeições">
+				
+						<p:growl id="messages" showDetail="true" skipDetailIfEqualsSummary="true">
+						</p:growl>			
+			
+						<p:schedule id="schedule" styleClass="agendaSchedule" value="#{agendamentoBean.ageLazyLoad}" widgetVar="myschedule" style="max-width: 1000px;" draggable="false"
+							rightHeaderTemplate="dayGridMonth" leftHeaderTemplate="prev,next" displayEventEnd="false" locale="pt_BR" height="auto"
+							 nextDayThreshold="00:00:00" >
+		
+							<p:ajax event="dateSelect" listener="#{agendamentoBean.onDateSelect}" update="frmMain:dlgAgendamento frmMain:messages" />
+				            <p:ajax event="eventSelect" listener="#{agendamentoBean.onEventSelect}" update="frmMain:dlgAgendamento"  />
+						</p:schedule>
+					</p:panel>
+				</p:outputPanel>
+			</p:outputPanel>
+			
+			<p:dialog widgetVar="eventDialog" header="Detalhes" position="center" id="dlgAgendamento" style="max-width: 500px">
+				<div>
+			        <p:outputPanel id="eventDetails" >
+			        	<div class="ui-fluid p-formgrid p-grid">
+							<div class="p-field p-col-12 p-md-12">
+					        	<p:outputLabel for="tipoRefeicao" value="Tipo da refeição:"/>
+					        	<p:selectOneMenu id="tipoRefeicao" value="#{agendamentoBean.agendamento.refeicao}" required="true" converter="#{modelConverter}" disabled="#{agendamentoBean.agendamento.editDtAgendamento}">
+					        		<f:selectItem />
+					        		<f:selectItems value="#{agendamentoBean.listRefeicao}" var="r" itemLabel="#{r.label()}" itemValue="#{r}"></f:selectItems>
+					        	</p:selectOneMenu>
+			            	</div>
+			            	<div class="p-field p-col-12 p-md-12">	 
+					            <p:outputLabel for="from" value="Data do Agendamento:" />
+					            <p:datePicker id="from" value="#{agendamentoBean.agendamento.dtAgendamento}" appendTo="@(body)" required="true"  disabled="#{agendamentoBean.agendamento.editDtAgendamento}">
+					            </p:datePicker>
+			            	</div>
+
+							<div class="p-field p-col-12 p-md-12">			 
+					            <p:outputLabel for="to" value="Data de fim:" rendered="false"/>
+					            <p:datePicker id="to" value="#{agendamentoBean.agendamento.endDateD}" appendTo="@(body)" required="true"   rendered="false">
+					            </p:datePicker>
+				            </div>
+				        </div>
+					</p:outputPanel> 
+			      	
+			      	<p:outputPanel rendered="#{agendamentoBean.agendamento.credito != null}" styleClass="ui-messages ui-widget" aria-live="polite">
+						<div class="ui-messages-info ui-corner-all">
+							<ul>
+								<li role="alert" aria-atomic="true">
+									<span class="ui-messages-error-summary">
+										Entrada no RU foi confirmada. Valor descontado R$#{agendamentoBean.agendamento.credito.valor}. 
+									</span>
+								</li>
+							</ul>
+						</div>
+					</p:outputPanel>
+			      	
+					<p:outputPanel rendered="#{!agendamentoBean.agendamento.agendado}" styleClass="ui-messages ui-widget" aria-live="polite">
+						<div class="ui-messages-error ui-corner-all">
+							<span class="ui-messages-error-icon"></span>
+							<ul>
+								<li role="alert" aria-atomic="true">
+									<span class="ui-messages-error-summary">
+										Agendamento lançado pelo sistema devido ao não agendamento do usuário.
+									</span>
+								</li>
+							</ul>
+						</div>
+					</p:outputPanel>
+
+					<h:panelGrid id="eventDetailss" columns="3" rendered="#{agendamentoBean.agendamento.editable}">
+			            <p:commandButton type="reset" value="Cancelar" onclick="PF('eventDialog').hide();" process="@this" styleClass="ui-button-secondary" icon="pi pi-times"/>
+			            
+			            <p:commandButton id="addButton" value="Salvar" action="#{agendamentoBean.addAgendamento}" oncomplete="handleLoginRequest(xhr, status, args);" update="frmMain:messages" styleClass="ui-button-success" icon="pi pi-check">
+			            	<p:confirm type="popup" header="Confirmar" message="Você tem certeza disso?" icon="pi pi-exclamation-triangle"/>
+			            </p:commandButton>
+			            
+			            <p:commandButton id="removeButton" value="Remover" action="#{agendamentoBean.removeAgendamento}" onsuccess="PF('eventDialog').hide();" update="frmMain:schedule frmMain:dlgAgendamento frmMain:messages" styleClass="ui-button-danger" icon="pi pi-trash" rendered="#{agendamentoBean.agendamento.permitdoRemover}">
+			            	<p:confirm type="popup" header="Confirmar" message="Você tem certeza disso?" icon="pi pi-exclamation-triangle"/>
+			            </p:commandButton>
+		            </h:panelGrid>
+		        </div>
+		        
+		        <p:confirmPopup global="true">
+		            <p:commandButton value="Não" type="button" styleClass="ui-confirm-popup-no ui-button-flat"/>
+		            <p:commandButton value="Sim" type="button" styleClass="ui-confirm-popup-yes" />
+		        </p:confirmPopup>
+	        </p:dialog>		
+		</h:form>
+		
+	</ui:define>
+
+</ui:composition>

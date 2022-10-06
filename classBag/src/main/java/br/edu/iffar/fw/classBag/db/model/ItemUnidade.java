@@ -1,0 +1,105 @@
+package br.edu.iffar.fw.classBag.db.model;
+// Generated 27 de dez. de 2021 11:43:54 by Hibernate Tools 5.5.7.Final
+
+import java.util.UUID;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+
+import br.edu.iffar.fw.classBag.db.Model;
+import br.edu.iffar.fw.classBag.db.model.interfaces.TreeNodeSearch;
+
+@Entity
+@Table(name = "item_unidade", schema = "moradia_estudantil")
+public class ItemUnidade extends Model<UUID> implements TreeNodeSearch {
+
+	private static final long serialVersionUID = 1L;
+
+	@Id
+	@Column(name = "item_unidade_id")
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private UUID itemUnidadeId;
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "unidade_id")
+	private Unidade unidade;
+
+	@Column(name = "descricao")
+	@NotNull(message = "Informe uma descrição para o item.")
+	private String desc;
+
+	private Integer patrimonio;
+
+
+	public ItemUnidade() {
+	}
+
+	public UUID getMMId() {
+		return itemUnidadeId;
+	}
+
+	public UUID getItemUnidadeId() {
+		return itemUnidadeId;
+	}
+
+	public void setItemUnidadeId(UUID itemUnidadeId) {
+		this.itemUnidadeId = itemUnidadeId;
+	}
+
+	public Unidade getUnidade() {
+		return unidade;
+	}
+
+	public void setUnidade(Unidade unidade) {
+		this.unidade = unidade;
+	}
+
+	public String getDesc() {
+		return desc;
+	}
+
+	public void setDesc(String desc) {
+		this.desc = desc;
+	}
+
+	public Integer getPatrimonio() {
+		return patrimonio;
+	}
+
+	public void setPatrimonio(Integer patrimonio) {
+		this.patrimonio = patrimonio;
+	}
+
+	public boolean isNovo() {
+		return this.itemUnidadeId == null;
+	}
+
+	@Override
+	public String label() {
+		if (this.patrimonio == null) {
+			return this.desc;
+		} else {
+			return this.desc + " - " + this.patrimonio;
+		}
+	}
+
+	@Override
+	public boolean search(String termo) {
+		if (this.desc.toLowerCase().contains(termo)) {
+			return true;
+		}
+		if (this.patrimonio != null && this.patrimonio.toString().toLowerCase().contains(termo)) {
+			return true;
+		}
+		return false;
+	}
+
+}

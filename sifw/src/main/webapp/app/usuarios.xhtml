@@ -1,0 +1,267 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:jsf="http://xmlns.jcp.org/jsf"
+	xmlns:p="http://primefaces.org/ui" template="/public/_template.xhtml">
+
+
+	<ui:define name="header">
+		<ui:include src="/app/header.xhtml" />
+	</ui:define>
+
+	<ui:define name="nav">
+		<ui:include src="/app/nav.xhtml" />
+	</ui:define>
+
+	<ui:define name="main">
+		<script type="text/javascript">
+			function oi(event,th){
+				if(th.value == 2){
+					PF('dialogUpFile').show();
+				}else{
+					PF('dialogUpFile').hide();
+				}
+			}
+		</script>
+
+		<h:form id="frmMain">
+			<p:growl showSummary="true">
+				<p:autoUpdate></p:autoUpdate>
+			</p:growl>
+						
+			<p:breadCrumb model="#{usuariosBean.breadCrumb.model}"  id="breadcrumb">
+				<p:autoUpdate />
+			</p:breadCrumb>	
+			
+			<p:outputPanel id="otpBusca">
+				<p:panel header="Busca de usuários" rendered="#{usuariosBean.rendBusca}">
+					<div class="ui-fluid p-formgrid p-grid">	
+						<div class="p-field p-col-12 p-md-12">
+							<p:selectOneRadio value="#{usuariosBean.tipoBusca}" immediate="true">
+								<f:selectItems value="#{usuariosBean.listSelectIten}"/>
+								<p:ajax  update="frmMain:otpFiltros"/>
+							</p:selectOneRadio>
+						</div>
+					</div>
+					<p:outputPanel id="otpFiltros">
+						<p:outputPanel >
+							<div class="ui-fluid p-formgrid p-grid">
+								<div class="p-field p-col-12 p-md-6">
+									<p:outputPanel id="otpInputBusca"  rendered="#{usuariosBean.tipoBusca == 1}">
+										<p:inputMask label="CPF" mask="999.999.999-99" value="#{usuariosBean.busca}" required="true" />
+									</p:outputPanel>
+									<p:outputPanel  rendered="#{usuariosBean.tipoBusca == 4}">
+										<p:inputText label="Nome" value="#{usuariosBean.busca}" required="true" minlength="3"/>
+									</p:outputPanel>
+								</div>
+							</div>
+							<div class="p-field flex-inline-space">
+								<p:commandButton value="Buscar" actionListener="#{usuariosBean.buscarUsuarioProCpf}" update="frmMain:otpBusca frmMain:otpListUser frmMain:optDadosUsuario" icon="pi pi-search" styleClass="ui-button-info"></p:commandButton>
+								<p:commandButton value="Novo" actionListener="#{usuariosBean.novoUsuario}" update="frmMain:otpBusca frmMain:optDadosUsuario" icon="pi pi-plus" styleClass="ui-button-info" process="@this"></p:commandButton>
+							</div>
+						</p:outputPanel>
+					</p:outputPanel>
+				</p:panel>
+			</p:outputPanel>
+			
+			<p:outputPanel id="otpListUser">
+			
+				<p:dataTable value="#{usuariosBean.listUsuarios}" var="user" rendered="#{usuariosBean.rendResultadoBusca}">
+					<p:column headerText="Nome">
+						<span>#{user.nome}</span>
+					</p:column>
+					<p:column headerText="CPF">
+						<span>#{user.cpf}</span>
+					</p:column>
+					<p:column >
+						<p:commandButton icon="pi pi-arrow-circle-right" action="#{usuariosBean.selecionaUsuario}" update="frmMain"
+							styleClass="rounded-button ui-button-info ui-button-flat">
+							<f:setPropertyActionListener value="#{user}" target="#{usuariosBean.user}"></f:setPropertyActionListener>
+						</p:commandButton>
+					</p:column>
+				</p:dataTable>
+			</p:outputPanel>
+			
+			<p:outputPanel  id="optDadosUsuario">
+				<p:panel header="Informações de Usuário" rendered="#{usuariosBean.rendDadosUsuario}">
+					<p:tabView id="tabView" >
+					 	<p:tab title="Dados">
+					 		<div class="ui-fluid p-formgrid p-grid">
+					 			<div class="p-field p-col-12 p-md-6">
+					 				<label for="iptName">Nome:</label>
+					 				<p:inputText id="iptName" value="#{usuariosBean.user.nome}"></p:inputText>
+					 			</div>
+					 			<div class="p-field p-col-12 p-md-6">
+					 				<label for="iptUsername">Username:</label>
+					 				<p:inputText id="iptUsername" value="#{usuariosBean.user.userName}" disabled="#{!usuariosBean.user.novoUsuario}"/>
+					 			</div>
+					 			
+					 			<div class="p-field p-col-12 p-md-6">
+					 				<label for="iptEmail">E-mail:</label>
+					 				<p:inputText id="iptEmail" value="#{usuariosBean.user.email}"/>
+					 			</div>	
+					 			<div class="p-field p-col-12 p-md-6">
+					 				<label for="iptCpf">CPF:</label>
+					 				<p:inputText id="iptCpf" value="#{usuariosBean.user.cpf}"/>
+					 			</div>			 			
+					 			<div class="p-field p-col-12 p-md-6">
+					 				<label for="iptDtNac">Data de Nascimento:</label>
+					 				 <p:datePicker id="iptDtNac" value="#{usuariosBean.user.dtnasc}" pattern="dd/MM/yyyy"  mask="true" monthNavigator="true" yearNavigator="true"/>
+					 			</div>			 			
+					 		</div>
+					 	</p:tab>
+					 
+					 	<p:tab title="Imagem" >
+					 		<p:outputPanel id="tabImage">
+						 		<p:outputLabel rendered="#{empty usuariosBean.imagen}">Sem imagen</p:outputLabel>
+						 		<div class="p-grid">
+									<div class="p-col-12 p-sm-12 p-md-6 p-lg-6">
+					           			<p:outputPanel >
+							                <p:graphicImage value="#{usuariosBean.imagen.img}"  rendered="#{not empty usuariosBean.imagen}" stream="false"/>
+							            </p:outputPanel>
+					           		</div>
+					            </div>
+				            </p:outputPanel>
+				            <p:commandButton type="button" value="Mudar" onclick="PF('pc').attach();PF('dlgCapturar').show()" icon="pi pi-camera"/>
+				            
+						    <div class="ui-divider ui-widget ui-divider-horizontal ui-divider-solid ui-divider-left"></div>
+						    
+						    <p:dialog widgetVar="dlgCapturar" style="min-width: 100%; min-height:100%"  modal="true" closable="false">
+								<f:facet name="header">
+									Captura de Imagen
+								</f:facet>
+								<div style="width: 100%;height: 100%" class="p-grid" jsf:id="divDlgCaptura">
+									<div class="" style="display: inline-flex;">
+										<div style="padding: 0px 10px 10px 0px">
+											<p:photoCam widgetVar="pc" listener="#{usuariosBean.oncapture}" autoStart="false"
+												update="photo" format="png" width="270" height="150" photoWidth="1300" photoHeight="725" />
+										</div>
+										
+										<div class="p-field flex-inline-space" jsf:id="fotoBtns">
+											<div class="p-field flex-inline-space" >
+												<p:commandButton value="Capturar" onclick="PF('pc').capture();" icon="pi pi-camera" oncomplete="" update="fotoBtns" process="@this"/>
+												<p:fileUpload mode="simple" skinSimple="true" auto="true" update="fotoBtns photo" listener="#{usuariosBean.handleFileUpload}" label="Arquivo" oncomplete="stop()"/>
+											</div>
+											
+											<div class="p-field flex-inline-space" >
+												<p:commandButton type="button" value="Cortar" onclick="capturaCrop()" icon="pi pi-code"  disabled="#{usuariosBean.imagenCap == null}" />
+												<p:selectBooleanCheckbox title="Redimenciona a imagem para o tamanho padrão" itemLabel="Resize pad." value="#{usuariosBean.redimencionarPadrao}">
+													<p:ajax/>
+												</p:selectBooleanCheckbox>
+											</div>
+											
+											<div class="p-field flex-inline-space" >
+												<p:commandButton value="Ok" styleClass="p-mr-2" process="dataCut @this" actionListener="#{usuariosBean.cortarImagen}" update="frmMain:tabView:tabImage" oncomplete="PF('dlgCapturar').hide();PF('pc').detach()"/>
+										        <p:commandButton value="Cancelar" immediate="true" actionListener="#{usuariosBean.cancelarCorteImagen}" icon="pi pi-times" styleClass="ui-button-secondary" process="@this" oncomplete="PF('dlgCapturar').hide();PF('pc').detach()" update="frmMain:tabView:divDlgCaptura"></p:commandButton>
+												<h:inputHidden value="#{usuariosBean.imageCut}" id="dataCut"/>
+											</div>
+										</div>
+									</div>
+									<div class="" >
+					           			<p:outputPanel id="photo" style="width:100%;height:450px;border: 1px solid #d4d4d4">
+							                <p:graphicImage value="#{usuariosBean.imagenCap.img}"  rendered="#{not empty usuariosBean.imagenCap}" stream="false" id="imagen55" style="max-width: 100%;max-height: 100%"/>
+							            </p:outputPanel>
+					           		</div>	
+								</div>
+
+							</p:dialog>
+					 	</p:tab>
+					 	
+					 	<p:tab title="Carteria RU" >
+					 		<p:outputPanel rendered="#{not usuariosBean.user.novo}">
+						 		<div class="p-grid">
+									<div class="p-col-12 p-sm-12 p-md-6 p-lg-6">
+										<p:commandButton value="Download da carterinha" icon="pi pi-download"  ajax="false" onclick="PrimeFaces.monitorDownload(start, stop);">
+											<p:fileDownload value="#{usuariosBean.gerarCarterinhaQRCode(false)}"></p:fileDownload>
+										</p:commandButton>
+									</div>
+									
+									<div class="p-col-12 p-sm-12 p-md-6 p-lg-6">
+										<p:commandButton value="Gerar uma NOVA carterinha" ajax="false"  icon="pi pi-download" onclick="PrimeFaces.monitorDownload(start, stop);" styleClass="ui-button-danger">
+											<p:fileDownload value="#{usuariosBean.gerarCarterinhaQRCode(true)}"></p:fileDownload>
+										</p:commandButton>
+									</div>
+								</div>
+							</p:outputPanel>
+					 	</p:tab>
+					 	
+					 	<p:tab title="Permissões">
+							<p:dataTable value="#{usuariosBean.roles}" var="role" emptyMessage="Usuário sem permissões" rendered="false">
+								<p:column headerText="Permissões do usuário">
+									<span>#{role.name}</span>
+								</p:column>
+							</p:dataTable>
+							
+							<p:pickList  value="#{usuariosBean.listModelPermissaoes}" var="role" itemLabel="#{role}" itemValue="#{role}" 
+							required="true" requiredMessage="Selecione uma permissão."
+							 showSourceControls="false" showTargetControls="false" styleClass="pick-list" disabled="#{!usuariosBean.user.novoUsuario}">
+								<f:facet name="sourceCaption">Disponíveis</f:facet>
+            					<f:facet name="targetCaption">Do Usuário</f:facet>
+							</p:pickList>
+				 		</p:tab>
+					 </p:tabView>
+										 
+					 <div>
+					 	<div class="p-field flex-inline-space">
+			 				<p:commandButton value="Salvar" icon="pi pi-check" update="frmMain" actionListener="#{usuariosBean.salvarUser}" styleClass="ui-button-success">
+			 				</p:commandButton>
+			 				<p:commandButton value="Cancelar" immediate="true" update="frmMain" actionListener="#{usuariosBean.cancelaCadastro}" icon="pi pi-times" styleClass="ui-button-secondary"></p:commandButton>
+			 			</div>
+					 </div>
+				</p:panel>
+			</p:outputPanel>		
+		</h:form>
+		
+		<script type="text/javascript">
+		//<![CDATA[
+     function capturaCrop () {
+        var image = document.getElementById('frmMain:tabView:imagen55');
+
+		if(image.width < 300 || image.height < 300){
+			console.log("aqui")
+			alert("Altura ou largura menor que 300px, não é possível cortar imagem!");
+			return;
+		}
+        
+        var data = document.getElementById('frmMain:tabView:dataCut');
+        var minCroppedWidth = 300;
+        var minCroppedHeight = 300;
+        var maxCroppedWidth = 700;
+        var maxCroppedHeight = 700;
+        var cropper = new Cropper(image, {
+          viewMode: 3,
+          zoomable: false,
+          aspectRatio: 3 / 3,
+
+          data: {
+            width: minCroppedWidth,
+            height: minCroppedHeight,
+          },
+
+          crop: function (event) {
+            var width = event.detail.width;
+            var height = event.detail.height;
+
+            if (
+              width < minCroppedWidth
+              || height < minCroppedHeight
+              || width > maxCroppedWidth
+              || height > maxCroppedHeight
+            ) {
+              cropper.setData({
+                width: Math.max(minCroppedWidth, Math.min(maxCroppedWidth, width)),
+                height: Math.max(minCroppedHeight, Math.min(maxCroppedHeight, height)),
+              });
+            }
+
+            data.value = JSON.stringify(cropper.getData());
+          },
+        });
+      }
+  //]]>
+  </script>
+		<h:outputStylesheet library="css" name="cropper.min.css" />
+		<h:outputScript library="js" name="cropper.min.js"></h:outputScript>
+	</ui:define>
+</ui:composition>

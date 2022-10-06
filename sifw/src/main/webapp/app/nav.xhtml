@@ -1,0 +1,124 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" 
+	xmlns:sec="http://www.iffarroupilha.edu.br/secTag">
+
+
+	<nav class="bg-dark nav-width menu-lateral" id="menuNavEsquerdo">
+		<h:form>
+			<p:panelMenu styleClass="links-menu">
+				<p:submenu label="RU" icon="pi pi-briefcase" expanded="true" >
+					
+					<sec:secTag role="IFFAR_RU" >
+						<p:menuitem value="Agendamento" outcome="/app/agendamento.xhtml" icon="pi pi-calendar" ajax="false"/>
+					</sec:secTag>
+					
+					<sec:secTag role="IFFAR_ADMIN__" >
+						<p:menuitem value="Agendamentos Disponibilizados" outcome="/app/agendamentos_disponibilizados.xhtml" icon="pi pi-calendar-plus" ajax="false"/>
+					</sec:secTag>
+					
+					<sec:secTag role="IFFAR_ADMIN__" >
+						<p:menuitem value="remover" outcome="/app/agendamento2.xhtml" icon="pi pi-calendar" ajax="false"/>
+					</sec:secTag>
+					
+					<sec:secTag role="*" >
+						<p:menuitem value="Cardápio" outcome="/app/cardapio.xhtml" icon="pi pi-book	" ajax="false"/>
+					</sec:secTag>
+					
+					<sec:secTag role="IFFAR_RU" >
+						<p:menuitem value="Meu Saldo" outcome="/app/meu_saldo.xhtml" icon="pi pi-wallet" ajax="false"/>
+					</sec:secTag>
+										
+					<sec:secTag role="IFFAR_RU" >
+						<p:menuitem value="Transf. de Creditos" outcome="/app/transferencia.xhtml" icon="pi pi-reply" ajax="false"/>
+					</sec:secTag>
+					
+					<sec:secTag role="IFFAR_RU" >
+						<p:menuitem value="Transf. de Agendamento" outcome="/app/transferir_agendamento" icon="pi pi-reply" ajax="false"/>
+					</sec:secTag>
+
+					
+					<sec:secTag role="IFFAR_RU_ADMIN,IFFAR_RU_CATRACA,IFFAR_MORADIA,IFFAR_ADMIN" >
+						<p:submenu label="RU Administrador" expanded="true" styleClass="app-sub-menu">
+							
+							<sec:secTag role="IFFAR_ADMIN_im" >
+								<p:menuitem value="Admin Agendamentos" outcome="/app/agendamento_admin.xhtml" icon="pi pi-calendar" ajax="false"/>
+							</sec:secTag>
+							
+							<sec:secTag role="IFFAR_RU_CATRACA" >
+								<p:menuitem value="Catraca Online" outcome="/app/catraca.xhtml" icon="pi pi-cog" ajax="false"/>
+							</sec:secTag>
+							
+							<sec:secTag role="IFFAR_RU_CREDITO" >
+								<p:menuitem value="Créditos" outcome="/app/creditos.xhtml" icon="pi pi-dollar" ajax="false"/>
+							</sec:secTag>
+							
+					
+							<sec:secTag role="IFFAR_MORADIA,IFFAR_ADMIN">
+								<p:submenu label="Grupos de Refeições"  expanded="true" styleClass="app-sub-menu">
+									<sec:secTag role="IFFAR_MORADIA,IFFAR_ADMIN" >
+										<p:menuitem value="Grupos de Refeições" outcome="/app/grupoRefeicoes.xhtml" icon="pi pi-sitemap" ajax="false"/>
+									</sec:secTag>
+									
+									<sec:secTag role="IFFAR_MORADIA,IFFAR_ADMIN" >
+										<p:menuitem value="Vincular Aluno" outcome="/app/vincularAluno.xhtml" icon="pi pi-check-circle" ajax="false"/>
+									</sec:secTag>
+								</p:submenu>
+							</sec:secTag>
+							
+							<sec:secTag role="IFFAR_RU_ADMIN" >
+								<p:menuitem value="Publicar cardápio" outcome="/app/cardapio_admin.xhtml" icon="pi pi-palette" ajax="false"/>
+							</sec:secTag>
+																				
+							<sec:secTag role="IFFAR_RU_ADMIN,IFFAR_MORADIA" >
+								<p:menuitem value="Agendamentos" outcome="/app/agendamentos.xhtml" icon="pi pi-chart-line" ajax="false"/>
+							</sec:secTag>
+							<sec:secTag role="IFFAR_RU_ADMIN,IFFAR_MORADIA" >
+								<p:menuitem value="Relatórios de Gestão" outcome="/app/relatorios.xhtml" icon="pi pi-chart-line" ajax="false"/>
+							</sec:secTag>	
+							<sec:secTag role="IFFAR_RU_ADMIN,IFFAR_MORADIA" >
+								<p:menuitem value="Relatórios Financeiros" outcome="/app/relatorios_financeiros.xhtml" icon="pi pi-chart-line" ajax="false"/>
+							</sec:secTag>				
+						</p:submenu>
+					</sec:secTag>
+				</p:submenu>
+
+				<!-- NOVO SUBMENU -->
+				<sec:secTag role="IFFAR_ADMIN,IFFAR_USER_SEARCH,IFFAR_DOCENTE" >
+					<p:submenu label="Usuários" expanded="true">
+						<sec:secTag role="IFFAR_ADMIN,IFFAR_USER_SEARCH" >
+							<p:menuitem value="Usuários" outcome="/app/usuarios.xhtml" icon="pi pi-users" ajax="false"/>
+						</sec:secTag>
+						<sec:secTag role="IFFAR_ADMIN,IFFAR_USER_SEARCH" >
+							<p:menuitem value="Matricula" outcome="/app/matricula.xhtml" icon="pi pi-id-card" ajax="false"/>
+						</sec:secTag>
+						<sec:secTag role="IFFAR_ADMIN,IFFAR_USER_SEARCH" >
+							<p:menuitem value="Servidor" outcome="/app/servidor.xhtml" icon="pi pi-users" ajax="false"/>
+						</sec:secTag>						
+						<sec:secTag role="IFFAR_ADMIN" >
+							<p:menuitem value="Importar Usuários" outcome="/app/importar_usuarios.xhtml" icon="pi pi-users" ajax="false"/>
+						</sec:secTag>
+						
+						<sec:secTag role="IFFAR_ADMIN,IFFAR_USER_SEARCH,IFFAR_DOCENTE" >
+							<p:menuitem value="Visu. Alunos de turma" outcome="/app/visu_aluno_turma.xhtml" icon="pi pi-images" ajax="false"/>
+						</sec:secTag>
+					</p:submenu>
+				</sec:secTag>
+				
+				<!-- NOVO SUBMENU -->
+				<sec:secTag role="IFFAR_MORADIA,IFFAR_MORADIA_CHAMADA" >
+					<p:submenu label="Moradia Estudantil" expanded="true">
+						<sec:secTag role="IFFAR_MORADIA" >
+							<p:menuitem value="Moradia Estudantil" outcome="/app/moradia_estudantil.xhtml" icon="pi pi-home" ajax="false"/>
+						</sec:secTag>
+						<sec:secTag role="IFFAR_MORADIA_CHAMADA" >
+							<p:menuitem value="Chamada" outcome="/app/moradia_chamada.xhtml" icon="pi pi-list" ajax="false"/>
+						</sec:secTag>
+					</p:submenu>
+				</sec:secTag>						
+			</p:panelMenu>
+		</h:form>
+	</nav>
+</ui:composition>
