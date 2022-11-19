@@ -3,14 +3,14 @@ package br.edu.iffar.fw.classBag.db;
 import java.io.Serializable;
 import java.util.Set;
 
-import javax.inject.Inject;
-import javax.persistence.EntityManager;
-import javax.transaction.RollbackException;
-import javax.transaction.Transactional;
-import javax.validation.ConstraintViolation;
-import javax.validation.ConstraintViolationException;
-import javax.validation.Valid;
-import javax.validation.Validator;
+import jakarta.inject.Inject;
+import jakarta.persistence.EntityManager;
+import jakarta.transaction.RollbackException;
+import jakarta.transaction.Transactional;
+import jakarta.validation.ConstraintViolation;
+import jakarta.validation.ConstraintViolationException;
+import jakarta.validation.Valid;
+import jakarta.validation.Validator;
 
 public abstract class DAO <T extends Model<?>> implements Serializable{
 

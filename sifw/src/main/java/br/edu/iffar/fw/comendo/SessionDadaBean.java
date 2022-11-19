@@ -3,7 +3,7 @@ package br.edu.iffar.fw.comendo;
 import java.io.Serializable;
 import java.util.HashMap;
 
-import javax.enterprise.context.SessionScoped;
+import jakarta.enterprise.context.SessionScoped;
 
 @SessionScoped
 public class SessionDadaBean implements Serializable{

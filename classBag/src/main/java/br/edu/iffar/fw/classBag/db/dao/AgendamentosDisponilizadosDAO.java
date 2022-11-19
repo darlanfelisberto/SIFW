@@ -4,11 +4,11 @@
 //import java.util.List;
 //import java.util.UUID;
 //
-//import javax.enterprise.context.RequestScoped;
-//import javax.persistence.NoResultException;
-//import javax.persistence.Query;
-//import javax.transaction.RollbackException;
-//import javax.transaction.Transactional;
+//import jakarta.enterprise.context.RequestScoped;
+//import jakarta.persistence.NoResultException;
+//import jakarta.persistence.Query;
+//import jakarta.transaction.RollbackException;
+//import jakarta.transaction.Transactional;
 //
 ////import org.keycloak.KeycloakSecurityContext;
 //

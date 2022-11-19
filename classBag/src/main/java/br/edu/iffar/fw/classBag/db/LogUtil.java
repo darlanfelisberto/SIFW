@@ -1,6 +1,6 @@
 package br.edu.iffar.fw.classBag.db;
 
-import javax.enterprise.context.RequestScoped;
+import jakarta.enterprise.context.RequestScoped;
 
 @RequestScoped
 public class LogUtil {

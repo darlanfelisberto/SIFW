@@ -6,9 +6,9 @@ import java.time.format.TextStyle;
 import java.util.List;
 import java.util.Locale;
 
-import javax.annotation.PostConstruct;
-import javax.faces.view.ViewScoped;
-import javax.inject.Inject;
+import jakarta.annotation.PostConstruct;
+import jakarta.faces.view.ViewScoped;
+import jakarta.inject.Inject;
 
 import org.primefaces.model.charts.pie.PieChartModel;
 import org.primefaces.model.menu.BaseMenuModel;

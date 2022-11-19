@@ -3,13 +3,13 @@ package br.edu.iffar.fw.comendo.bean;
 import java.io.Serializable;
 import java.util.List;
 
-import javax.annotation.PostConstruct;
-import javax.faces.view.ViewScoped;
-import javax.inject.Inject;
-import javax.inject.Named;
-import javax.transaction.SystemException;
-import javax.transaction.UserTransaction;
-import javax.validation.constraints.NotNull;
+import jakarta.annotation.PostConstruct;
+import jakarta.faces.view.ViewScoped;
+import jakarta.inject.Inject;
+import jakarta.inject.Named;
+import jakarta.transaction.SystemException;
+import jakarta.transaction.UserTransaction;
+import jakarta.validation.constraints.NotNull;
 
 import br.edu.iffar.fw.classBag.db.dao.CreditosDAO;
 import br.edu.iffar.fw.classBag.db.dao.UsuariosDAO;

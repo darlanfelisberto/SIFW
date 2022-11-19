@@ -3,8 +3,8 @@ package br.edu.iffar.fw.classBag.validation;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
-import javax.validation.ConstraintValidator;
-import javax.validation.ConstraintValidatorContext;
+import jakarta.validation.ConstraintValidator;
+import jakarta.validation.ConstraintValidatorContext;
 
 import br.edu.iffar.fw.classBag.db.model.AltenacoesCreditos;
 import br.edu.iffar.fw.classBag.db.model.Credito;

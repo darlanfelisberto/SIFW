@@ -4,8 +4,8 @@ import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;
 import java.util.Objects;
 
-import javax.persistence.Transient;
-import javax.xml.bind.annotation.XmlTransient;
+import jakarta.persistence.Transient;
+import jakarta.xml.bind.annotation.XmlTransient;
 
 @SuppressWarnings("rawtypes") 
 public abstract class Model<T> implements Serializable {

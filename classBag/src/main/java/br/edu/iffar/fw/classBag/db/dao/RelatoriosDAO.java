@@ -7,8 +7,8 @@ import java.sql.ResultSet;
 import java.time.LocalDate;
 import java.util.Map;
 
-import javax.enterprise.context.RequestScoped;
-import javax.inject.Inject;
+import jakarta.enterprise.context.RequestScoped;
+import jakarta.inject.Inject;
 
 import org.apache.commons.csv.CSVPrinter;
 

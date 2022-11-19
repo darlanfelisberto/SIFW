@@ -2,8 +2,8 @@ package br.edu.iffar.fw.classBag.db.dao;
 
 import java.util.List;
 
-import javax.enterprise.context.RequestScoped;
-import javax.persistence.NoResultException;
+import jakarta.enterprise.context.RequestScoped;
+import jakarta.persistence.NoResultException;
 
 //import org.keycloak.KeycloakSecurityContext;
 

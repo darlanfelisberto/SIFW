@@ -1,8 +1,8 @@
 package br.edu.iffar.fw.classBag.db.dao;
 
-import javax.enterprise.context.RequestScoped;
-import javax.transaction.RollbackException;
-import javax.transaction.Transactional;
+import jakarta.enterprise.context.RequestScoped;
+import jakarta.transaction.RollbackException;
+import jakarta.transaction.Transactional;
 
 //import org.keycloak.KeycloakSecurityContext;
 

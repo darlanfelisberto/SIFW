@@ -2,12 +2,12 @@ package br.edu.iffar.fw.classBag.db.dao;
 
 import java.io.IOException;
 
-import javax.enterprise.context.RequestScoped;
-import javax.persistence.NoResultException;
-import javax.persistence.Query;
-import javax.transaction.RollbackException;
-import javax.transaction.Transactional;
-import javax.transaction.Transactional.TxType;
+import jakarta.enterprise.context.RequestScoped;
+import jakarta.persistence.NoResultException;
+import jakarta.persistence.Query;
+import jakarta.transaction.RollbackException;
+import jakarta.transaction.Transactional;
+import jakarta.transaction.Transactional.TxType;
 
 //import org.keycloak.KeycloakSecurityContext;
 
