@@ -44,7 +44,6 @@ public class GrupoRefeicoes  extends Model<UUID>{
 		
 	@NotNull(message = "Informe pelo menos um tipo de refeição.")
 	@OneToMany(mappedBy = "grupoRefeicoes",cascade = {CascadeType.ALL},orphanRemoval = true,fetch = FetchType.LAZY)
-	@OrderBy("tipoRefeicao ASC")
 	@Fetch(FetchMode.SUBSELECT)
 	private List<Refeicao> listRefeicao;
 
@@ -52,7 +51,6 @@ public class GrupoRefeicoes  extends Model<UUID>{
 	private String sigla;
 	
 	@NotNull(message = "Informe o tipo do vinculo.")
-//	@ Column(name="vinculo_automatico",unique = true,nullable = false)
 	@Transient
 	@XmlTransient
 	private boolean vinculoAutomatico;
