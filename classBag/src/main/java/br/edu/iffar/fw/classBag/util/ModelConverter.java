@@ -3,12 +3,12 @@ package br.edu.iffar.fw.classBag.util;
 import java.lang.reflect.ParameterizedType;
 import java.util.HashMap;
 
-import javax.enterprise.context.RequestScoped;
-import javax.faces.component.UIComponent;
-import javax.faces.context.FacesContext;
-import javax.faces.convert.Converter;
-import javax.inject.Inject;
-import javax.inject.Named;
+import jakarta.enterprise.context.RequestScoped;
+import jakarta.faces.component.UIComponent;
+import jakarta.faces.context.FacesContext;
+import jakarta.faces.convert.Converter;
+import jakarta.inject.Inject;
+import jakarta.inject.Named;
 
 import br.edu.iffar.fw.classBag.db.Model;
 import br.edu.iffar.fw.classBag.db.dao.ConverterModelDAO;

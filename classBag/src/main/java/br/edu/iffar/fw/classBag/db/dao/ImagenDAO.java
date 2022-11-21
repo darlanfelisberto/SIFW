@@ -2,12 +2,12 @@ package br.edu.iffar.fw.classBag.db.dao;
 
 import java.io.IOException;
 
-import javax.enterprise.context.RequestScoped;
-import javax.persistence.NoResultException;
-import javax.persistence.Query;
-import javax.transaction.RollbackException;
-import javax.transaction.Transactional;
-import javax.transaction.Transactional.TxType;
+import jakarta.enterprise.context.RequestScoped;
+import jakarta.persistence.NoResultException;
+import jakarta.persistence.Query;
+import jakarta.transaction.RollbackException;
+import jakarta.transaction.Transactional;
+import jakarta.transaction.Transactional.TxType;
 
 //import org.keycloak.KeycloakSecurityContext;
 
@@ -21,7 +21,7 @@ public class ImagenDAO extends DAO<Imagen> {
 	public Imagen findByUsuarioIfNullPattern(Usuario u) {
 		Imagen i = null;
 		try {
-			Query q = this.em.createQuery("from Imagen i where i.usuario = :usuario").setParameter("usuario", u);
+			Query q = this.em.createQuery("select i from Imagen i where i.usuario = :usuario").setParameter("usuario", u);
 			i = (Imagen) q.getSingleResult();
 		} catch (NoResultException e) {
 			
@@ -34,7 +34,7 @@ public class ImagenDAO extends DAO<Imagen> {
 	
 	public Imagen findByUsuario(Usuario id) {
 		try {
-			Query q = this.em.createQuery("from Imagen i where i.usuario = :id").setParameter("id", id);
+			Query q = this.em.createQuery("select i from Imagen i where i.usuario = :id").setParameter("id", id);
 			return (Imagen) q.getSingleResult();
 		} catch (NoResultException e) {
 
@@ -45,7 +45,7 @@ public class ImagenDAO extends DAO<Imagen> {
 	public Imagen findImagenbyUsername(String username) {
 		try {
 			Query q = this.em.createQuery("""
-					from Imagen i
+					select i from Imagen i
 					left join fetch i.usuario u
 					where u.userName = :username
 					""").setParameter("username", username);

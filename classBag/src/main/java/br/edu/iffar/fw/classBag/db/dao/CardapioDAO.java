@@ -3,7 +3,7 @@ package br.edu.iffar.fw.classBag.db.dao;
 import java.time.LocalDate;
 import java.util.List;
 
-import javax.enterprise.context.RequestScoped;
+import jakarta.enterprise.context.RequestScoped;
 
 //import org.keycloak.KeycloakSecurityContext;
 

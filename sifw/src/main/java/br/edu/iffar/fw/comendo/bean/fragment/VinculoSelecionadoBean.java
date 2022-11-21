@@ -4,11 +4,11 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.util.List;
 
-import javax.enterprise.context.RequestScoped;
-import javax.faces.context.FacesContext;
-import javax.inject.Inject;
-import javax.inject.Named;
-import javax.servlet.http.HttpServletRequest;
+import jakarta.enterprise.context.RequestScoped;
+import jakarta.faces.context.FacesContext;
+import jakarta.inject.Inject;
+import jakarta.inject.Named;
+import jakarta.servlet.http.HttpServletRequest;
 
 import br.edu.iffar.fw.classBag.db.dao.VinculosAtivosUsuariosDAO;
 import br.edu.iffar.fw.classBag.db.model.Usuario;

@@ -112,8 +112,8 @@ em outro terminal
 Agora em ambos os servidores, no jboss-cli execute o seguinte:
 
 	$ /subsystem=datasources:installed-drivers-list
-	$ module add --name=org.postgresql --resources=/opt/postgresql-42.2.23.jar  --dependencies=javax.api,javax.transaction.api
-	$ /subsystem=datasources/jdbc-driver=postgresql:add(driver-name="postgresql", driver-module-name="org.postgresql", driver-class-name="org.postgresql.Driver", driver-xa-datasource-class-name="org.postgresql.xa.PGXADataSource")
+	$ module add --name=org.postgresql.jdbc --resources=/opt/postgresql-42.2.23.jar  --dependencies=javax.api,javax.transaction.api
+	$ /subsystem=datasources/jdbc-driver=postgresql:add(driver-name="postgresql", driver-module-name="org.postgresql.jdbc", driver-class-name="org.postgresql.Driver", driver-xa-datasource-class-name="org.postgresql.xa.PGXADataSource")
 
 
 ATENÇÃO! somente no keycloak
@@ -123,7 +123,7 @@ ATENÇÃO! somente no keycloak
 
 ATENÇÃO! somento no wildfly app
 
-	$ /subsystem=datasources/data-source=baseDS:add(driver-name=postgresql,jndi-name="java:jboss/datasources/baseDS",connection-url="jdbc:postgresql://localhost:5432/base",user-name=USER, password=senha)
+	$ /subsystem=datasources/data-source=baseDS:add(driver-name=postgresql,jndi-name="java:jboss/datasources/baseDS",connection-url="jdbc:postgresql://localhost:5432/base",user-name=keyuser, password=12345678)
 	
 
 ATENÇÃO! altere as portas do servidor de aplicação do keycloak, apenas.
@@ -225,9 +225,9 @@ No arquivo /etc/apache2/sites-enabled/proxy_reverso.conf
 				ProxyPassReverse http://localhost:8080/sifw
 			</Location>
 			
-			<Location /sifw/javax.faces.resource >
-				ProxyPass http://localhost:8080/sifw/javax.faces.resource
-				ProxyPassReverse http://localhost:8080/sifw/javax.faces.resource
+			<Location /sifw/jakarta.faces.resource >
+				ProxyPass http://localhost:8080/sifw/jakarta.faces.resource
+				ProxyPassReverse http://localhost:8080/sifw/jakarta.faces.resource
 			</Location>
 			
 			<Location /webservice >

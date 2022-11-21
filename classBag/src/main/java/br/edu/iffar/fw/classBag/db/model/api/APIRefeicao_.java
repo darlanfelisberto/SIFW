@@ -2,9 +2,9 @@
 //
 //import java.util.UUID;
 //
-//import javax.annotation.Generated;
-//import javax.persistence.metamodel.SingularAttribute;
-//import javax.persistence.metamodel.StaticMetamodel;
+//import jakarta.annotation.Generated;
+//import jakarta.persistence.metamodel.SingularAttribute;
+//import jakarta.persistence.metamodel.StaticMetamodel;
 //
 //@Generated(value="Dali", date="2021-05-27T18:13:45.019-0300")
 //@StaticMetamodel(APIRefeicao.class)
