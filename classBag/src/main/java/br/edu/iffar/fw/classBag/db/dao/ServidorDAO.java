@@ -19,11 +19,11 @@ public class ServidorDAO extends DAO<Servidor> {
 	
 	public List<Servidor> listServidorByUsuario(Usuario usuario) {
 		return this.em.createQuery("""
-			from Servidor s 
-			join fetch s.usuario u
-			join fetch s.tipoVinculo tv
+			select s from Servidor s 
+			left join fetch s.usuario u 
+			left join fetch s.tipoVinculo  tv
 			where u = :usuario 
-		""")
+		""", Servidor.class)
 		.setParameter("usuario", usuario)
 		.getResultList();
 	}
@@ -31,7 +31,7 @@ public class ServidorDAO extends DAO<Servidor> {
 	public Servidor findServidorBySiape(Integer siape) {
 		try {
 			return this.em.createQuery("""
-					from Servidor s where s.siape = :siape 
+					select s from Servidor s where s.siape = :siape 
 				""",Servidor.class)
 				.setParameter("siape", siape)
 				.getSingleResult();	

@@ -115,7 +115,7 @@ public class UsuariosDAO extends DAO<Usuario> {
 				return null;
 			}
 			
-			this.usuarioLogado = (Usuario) this.em.createQuery("from Usuario u where u.userName = :userName")
+			this.usuarioLogado = (Usuario) this.em.createQuery("select u from Usuario u where u.userName = :userName")
 					.setParameter("userName", oidcSecurityContext.getIDToken().getPreferredUsername())
 					.getSingleResult();
 		} catch (NoResultException e) {

@@ -15,7 +15,7 @@ public class ParametrosDAO extends DAO<Parametros> {
 	
 	
 	public Parametros findParametroByTypeParam(TypeParam param){
-		return (Parametros) this.em.createQuery(" from Parametros where parametroId = :typeParam").setParameter("typeParam", param).getSingleResult();
+		return (Parametros) this.em.createQuery("select p from Parametros p where p.parametroId = :typeParam").setParameter("typeParam", param).getSingleResult();
 	}
 
 }
