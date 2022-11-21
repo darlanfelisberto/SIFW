@@ -62,6 +62,8 @@
 			<property name="wildfly.jpa.default-unit" value="true" />
 			<property name="hibernate.show_sql" value="true" />
 			<property name="hibernate.dialect" value="org.hibernate.dialect.PostgresPlusDialect" />
+			<property name="hibernate.jpa.compliance.query" value="fase" />
+			
 			
 			<!-- -->
 			<property name="hibernate.cache.use_second_level_cache" value="true" />
