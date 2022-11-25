@@ -1,15 +1,15 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:h="http://xmlns.jcp.org/jsf/html"
-	xmlns:f="http://xmlns.jcp.org/jsf/core"
-	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="jakarta.faces.html"
+	xmlns:f="jakarta.faces.core"
+	xmlns:ui="jakarta.faces.facelets"
 	xmlns:p="http://primefaces.org/ui">
 	
 	<p:outputPanel>
-		<div class="ui-fluid p-formgrid p-grid">
-		    <div class="p-col-12 p-md-6">
+		<div class="formgrid grid">
+		    <div class="col-12 md:col-6">
 		    	<p:panel header="Saldo">
-		    		<div class="ui-fluid p-formgrid p-grid">
-		    			<div class="p-field p-col-12 p-md-6">
+		    		<div class="formgrid grid">
+		    			<div class="field col-12 md:col-6 ">
 							<label>Saldo: </label>
 							<h:outputText value="#{fragmento.saldo.saldo}" >
 								<f:convertNumber type="currency" />
@@ -30,13 +30,13 @@
 			</div>
 			<p:outputPanel id="oppListMonimentacoes" style="max-width: 1024px;    margin-top: 15px;">
 				
-				<div class="ui-g">
-					<div class="ui-g-12 ui-md-12 ui-lg-12" style="text-align: center;">
+				<div class="grid">
+					<div class="col-12 md:col-12" style="text-align: center;">
 						<b>
 							<h:outputText value="Sem movimentações" rendered="#{fragmento.renSemInfo}"/>
 						</b>		
 					</div>
-			 		<div class="ui-g-12 ui-md-6 ui-lg-6">
+			 		<div class="col-12 md:col-6 lg:col-6">
 						<p:chronoline var="cred" value="#{fragmento.listCreditos}" align="left">
 							<div style="    margin-bottom: 10px">
 								<span >
@@ -69,7 +69,7 @@
 						    </f:facet>
 						</p:chronoline>	
 					</div>
-					<div class="ui-g-12 ui-md-6 ui-lg-6">
+					<div class="col-12 md:col-6 lg:col-6">
 					    <p:outputPanel>
 					    	<p:pieChart model="#{fragmento.pieModel}" style="width: 100%; height: 350px;"/>
 					    </p:outputPanel>
@@ -78,8 +78,8 @@
 			
 			
 				<p:outputPanel rendered="false">
-					<div class="ui-g">
-				 		<div class="ui-g-12 ui-md-6 ui-lg-6">
+					<div class="grid">
+				 		<div class="col-12 md:col-6 lg:col-3">
 							<p:dataView value="#{fragmento.listCreditos}" var="cred" 
 										layout="list"
 						                paginator="true" rows="5" rowsPerPageTemplate="5,10,20" pageLinks="3" emptyMessage="Nenhuma movimentação encontrada."
@@ -104,7 +104,7 @@
 						         </p:dataViewListItem>
 						    </p:dataView>
 				    	</div>
-				    	<div class="ui-g-12 ui-md-6 ui-lg-6">
+				    	<div class="col-12 md:col-6 lg:col-6">
 						    <p:outputPanel>
 						    	<p:pieChart model="#{fragmento.pieModel}" style="width: 100%; height: 350px;"/>
 						    </p:outputPanel>

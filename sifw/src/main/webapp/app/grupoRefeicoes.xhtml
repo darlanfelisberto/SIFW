@@ -1,9 +1,9 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:h="http://xmlns.jcp.org/jsf/html"
-	xmlns:f="http://xmlns.jcp.org/jsf/core"
-	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="jakarta.faces.html"
+	xmlns:f="jakarta.faces.core"
+	xmlns:ui="jakarta.faces.facelets"
 	xmlns:p="http://primefaces.org/ui" 
-	xmlns:jsf="http://xmlns.jcp.org/jsf"
+	xmlns:faces="jakarta.faces"
 	template="/public/_template.xhtml">
 
 
@@ -150,7 +150,7 @@
 	 							<label><b>Vinculo automatico:</b></label>
 	 							#{grupoRefeicoesBean.grupoRefeicoes.vinculoAutomatico?'Sim':'Não'}
 	 						</div>
-	 						<div class="p-field p-col-12 p-md-6" jsf:rendered="#{grupoRefeicoesBean.grupoRefeicoes.vinculoAutomatico}">
+	 						<div class="p-field p-col-12 p-md-6" faces:rendered="#{grupoRefeicoesBean.grupoRefeicoes.vinculoAutomatico}">
 	 							<label><b>Tipo do vinculo:</b></label>
 	 							#{grupoRefeicoesBean.grupoRefeicoes.tipoVinculo.descricao}
 	 						</div>

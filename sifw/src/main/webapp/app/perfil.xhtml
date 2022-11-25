@@ -1,7 +1,7 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:h="http://xmlns.jcp.org/jsf/html"
-	xmlns:f="http://xmlns.jcp.org/jsf/core"
-	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="jakarta.faces.html"
+	xmlns:f="jakarta.faces.core"
+	xmlns:ui="jakarta.faces.facelets"
 	xmlns:p="http://primefaces.org/ui" template="/public/_template.xhtml">
 
 
@@ -26,31 +26,29 @@
 			
 			 <p:tabView dynamic="true" >
 			 	<p:tab title="Meus dados">
-			 		<div class="ui-fluid p-formgrid p-grid">
-			 			<div class="p-field p-col-12 p-md-6">
+			 		<div class="formgrid grid">
+			 			<div class="field col-12 md:col-6">
 			 				<label for="iptName">Nome:</label>
-			 				<p:inputText id="iptName" value="#{perfilBean.usuario.nome}" disabled="true"></p:inputText>
+			 				<p:inputText id="iptName" value="#{perfilBean.usuario.nome}" disabled="true" styleClass="w-full"></p:inputText>
 			 			</div>
-			 			<div class="p-field p-col-12 p-md-6">
+			 			<div class="field col-12 md:col-6">
 			 				<label for="iptUsername">Username:</label>
-			 				<p:inputText id="iptUsername" value="#{perfilBean.usuario.userName}" disabled="true"/>
+			 				<p:inputText id="iptUsername" value="#{perfilBean.usuario.userName}" disabled="true" styleClass="w-full"/>
 			 			</div>
-			 			<div class="p-field p-col-12 p-md-6">
+			 			<div class="field col-12 md:col-6">
 			 				<label for="iptCpf">CPF:</label>
-			 				<p:inputText id="iptCpf" value="#{perfilBean.usuario.cpf}" disabled="true"/>
+			 				<p:inputText id="iptCpf" value="#{perfilBean.usuario.cpf}" disabled="true" styleClass="w-full"/>
 			 			</div>			 			
-			 			<div class="p-field p-col-12 p-md-6">
+			 			<div class="field col-12 md:col-6">
 			 				<label for="iptDtNac">Data de Nascimento:</label>
-			 				 <p:datePicker id="iptDtNac" value="#{perfilBean.usuario.dtnasc}" pattern="dd/MM/yyyy"  mask="true" monthNavigator="true" yearNavigator="true" disabled="true"/>
+			 				 <p:datePicker id="iptDtNac" value="#{perfilBean.usuario.dtnasc}" pattern="dd/MM/yyyy"  mask="true" monthNavigator="true" yearNavigator="true" disabled="true" styleClass="w-full"/>
 			 			</div>
 			 			
-			 			<div class="p-field p-col-12 p-md-6">
+			 			<div class="field col-12 md:col-6">
 			 				<p:link href="#{headerBean.linkAccount}" target="_blanc" value="Para mudar o e-mail clique aqui."></p:link>
 			 			</div>	
-			 			
-			 			<div class="p-field p-col-12 p-md-6">
-			 			</div>			 			
 			 		</div>
+			 		
 			 		<p:dataTable value="#{perfilBean.usuario.listMatricula}" var ="mat" showGridlines="true" size="small" rendered="#{perfilBean.usuario.listMatricula != null and perfilBean.usuario.listMatricula.size() > 0}">
 			 			<f:facet name="header">
 				            Lista de Matrículas
@@ -72,18 +70,14 @@
 			 	</p:tab>
 			 
 			 	<p:tab title="Carteira RU" >
-			 		<div class="p-grid">
-						<div class="p-col-12 p-sm-12 p-md-5">
+			 		<div class="grid">
+						<div class="col-12 md:col-6 lg:col-6">
 							<p:commandButton value="Download da minha carterinha" icon="pi pi-download" ajax="false" onclick="PrimeFaces.monitorDownload(start, stop);">
 								<p:fileDownload value="#{perfilBean.gerarNewMyQRCode(false)}"></p:fileDownload>
 							</p:commandButton>
 						</div>
 						
-						<div class="p-col-12 p-sm-12 p-md-1" style="height: 20px">
-						 
-						</div>
-						
-						<div class="p-col-12 p-sm-12 p-md-5">
+						<div class="col-12 md:col-6 lg:col-6">
 							<p:commandButton value="Gerar uma NOVA carterinha"  icon="pi pi-download" styleClass="ui-button-danger" ajax="false" onclick="PrimeFaces.monitorDownload(start, stop);">
 								<p:fileDownload value="#{perfilBean.gerarNewMyQRCode(true)}"></p:fileDownload>
 							</p:commandButton>
@@ -92,13 +86,13 @@
 			 	</p:tab>
 			 	
 			 	<p:tab title="Minha Imagem" rendered="#{perfilBean.usuario.permitirTirarFoto()}">
-			 		<div class="p-grid">
-						<div class="p-col-12 p-sm-12 p-md-6 p-lg-6">
+			 		<div class="grid">
+						<div class="col-12 md:col-6 lg:col-6">
 							<p:photoCam widgetVar="pc" listener="#{perfilBean.oncapture}" update="photo" format="png"/>
 							<p:commandButton type="button" value="Capturar" onclick="PF('pc').capture()" update="photo" icon="pi pi-camera"/>
 						</div>		
 						
-		           		<div class="p-col-12 p-sm-12 p-md-6 p-lg-6">
+		           		<div class="col-12 md:col-6 lg:col-6">
 		           			<p:outputPanel id="photo">
 				                <p:graphicImage value="#{perfilBean.imagen.img}"  rendered="#{not empty perfilBean.imagen}" stream="false"/>
 				            </p:outputPanel>

@@ -12,15 +12,9 @@
 }
 
 
-//primeflex 2.0.0
-@import './src/_variables';
-@import './src/_grid';
-@import './src/_formlayout';
-@import './src/_display';
-@import './src/_text';
-@import './src/flexbox/_flexbox';
-@import './src/_spacing';
-@import './src/_elevation';
+//primeflex 3.0.0
+@import './primeflex/primeflex.scss';
+//@import './primeflex/themes/saga-blue.scss';
 
 
 @import "template.scss";
