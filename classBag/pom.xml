@@ -16,7 +16,7 @@
 
 		<keycloak.version>18.0.1</keycloak.version>
 
-		<version.compiler.plugin>3.8.1</version.compiler.plugin>
+		<version.compiler.plugin>3.10.1</version.compiler.plugin>
 		<version.surefire.plugin>2.22.2</version.surefire.plugin>
 		<version.failsafe.plugin>2.22.2</version.failsafe.plugin>
 		<version.war.plugin>3.3.1</version.war.plugin>
@@ -24,8 +24,8 @@
 		<maven.compiler.target>17</maven.compiler.target>
 		<maven.compiler.source>17</maven.compiler.source>
 
-        <version.server.bom>27.0.0.Final</version.server.bom>
-        <version.server>27.0.0.Final</version.server>
+        <version.server.bom>27.0.1.Final</version.server.bom>
+        <version.server>27.0.1.Final</version.server>
         <version.wildfly.maven.plugin>4.0.0.Final</version.wildfly.maven.plugin>
         
 		<jasper.version>6.18.1</jasper.version>
@@ -82,12 +82,14 @@
 		    <groupId>io.undertow</groupId>
 		    <artifactId>undertow-core</artifactId>
 		    <version>2.3.0.Final</version>
+		    <scope>provided</scope>
 		</dependency>
 		
 		<dependency>
 		    <groupId>io.undertow</groupId>
 		    <artifactId>undertow-servlet</artifactId>
 		    <version>2.3.0.Final</version>
+		    <scope>provided</scope>
 		</dependency>
 
 		<dependency>
@@ -99,7 +101,6 @@
 		<dependency>
 			<groupId>org.wildfly.security</groupId>
 			<artifactId>wildfly-elytron-http-oidc</artifactId>
-			<scope>compile</scope>
 		</dependency>
 
 		<!-- inicio primefaces -->
@@ -108,7 +109,6 @@
 		    <artifactId>primefaces</artifactId>
 		    <version>12.0.0</version>
 		    <classifier>jakarta</classifier>
-		    <scope>compile</scope>
 		</dependency>
 
 				<dependency>
@@ -179,12 +179,30 @@
 		  <groupId>org.keycloak</groupId>
 		  <artifactId>keycloak-admin-client-jakarta</artifactId>
 		  <version>18.0.1</version>
+		  	<exclusions>
+				<exclusion>
+					<groupId>org.jboss.resteasy</groupId>
+					<artifactId>resteasy-client</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.jboss.resteasy</groupId>
+					<artifactId>resteasy-multipart-provider</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.jboss.resteasy</groupId>
+					<artifactId>resteasy-jackson2-provider</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.jboss.resteasy</groupId>
+					<artifactId>resteasy-jaxb-provider</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 		<dependency>
 			<groupId>org.omnifaces</groupId>
 			<artifactId>omnifaces</artifactId>
 			<version>4.0</version>
-			<scope>compile</scope>
+			<scope>provided</scope>
 		</dependency>
 
 		<dependency>
@@ -248,10 +266,21 @@
 			<groupId>org.wildfly.core</groupId>
 			<artifactId>wildfly-controller</artifactId>
 			<version>${version.wildfly.core}</version>
-			<scope>compile</scope>
+			<scope>provided</scope>
 		</dependency>
-
-
+		
+		<!-- auth -->
+		<dependency>
+			<groupId>jakarta.json</groupId>
+			<artifactId>jakarta.json-api</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.nimbusds</groupId>
+			<artifactId>nimbus-jose-jwt</artifactId>
+			<version>9.23</version>
+			<scope>provided</scope>
+		</dependency>
 	</dependencies>
 	
 	 <repositories>

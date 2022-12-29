@@ -5,23 +5,24 @@ import java.io.Serializable;
 import java.sql.Connection;
 import java.sql.SQLException;
 
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
+import javax.sql.DataSource;
+
+import org.omnifaces.cdi.Eager;
+
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.Resource;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.enterprise.inject.Disposes;
 import jakarta.enterprise.inject.Produces;
 import jakarta.inject.Inject;
-import javax.naming.Context;
-import javax.naming.InitialContext;
-import javax.naming.NamingException;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.PersistenceUnit;
 import jakarta.servlet.ServletContext;
-import javax.sql.DataSource;
-
-import org.omnifaces.cdi.Eager;
 
 
 @Eager

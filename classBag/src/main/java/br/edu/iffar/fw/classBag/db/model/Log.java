@@ -4,12 +4,11 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
+import br.edu.iffar.fw.classBag.db.Model;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-
-import br.edu.iffar.fw.classBag.db.Model;
 
 @Table(name = "log")
 @Entity

@@ -2,18 +2,17 @@ package br.edu.iffar.fw.classBag.db.dao;
 
 import java.io.IOException;
 
+//import org.keycloak.KeycloakSecurityContext;
+
+import br.edu.iffar.fw.classBag.db.DAO;
+import br.edu.iffar.fw.classBag.db.model.Imagen;
+import br.edu.iffar.fw.classBag.db.model.Usuario;
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.persistence.NoResultException;
 import jakarta.persistence.Query;
 import jakarta.transaction.RollbackException;
 import jakarta.transaction.Transactional;
 import jakarta.transaction.Transactional.TxType;
-
-//import org.keycloak.KeycloakSecurityContext;
-
-import br.edu.iffar.fw.classBag.db.DAO;
-import br.edu.iffar.fw.classBag.db.model.Imagen;
-import br.edu.iffar.fw.classBag.db.model.Usuario;
 
 @RequestScoped
 public class ImagenDAO extends DAO<Imagen> {

@@ -2,13 +2,12 @@ package br.edu.iffar.fw.classBag.db.dao;
 
 import java.util.List;
 
-import jakarta.enterprise.context.RequestScoped;
-import jakarta.persistence.NoResultException;
-import jakarta.persistence.Query;
-
 import br.edu.iffar.fw.classBag.db.DAO;
 import br.edu.iffar.fw.classBag.db.model.GrupoRefeicoes;
 import br.edu.iffar.fw.classBag.db.model.Matricula;
+import jakarta.enterprise.context.RequestScoped;
+import jakarta.persistence.NoResultException;
+import jakarta.persistence.Query;
 
 @RequestScoped
 @SuppressWarnings("unchecked")

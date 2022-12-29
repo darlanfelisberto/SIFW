@@ -27,6 +27,7 @@
         <version.server>27.0.0.Final</version.server>
         <version.wildfly.maven.plugin>4.0.0.Final</version.wildfly.maven.plugin>
         
+        <krazo.version>2.0.1</krazo.version>
 	</properties>
 
 	<dependencyManagement>
@@ -43,6 +44,19 @@
 	</dependencyManagement>
 
 	<dependencies>
+		<!-- start auth-->
+		<dependency>
+	      <groupId>com.nimbusds</groupId>
+	      <artifactId>nimbus-jose-jwt</artifactId>
+	      <version>9.23</version>
+	    </dependency>
+	    
+		<dependency>
+		  <groupId>org.thymeleaf</groupId>
+		  <artifactId>thymeleaf</artifactId>
+		  <version>3.1.1.RELEASE</version>
+		</dependency>
+		<!-- and auth-->
 
 		<dependency>
 			<groupId>io.undertow</groupId>
@@ -130,6 +144,24 @@
 		  <groupId>org.keycloak</groupId>
 		  <artifactId>keycloak-admin-client-jakarta</artifactId>
 		  <version>18.0.1</version>
+		  		  	<exclusions>
+				<exclusion>
+					<groupId>org.jboss.resteasy</groupId>
+					<artifactId>resteasy-client</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.jboss.resteasy</groupId>
+					<artifactId>resteasy-multipart-provider</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.jboss.resteasy</groupId>
+					<artifactId>resteasy-jackson2-provider</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.jboss.resteasy</groupId>
+					<artifactId>resteasy-jaxb-provider</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 
 		<dependency>
@@ -138,31 +170,6 @@
 			<version>${keycloak.version}</version>
 		</dependency>
 
-		<dependency>
-			<groupId>org.jboss.resteasy</groupId>
-			<artifactId>resteasy-client</artifactId>
-			<scope>provided</scope>
-		</dependency>
-
-		<dependency>
-			<groupId>org.jboss.resteasy</groupId>
-			<artifactId>resteasy-core-spi</artifactId>
-		</dependency>
-
-		<dependency>
-			<groupId>org.jboss.resteasy</groupId>
-			<artifactId>resteasy-core</artifactId>
-		</dependency>
-
-		<dependency>
-			<groupId>org.jboss.resteasy</groupId>
-			<artifactId>resteasy-jackson2-provider</artifactId>
-		</dependency>
-
-		<dependency>
-			<groupId>com.fasterxml.jackson.datatype</groupId>
-			<artifactId>jackson-datatype-jsr310</artifactId>
-		</dependency>
 
 <dependency>
             <groupId>jakarta.servlet</groupId>

@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
+import br.edu.iffar.fw.classBag.enun.TypeSituacao;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -16,8 +17,6 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.NamedQuery;
 import jakarta.persistence.Table;
-
-import br.edu.iffar.fw.classBag.enun.TypeSituacao;
 
 @Entity
 @Table(name="situacao_matricula")

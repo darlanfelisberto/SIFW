@@ -1,5 +1,6 @@
 package br.edu.iffar.fw.classBag.db.model.api;
 
+import br.edu.iffar.fw.classBag.db.Model;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
@@ -9,8 +10,6 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
 import jakarta.xml.bind.annotation.XmlTransient;
-
-import br.edu.iffar.fw.classBag.db.Model;
 
 @Entity
 @Table(name = "api_usuario_refeicao")

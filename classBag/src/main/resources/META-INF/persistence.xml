@@ -37,6 +37,11 @@
 		<class>br.edu.iffar.fw.classBag.db.model.Unidade</class>
 		<class>br.edu.iffar.fw.classBag.db.model.Usuario</class>
 		
+		<class>br.auth.models.AuthLogin</class>
+		<class>br.auth.models.Cliente</class>
+		<class>br.auth.models.Permissao</class>
+		<class>br.auth.models.AuthUser</class>
+		
 
 		<!--class>br.edu.iffar.fw.classBag.db.model.api.APIMatricula</class>
 		<class>br.edu.iffar.fw.classBag.db.model.api.APIRefeicao</class>

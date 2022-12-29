@@ -2,15 +2,14 @@ package br.edu.iffar.fw.classBag.db.dao;
 
 import java.util.List;
 
+import br.edu.iffar.fw.classBag.db.DAO;
+import br.edu.iffar.fw.classBag.db.model.Unidade;
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.inject.Inject;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.Query;
 import jakarta.transaction.RollbackException;
 import jakarta.transaction.Transactional;
-
-import br.edu.iffar.fw.classBag.db.DAO;
-import br.edu.iffar.fw.classBag.db.model.Unidade;
 
 @RequestScoped
 public class UnidadeDAO extends DAO<Unidade> {

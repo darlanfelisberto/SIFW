@@ -12,15 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-import jakarta.annotation.PostConstruct;
-import jakarta.enterprise.inject.Instance;
-import jakarta.faces.model.SelectItem;
-import jakarta.faces.view.ViewScoped;
 import javax.imageio.ImageIO;
-import jakarta.inject.Inject;
-import jakarta.inject.Named;
-import jakarta.transaction.RollbackException;
-import jakarta.validation.constraints.NotNull;
 
 import org.keycloak.admin.client.Keycloak;
 import org.keycloak.admin.client.resource.RealmResource;
@@ -55,6 +47,14 @@ import br.edu.iffar.fw.classBag.util.BreadCrumb;
 import br.edu.iffar.fw.classBag.util.BreadCrumbControl;
 import br.edu.iffar.fw.classBag.util.MessagesUtil;
 import br.edu.iffar.relatorios.CarteirinhaUtil;
+import jakarta.annotation.PostConstruct;
+import jakarta.enterprise.inject.Instance;
+import jakarta.faces.model.SelectItem;
+import jakarta.faces.view.ViewScoped;
+import jakarta.inject.Inject;
+import jakarta.inject.Named;
+import jakarta.transaction.RollbackException;
+import jakarta.validation.constraints.NotNull;
 
 @Named
 @ViewScoped

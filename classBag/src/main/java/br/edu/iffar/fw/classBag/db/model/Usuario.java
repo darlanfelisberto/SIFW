@@ -9,17 +9,6 @@ import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.OrderBy;
-import jakarta.persistence.Table;
-import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.NotNull;
-import jakarta.xml.bind.annotation.XmlTransient;
-
 import org.keycloak.representations.idm.CredentialRepresentation;
 import org.keycloak.representations.idm.UserRepresentation;
 import org.primefaces.model.charts.pie.PieChartModel;
@@ -32,6 +21,16 @@ import br.edu.iffar.fw.classBag.enun.TypeCredito;
 import br.edu.iffar.fw.classBag.enun.TypeSituacao;
 import br.edu.iffar.fw.classBag.util.JsonDateDeserializer;
 import br.edu.iffar.fw.classBag.util.JsonLocalDateSerializer;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.OrderBy;
+import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
+import jakarta.xml.bind.annotation.XmlTransient;
 
 
 /**

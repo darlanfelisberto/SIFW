@@ -3,6 +3,11 @@ package br.edu.iffar.fw.classBag.db.model;
 import java.io.Serializable;
 import java.util.UUID;
 
+import br.edu.iffar.fw.classBag.db.Model;
+import br.edu.iffar.fw.classBag.enun.TypeCredito;
+import br.edu.iffar.fw.classBag.util.MessagesUtil;
+import br.edu.iffar.fw.classBag.util.ValidacaoPersonalizada;
+import br.edu.iffar.fw.classBag.validation.ValidaCreditoPorTypo;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -13,12 +18,6 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
-
-import br.edu.iffar.fw.classBag.db.Model;
-import br.edu.iffar.fw.classBag.enun.TypeCredito;
-import br.edu.iffar.fw.classBag.util.MessagesUtil;
-import br.edu.iffar.fw.classBag.util.ValidacaoPersonalizada;
-import br.edu.iffar.fw.classBag.validation.ValidaCreditoPorTypo;
 
 @Entity
 @Table(name = "altenacoes_creditos")

@@ -2,11 +2,10 @@ package br.edu.iffar.fw.classBag.db.dao;
 
 import java.util.List;
 
-import jakarta.enterprise.context.RequestScoped;
-
 import br.edu.iffar.fw.classBag.db.DAO;
 import br.edu.iffar.fw.classBag.db.model.TipoCredito;
 import br.edu.iffar.fw.classBag.enun.TypeCredito;
+import jakarta.enterprise.context.RequestScoped;
 
 @RequestScoped
 public class TipoCreditoDAO extends DAO<TipoCredito> {

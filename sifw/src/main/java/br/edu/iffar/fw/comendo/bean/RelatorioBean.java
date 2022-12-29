@@ -18,11 +18,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import jakarta.annotation.PostConstruct;
-import jakarta.enterprise.context.RequestScoped;
-import jakarta.inject.Inject;
-import jakarta.inject.Named;
-
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVPrinter;
 import org.primefaces.model.DefaultStreamedContent;
@@ -41,6 +36,10 @@ import br.edu.iffar.fw.classBag.db.model.TipoRefeicao;
 import br.edu.iffar.fw.classBag.db.model.TipoVinculo;
 import br.edu.iffar.fw.classBag.util.MessagesUtil;
 import br.edu.iffar.relatorios.RelatoriosPath;
+import jakarta.annotation.PostConstruct;
+import jakarta.enterprise.context.RequestScoped;
+import jakarta.inject.Inject;
+import jakarta.inject.Named;
 
 
 @Named

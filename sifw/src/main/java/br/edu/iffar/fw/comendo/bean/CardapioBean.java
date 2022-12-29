@@ -3,15 +3,14 @@ package br.edu.iffar.fw.comendo.bean;
 import java.io.Serializable;
 import java.util.List;
 
-import jakarta.annotation.PostConstruct;
-import jakarta.faces.view.ViewScoped;
-import jakarta.inject.Inject;
-import jakarta.inject.Named;
-
 import br.edu.iffar.fw.classBag.db.dao.CardapioDAO;
 import br.edu.iffar.fw.classBag.db.model.Cardapio;
 import br.edu.iffar.fw.classBag.db.model.Cardapio.DiasDaSemana;
 import br.edu.iffar.fw.classBag.util.BreadCrumb;
+import jakarta.annotation.PostConstruct;
+import jakarta.faces.view.ViewScoped;
+import jakarta.inject.Inject;
+import jakarta.inject.Named;
 
 @Named
 @ViewScoped

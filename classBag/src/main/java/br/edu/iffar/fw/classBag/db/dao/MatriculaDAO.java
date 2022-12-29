@@ -2,15 +2,14 @@ package br.edu.iffar.fw.classBag.db.dao;
 
 import java.util.List;
 
+import br.edu.iffar.fw.classBag.db.DAO;
+import br.edu.iffar.fw.classBag.db.model.Matricula;
+import br.edu.iffar.fw.classBag.db.model.Usuario;
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.persistence.NoResultException;
 import jakarta.persistence.NonUniqueResultException;
 import jakarta.persistence.Query;
 import jakarta.transaction.Transactional;
-
-import br.edu.iffar.fw.classBag.db.DAO;
-import br.edu.iffar.fw.classBag.db.model.Matricula;
-import br.edu.iffar.fw.classBag.db.model.Usuario;
 
 @RequestScoped
 @SuppressWarnings("unchecked")

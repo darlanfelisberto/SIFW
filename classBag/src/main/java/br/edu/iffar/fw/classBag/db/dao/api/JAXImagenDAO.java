@@ -2,11 +2,10 @@ package br.edu.iffar.fw.classBag.db.dao.api;
 
 import java.util.List;
 
-import jakarta.enterprise.context.RequestScoped;
-import jakarta.persistence.Query;
-
 import br.edu.iffar.fw.classBag.db.DAO;
 import br.edu.iffar.fw.classBag.db.model.api.APIImagen;
+import jakarta.enterprise.context.RequestScoped;
+import jakarta.persistence.Query;
 
 @RequestScoped
 public class JAXImagenDAO extends DAO<APIImagen> {

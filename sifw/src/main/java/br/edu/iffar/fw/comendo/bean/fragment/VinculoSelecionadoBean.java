@@ -4,17 +4,16 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.util.List;
 
-import jakarta.enterprise.context.RequestScoped;
-import jakarta.faces.context.FacesContext;
-import jakarta.inject.Inject;
-import jakarta.inject.Named;
-import jakarta.servlet.http.HttpServletRequest;
-
 import br.edu.iffar.fw.classBag.db.dao.VinculosAtivosUsuariosDAO;
 import br.edu.iffar.fw.classBag.db.model.Usuario;
 import br.edu.iffar.fw.classBag.db.model.interfaces.VinculosAtivosUsuarios;
 import br.edu.iffar.fw.comendo.SessionDadaBean;
 import br.edu.iffar.fw.comendo.bean.HeaderBean;
+import jakarta.enterprise.context.RequestScoped;
+import jakarta.faces.context.FacesContext;
+import jakarta.inject.Inject;
+import jakarta.inject.Named;
+import jakarta.servlet.http.HttpServletRequest;
 
 @Named
 @RequestScoped

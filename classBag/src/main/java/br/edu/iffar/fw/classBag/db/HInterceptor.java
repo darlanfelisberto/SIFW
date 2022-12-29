@@ -5,15 +5,14 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import jakarta.faces.context.FacesContext;
-import jakarta.servlet.http.HttpServletRequest;
-
 import org.hibernate.EmptyInterceptor;
 import org.hibernate.Transaction;
 import org.hibernate.type.Type;
 import org.wildfly.security.http.oidc.OidcPrincipal;
 
 import br.edu.iffar.fw.classBag.sec.OidcPrincipalContext;
+import jakarta.faces.context.FacesContext;
+import jakarta.servlet.http.HttpServletRequest;
 
 public class HInterceptor extends EmptyInterceptor {
 

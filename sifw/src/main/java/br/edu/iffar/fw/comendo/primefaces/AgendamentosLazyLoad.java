@@ -5,9 +5,6 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import jakarta.faces.view.ViewScoped;
-import jakarta.inject.Inject;
-
 import org.primefaces.model.LazyScheduleModel;
 import org.primefaces.model.ScheduleEvent;
 import org.primefaces.model.ScheduleModel;
@@ -16,6 +13,8 @@ import br.edu.iffar.fw.classBag.db.Model;
 import br.edu.iffar.fw.classBag.db.dao.AgendamentosDAO;
 import br.edu.iffar.fw.classBag.db.model.Agendamento;
 import br.edu.iffar.fw.comendo.bean.fragment.VinculoSelecionadoBean;
+import jakarta.faces.view.ViewScoped;
+import jakarta.inject.Inject;
 
 @ViewScoped
 public class AgendamentosLazyLoad extends LazyScheduleModel implements Serializable, ScheduleModel{

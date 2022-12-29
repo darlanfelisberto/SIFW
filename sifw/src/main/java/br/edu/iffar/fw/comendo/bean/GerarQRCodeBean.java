@@ -5,10 +5,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import jakarta.enterprise.context.RequestScoped;
-import jakarta.inject.Inject;
-import jakarta.inject.Named;
-
 import org.primefaces.model.StreamedContent;
 
 import br.edu.iffar.fw.classBag.db.dao.CursosDAO;
@@ -16,6 +12,9 @@ import br.edu.iffar.fw.classBag.db.dao.UsuariosDAO;
 import br.edu.iffar.fw.classBag.db.model.Curso;
 import br.edu.iffar.fw.classBag.util.MessagesUtil;
 import br.edu.iffar.relatorios.RelatoriosPath;
+import jakarta.enterprise.context.RequestScoped;
+import jakarta.inject.Inject;
+import jakarta.inject.Named;
 
 @Named
 @RequestScoped

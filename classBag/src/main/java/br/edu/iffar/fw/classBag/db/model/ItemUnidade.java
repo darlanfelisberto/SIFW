@@ -3,6 +3,8 @@ package br.edu.iffar.fw.classBag.db.model;
 
 import java.util.UUID;
 
+import br.edu.iffar.fw.classBag.db.Model;
+import br.edu.iffar.fw.classBag.db.model.interfaces.TreeNodeSearch;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -13,9 +15,6 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
-
-import br.edu.iffar.fw.classBag.db.Model;
-import br.edu.iffar.fw.classBag.db.model.interfaces.TreeNodeSearch;
 
 @Entity
 @Table(name = "item_unidade", schema = "moradia_estudantil")

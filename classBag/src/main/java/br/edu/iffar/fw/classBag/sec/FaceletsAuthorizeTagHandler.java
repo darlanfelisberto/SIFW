@@ -3,6 +3,9 @@ package br.edu.iffar.fw.classBag.sec;
 import java.io.IOException;
 import java.util.Arrays;
 
+import org.wildfly.security.http.oidc.OidcPrincipal;
+import org.wildfly.security.http.oidc.OidcSecurityContext;
+
 import jakarta.faces.component.UIComponent;
 import jakarta.faces.context.FacesContext;
 import jakarta.faces.view.facelets.FaceletContext;
@@ -10,9 +13,6 @@ import jakarta.faces.view.facelets.TagAttribute;
 import jakarta.faces.view.facelets.TagConfig;
 import jakarta.faces.view.facelets.TagHandler;
 import jakarta.servlet.http.HttpServletRequest;
-
-import org.wildfly.security.http.oidc.OidcPrincipal;
-import org.wildfly.security.http.oidc.OidcSecurityContext;
 
 @SuppressWarnings("unchecked")
 public class FaceletsAuthorizeTagHandler extends TagHandler {

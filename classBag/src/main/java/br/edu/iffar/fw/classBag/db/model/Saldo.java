@@ -2,14 +2,13 @@ package br.edu.iffar.fw.classBag.db.model;
 
 import java.util.UUID;
 
+import org.hibernate.annotations.Immutable;
+
+import br.edu.iffar.fw.classBag.db.Model;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-
-import org.hibernate.annotations.Immutable;
-
-import br.edu.iffar.fw.classBag.db.Model;
 
 /**
    CREATE OR REPLACE VIEW public.saldo

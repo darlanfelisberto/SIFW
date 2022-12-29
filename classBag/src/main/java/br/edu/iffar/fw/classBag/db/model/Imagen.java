@@ -14,6 +14,12 @@ import java.util.Base64;
 import java.util.UUID;
 
 import javax.imageio.ImageIO;
+
+import org.primefaces.model.DefaultStreamedContent;
+import org.primefaces.model.StreamedContent;
+
+import br.edu.iffar.fw.classBag.db.Model;
+import br.edu.iffar.relatorios.RelatoriosPath;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -25,12 +31,6 @@ import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import jakarta.persistence.Transient;
 import jakarta.xml.bind.annotation.XmlTransient;
-
-import org.primefaces.model.DefaultStreamedContent;
-import org.primefaces.model.StreamedContent;
-
-import br.edu.iffar.fw.classBag.db.Model;
-import br.edu.iffar.relatorios.RelatoriosPath;
 
 @Entity
 @Table(name = "imagen")

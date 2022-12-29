@@ -5,6 +5,10 @@ import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
+import br.edu.iffar.fw.classBag.db.Model;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -17,16 +21,10 @@ import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
-import jakarta.persistence.OrderBy;
 import jakarta.persistence.Table;
 import jakarta.persistence.Transient;
 import jakarta.validation.constraints.NotNull;
 import jakarta.xml.bind.annotation.XmlTransient;
-
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
-
-import br.edu.iffar.fw.classBag.db.Model;
 
 @Entity
 @Table(name = "grupo_refeicoes")

@@ -2,13 +2,12 @@ package br.edu.iffar.fw.classBag.db.dao;
 
 import java.util.List;
 
-import jakarta.enterprise.context.RequestScoped;
-
 //import org.keycloak.KeycloakSecurityContext;
 
 import br.edu.iffar.fw.classBag.db.DAO;
 import br.edu.iffar.fw.classBag.db.model.Matricula;
 import br.edu.iffar.fw.classBag.db.model.Turma;
+import jakarta.enterprise.context.RequestScoped;
 
 @RequestScoped
 @SuppressWarnings("unchecked")

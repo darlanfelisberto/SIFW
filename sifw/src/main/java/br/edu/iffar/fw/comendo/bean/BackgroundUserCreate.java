@@ -9,14 +9,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
 
-import jakarta.inject.Inject;
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.NoResultException;
-import jakarta.transaction.RollbackException;
-import jakarta.transaction.SystemException;
-import jakarta.transaction.UserTransaction;
-import jakarta.ws.rs.core.Response;
-
 import org.apache.commons.csv.CSVRecord;
 import org.keycloak.admin.client.Keycloak;
 import org.keycloak.admin.client.resource.RealmResource;
@@ -36,6 +28,13 @@ import br.edu.iffar.fw.classBag.db.model.Usuario;
 import br.edu.iffar.fw.classBag.enun.TypeSituacao;
 import br.edu.iffar.fw.classBag.excecoes.KeyCloakFacilitExeption;
 import br.edu.iffar.fw.classBag.sec.KeycloakAdminUtil;
+import jakarta.inject.Inject;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.NoResultException;
+import jakarta.transaction.RollbackException;
+import jakarta.transaction.SystemException;
+import jakarta.transaction.UserTransaction;
+import jakarta.ws.rs.core.Response;
 
 public class BackgroundUserCreate implements Runnable{
 

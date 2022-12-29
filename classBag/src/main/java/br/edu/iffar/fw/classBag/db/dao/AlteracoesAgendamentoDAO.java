@@ -2,11 +2,10 @@ package br.edu.iffar.fw.classBag.db.dao;
 
 import java.util.List;
 
-import jakarta.enterprise.context.RequestScoped;
-
 import br.edu.iffar.fw.classBag.db.DAO;
 import br.edu.iffar.fw.classBag.db.model.AlteracoesAgendamentos;
 import br.edu.iffar.fw.classBag.db.model.Usuario;
+import jakarta.enterprise.context.RequestScoped;
 
 @RequestScoped
 @SuppressWarnings("unchecked")

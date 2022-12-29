@@ -1,5 +1,7 @@
 package br.edu.iffar.fw.classBag.db.model;
 
+import br.edu.iffar.fw.classBag.db.Model;
+import br.edu.iffar.fw.classBag.enun.TypeCredito;
 import jakarta.persistence.Cacheable;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -8,9 +10,6 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.xml.bind.annotation.XmlTransient;
-
-import br.edu.iffar.fw.classBag.db.Model;
-import br.edu.iffar.fw.classBag.enun.TypeCredito;
 
 @Entity
 @Table(name = "tipo_credito")

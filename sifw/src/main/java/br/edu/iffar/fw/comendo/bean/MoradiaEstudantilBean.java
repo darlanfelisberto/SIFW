@@ -9,12 +9,6 @@ import java.util.UUID;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
-import jakarta.annotation.PostConstruct;
-import jakarta.faces.view.ViewScoped;
-import jakarta.inject.Inject;
-import jakarta.inject.Named;
-import jakarta.transaction.RollbackException;
-
 import org.primefaces.event.NodeSelectEvent;
 import org.primefaces.event.SelectEvent;
 
@@ -31,6 +25,11 @@ import br.edu.iffar.fw.classBag.db.model.Unidade;
 import br.edu.iffar.fw.classBag.db.model.interfaces.SwitchTreeNode;
 import br.edu.iffar.fw.classBag.db.model.interfaces.TreeNodeSearch;
 import br.edu.iffar.fw.classBag.util.MessagesUtil;
+import jakarta.annotation.PostConstruct;
+import jakarta.faces.view.ViewScoped;
+import jakarta.inject.Inject;
+import jakarta.inject.Named;
+import jakarta.transaction.RollbackException;
 
 /**
  * @author darlan

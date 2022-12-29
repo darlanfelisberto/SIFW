@@ -7,6 +7,7 @@ import java.time.temporal.WeekFields;
 import java.util.Locale;
 import java.util.UUID;
 
+import br.edu.iffar.fw.classBag.db.Model;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -14,8 +15,6 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
-
-import br.edu.iffar.fw.classBag.db.Model;
 
 @Entity
 @Table(name = "cardapio")

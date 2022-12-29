@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="sifw:war">
+    <output-path>$PROJECT_DIR$/sifw/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>sifw</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="sifw.war">
+      <element id="artifact" artifact-name="sifw:war exploded" />
+    </root>
+  </artifact>
+</component>

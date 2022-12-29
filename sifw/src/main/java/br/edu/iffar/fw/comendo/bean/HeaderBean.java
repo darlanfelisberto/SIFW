@@ -2,17 +2,16 @@ package br.edu.iffar.fw.comendo.bean;
 
 import java.io.Serializable;
 
-import jakarta.annotation.PostConstruct;
-import jakarta.enterprise.context.RequestScoped;
-import jakarta.inject.Inject;
-import jakarta.inject.Named;
-import jakarta.servlet.http.HttpServletRequest;
-
 import br.edu.iffar.fw.classBag.db.dao.ImagenDAO;
 import br.edu.iffar.fw.classBag.db.dao.UsuariosDAO;
 import br.edu.iffar.fw.classBag.db.model.Imagen;
 import br.edu.iffar.fw.classBag.db.model.Usuario;
 import br.edu.iffar.fw.classBag.sec.KeycloakAdminUtil;
+import jakarta.annotation.PostConstruct;
+import jakarta.enterprise.context.RequestScoped;
+import jakarta.inject.Inject;
+import jakarta.inject.Named;
+import jakarta.servlet.http.HttpServletRequest;
 
 @Named
 @RequestScoped

@@ -3,12 +3,11 @@ package br.edu.iffar.fw.classBag.validation;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
-import jakarta.validation.ConstraintValidator;
-import jakarta.validation.ConstraintValidatorContext;
-
 import br.edu.iffar.fw.classBag.db.model.AltenacoesCreditos;
 import br.edu.iffar.fw.classBag.db.model.Credito;
 import br.edu.iffar.fw.classBag.enun.TypeCredito;
+import jakarta.validation.ConstraintValidator;
+import jakarta.validation.ConstraintValidatorContext;
 
 public class ValidaCreditoPorTypoValidator implements ConstraintValidator<ValidaCreditoPorTypo, Object> {
 

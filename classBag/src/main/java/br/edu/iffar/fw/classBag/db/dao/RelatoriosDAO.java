@@ -7,13 +7,12 @@ import java.sql.ResultSet;
 import java.time.LocalDate;
 import java.util.Map;
 
-import jakarta.enterprise.context.RequestScoped;
-import jakarta.inject.Inject;
-
 import org.apache.commons.csv.CSVPrinter;
 
 import br.edu.iffar.fw.classBag.db.DAO;
 import br.edu.iffar.fw.classBag.db.Model;
+import jakarta.enterprise.context.RequestScoped;
+import jakarta.inject.Inject;
 
 @RequestScoped
 public class RelatoriosDAO extends DAO<Model<?>>{

@@ -3,13 +3,6 @@ package br.edu.iffar.fw.classBag.db.dao;
 import java.util.List;
 import java.util.UUID;
 
-import jakarta.enterprise.context.RequestScoped;
-import jakarta.inject.Inject;
-import jakarta.persistence.NoResultException;
-import jakarta.persistence.NonUniqueResultException;
-import jakarta.persistence.Query;
-import jakarta.transaction.Transactional;
-
 import org.wildfly.security.http.oidc.OidcSecurityContext;
 
 //import org.keycloak.KeycloakSecurityContext;
@@ -17,6 +10,12 @@ import org.wildfly.security.http.oidc.OidcSecurityContext;
 import br.edu.iffar.fw.classBag.db.DAO;
 import br.edu.iffar.fw.classBag.db.model.Saldo;
 import br.edu.iffar.fw.classBag.db.model.Usuario;
+import jakarta.enterprise.context.RequestScoped;
+import jakarta.inject.Inject;
+import jakarta.persistence.NoResultException;
+import jakarta.persistence.NonUniqueResultException;
+import jakarta.persistence.Query;
+import jakarta.transaction.Transactional;
 
 @RequestScoped
 public class UsuariosDAO extends DAO<Usuario> {

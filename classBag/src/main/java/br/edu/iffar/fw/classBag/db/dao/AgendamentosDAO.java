@@ -6,10 +6,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-import jakarta.enterprise.context.RequestScoped;
-import jakarta.persistence.NoResultException;
-import jakarta.persistence.Query;
-
 //import org.keycloak.KeycloakSecurityContext;
 
 import br.edu.iffar.fw.classBag.db.DAO;
@@ -17,6 +13,9 @@ import br.edu.iffar.fw.classBag.db.Model;
 import br.edu.iffar.fw.classBag.db.model.Agendamento;
 import br.edu.iffar.fw.classBag.db.model.TipoRefeicao;
 import br.edu.iffar.fw.classBag.db.model.Usuario;
+import jakarta.enterprise.context.RequestScoped;
+import jakarta.persistence.NoResultException;
+import jakarta.persistence.Query;
 
 @SuppressWarnings("unchecked")
 @RequestScoped

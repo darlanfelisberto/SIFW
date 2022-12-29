@@ -3,6 +3,7 @@ package br.edu.iffar.fw.classBag.db.model.api;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
+import br.edu.iffar.fw.classBag.db.Model;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -12,8 +13,6 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
-
-import br.edu.iffar.fw.classBag.db.Model;
 
 @Entity
 @Table(name = "agendamentos_disponibilizados")

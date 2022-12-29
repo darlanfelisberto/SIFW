@@ -2,11 +2,6 @@ package br.edu.iffar.fw.comendo.bean;
 
 import java.io.Serializable;
 
-import jakarta.annotation.PostConstruct;
-import jakarta.faces.view.ViewScoped;
-import jakarta.inject.Inject;
-import jakarta.inject.Named;
-
 import org.primefaces.model.menu.BaseMenuModel;
 
 import br.edu.iffar.fw.classBag.db.dao.UsuariosDAO;
@@ -14,6 +9,10 @@ import br.edu.iffar.fw.classBag.db.model.Usuario;
 import br.edu.iffar.fw.classBag.util.BreadCrumb;
 import br.edu.iffar.fw.classBag.util.BreadCrumbControl;
 import br.edu.iffar.fw.comendo.bean.fragment.SaldoUserFrament;
+import jakarta.annotation.PostConstruct;
+import jakarta.faces.view.ViewScoped;
+import jakarta.inject.Inject;
+import jakarta.inject.Named;
 
 @Named
 @ViewScoped

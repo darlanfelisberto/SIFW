@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+import org.primefaces.model.TreeNode;
+
+import br.edu.iffar.fw.classBag.db.Model;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -14,15 +17,10 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
-import jakarta.persistence.OrderBy;
 import jakarta.persistence.Table;
 import jakarta.persistence.Transient;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
-
-import org.primefaces.model.TreeNode;
-
-import br.edu.iffar.fw.classBag.db.Model;
 
 @Entity
 @Table(name = "unidade", schema = "moradia_estudantil")

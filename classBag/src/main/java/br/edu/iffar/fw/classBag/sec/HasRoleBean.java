@@ -1,10 +1,10 @@
 package br.edu.iffar.fw.classBag.sec;
 
+import org.wildfly.security.http.oidc.OidcSecurityContext;
+
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
-
-import org.wildfly.security.http.oidc.OidcSecurityContext;
 
 @Named
 @RequestScoped

@@ -3,11 +3,6 @@ package br.edu.iffar.fw.comendo.bean;
 import java.io.Serializable;
 import java.util.List;
 
-import jakarta.annotation.PostConstruct;
-import jakarta.faces.view.ViewScoped;
-import jakarta.inject.Inject;
-import jakarta.inject.Named;
-
 import br.edu.iffar.fw.classBag.db.dao.RefeicaoDAO;
 import br.edu.iffar.fw.classBag.db.dao.UsuariosDAO;
 import br.edu.iffar.fw.classBag.db.model.Agendamento;
@@ -18,6 +13,10 @@ import br.edu.iffar.fw.classBag.util.BreadCrumbControl;
 import br.edu.iffar.fw.classBag.util.MessagesUtil;
 import br.edu.iffar.fw.classBag.util.fragmentos.FragmentoBuscaUsuario;
 import br.edu.iffar.fw.classBag.util.fragmentos.SelecionaFragmentoInterface;
+import jakarta.annotation.PostConstruct;
+import jakarta.faces.view.ViewScoped;
+import jakarta.inject.Inject;
+import jakarta.inject.Named;
 
 @Named
 @ViewScoped

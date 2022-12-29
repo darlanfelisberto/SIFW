@@ -6,15 +6,14 @@ import java.io.OutputStream;
 import java.sql.Connection;
 import java.util.Map;
 
+import org.primefaces.model.DefaultStreamedContent;
+import org.primefaces.model.StreamedContent;
+
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.faces.context.ExternalContext;
 import jakarta.faces.context.FacesContext;
 import jakarta.inject.Inject;
 import jakarta.servlet.http.HttpServletResponse;
-
-import org.primefaces.model.DefaultStreamedContent;
-import org.primefaces.model.StreamedContent;
-
 import net.sf.jasperreports.engine.JasperExportManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;

@@ -3,12 +3,11 @@ package br.edu.iffar.fw.classBag.db.dao;
 import java.time.LocalDate;
 import java.util.List;
 
-import jakarta.enterprise.context.RequestScoped;
-
 //import org.keycloak.KeycloakSecurityContext;
 
 import br.edu.iffar.fw.classBag.db.DAO;
 import br.edu.iffar.fw.classBag.db.model.Cardapio;
+import jakarta.enterprise.context.RequestScoped;
 
 @SuppressWarnings("unchecked")
 @RequestScoped

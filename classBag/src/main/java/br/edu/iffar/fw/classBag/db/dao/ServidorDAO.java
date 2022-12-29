@@ -2,14 +2,13 @@ package br.edu.iffar.fw.classBag.db.dao;
 
 import java.util.List;
 
-import jakarta.enterprise.context.RequestScoped;
-import jakarta.persistence.NoResultException;
-
 //import org.keycloak.KeycloakSecurityContext;
 
 import br.edu.iffar.fw.classBag.db.DAO;
 import br.edu.iffar.fw.classBag.db.model.Servidor;
 import br.edu.iffar.fw.classBag.db.model.Usuario;
+import jakarta.enterprise.context.RequestScoped;
+import jakarta.persistence.NoResultException;
 
 @RequestScoped
 @SuppressWarnings("unchecked")

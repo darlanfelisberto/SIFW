@@ -2,17 +2,16 @@ package br.edu.iffar.fw.classBag.db.dao;
 
 import java.util.List;
 
+import br.edu.iffar.fw.classBag.db.model.Curso;
+import br.edu.iffar.fw.classBag.db.model.Matricula;
+import br.edu.iffar.fw.classBag.db.model.TipoVinculo;
+import br.edu.iffar.fw.classBag.db.model.Usuario;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.NoResultException;
 import jakarta.persistence.Query;
 import jakarta.transaction.Transactional;
-
-import br.edu.iffar.fw.classBag.db.model.Curso;
-import br.edu.iffar.fw.classBag.db.model.Matricula;
-import br.edu.iffar.fw.classBag.db.model.TipoVinculo;
-import br.edu.iffar.fw.classBag.db.model.Usuario;
 
 @ApplicationScoped
 public class BackgroudDAO  {

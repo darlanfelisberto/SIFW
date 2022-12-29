@@ -4,15 +4,14 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
-import jakarta.enterprise.context.RequestScoped;
-import jakarta.inject.Inject;
-import jakarta.transaction.RollbackException;
-
 import org.primefaces.model.StreamedContent;
 
 import br.edu.iffar.fw.classBag.db.dao.UsuariosDAO;
 import br.edu.iffar.fw.classBag.db.model.Usuario;
 import br.edu.iffar.fw.classBag.util.MessagesUtil;
+import jakarta.enterprise.context.RequestScoped;
+import jakarta.inject.Inject;
+import jakarta.transaction.RollbackException;
 
 @RequestScoped
 public class CarteirinhaUtil {

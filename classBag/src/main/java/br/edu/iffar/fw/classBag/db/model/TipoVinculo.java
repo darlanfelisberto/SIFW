@@ -2,14 +2,13 @@ package br.edu.iffar.fw.classBag.db.model;
 
 import java.util.UUID;
 
+import br.edu.iffar.fw.classBag.db.Model;
 import jakarta.persistence.Cacheable;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.xml.bind.annotation.XmlTransient;
-
-import br.edu.iffar.fw.classBag.db.Model;
 
 @Entity
 @Table(name="tipo_vinculo")

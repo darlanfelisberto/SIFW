@@ -3,6 +3,7 @@ package br.edu.iffar.fw.classBag.db.model;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
+import br.edu.iffar.fw.classBag.db.Model;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -14,8 +15,6 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
 import jakarta.xml.bind.annotation.XmlTransient;
-
-import br.edu.iffar.fw.classBag.db.Model;
 
 @Entity
 @Table(name = "alteracoes_agendamentos")

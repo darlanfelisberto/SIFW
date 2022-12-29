@@ -4,11 +4,6 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.List;
 
-import jakarta.annotation.PostConstruct;
-import jakarta.faces.view.ViewScoped;
-import jakarta.inject.Inject;
-import jakarta.inject.Named;
-
 import br.edu.iffar.fw.classBag.db.dao.ImagenDAO;
 import br.edu.iffar.fw.classBag.db.dao.TurmaDAO;
 import br.edu.iffar.fw.classBag.db.dao.UsuariosDAO;
@@ -19,6 +14,10 @@ import br.edu.iffar.fw.classBag.sec.HasRoleBean;
 import br.edu.iffar.fw.classBag.util.BreadCrumb;
 import br.edu.iffar.fw.classBag.util.BreadCrumbControl;
 import br.edu.iffar.fw.classBag.util.MessagesUtil;
+import jakarta.annotation.PostConstruct;
+import jakarta.faces.view.ViewScoped;
+import jakarta.inject.Inject;
+import jakarta.inject.Named;
 
 @Named
 @ViewScoped

@@ -4,14 +4,13 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.edu.iffar.fw.classBag.db.dao.UsuariosDAO;
+import br.edu.iffar.fw.classBag.db.model.Usuario;
+import br.edu.iffar.fw.classBag.util.MessagesUtil;
 import jakarta.annotation.PostConstruct;
 import jakarta.faces.model.SelectItem;
 import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Inject;
-
-import br.edu.iffar.fw.classBag.db.dao.UsuariosDAO;
-import br.edu.iffar.fw.classBag.db.model.Usuario;
-import br.edu.iffar.fw.classBag.util.MessagesUtil;
 
 @ViewScoped
 public class FragmentoBuscaUsuario implements Serializable {

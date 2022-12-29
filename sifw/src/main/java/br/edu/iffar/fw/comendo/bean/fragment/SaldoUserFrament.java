@@ -6,10 +6,6 @@ import java.time.format.TextStyle;
 import java.util.List;
 import java.util.Locale;
 
-import jakarta.annotation.PostConstruct;
-import jakarta.faces.view.ViewScoped;
-import jakarta.inject.Inject;
-
 import org.primefaces.model.charts.pie.PieChartModel;
 import org.primefaces.model.menu.BaseMenuModel;
 import org.primefaces.model.menu.DefaultMenuItem;
@@ -22,6 +18,9 @@ import br.edu.iffar.fw.classBag.db.model.Credito;
 import br.edu.iffar.fw.classBag.db.model.Matricula;
 import br.edu.iffar.fw.classBag.db.model.Saldo;
 import br.edu.iffar.fw.classBag.db.model.Usuario;
+import jakarta.annotation.PostConstruct;
+import jakarta.faces.view.ViewScoped;
+import jakarta.inject.Inject;
 
 @ViewScoped
 public class SaldoUserFrament implements Serializable{

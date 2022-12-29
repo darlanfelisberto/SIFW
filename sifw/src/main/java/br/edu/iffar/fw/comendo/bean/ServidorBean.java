@@ -4,14 +4,6 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import jakarta.annotation.PostConstruct;
-import jakarta.faces.model.SelectItem;
-import jakarta.faces.view.ViewScoped;
-import jakarta.inject.Inject;
-import jakarta.inject.Named;
-import jakarta.transaction.RollbackException;
-import jakarta.validation.constraints.NotNull;
-
 import org.apache.commons.csv.CSVRecord;
 
 import br.edu.iffar.fw.classBag.db.dao.CursosDAO;
@@ -28,6 +20,13 @@ import br.edu.iffar.fw.classBag.enun.TypeSituacao;
 import br.edu.iffar.fw.classBag.util.BreadCrumb;
 import br.edu.iffar.fw.classBag.util.BreadCrumbControl;
 import br.edu.iffar.fw.classBag.util.MessagesUtil;
+import jakarta.annotation.PostConstruct;
+import jakarta.faces.model.SelectItem;
+import jakarta.faces.view.ViewScoped;
+import jakarta.inject.Inject;
+import jakarta.inject.Named;
+import jakarta.transaction.RollbackException;
+import jakarta.validation.constraints.NotNull;
 
 @Named
 @ViewScoped

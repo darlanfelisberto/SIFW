@@ -2,6 +2,9 @@ package br.edu.iffar.fw.classBag.util;
 
 import java.io.IOException;
 
+import org.wildfly.security.http.oidc.OidcPrincipal;
+import org.wildfly.security.http.oidc.OidcSecurityContext;
+
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.enterprise.inject.Produces;
 import jakarta.faces.context.FacesContext;
@@ -10,9 +13,6 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.ws.rs.core.Context;
 import jakarta.ws.rs.core.SecurityContext;
-
-import org.wildfly.security.http.oidc.OidcPrincipal;
-import org.wildfly.security.http.oidc.OidcSecurityContext;
 
 //import org.keycloak.KeycloakPrincipal;
 //import org.keycloak.KeycloakSecurityContext;

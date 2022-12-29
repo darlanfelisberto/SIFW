@@ -3,13 +3,12 @@ package br.edu.iffar.fw.classBag.db.dao;
 import java.util.ArrayList;
 import java.util.List;
 
-import jakarta.enterprise.context.RequestScoped;
-import jakarta.inject.Inject;
-
 import br.edu.iffar.fw.classBag.db.model.Matricula;
 import br.edu.iffar.fw.classBag.db.model.Usuario;
 import br.edu.iffar.fw.classBag.db.model.interfaces.VinculosAtivosUsuarios;
 import br.edu.iffar.fw.classBag.enun.TypeSituacao;
+import jakarta.enterprise.context.RequestScoped;
+import jakarta.inject.Inject;
 
 @RequestScoped
 public class VinculosAtivosUsuariosDAO {

@@ -5,12 +5,6 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
-import jakarta.annotation.PostConstruct;
-import jakarta.faces.view.ViewScoped;
-import jakarta.inject.Inject;
-import jakarta.inject.Named;
-import jakarta.transaction.RollbackException;
-
 import org.primefaces.PrimeFaces;
 
 import br.edu.iffar.fw.classBag.db.dao.AgendamentosDAO;
@@ -33,6 +27,11 @@ import br.edu.iffar.fw.classBag.db.model.interfaces.VinculosAtivosUsuarios;
 import br.edu.iffar.fw.classBag.db.model.log.LogLeitura;
 import br.edu.iffar.fw.classBag.enun.TypeCredito;
 import br.edu.iffar.fw.classBag.util.MessagesUtil;
+import jakarta.annotation.PostConstruct;
+import jakarta.faces.view.ViewScoped;
+import jakarta.inject.Inject;
+import jakarta.inject.Named;
+import jakarta.transaction.RollbackException;
 
 @Named
 @ViewScoped

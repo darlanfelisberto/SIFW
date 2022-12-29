@@ -4,12 +4,6 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import jakarta.annotation.PostConstruct;
-import jakarta.faces.view.ViewScoped;
-import jakarta.inject.Inject;
-import jakarta.inject.Named;
-import jakarta.transaction.RollbackException;
-
 import br.edu.iffar.fw.classBag.db.dao.GrupoRefeicoesDAO;
 import br.edu.iffar.fw.classBag.db.dao.RefeicaoDAO;
 import br.edu.iffar.fw.classBag.db.dao.TipoRefeicaoDAO;
@@ -21,6 +15,11 @@ import br.edu.iffar.fw.classBag.db.model.TipoVinculo;
 import br.edu.iffar.fw.classBag.util.BreadCrumb;
 import br.edu.iffar.fw.classBag.util.BreadCrumbControl;
 import br.edu.iffar.fw.classBag.util.MessagesUtil;
+import jakarta.annotation.PostConstruct;
+import jakarta.faces.view.ViewScoped;
+import jakarta.inject.Inject;
+import jakarta.inject.Named;
+import jakarta.transaction.RollbackException;
 
 @Named
 @ViewScoped

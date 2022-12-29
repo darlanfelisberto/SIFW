@@ -9,17 +9,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-import jakarta.annotation.PostConstruct;
-import jakarta.annotation.Resource;
-import jakarta.enterprise.concurrent.ManagedExecutorService;
-import jakarta.enterprise.inject.Instance;
-import jakarta.faces.model.SelectItem;
-import jakarta.faces.view.ViewScoped;
-import jakarta.inject.Inject;
-import jakarta.inject.Named;
-import jakarta.transaction.RollbackException;
-import jakarta.validation.constraints.NotNull;
-
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
@@ -50,6 +39,16 @@ import br.edu.iffar.fw.classBag.util.BreadCrumb;
 import br.edu.iffar.fw.classBag.util.BreadCrumbControl;
 import br.edu.iffar.fw.classBag.util.MessagesUtil;
 import br.edu.iffar.relatorios.CarteirinhaUtil;
+import jakarta.annotation.PostConstruct;
+import jakarta.annotation.Resource;
+import jakarta.enterprise.concurrent.ManagedExecutorService;
+import jakarta.enterprise.inject.Instance;
+import jakarta.faces.model.SelectItem;
+import jakarta.faces.view.ViewScoped;
+import jakarta.inject.Inject;
+import jakarta.inject.Named;
+import jakarta.transaction.RollbackException;
+import jakarta.validation.constraints.NotNull;
 
 @Named
 @ViewScoped

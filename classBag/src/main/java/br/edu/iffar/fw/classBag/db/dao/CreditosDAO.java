@@ -4,15 +4,14 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
-import jakarta.enterprise.context.RequestScoped;
-import jakarta.persistence.NoResultException;
-import jakarta.persistence.Query;
-
 import br.edu.iffar.fw.classBag.db.DAO;
 import br.edu.iffar.fw.classBag.db.model.Agendamento;
 import br.edu.iffar.fw.classBag.db.model.Credito;
 import br.edu.iffar.fw.classBag.db.model.TipoRefeicao;
 import br.edu.iffar.fw.classBag.db.model.Usuario;
+import jakarta.enterprise.context.RequestScoped;
+import jakarta.persistence.NoResultException;
+import jakarta.persistence.Query;
 
 @RequestScoped
 public class CreditosDAO extends DAO<Credito> {

@@ -2,13 +2,12 @@ package br.edu.iffar.fw.classBag.db.model.api;
 
 import java.util.UUID;
 
+import br.edu.iffar.fw.classBag.db.Model;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
-
-import br.edu.iffar.fw.classBag.db.Model;
 
 @Entity
 @Table(name = "usuario_off_line")

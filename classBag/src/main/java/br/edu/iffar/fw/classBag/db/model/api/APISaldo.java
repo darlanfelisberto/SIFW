@@ -1,5 +1,6 @@
 package br.edu.iffar.fw.classBag.db.model.api;
 
+import br.edu.iffar.fw.classBag.db.Model;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -8,8 +9,6 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
-
-import br.edu.iffar.fw.classBag.db.Model;
 
 /**
  * Esta classe é uma VIEW
