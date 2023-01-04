@@ -136,7 +136,7 @@ public class RelatorioBean implements Serializable{
     
 	private Map<String, Object> getMap(){		
 		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("header", RelatoriosPath.JASPER_SUB_HEADER);
+		map.put("header", RelatoriosPath.PATH_JAR_JASPER_SUB_HEADER);
 		map.put("dataInicio", Date.valueOf(this.dtInicio));
 		map.put("dataFim", Date.valueOf(this.dtFim));
 		return map;
@@ -267,7 +267,7 @@ public class RelatorioBean implements Serializable{
 		String nome = "age_integralizado_" + dtInicio.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")) + "_a_" + dtFim.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
 		try {
 			Map<String, Object> map = filtros("where tipoR","and gr");
-			map.put("header", RelatoriosPath.JASPER_SUB_HEADER_SMALL);
+			map.put("header", RelatoriosPath.PATH_JAR_JASPER_SUB_HEADER_SMALL);
 			map.put("dataInicio", Date.valueOf(this.dtInicio));
 			map.put("dataFim", Date.valueOf(this.dtFim));
 			return this.relatoriosPath.getJasper(nome, map, RelatoriosPath.JASPER_AGENDAMENTOS_INTEGRALIZADO);

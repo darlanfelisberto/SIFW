@@ -12,30 +12,22 @@ import javax.sql.DataSource;
 
 import org.omnifaces.cdi.Eager;
 
-import jakarta.annotation.PostConstruct;
 import jakarta.annotation.Resource;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.enterprise.inject.Disposes;
 import jakarta.enterprise.inject.Produces;
-import jakarta.inject.Inject;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.PersistenceUnit;
-import jakarta.servlet.ServletContext;
 
 
 @Eager
 @ApplicationScoped
 public class ConnectProducer implements Serializable {
 	
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
-	private static String APP_REAL_PATH;
-	
 	@PersistenceUnit // (name = "baseUnit")
 	private static EntityManagerFactory emBU;
 
@@ -46,29 +38,6 @@ public class ConnectProducer implements Serializable {
 	@Resource(mappedName = "java:jboss/datasources/baseDS") // same JNDI used by Hibernate Persistence Unit
 	private static DataSource dss;
 	
-	@Inject
-	private ServletContext context;
-	
-	@PostConstruct
-	public void init() {
-		try {
-			APP_REAL_PATH = context.getRealPath("");
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-	
-//	@Produces
-//	public EntityManager getShoolEntityManeger() {
-////		System.out.println("createEntityManager");
-//		return emBU.createEntityManager();
-//	}
-//	
-//	public void close(@Disposes EntityManager em) {
-//		if(em.isOpen()) {
-//			em.close();
-//		}
-//	}
 
 	public void close(@Disposes Connection com) {
 		try {
@@ -94,9 +63,4 @@ public class ConnectProducer implements Serializable {
 		
 		return dss.getConnection();
 	}
-
-	public static String getAPP_REAL_PATH() {//pq não é final property
-		return APP_REAL_PATH;
-	}
-	
 }

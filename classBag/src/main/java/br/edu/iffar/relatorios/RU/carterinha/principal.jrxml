@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 6.16.0.final using JasperReports Library version 6.16.0-48579d909b7943b64690c65c71e07e0b80981928  -->
+<!-- Created with Jaspersoft Studio version 6.18.1.final using JasperReports Library version 6.18.1-9d75d1969e774d4f179fb3be8401e98a0e6d1611  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="principal" columnCount="3" pageWidth="595" pageHeight="842" columnWidth="191" leftMargin="10" rightMargin="10" topMargin="10" bottomMargin="10" uuid="9b2b84f2-ac23-48df-8672-e86d794e7d72">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
-	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="base"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="DataAdapter.xml"/>
+	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w1" value="274"/>
+	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w2" value="718"/>
 	<parameter name="PATH" class="java.lang.String">
 		<defaultValueExpression><![CDATA["/opt/app/imagen_sifw/"]]></defaultValueExpression>
 	</parameter>
@@ -16,15 +18,17 @@
 		<defaultValueExpression><![CDATA["br/edu/iffar/relatorios/RU/carterinha/subCarterinha.jasper"]]></defaultValueExpression>
 	</parameter>
 	<queryString>
-		<![CDATA[select  u.* ,m.matricula_id from matricula m 
-inner join cursos c on c.curso_id =m.curso_id 
-inner join usuarios u ON m.usuario_id = u.usuario_id
-inner join (
-	select max(momento) as momento,sm.matricula_id from situacao_matricula sm
-	group by sm.matricula_id 
-) as foo on foo.matricula_id = m.matricula_id
-inner join situacao_matricula sm on sm.matricula_id = m.matricula_id and sm.momento = foo.momento
-where  sm.situacao ='ATIVA'
+		<![CDATA[select  u.* ,foo.matricula_id, s.servidor_id from usuarios u
+left outer  join (
+	select m2.matricula_id, m2.usuario_id, m2.curso_id from  matricula m2
+	inner join situacao_matricula sm2 on sm2.matricula_id = m2.matricula_id 
+	inner join (
+		select max(momento) as momento,sm.matricula_id from situacao_matricula sm
+		group by sm.matricula_id 
+	) as ff on ff.matricula_id = sm2.matricula_id and sm2.momento = ff.momento and sm2.situacao ='ATIVA'
+) as foo on foo.usuario_id = u.usuario_id
+left join cursos c on c.curso_id = foo.curso_id 
+left outer join servidor s on s.usuario_id = u.usuario_id and s.situacao='ATIVA'
 $P!{WHERE}
 order by c.nome,u.nome]]>
 	</queryString>
@@ -68,6 +72,11 @@ order by c.nome,u.nome]]>
 		<property name="com.jaspersoft.studio.field.label" value="matricula_id"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="matricula"/>
 	</field>
+	<field name="servidor_id" class="java.util.UUID">
+		<property name="com.jaspersoft.studio.field.name" value="servidor_id"/>
+		<property name="com.jaspersoft.studio.field.label" value="servidor_id"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="servidor"/>
+	</field>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -76,12 +85,15 @@ order by c.nome,u.nome]]>
 			<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.FreeLayout"/>
 			<property name="com.jaspersoft.studio.unit.height" value="px"/>
 			<subreport isUsingCache="false" overflowType="Stretch">
-				<reportElement x="0" y="0" width="198" height="250" isPrintWhenDetailOverflows="true" uuid="fd2d04a0-7744-4c74-854b-88be4ee33ed0">
+				<reportElement x="0" y="0" width="198" height="251" isPrintWhenDetailOverflows="true" uuid="fd2d04a0-7744-4c74-854b-88be4ee33ed0">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
 				<subreportParameter name="WHERE">
-					<subreportParameterExpression><![CDATA[" where m.matricula_id =  cast('"+$F{matricula_id} + "' as uuid) "]]></subreportParameterExpression>
+					<subreportParameterExpression><![CDATA[" where "+
+($F{matricula_id} != null?"m.matricula_id =  cast('"+$F{matricula_id} + "' as uuid)":"")+
+(AND($F{matricula_id} != null , $F{servidor_id} != null)?" or s.servidor_id =  cast('"+$F{servidor_id} + "' as uuid) ":"")+
+(AND($F{matricula_id} == null , $F{servidor_id} != null)?" s.servidor_id =  cast('"+$F{servidor_id} + "' as uuid) ":"")]]></subreportParameterExpression>
 				</subreportParameter>
 				<subreportParameter name="PATH">
 					<subreportParameterExpression><![CDATA[$P{PATH}]]></subreportParameterExpression>

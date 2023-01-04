@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 6.16.0.final using JasperReports Library version 6.16.0-48579d909b7943b64690c65c71e07e0b80981928  -->
+<!-- Created with Jaspersoft Studio version 6.18.1.final using JasperReports Library version 6.18.1-9d75d1969e774d4f179fb3be8401e98a0e6d1611  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="carterinha" pageWidth="191" pageHeight="300" orientation="Landscape" whenNoDataType="AllSectionsNoDetail" columnWidth="183" leftMargin="4" rightMargin="4" topMargin="4" bottomMargin="4" uuid="ca0d01ae-34b5-4834-aa1b-9348ce33fccd">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
-	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="base"/>
 	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w1" value="267"/>
 	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w2" value="725"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="DataAdapter.xml"/>
 	<parameter name="WHERE" class="java.lang.String">
 		<defaultValueExpression><![CDATA[""]]></defaultValueExpression>
 	</parameter>
@@ -15,14 +15,25 @@
 		<defaultValueExpression><![CDATA[".png"]]></defaultValueExpression>
 	</parameter>
 	<queryString language="SQL">
-		<![CDATA[SELECT u.*
+		<![CDATA[select
+ u.*
 ,coalesce( i.file_name,'semfoto') AS file_name
-,m.matricula
-,m.matricula_id
-FROM matricula m 
-left join usuarios u on u.usuario_id =m.usuario_id
+,foo.matricula_id
+,s.servidor_id 
+ from usuarios u
+left outer  join (
+	select m2.matricula_id, m2.usuario_id, m2.curso_id from  matricula m2
+	inner join situacao_matricula sm2 on sm2.matricula_id = m2.matricula_id 
+	inner join (
+		select max(momento) as momento,sm.matricula_id from situacao_matricula sm
+		group by sm.matricula_id 
+	) as ff on ff.matricula_id = sm2.matricula_id and sm2.momento = ff.momento and sm2.situacao ='ATIVA'
+) as foo on foo.usuario_id = u.usuario_id
+left join cursos c on c.curso_id = foo.curso_id 
+left outer join servidor s on s.usuario_id = u.usuario_id and s.situacao='ATIVA'
 left join imagen i ON i.usuario_id = u.usuario_id 
-$P!{WHERE}]]>
+$P!{WHERE}
+order by c.nome,u.nome]]>
 	</queryString>
 	<field name="usuario_id" class="java.util.UUID">
 		<property name="com.jaspersoft.studio.field.name" value="usuario_id"/>
@@ -63,23 +74,22 @@ $P!{WHERE}]]>
 		<property name="com.jaspersoft.studio.field.name" value="file_name"/>
 		<property name="com.jaspersoft.studio.field.label" value="file_name"/>
 	</field>
-	<field name="matricula" class="java.lang.Integer">
-		<property name="com.jaspersoft.studio.field.name" value="matricula"/>
-		<property name="com.jaspersoft.studio.field.label" value="matricula"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="matricula"/>
-	</field>
 	<field name="matricula_id" class="java.util.UUID">
 		<property name="com.jaspersoft.studio.field.name" value="matricula_id"/>
 		<property name="com.jaspersoft.studio.field.label" value="matricula_id"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="matricula"/>
 	</field>
+	<field name="servidor_id" class="java.util.UUID">
+		<property name="com.jaspersoft.studio.field.name" value="servidor_id"/>
+		<property name="com.jaspersoft.studio.field.label" value="servidor_id"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="servidor"/>
+	</field>
 	<detail>
-		<band height="48" splitType="Stretch">
+		<band height="47" splitType="Stretch">
 			<property name="com.jaspersoft.studio.layout"/>
 			<property name="com.jaspersoft.studio.unit.height" value="px"/>
 			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
-				<reportElement positionType="Float" stretchType="ElementGroupHeight" x="39" y="35" width="144" height="12" isRemoveLineWhenBlank="true" isPrintWhenDetailOverflows="true" uuid="b55d2084-183c-470e-976b-15a941d4d267">
-					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				<reportElement positionType="Float" stretchType="ElementGroupHeight" x="39" y="33" width="144" height="13" isRemoveLineWhenBlank="true" isPrintWhenDetailOverflows="true" uuid="b55d2084-183c-470e-976b-15a941d4d267">
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
 				<box>
@@ -89,12 +99,12 @@ $P!{WHERE}]]>
 					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
 				<textElement textAlignment="Left" markup="html">
-					<font fontName="Monospaced" size="10"/>
+					<font fontName="Monospaced" size="9"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{nome}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement stretchType="ElementGroupHeight" x="0" y="35" width="39" height="12" isPrintWhenDetailOverflows="true" uuid="77fba883-fd23-4e57-9ca7-1d8920f7dc96">
+				<reportElement stretchType="ElementGroupHeight" x="0" y="33" width="39" height="13" isPrintWhenDetailOverflows="true" uuid="77fba883-fd23-4e57-9ca7-1d8920f7dc96">
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
 				<box>
@@ -104,7 +114,7 @@ $P!{WHERE}]]>
 					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
 				<textElement markup="none">
-					<font fontName="Monospaced" size="10"/>
+					<font fontName="Monospaced" size="9"/>
 				</textElement>
 				<text><![CDATA[Nome:]]></text>
 			</staticText>
@@ -119,7 +129,7 @@ $P!{WHERE}]]>
 				<imageExpression><![CDATA[this.getClass().getResourceAsStream("br/edu/iffar/relatorios/logo_iff.png")]]></imageExpression>
 			</image>
 			<staticText>
-				<reportElement x="29" y="1" width="134" height="12" isPrintWhenDetailOverflows="true" uuid="f3db1b36-2b40-4ec0-aefd-1c2da7f6d0de">
+				<reportElement x="29" y="1" width="134" height="13" isPrintWhenDetailOverflows="true" uuid="f3db1b36-2b40-4ec0-aefd-1c2da7f6d0de">
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
@@ -129,24 +139,25 @@ $P!{WHERE}]]>
 					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
-				<textElement verticalAlignment="Bottom">
-					<font fontName="Monospaced" size="10"/>
+				<textElement verticalAlignment="Bottom" markup="html">
+					<font fontName="Monospaced" size="9"/>
+					<paragraph lineSpacingSize="0.0"/>
 				</textElement>
 				<text><![CDATA[INSTITUTO FEDERAL]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="29" y="14" width="90" height="12" isPrintWhenDetailOverflows="true" uuid="613859dd-332e-4e1f-844f-0b19ed027ea6">
-					<property name="com.jaspersoft.studio.unit.height" value="px"/>
-				</reportElement>
+				<reportElement x="29" y="14" width="134" height="13" isPrintWhenDetailOverflows="true" uuid="613859dd-332e-4e1f-844f-0b19ed027ea6"/>
 				<textElement>
-					<font fontName="Monospaced" size="10"/>
+					<font fontName="Monospaced" size="9"/>
+					<paragraph lineSpacingSize="0.0"/>
 				</textElement>
 				<text><![CDATA[Farroupilha]]></text>
 			</staticText>
 		</band>
-		<band height="13">
+		<band height="14" splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
 			<textField isBlankWhenNull="true">
-				<reportElement positionType="Float" stretchType="ElementGroupHeight" x="39" y="0" width="144" height="12" isRemoveLineWhenBlank="true" isPrintWhenDetailOverflows="true" uuid="a806d95c-0660-4b5e-bff8-79d0262d4140"/>
+				<reportElement positionType="Float" stretchType="ElementGroupHeight" x="39" y="0" width="144" height="13" isRemoveLineWhenBlank="true" isPrintWhenDetailOverflows="true" uuid="a806d95c-0660-4b5e-bff8-79d0262d4140"/>
 				<box padding="0">
 					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -154,13 +165,14 @@ $P!{WHERE}]]>
 					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
-					<font fontName="Monospaced" size="10"/>
+					<font fontName="Monospaced" size="9"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{cpf}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement positionType="Float" stretchType="ElementGroupHeight" x="0" y="0" width="39" height="12" isRemoveLineWhenBlank="true" isPrintWhenDetailOverflows="true" uuid="fd8748be-82d5-4495-988a-4062854ece2f">
+				<reportElement positionType="Float" stretchType="ElementGroupHeight" x="0" y="0" width="39" height="13" isRemoveLineWhenBlank="true" isPrintWhenDetailOverflows="true" uuid="fd8748be-82d5-4495-988a-4062854ece2f">
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<box>
 					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -169,7 +181,7 @@ $P!{WHERE}]]>
 					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
-					<font fontName="Monospaced" size="10"/>
+					<font fontName="Monospaced" size="9"/>
 				</textElement>
 				<text><![CDATA[CPF:]]></text>
 			</staticText>
@@ -182,9 +194,6 @@ $P!{WHERE}]]>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 				</reportElement>
-				<subreportParameter name="usuario_id">
-					<subreportParameterExpression><![CDATA[$F{usuario_id}]]></subreportParameterExpression>
-				</subreportParameter>
 				<subreportParameter name="matricula_id">
 					<subreportParameterExpression><![CDATA[$F{matricula_id}]]></subreportParameterExpression>
 				</subreportParameter>
@@ -200,8 +209,8 @@ $P!{WHERE}]]>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
-				<subreportParameter name="usuario_id">
-					<subreportParameterExpression><![CDATA[$F{usuario_id}]]></subreportParameterExpression>
+				<subreportParameter name="servidor_id">
+					<subreportParameterExpression><![CDATA[$F{servidor_id}]]></subreportParameterExpression>
 				</subreportParameter>
 				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
 				<subreportExpression><![CDATA[this.getClass().getResourceAsStream("br/edu/iffar/relatorios/RU/carterinha/subServidor.jasper")]]></subreportExpression>

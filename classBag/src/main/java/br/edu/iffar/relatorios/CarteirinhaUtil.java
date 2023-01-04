@@ -8,6 +8,7 @@ import org.primefaces.model.StreamedContent;
 
 import br.edu.iffar.fw.classBag.db.dao.UsuariosDAO;
 import br.edu.iffar.fw.classBag.db.model.Usuario;
+import br.edu.iffar.fw.classBag.init.InitConstantes;
 import br.edu.iffar.fw.classBag.util.MessagesUtil;
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.inject.Inject;
@@ -31,12 +32,12 @@ public class CarteirinhaUtil {
 		}
 		
 		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("SUB_MY_QRCODE", RelatoriosPath.JASPER_SUB_MY_QRCODE);
-		map.put("WHERE", " and u.usuario_id = '" + u.getMMId().toString() + "' ");
-		map.put("PATH", RelatoriosPath.PATH_IMAGEN);
-		map.put("EXTENSAO", RelatoriosPath.EXTENSAO);
+		map.put("SUB_MY_QRCODE", RelatoriosPath.PATH_JAR_JASPER_SUB_MY_QRCODE);
+		map.put("WHERE", " where u.usuario_id = '" + u.getMMId().toString() + "' ");
+		map.put("PATH", InitConstantes.IMAGEM_PATH);
+		map.put("EXTENSAO", InitConstantes.IMAGEM_EXTENSAO);
 		try {
-			return this.relatoriosPath.getJasper("carterinha_" + u.getCpf(), map, RelatoriosPath.JASPER_ALL_QRCODE);
+			return this.relatoriosPath.getJasper("carterinha_" + u.getCpf(), map, RelatoriosPath.JASPER_SUB_MY_QRCODE);
 		} catch (Throwable e) {
 			e.printStackTrace();
 			this.messagesUtil.addError("Não foi possivel gerar a carterinha.", "Contate o admin do sistema.");

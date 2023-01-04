@@ -23,7 +23,7 @@ public class RelatoriosPath {
 	
 	//open
 	public static final String JASPER_ALL_QRCODE = "RU/carterinha/principal.jasper";
-	public static final String JASPER_SUB_MY_QRCODE = "br/edu/iffar/relatorios/RU/carterinha/subCarterinha.jasper";
+	public static final String JASPER_SUB_MY_QRCODE = "RU/carterinha/subCarterinha.jasper";
 	
 	//open
 	public static final String JASPER_MOVIMENTACOES_DIARIAS = "RU/admin/movimentacoes_diarias.jasper";
@@ -36,10 +36,9 @@ public class RelatoriosPath {
 	
 	public static final String JASPER_CHAMADA_MORADIA = "RU/moradia/relatorioPresencasAlunosMoradia.jasper";	
 	
-	static public final String PATH_IMAGEN = "/opt/app/imagens/";// aqui é no servidor
-	static public final String EXTENSAO =".png";
-	static public final String JASPER_SUB_HEADER ="br/edu/iffar/relatorios/header.jasper";
-	static public final String JASPER_SUB_HEADER_SMALL ="br/edu/iffar/relatorios/header_small.jasper";
+	static public final String PATH_JAR_JASPER_SUB_HEADER ="br/edu/iffar/relatorios/header.jasper";
+	static public final String PATH_JAR_JASPER_SUB_HEADER_SMALL ="br/edu/iffar/relatorios/header_small.jasper";
+	public static final String PATH_JAR_JASPER_SUB_MY_QRCODE = "br/edu/iffar/relatorios/" + JASPER_SUB_MY_QRCODE;
 		
 	@Inject private Connection connection;
 	

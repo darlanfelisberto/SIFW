@@ -133,7 +133,7 @@ public class MoradiaChamadaBean implements Serializable {
 	
 	public StreamedContent getDownloadChamada() {
 		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("header", RelatoriosPath.JASPER_SUB_HEADER);
+		map.put("header", RelatoriosPath.PATH_JAR_JASPER_SUB_HEADER);
 		map.put("data_referencia", Date.valueOf(this.dtReferencia));
 
 		try {

@@ -40,6 +40,7 @@
 					<include>**/*.jasper</include>
 					<include>**/*.png</include>
 					<include>**/*.xml</include>
+					<include>**/*.properties</include>
 				</includes>
 			</resource>
 			<resource>

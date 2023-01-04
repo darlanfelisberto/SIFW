@@ -10,6 +10,7 @@ import java.nio.file.StandardOpenOption;
 import java.util.UUID;
 
 import br.edu.iffar.fw.classBag.db.Model;
+import br.edu.iffar.fw.classBag.init.InitConstantes;
 import br.edu.iffar.relatorios.RelatoriosPath;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -28,8 +29,8 @@ public class APIImagen extends Model<UUID>implements Serializable{
 	private static final long serialVersionUID = 22021991L;
 	
 	public static final String SEMIMAGEN_PNG = "semfoto";
-	public static final String CHECK_PNG = Paths.get("").toAbsolutePath().toString() + File.separator + "imagens" + File.separator + "check" + RelatoriosPath.EXTENSAO;
-	public static final String CANCEL_PNG = Paths.get("").toAbsolutePath().toString() + File.separator + "imagens" + File.separator + "cancel" + RelatoriosPath.EXTENSAO;
+	public static final String CHECK_PNG = Paths.get("").toAbsolutePath().toString() + File.separator + "imagens" + File.separator + "check" + InitConstantes.IMAGEM_EXTENSAO;
+	public static final String CANCEL_PNG = Paths.get("").toAbsolutePath().toString() + File.separator + "imagens" + File.separator + "cancel" + InitConstantes.IMAGEM_EXTENSAO;
 	
 	public static final APIImagen SEMIMAGEN = new APIImagen(SEMIMAGEN_PNG);
 
@@ -48,9 +49,9 @@ public class APIImagen extends Model<UUID>implements Serializable{
 	private byte[] image;
 	
 	public static void init() {
-		if(!Files.exists(Paths.get(RelatoriosPath.PATH_IMAGEN))) {
+		if(!Files.exists(Paths.get(InitConstantes.IMAGEM_PATH))) {
 			try {
-				Files.createDirectories(Paths.get(RelatoriosPath.PATH_IMAGEN));
+				Files.createDirectories(Paths.get(InitConstantes.IMAGEM_PATH));
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
@@ -91,7 +92,7 @@ public class APIImagen extends Model<UUID>implements Serializable{
 	
 	@XmlTransient
 	public String getFullPath() {
-		return RelatoriosPath.PATH_IMAGEN + File.separator + this.fileName + RelatoriosPath.EXTENSAO;
+		return InitConstantes.IMAGEM_PATH + File.separator + this.fileName + InitConstantes.IMAGEM_EXTENSAO;
 	} 
 	
 	public byte[] getBytes() {

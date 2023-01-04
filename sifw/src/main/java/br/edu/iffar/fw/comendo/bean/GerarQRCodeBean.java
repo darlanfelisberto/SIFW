@@ -10,6 +10,7 @@ import org.primefaces.model.StreamedContent;
 import br.edu.iffar.fw.classBag.db.dao.CursosDAO;
 import br.edu.iffar.fw.classBag.db.dao.UsuariosDAO;
 import br.edu.iffar.fw.classBag.db.model.Curso;
+import br.edu.iffar.fw.classBag.init.InitConstantes;
 import br.edu.iffar.fw.classBag.util.MessagesUtil;
 import br.edu.iffar.relatorios.RelatoriosPath;
 import jakarta.enterprise.context.RequestScoped;
@@ -40,9 +41,9 @@ public class GerarQRCodeBean implements Serializable{
 		}
 		
 		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("SUB_MY_QRCODE", RelatoriosPath.JASPER_SUB_MY_QRCODE);
-		map.put("PATH", RelatoriosPath.PATH_IMAGEN);
-		map.put("EXTENSAO", RelatoriosPath.EXTENSAO);
+		map.put("SUB_MY_QRCODE", RelatoriosPath.PATH_JAR_JASPER_SUB_MY_QRCODE);
+		map.put("PATH", InitConstantes.IMAGEM_PATH);
+		map.put("EXTENSAO", InitConstantes.IMAGEM_EXTENSAO);
 		
 		return map;
 		

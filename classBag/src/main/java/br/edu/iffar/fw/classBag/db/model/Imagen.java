@@ -19,6 +19,7 @@ import org.primefaces.model.DefaultStreamedContent;
 import org.primefaces.model.StreamedContent;
 
 import br.edu.iffar.fw.classBag.db.Model;
+import br.edu.iffar.fw.classBag.init.InitConstantes;
 import br.edu.iffar.relatorios.RelatoriosPath;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -181,7 +182,7 @@ public class Imagen extends Model<UUID>implements Serializable{
 	}
 	
 	public String getFullPath() {
-		return RelatoriosPath.PATH_IMAGEN + this.fileName + RelatoriosPath.EXTENSAO;
+		return InitConstantes.IMAGEM_PATH + this.fileName + InitConstantes.IMAGEM_EXTENSAO;
 	} 
 	
 	public byte[] getBytes() {
