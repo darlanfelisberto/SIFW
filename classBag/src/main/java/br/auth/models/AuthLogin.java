@@ -21,12 +21,12 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "auth_login", schema = "auth")
-public class AuthLogin extends Model<Integer> {
+public class AuthLogin extends Model<UUID> {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_auth_login", insertable = false)
-    private Integer idAuthLogin;
+    @GeneratedValue(strategy = GenerationType.UUID)
+    @Column(name = "auth_login_id", insertable = false)
+    private UUID authLoginId;
 
     private UUID state;
 
@@ -38,11 +38,11 @@ public class AuthLogin extends Model<Integer> {
     private boolean usado;
 
     @ManyToOne
-    @JoinColumn(name = "id_auth_user")
+    @JoinColumn(name = "auth_user_id")
     private AuthUser authUser;
 
     @ManyToOne
-    @JoinColumn(name = "id_cliente")
+    @JoinColumn(name = "cliente_id")
     private Cliente cliente;
 
     public AuthLogin(){}
@@ -84,16 +84,16 @@ public class AuthLogin extends Model<Integer> {
     }
 
     @Override
-    public Integer getMMId() {
-        return this.idAuthLogin;
+    public UUID getMMId() {
+        return this.authLoginId;
     }
 
-    public Integer getIdAuthLogin() {
-        return idAuthLogin;
+    public UUID getIdAuthLogin() {
+        return authLoginId;
     }
 
-    public void setIdAuthLogin(Integer idAuthLogin) {
-        this.idAuthLogin = idAuthLogin;
+    public void setIdAuthLogin(UUID authLoginId) {
+        this.authLoginId = authLoginId;
     }
 
     public UUID getState() {

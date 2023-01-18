@@ -83,7 +83,7 @@ public class Usuario extends Model<UUID> implements Serializable {
 	@Column(name = "token_ru")
 	private String tokenRU;	
 	
-	@JoinColumn(name = "id_auth_user")
+	@JoinColumn(name = "auth_user_id")
 	@OneToOne(fetch = FetchType.LAZY)
 	private AuthUser authUser;
 	

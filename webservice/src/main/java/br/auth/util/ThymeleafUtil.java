@@ -26,6 +26,7 @@ public class ThymeleafUtil {
 		templateResolver.setTemplateMode(TemplateMode.HTML);
 		templateResolver.setPrefix(OidcKeysUtil.PATH_WAR + "/WEB-INF/tymeleaf/");
 		templateResolver.setSuffix(".html");
+		templateResolver.setCharacterEncoding("utf-8");
 
 		this.templateEngine = new TemplateEngine();
 		this.templateEngine.addTemplateResolver(templateResolver);

@@ -1,6 +1,7 @@
 package br.auth.models;
 
 import java.util.Set;
+import java.util.UUID;
 
 import br.auth.oidc.Pbkdf2Hash;
 import br.edu.iffar.fw.classBag.db.Model;
@@ -17,17 +18,14 @@ import jakarta.persistence.Transient;
 
 @Entity
 @Table(name = "auth_user", schema = "auth")
-public class AuthUser extends  Model<Integer>{
+public class AuthUser extends  Model<UUID>{
 
-    /**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_auth_user")
-    private Integer idAuthUser;
+    @GeneratedValue(strategy = GenerationType.UUID)
+    @Column(name = "auth_user_id")
+    private UUID authUserId;
 
     private String username;
 
@@ -44,17 +42,17 @@ public class AuthUser extends  Model<Integer>{
     @JoinTable(
             name ="auth_user_permissao",
             schema = "auth",
-            joinColumns = @JoinColumn(name = "id_auth_user"),
-            inverseJoinColumns = @JoinColumn(name = "id_permissao")
+            joinColumns = @JoinColumn(name = "auth_user_id"),
+            inverseJoinColumns = @JoinColumn(name = "permissao_id")
     )
     private Set<Permissao> listPermissao;
 
-    public Integer getMMId() {
-        return this.idAuthUser;
+    public UUID getMMId() {
+        return this.authUserId;
     }
 
-    public Integer getIdAuthUser() {
-        return idAuthUser;
+    public UUID getIdAuthUser() {
+        return authUserId;
     }
 
     public String getUsername() {

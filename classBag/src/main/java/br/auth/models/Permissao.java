@@ -8,30 +8,29 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
+import java.util.UUID;
+
 @Entity
 @Table(name = "permissao", schema = "auth")
-public class Permissao extends Model<Integer> {
+public class Permissao extends Model<UUID> {
 
-    /**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_permissao", insertable = false)
-    private Integer idPermissao;
+    @GeneratedValue(strategy = GenerationType.UUID)
+    @Column(name = "permissao_id", insertable = false)
+    private UUID permissaoId;
 
     private String nome;
 
     public Permissao(){}
 
-    public Integer getMMId() {
-        return this.idPermissao;
+    public UUID getMMId() {
+        return this.permissaoId;
     }
 
-    public Integer getIdPermissao() {
-        return idPermissao;
+    public UUID getPermissaoId() {
+        return permissaoId;
     }
 
     public String getNome() {

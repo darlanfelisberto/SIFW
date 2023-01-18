@@ -2,6 +2,7 @@ package br.auth.models;
 
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.UUID;
 
 import br.auth.oidc.ResponseTypeEnum;
 import br.edu.iffar.fw.classBag.db.Model;
@@ -16,17 +17,14 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "cliente", schema = "auth")
-public class Cliente extends Model<Integer> {
+public class Cliente extends Model<UUID> {
 
-    /**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_cliente", insertable = false)
-    private Integer idCliente;
+    @GeneratedValue(strategy = GenerationType.UUID)
+    @Column(name = "cliente_id", insertable = false)
+    private UUID clienteId;
 
     private String nome;
 
@@ -42,12 +40,12 @@ public class Cliente extends Model<Integer> {
     private ResponseTypeEnum responseType;
 
     @Override
-    public Integer getMMId() {
-        return this.idCliente;
+    public UUID getMMId() {
+        return this.clienteId;
     }
 
-    public Integer getIdCliente() {
-        return idCliente;
+    public UUID getClienteId() {
+        return clienteId;
     }
 
     public String getNome() {

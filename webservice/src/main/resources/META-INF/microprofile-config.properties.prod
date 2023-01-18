@@ -1,4 +1,0 @@
-### mp.jwt.verify.publickey.location=https://ru.fw.iffarroupilha.edu.br/auth/realms/iffar/protocol/openid-connect/certs
-
-mp.jwt.verify.publickey.location=/META-INF/public_key_prod.pem
-mp.jwt.verify.issuer=https://ru.fw.iffarroupilha.edu.br/auth/realms/iffar

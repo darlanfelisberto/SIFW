@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ArtifactsWorkspaceSettings">
     <artifacts-to-build>
+      <artifact name="service:war exploded" />
       <artifact name="sifw:war exploded" />
     </artifacts-to-build>
   </component>
@@ -9,7 +10,21 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="08207d44-b3d4-4d79-ae36-a51c5793c659" name="Changes" comment="usando o intelj" />
+    <list default="true" id="08207d44-b3d4-4d79-ae36-a51c5793c659" name="Changes" comment="usando o intelj">
+      <change beforePath="$PROJECT_DIR$/../classBag/src/main/java/br/auth/models/AuthLogin.java" beforeDir="false" afterPath="$PROJECT_DIR$/../classBag/src/main/java/br/auth/models/AuthLogin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../classBag/src/main/java/br/auth/models/AuthUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/../classBag/src/main/java/br/auth/models/AuthUser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../classBag/src/main/java/br/auth/models/Cliente.java" beforeDir="false" afterPath="$PROJECT_DIR$/../classBag/src/main/java/br/auth/models/Cliente.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../classBag/src/main/java/br/auth/models/Permissao.java" beforeDir="false" afterPath="$PROJECT_DIR$/../classBag/src/main/java/br/auth/models/Permissao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/app/index.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/app/index.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webservice/src/main/java/br/auth/oidc/OidcCoreEndPointBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/../webservice/src/main/java/br/auth/oidc/OidcCoreEndPointBean.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webservice/src/main/java/br/auth/util/ThymeleafUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/../webservice/src/main/java/br/auth/util/ThymeleafUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webservice/src/main/resources/META-INF/microprofile-config.properties.prod" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webservice/src/main/resources/META-INF/public_key_dev.pem" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webservice/src/main/resources/META-INF/public_key_prod.pem" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webservice/src/main/webapp/WEB-INF/tymeleaf/formLogin.html" beforeDir="false" afterPath="$PROJECT_DIR$/../webservice/src/main/webapp/WEB-INF/tymeleaf/formLogin.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webservice/src/main/webapp/img/background.png" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -21,6 +36,10 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
     <option name="SET_USER_NAME_GLOBALLY" value="false" />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="jar://$MAVEN_REPOSITORY$/org/thymeleaf/thymeleaf/3.1.1.RELEASE/thymeleaf-3.1.1.RELEASE-sources.jar!/org/thymeleaf/templateresolver/AbstractConfigurableTemplateResolver.java" root0="SKIP_INSPECTION" />
+    <setting file="jar://$MAVEN_REPOSITORY$/org/thymeleaf/thymeleaf/3.1.1.RELEASE/thymeleaf-3.1.1.RELEASE-sources.jar!/org/thymeleaf/templateresolver/FileTemplateResolver.java" root0="SKIP_INSPECTION" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -49,16 +68,16 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "E:/darlan/git/sifw/classBag",
+    "last_opened_file_path": "E:/darlan/git/sifw/webservice",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
-    "project.structure.last.edited": "Artifacts",
+    "project.structure.last.edited": "Facets",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
     "settings.build.tools.auto.reload": "ALL",
-    "settings.editor.selected.configurable": "File.Encoding",
+    "settings.editor.selected.configurable": "preferences.editor",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -75,6 +94,9 @@
       <option name="UPDATE_CLASSES_ON_FRAME_DEACTIVATION" value="true" />
       <deployment>
         <artifact name="sifw:war exploded">
+          <settings />
+        </artifact>
+        <artifact name="service:war exploded">
           <settings />
         </artifact>
       </deployment>
@@ -139,6 +161,7 @@
         <option name="Make" enabled="true" />
         <option name="BuildArtifacts" enabled="true">
           <artifact name="sifw:war exploded" />
+          <artifact name="service:war exploded" />
         </option>
       </method>
     </configuration>
@@ -155,7 +178,7 @@
       <workItem from="1673870745000" duration="578000" />
       <workItem from="1674040592994" duration="944000" />
       <workItem from="1674042570428" duration="317000" />
-      <workItem from="1674042899394" duration="1455000" />
+      <workItem from="1674042899394" duration="4636000" />
     </task>
     <task id="LOCAL-00001" summary="usando o intelj">
       <created>1674044329278</created>
@@ -171,7 +194,14 @@
       <option name="project" value="LOCAL" />
       <updated>1674044344994</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="usando o intelj">
+      <created>1674044710280</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1674044710280</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

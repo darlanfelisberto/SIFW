@@ -100,7 +100,7 @@ public class OidcCoreEndPointBean {
     @Produces(APPLICATION_JSON)
     public Response userInfoEndpoint(){
         System.out.println("user end point");
-        return Response.ok("{\"teste\":1}").build();
+        return Response.ok("{\"user\":TO-DO}").build();
     }
 
     @GET
