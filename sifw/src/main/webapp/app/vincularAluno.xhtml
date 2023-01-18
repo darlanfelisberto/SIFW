@@ -28,13 +28,13 @@
 			
 			<p:outputPanel id="otpBusca">
 				<p:panel header="Busca de grupo" rendered="#{vincularAlunosGRBean.rendOtpBusca}">
-					<div class="ui-fluid p-formgrid p-grid">
-			 			<div class="p-field p-col-12 p-md-6">
+					<div class="ui-fluid formgrid grid">
+			 			<div class="field col-12 md:col-6">
 			 				<label for="iptName">Grupo:</label>
 			 				<p:inputText id="iptName" value="#{vincularAlunosGRBean.descGrupo}"></p:inputText>
 			 			</div>
 			 		</div>
-			 		<div class="p-field flex-inline-space">
+			 		<div class="field flex-inline-space">
 		 				<p:commandButton id="btnBusca" value="Buscar" icon="pi pi-search" actionListener="#{vincularAlunosGRBean.searchGroups}" update="frmPrincipal:otpBusca frmPrincipal:otpListGroup" styleClass="ui-button-info"></p:commandButton>
 		 			</div>
 				</p:panel>
@@ -57,19 +57,19 @@
 			<p:outputPanel id="otpGrupoRefeicoe">
  				<p:outputPanel rendered="#{vincularAlunosGRBean.rendOtpGrupoRefeicoes}">
  					<p:panel header="Informação do grupo">
-		 				<div class="p-grid">
-		 					<div class="p-col-12 p-md-12">
-			 					<div class="ui-fluid p-formgrid p-grid">
-		 							<div class="p-field p-col-12 p-md-12">
+		 				<div class="grid">
+		 					<div class="col-12 md:col-12">
+			 					<div class="ui-fluid formgrid grid">
+		 							<div class="field col-12 md:col-12">
 					 					<label for="iptDescri">Descrição:</label>
 					 					<h:outputText id="iptDescri" value="#{vincularAlunosGRBean.grupoRefeicoes.descricao}"/>
 				 					</div>
-				 					<div class="p-field p-col-12 p-md-6">
+				 					<div class="field col-12 md:col-6">
 				 						<label for="iptVinculo">Vínculo Automático:</label>
 				 						<h:outputText value="#{vincularAlunosGRBean.grupoRefeicoes.vinculoAutomatico eq true ? 'Sim':'Não'}" />
 				 					</div>
 				 					
-				 					<div class="p-field p-col-12 p-md-6">
+				 					<div class="field col-12 md:col-6">
 					 					<label for="iptVinculo">Tipo de Vínculo:</label>
 					 					<h:outputText id="somTipoVinculo" value="#{vincularAlunosGRBean.grupoRefeicoes.tipoVinculo.desc}" rendered="#{grupoRefeicoesBean.grupoRefeicoes.tipoVinculo != null}"/>
 				 					</div>
@@ -78,10 +78,10 @@
 				 		</div>
 			 		</p:panel>
 			 		<p:panel header="Vincular alunos a grupo de refeições">
-				 		<div class="ui-fluid p-grid">
-		 					<div class="p-col-12 p-md-4">
-								<div class="p-formgrid p-grid">
-				 					<div class="p-field p-col-12 p-md-12">
+				 		<div class="ui-fluid grid">
+		 					<div class="col-12 md:col-4">
+								<div class="formgrid grid">
+				 					<div class="field col-12 md:col-12">
 				 						<label><abbr title="Digite no minimo 5 letras">Nome:</abbr></label>
 				 						<div style="display:flex">
 					 						<p:autoComplete id="autoMatricula" minQueryLength="3" value="#{vincularAlunosGRBean.matricula}" completeMethod="#{vincularAlunosGRBean.autoComplete}" var="mat" converter="#{modelConverter}"
@@ -93,7 +93,7 @@
 			 					</div><!-- fim filter -->
 			 					 						
 	 						</div>
-	 						<div class="p-col-12 p-md-8">
+	 						<div class="col-12 md:col-8">
 		 						<p:dataTable value="#{vincularAlunosGRBean.grupoRefeicoes.listMatricula}" var="mat" emptyMessage="Nenhuma informação encontrada." id="dtbMatriculaGrupo">
 		 							 <f:facet name="header">
 						                Alunos Vinculados
@@ -116,7 +116,7 @@
 	 						</div>
 	 					</div>
 	 					
-	 					<div class="p-field flex-inline-space">
+	 					<div class="field flex-inline-space">
 			 				<p:commandButton value="Salvar" icon="pi pi-check" update="frmPrincipal" actionListener="#{vincularAlunosGRBean.salvarGrupoRefeicao}" styleClass="ui-button-success"></p:commandButton>
 			 				<p:commandButton value="Cancelar" immediate="true" process="@this" update="frmPrincipal" actionListener="#{vincularAlunosGRBean.telaBuscaGrupoRefeicoes()}" icon="pi pi-times" styleClass="ui-button-secondary"></p:commandButton>
 			 			</div>

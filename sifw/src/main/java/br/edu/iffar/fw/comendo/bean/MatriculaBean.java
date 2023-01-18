@@ -104,7 +104,7 @@ public class MatriculaBean implements Serializable, BreadCrumbControl{
 			.inicializa()
 				.addItem("Busca de usuário", "#{matriculaBean.telaFiltroBusca()}", "frmMain", BreadCrumb.RAIZ)// 1
 				.addItem("Lista de usuários", "#{matriculaBean.telaListaResultadoBusca()}", "frmMain", 1)// 2
-				.addItem("Dados do usuário", "#{matriculaBean.telaDadosUsuario()}", "frmMain", 2)// 3
+				.addItem("Lista de matrículas", "#{matriculaBean.telaDadosUsuario()}", "frmMain", 2)// 3
 				.addItem("Dados do usuário", "#{matriculaBean.telaDadosUsuario()}}", "frmMain", 1)// 4
 				.addItem("Dados da matrícula", "#{matriculaBean.telaDadosMatricula()}", "frmMain", 4)// 5
 				.addItem("Editar matrícula", "#{matriculaBean.telaDadosMatricula()}", "frmMain", 5);// 6

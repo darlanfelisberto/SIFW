@@ -41,18 +41,18 @@
     				padding: 9px;
     			}
 			</style>
-			<div class="ui-fluid p-formgrid p-grid">
-				<div class="p-col-12 p-md-6">
+			<div class="ui-fluid formgrid grid">
+				<div class="col-12 md:col-6">
 					<p:panel header="Filtros">
-						<div class="ui-fluid p-formgrid p-grid">
-							<div class="p-field p-col-12 p-md-12">
+						<div class="ui-fluid formgrid grid">
+							<div class="field col-12 md:col-12">
 								<p:selectOneRadio id="console" value="#{moradiaChamadaBean.tipoBusca}" >
 						            <f:selectItem itemLabel="Item" itemValue="1"/>
 						            <f:selectItem itemLabel="Habitante" itemValue="3"/>
 						            <p:ajax />
 						        </p:selectOneRadio>
 							</div>
-							<div class="p-field p-col-12 p-md-12">
+							<div class="field col-12 md:col-12">
 								<label>Buscar</label>
 								<p:autoComplete id="autoItem"   value="#{moradiaChamadaBean.treeNodeSearch}" completeMethod="#{moradiaChamadaBean.filtroAutoComplete}" 
 						         	var="item" itemLabel="#{item.label()}" converter="#{modelConverter}" emptyMessage="Nenhuma correspondência encontrado."
@@ -97,16 +97,16 @@
 						</p:tree>
 					</p:panel>
 				</div>
-				<div class="p-col-12 p-md-6">
+				<div class="col-12 md:col-6">
 					<p:panel header="Dia da Chamada">
-						<div class="ui-fluid p-formgrid p-grid">
-							<div class="p-field p-col-12 p-md-12">
+						<div class="ui-fluid formgrid grid">
+							<div class="field col-12 md:col-12">
 						        <label for="firstname6">Data de referência da Chamada:</label>
 						        <p:datePicker value="#{moradiaChamadaBean.dtReferencia}">
 						        	<p:ajax update="frmMain" listener="#{moradiaChamadaBean.trocaData}"></p:ajax>
 						        </p:datePicker>
 						    </div>
-						    <div class="p-field">
+						    <div class="field">
 								<p:commandButton value="Chamada" icon="pi pi-download"  ajax="false" onclick="PrimeFaces.monitorDownload(start, stop);">
 									<p:fileDownload value="#{moradiaChamadaBean.downloadChamada}"></p:fileDownload>
 								</p:commandButton>
@@ -121,17 +121,17 @@
 						<p:outputPanel rendered="#{moradiaChamadaBean.nodeSelecionado != null}" id="teste2">
 							<fieldset style="border: 1px solid #dee2e6; margin: 0 0 1rem 0;" >
 								<legend>Dados da unidade</legend>
-								<div class="ui-fluid p-formgrid p-grid">
-									<div class="p-field p-col-12 p-md-12">
+								<div class="ui-fluid formgrid grid">
+									<div class="field col-12 md:col-12">
 								        <label for="firstname6">Unidade: #{moradiaChamadaBean.nodeSelecionado.desc}</label>
 								    </div>
-								    <div class="p-field p-col-12 p-md-12">
+								    <div class="field col-12 md:col-12">
 								        <label for="firstname6">Tipo Unidade: #{moradiaChamadaBean.nodeSelecionado.desc}</label>
 								    </div>
 								 </div>
 							</fieldset>
-							<div class="ui-fluid p-formgrid p-grid">
-							    <div class="p-field p-col-12 p-md-12">
+							<div class="ui-fluid formgrid grid">
+							    <div class="field col-12 md:col-12">
 								    <p:panel toggleable="true" header="Habitantes da Unidade" styleClass="padding0 panel-add-footer" >
 								    	<p:dataTable  value="#{moradiaChamadaBean.nodeSelecionado.listHabitanteUnidade}" var="hab" rendered="#{moradiaChamadaBean.nodeSelecionado != null}"
 							        	emptyMessage="Nenhuma matrícula encontrado." size="small">
@@ -164,29 +164,29 @@
 					</span>
 				</f:facet>
 				<p:outputPanel id="otpAusencia">				
-					<div class="ui-fluid p-formgrid p-grid" faces:rendered="#{moradiaChamadaBean.presenca != null}">
-						<div class="p-field p-col-12 p-md-12">
+					<div class="ui-fluid formgrid grid" faces:rendered="#{moradiaChamadaBean.presenca != null}">
+						<div class="field col-12 md:col-12">
 					        <label for="firstname6">Matrícula:</label>
 					        <h:outputText value="#{moradiaChamadaBean.presenca.habitanteUnidade.matricula.juntaNomeMatricula()}" />
 					    </div>
-					    <div class="p-field p-col-12 p-md-6" style="display: grid;">
+					    <div class="field col-12 md:col-6" style="display: grid;">
 					        <label for="dtReferencia">Data da Chamada:</label>
 					        <p:datePicker value="#{moradiaChamadaBean.dtReferencia}" disabled="true">
 					        </p:datePicker>
 					    </div>
-					    <div class="p-field p-col-12 p-md-6" style="display: grid;">
+					    <div class="field col-12 md:col-6" style="display: grid;">
 					        <label for="dtRealizada">Presente:</label>
 					        <p:selectOneRadio value="#{moradiaChamadaBean.presenca.presente}">
 					        	<f:selectItem itemLabel="Sim" itemValue="true"/>
 					        	<f:selectItem itemLabel="Não" itemValue="false"/>
 					        </p:selectOneRadio>
 					    </div>
-					    <div class="p-field p-col-12 p-md-12">
+					    <div class="field col-12 md:col-12">
 					        <label for="habDtEntrada">Justificativa:</label>
 					        <h:inputTextarea value="#{moradiaChamadaBean.presenca.justificativa}" style="width: 100%;height: 50px;"/>
 					    </div>
 					 </div>
-					 <div class="p-field flex-inline-space">
+					 <div class="field flex-inline-space">
 		 				<p:commandButton actionListener="#{moradiaChamadaBean.removerAusencia}"  styleClass="ui-button-outlined ui-button-danger"
 		 					oncomplete="handleAusenciaRequest(xhr, status, args)" value="Remover" icon="pi pi-trash"
 		 					update="frmMain:panelUnidade frmMain:messages" rendered="#{!moradiaChamadaBean.presenca.novo}">

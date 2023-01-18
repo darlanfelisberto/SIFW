@@ -108,6 +108,16 @@ em outro terminal
 	$ {work_dir}/bin/add-user.sh
 	$ {work_dir}/bin/jboss-cli.sh
 		comanndo -> connect
+		
+		
+EMAIL
+	Jakarta mail tem suporte nativo ao Xoauth do google
+
+	/subsystem=mail/mail-session=default/server=smtp/:write-attribute(name=username,value=email@iffarroupilha.edu.br)
+	/subsystem=mail/mail-session=default/server=smtp/:write-attribute(name=password,value=senha)
+	/subsystem=mail/mail-session=default/server=smtp/:write-attribute(name=tls,value=true)
+	/socket-binding-group=standard-sockets/remote-destination-outbound-socket-binding=mail-smtp/:write-attribute(name=host,value=smtp.gmail.com)
+	/socket-binding-group=standard-sockets/remote-destination-outbound-socket-binding=mail-smtp/:write-attribute(name=port,value=587)
  
 Agora em ambos os servidores, no jboss-cli execute o seguinte:
 

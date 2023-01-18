@@ -61,21 +61,21 @@ public class OidcTokenUtil {
         JWTClaimsSet.Builder jstClaimsBuilder =
                 new JWTClaimsSet.Builder()
                         .issuer(ISSUR)
-                        .subject(authLogin.getUsuario().getMMId().toString())
+                        .subject(authLogin.getAuthUser().getMMId().toString())
                         .audience(List.of(authLogin.getCliente().getNome()))
                         .expirationTime(new Date(now.getTime() + expira))
                         .notBeforeTime(now)
                         .issueTime(now)
                         .jwtID(randomUUID().toString())
                         .claim(CODE, authLogin.getCode())
-                        .claim(PREFERRED_USERNAME, authLogin.getUsuario().getUsername())
-                        .claim(GROUPS, authLogin.getUsuario().getArrayPermissoes());
+                        .claim(PREFERRED_USERNAME, authLogin.getAuthUser().getUsername())
+                        .claim(GROUPS, authLogin.getAuthUser().getArrayPermissoes());
 
         if (nonce != null) {
             jstClaimsBuilder.claim(NONCE, nonce);
         }
 
-        jstClaimsBuilder.claim(USER_PRINCIPAL_NAME, authLogin.getUsuario().getUsername()); //principal for microprofile jwt
+        jstClaimsBuilder.claim(USER_PRINCIPAL_NAME, authLogin.getAuthUser().getUsername()); //principal for microprofile jwt
 
         JWSSigner signer = null;
         SignedJWT signedJWT = null;
@@ -108,14 +108,14 @@ public class OidcTokenUtil {
 
         JWTClaimsSet.Builder jstClaimsBuilder = new JWTClaimsSet.Builder()
                 .issuer(ISSUR)
-                .subject(authLogin.getUsuario().getMMId().toString())//id do usuario na api
+                .subject(authLogin.getAuthUser().getMMId().toString())//id do usuario na api
                 .audience(List.of(authLogin.getCliente().getNome()))
                 .expirationTime(new Date(now.getTime() + expira))
                 .notBeforeTime(now)
                 .issueTime(now)
                 .jwtID(randomUUID().toString())
                 .claim(CODE, authLogin.getCode())
-                .claim(GROUPS, authLogin.getUsuario().getArrayPermissoes());
+                .claim(GROUPS, authLogin.getAuthUser().getArrayPermissoes());
 
         if(nonce != null){
             jstClaimsBuilder.claim(NONCE, nonce);
@@ -125,17 +125,17 @@ public class OidcTokenUtil {
 
         jstClaimsBuilder.claim(HeaderParameterNames.TYPE, BEARER_TYPE);
 
-        jstClaimsBuilder.claim(USER_PRINCIPAL_NAME, authLogin.getUsuario().getUsername()); //principal for microprofile jwt
+        jstClaimsBuilder.claim(USER_PRINCIPAL_NAME, authLogin.getAuthUser().getUsername()); //principal for microprofile jwt
         jstClaimsBuilder.claim(AUTHORIZED_PARTY, authLogin.getCliente().getNome());
         jstClaimsBuilder.claim(SCOPE, OPENID_SCOPE);
         jstClaimsBuilder.claim(SID, authLogin.getState());
         jstClaimsBuilder.claim(EMAIL_VERIFIED, false);
-        jstClaimsBuilder.claim(NAME, authLogin.getUsuario().getUsername());
-        jstClaimsBuilder.claim(PREFERRED_USERNAME, authLogin.getUsuario().getUsername());
+        jstClaimsBuilder.claim(NAME, authLogin.getAuthUser().getUsername());
+        jstClaimsBuilder.claim(PREFERRED_USERNAME, authLogin.getAuthUser().getUsername());
         jstClaimsBuilder.claim(LOCALE, "pt-BR");
-        jstClaimsBuilder.claim(GIVEN_NAME, authLogin.getUsuario().getNome());
-        jstClaimsBuilder.claim(FAMILY_NAME, authLogin.getUsuario().getNome());
-        jstClaimsBuilder.claim(EMAIL, authLogin.getUsuario().getEmail());
+        jstClaimsBuilder.claim(GIVEN_NAME, authLogin.getAuthUser().getNome());
+        jstClaimsBuilder.claim(FAMILY_NAME, authLogin.getAuthUser().getNome());
+        jstClaimsBuilder.claim(EMAIL, authLogin.getAuthUser().getEmail());
 
         JWSSigner signer = null;
         SignedJWT signedJWT = null;
@@ -155,7 +155,7 @@ public class OidcTokenUtil {
 
     public void addRolesForWildflyOidcClient(JWTClaimsSet.Builder jstClaimsBuilder,AuthLogin authLogin){
         Map<String, Object> roles = new HashMap<>();
-        roles.put("roles", authLogin.getUsuario().getArrayPermissoes());
+        roles.put("roles", authLogin.getAuthUser().getArrayPermissoes());
         jstClaimsBuilder.claim("realm_access", roles);
     }
 

@@ -29,8 +29,8 @@
 			
 			<p:outputPanel>
 				<p:panel header="Busca de usuários" rendered="#{servidorBean.rendBusca}">
-					<div class="ui-fluid p-formgrid p-grid">	
-						<div class="p-field p-col-12 p-md-12">
+					<div class="ui-fluid formgrid grid">	
+						<div class="field col-12 md:col-12">
 							<p:selectOneRadio value="#{servidorBean.tipoBusca}" immediate="true">
 								<f:selectItems value="#{servidorBean.listSelectIten}"/>
 								<p:ajax  update="frmMain:otpFiltros"/>
@@ -39,8 +39,8 @@
 					</div>
 					<p:outputPanel id="otpFiltros">
 						<p:outputPanel >
-							<div class="ui-fluid p-formgrid p-grid">
-								<div class="p-field p-col-12 p-md-6">
+							<div class="ui-fluid formgrid grid">
+								<div class="field col-12 md:col-6">
 									<p:outputPanel id="otpInputBusca" rendered="#{servidorBean.tipoBusca == 1}">
 										<p:inputMask label="CPF" mask="999.999.999-99" value="#{servidorBean.busca}" required="true" />
 									</p:outputPanel>
@@ -49,7 +49,7 @@
 									</p:outputPanel>
 								</div>
 							</div>
-							<div class="p-field flex-inline-space">
+							<div class="field flex-inline-space">
 								<p:commandButton value="Buscar" actionListener="#{servidorBean.buscarUsuarioProCpf}" update="frmMain" icon="pi pi-search" styleClass="ui-button-info"></p:commandButton>
 							</div>
 						</p:outputPanel>
@@ -134,19 +134,19 @@
 			<p:outputPanel id="otpDadosServidor">
 				<p:outputPanel rendered="#{servidorBean.rendDadosServidor}">
 			 		<p:panel header="Dados da Servidor(Vínculo)">
-			 			<div class="ui-fluid p-formgrid p-grid">
-				 			<div class="p-field p-col-12 p-md-4">
+			 			<div class="ui-fluid formgrid grid">
+				 			<div class="field col-12 md:col-4">
 				 				<label>siape:</label>
 				 				<p:inputNumber value="#{servidorBean.servidor.siape}" decimalPlaces="0" thousandSeparator="" minValue="0" maxValue="2147483647" required="true"/>
 				 			</div>
-				 			<div class="p-field p-col-12 p-md-4">
+				 			<div class="field col-12 md:col-4">
 				 				<label>Tipo:</label>
 				 				<p:selectOneMenu value="#{servidorBean.servidor.tipoVinculo}" converter="#{modelConverter}" required="true">
 				 					<f:selectItem />
 				 					<f:selectItems value="#{servidorBean.listTipoVinculo}" var="tv" itemLabel="#{tv.descricao}" itemValue="#{tv}"></f:selectItems>
 				 				</p:selectOneMenu>
 				 			</div>
-				 			<div class="p-field p-col-12 p-md-4">
+				 			<div class="field col-12 md:col-4">
 				 				<label>Situação:</label>
 				 				<p:selectOneMenu value="#{servidorBean.servidor.situacao}" required="true">
 				 					<f:selectItem />
@@ -154,7 +154,7 @@
 				 				</p:selectOneMenu>
 				 			</div>
 				 		</div>
-				 		<div class="p-field flex-inline-space">
+				 		<div class="field flex-inline-space">
 							<p:commandButton value="Salvar" actionListener="#{servidorBean.addServidorListaUsuario}"  icon="pi pi-check" styleClass="ui-button-success" 
 							 update="frmMain:otpDadosServidor frmMain:otpListServidores"></p:commandButton>
 							<p:commandButton value="Cancelar" immediate="true" update="frmMain:otpDadosServidor frmMain:otpListServidores" actionListener="#{servidorBean.telaDadosUsuario}" 

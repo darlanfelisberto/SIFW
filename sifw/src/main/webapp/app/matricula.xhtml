@@ -29,8 +29,8 @@
 			
 			<p:outputPanel>
 				<p:panel header="Busca de usuários" rendered="#{matriculaBean.rendBusca}">
-					<div class="ui-fluid p-formgrid p-grid">	
-						<div class="p-field p-col-12 p-md-12">
+					<div class="ui-fluid formgrid grid">	
+						<div class="field col-12 md:col-12">
 							<p:selectOneRadio value="#{matriculaBean.tipoBusca}" immediate="true">
 								<f:selectItems value="#{matriculaBean.listSelectIten}"/>
 								<p:ajax  update="frmMain:otpFiltros"/>
@@ -39,8 +39,8 @@
 					</div>
 					<p:outputPanel id="otpFiltros">
 						<p:outputPanel >
-							<div class="ui-fluid p-formgrid p-grid">
-								<div class="p-field p-col-12 p-md-6">
+							<div class="ui-fluid formgrid grid">
+								<div class="field col-12 md:col-6">
 									<p:outputPanel id="otpInputBusca" rendered="#{matriculaBean.tipoBusca == 1}">
 										<p:inputMask label="CPF" mask="999.999.999-99" value="#{matriculaBean.busca}" required="true" />
 									</p:outputPanel>
@@ -49,7 +49,7 @@
 									</p:outputPanel>
 								</div>
 							</div>
-							<div class="p-field flex-inline-space">
+							<div class="field flex-inline-space">
 								<p:commandButton value="Buscar" actionListener="#{matriculaBean.buscarUsuarioProCpf}" update="frmMain" icon="pi pi-search" styleClass="ui-button-info"></p:commandButton>
 							</div>
 						</p:outputPanel>
@@ -128,7 +128,7 @@
 								</p:commandButton>
 							</p:column>
 				 		</p:dataTable>	
-					 		<div class="p-field flex-inline-space" style="padding-top: 20px">
+					 		<div class="field flex-inline-space" style="padding-top: 20px">
 				 				<p:commandButton value="Salvar" icon="pi pi-check" update="frmMain" actionListener="#{matriculaBean.salvarMatricula}" styleClass="ui-button-success">
 				 				</p:commandButton>
 				 				<p:commandButton value="Cancelar" immediate="true" process="@this" update="frmMain" actionListener="#{matriculaBean.telaFiltroBusca}" icon="pi pi-times" styleClass="ui-button-secondary"></p:commandButton>
@@ -140,19 +140,19 @@
 			<p:outputPanel  id="otpDadosMatricula">
 				<p:outputPanel rendered="#{matriculaBean.rendDadosMatricula}">
 				 		<p:panel header="Dados da Matricula">
-				 			<div class="ui-fluid p-formgrid p-grid">
-					 			<div class="p-field p-col-12 p-md-6">
+				 			<div class="ui-fluid formgrid grid">
+					 			<div class="field col-12 md:col-6">
 					 				<p:outputLabel for="idMatrcula" value="Matrícula:"></p:outputLabel>
 					 				<p:inputNumber id="idMatrcula" value="#{matriculaBean.matricula.idMatricula}" decimalPlaces="0" thousandSeparator="" maxValue="2147483647" maxlength="10"/>
 					 			</div>
-					 			<div class="p-field p-col-12 p-md-6">
+					 			<div class="field col-12 md:col-6">
 					 				<p:outputLabel for="curso" value="Curso:"/>
 					 				<p:selectOneMenu id="curso" value="#{matriculaBean.matricula.curso}" converter="#{modelConverter}">
 					 					<f:selectItem />
 					 					<f:selectItems value="#{matriculaBean.listCurso}" var="cur" itemLabel="#{cur.nome} - #{cur.tipoVinculo.desc}" itemValue="#{cur}"></f:selectItems>
 					 				</p:selectOneMenu>
 					 			</div>
-					 			<div class="p-field p-col-12 p-md-6">
+					 			<div class="field col-12 md:col-6">
 					 				<p:outputLabel for="tipoVinculomat" value="Tipo Vínculo:"/>
 					 				<p:selectOneMenu id="tipoVinculomat"  value="#{matriculaBean.matricula.tipoVinculo}" converter="#{modelConverter}">
 					 					<f:selectItem />
@@ -160,7 +160,7 @@
 					 				</p:selectOneMenu>
 					 			</div>
 					 			
-					 			<div class="p-field p-col-12 p-md-12">
+					 			<div class="field col-12 md:col-12">
 					 				<p:dataTable value="#{matriculaBean.matricula.listSituacaoMatricula}" var="sit" id="dtbListSituacao"  lazy="false">
 					 					<p:column headerText="Situação">
 					 						#{sit.situacao.desc}
@@ -174,7 +174,7 @@
 					 						Lista de Situações da Matrícula
 					 					</f:facet>
 					 					<f:facet name="footer">
-					 						<div class="p-field flex-inline-space" style="display: flex;justify-content: flex-end;">
+					 						<div class="field flex-inline-space" style="display: flex;justify-content: flex-end;">
 						 						<p:commandButton actionListener="#{matriculaBean.addSituacaoAtiva}" update="dtbListSituacao" value="Ativa" process="@this"
 						 						 styleClass=" ui-button-text-only rounded-button ui-button-info">
 						 						</p:commandButton>
@@ -186,7 +186,7 @@
 					 				</p:dataTable>
 					 			</div>
 					 		</div>
-					 		<div class="p-field flex-inline-space">
+					 		<div class="field flex-inline-space">
 								<p:commandButton value="Ok" actionListener="#{matriculaBean.addMatriculaListaUsuario}"  icon="pi pi-plus" styleClass="ui-button-info" 
 								 update="frmMain:otpDadosMatricula frmMain:otpListMatricula"></p:commandButton>
 								<p:commandButton value="Cancelar" immediate="true" update="frmMain:otpDadosMatricula frmMain:otpListMatricula" actionListener="#{matriculaBean.telaDadosUsuario}" 
@@ -198,7 +198,7 @@
 			
 			<p:outputPanel rendered="false">
 				<p:autoUpdate></p:autoUpdate>
-			 	<div class="p-field flex-inline-space" faces:rendered="#{matriculaBean.rendDadosUsuario}">
+			 	<div class="field flex-inline-space" faces:rendered="#{matriculaBean.rendDadosUsuario}">
 	 				<p:commandButton value="Salvar" icon="pi pi-check" update="frmMain" actionListener="#{matriculaBean.salvarMatricula}" styleClass="ui-button-raised ui-button-success"> </p:commandButton>
 	 				<p:commandButton value="Cancelar" immediate="true" process="@this" update="frmMain" actionListener="#{matriculaBean.telaFiltroBusca}" icon="pi pi-times" styleClass="ui-button-secondary"></p:commandButton>
 	 			</div>

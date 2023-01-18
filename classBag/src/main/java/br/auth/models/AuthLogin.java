@@ -38,8 +38,8 @@ public class AuthLogin extends Model<Integer> {
     private boolean usado;
 
     @ManyToOne
-    @JoinColumn(name = "id_usuario")
-    private AuthUser usuario;
+    @JoinColumn(name = "id_auth_user")
+    private AuthUser authUser;
 
     @ManyToOne
     @JoinColumn(name = "id_cliente")
@@ -47,10 +47,10 @@ public class AuthLogin extends Model<Integer> {
 
     public AuthLogin(){}
 
-    public AuthLogin(UUID state, UUID code, AuthUser usuario,Cliente cliente) {
+    public AuthLogin(UUID state, UUID code, AuthUser authUser,Cliente cliente) {
         this.state = state;
         this.code = code;
-        this.usuario = usuario;
+        this.authUser = authUser;
         this.cliente = cliente;
         //o client tem 30 segundos para solicitar o access token apartir deste code
         this.validoAte = LocalDateTime.now().plusSeconds(30);
@@ -112,12 +112,12 @@ public class AuthLogin extends Model<Integer> {
         this.code = code;
     }
 
-    public AuthUser getUsuario() {
-        return usuario;
+    public AuthUser getAuthUser() {
+        return authUser;
     }
 
-    public void setUsuario(AuthUser usuario) {
-        this.usuario = usuario;
+    public void setAuthUser(AuthUser usuario) {
+        this.authUser = usuario;
     }
 
     public Cliente getCliente() {

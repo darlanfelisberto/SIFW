@@ -20,7 +20,7 @@ public class AuthLoginDAO extends DAO<AuthLogin>{
             return (AuthLogin) this.em.createQuery("""
                     select a from AuthLogin a 
                     join fetch a.cliente c
-                    join fetch a.usuario u
+                    join fetch a.authUser u
                     left join fetch u.listPermissao 
                     where a.usado = false and a.code = :code
                 """).setParameter("code",UUID.fromString(code))

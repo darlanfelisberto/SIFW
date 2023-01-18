@@ -24,8 +24,8 @@
 
 			<p:outputPanel id="otpAnoTurma">
 				<p:panel header="Ano e Turma" rendered="#{visuUsuariosTurmaBean.rendAnoTurma}">
-					<div class="ui-fluid p-formgrid p-grid">
-			 			<div class="p-field p-col-12 p-md-6">
+					<div class="ui-fluid formgrid grid">
+			 			<div class="field col-12 md:col-6">
 			 				<label for="somAno">Ano:</label>
 			 				<p:selectOneMenu id="somAno" value="#{visuUsuariosTurmaBean.ano}" required="true" requiredMessage="informe um ano.">
 			 					<f:selectItem />
@@ -33,7 +33,7 @@
 			 					<p:ajax event="change" update="somTurma" listener="#{visuUsuariosTurmaBean.changeYear}"></p:ajax>
 			 				</p:selectOneMenu>
 			 			</div>
-			 			<div class="p-field p-col-12 p-md-6">
+			 			<div class="field col-12 md:col-6">
 			 				<label for="somTurma">Turma:</label>
 			 				<p:selectOneMenu id="somTurma" value="#{visuUsuariosTurmaBean.turma}" converter="#{modelConverter}" required="true" requiredMessage="Informe uma turma.">
 			 					<f:selectItem itemLabel="Selecione"/>
@@ -43,7 +43,7 @@
 			 			</div>
 			 		</div>
 			 		<div>
-					 	<div class="p-field flex-inline-space">
+					 	<div class="field flex-inline-space">
 			 				<p:commandButton value="Aplicar"  update="frmMain:otpListMatricula frmMain:otpAnoTurma frmMain:breadCrumb frmMain:otpDadosTurma" actionListener="#{visuUsuariosTurmaBean.changeTurma}">
 			 				</p:commandButton>
 			 			</div>
@@ -53,17 +53,17 @@
 			
 			<p:outputPanel id="otpDadosTurma">
 				<p:panel header="Turma Selecionada" rendered="#{visuUsuariosTurmaBean.rendDadosTurma}">
-					<div class="ui-fluid p-formgrid p-grid">
-			 			<div class="p-field p-col-12 p-md-3">
+					<div class="ui-fluid formgrid grid">
+			 			<div class="field col-12 md:col-3">
 			 				<label><b>Turma:</b></label>#{visuUsuariosTurmaBean.turma.numero}
 			 			</div>
-			 			<div class="p-field p-col-12 p-md-3">
+			 			<div class="field col-12 md:col-3">
 			 				<label><b>Ano:</b></label>#{visuUsuariosTurmaBean.turma.ano}
 			 			</div>
-			 			<div class="p-field p-col-12 p-md-6">
+			 			<div class="field col-12 md:col-6">
 			 				<label><b>Curso:</b></label>#{visuUsuariosTurmaBean.turma.curso.nome}
 			 			</div>
-			 			<div class="p-field p-col-12 p-md-12">
+			 			<div class="field col-12 md:col-12">
 			 				<label><b>Descrição:</b></label>#{visuUsuariosTurmaBean.turma.descricao}
 			 			</div>
 			 		</div>
@@ -92,28 +92,28 @@
 			
 			<p:outputPanel id="otpDadoAluno">
 				<p:panel header="Dados dos Alunos da turma" rendered="#{visuUsuariosTurmaBean.rendDadosMatricula}">
-					<div class="ui-fluid p-formgrid p-grid">
-			 			<div class="p-field p-col-12 p-md-8">
+					<div class="ui-fluid formgrid grid">
+			 			<div class="field col-12 md:col-8">
 				 			<div style="width: 300px;">
 				 				<p:graphicImage value="#{visuUsuariosTurmaBean.imagen.img}" stream="false" style="width:100%"></p:graphicImage>
 				 			</div>
 			 			</div>
 			 			
-			 			<div class="p-field p-col-12 p-md-4">
-			 				<div class="ui-fluid p-formgrid p-grid">
-			 					<div class="p-field p-col-12 p-md-12">
+			 			<div class="field col-12 md:col-4">
+			 				<div class="ui-fluid formgrid grid">
+			 					<div class="field col-12 md:col-12">
 			 						<b>Matricula:</b> #{visuUsuariosTurmaBean.matricula.idMatricula}  
 			 					</div>
-			 					<div class="p-field p-col-12 p-md-12">
+			 					<div class="field col-12 md:col-12">
 			 						<b>Nome:</b> #{visuUsuariosTurmaBean.matricula.usuario.nome} 
 			 					</div>
-			 					<div class=" p-field p-col-12 p-md-12">
+			 					<div class=" field col-12 md:col-12">
 			 						<b>CPF:</b> #{visuUsuariosTurmaBean.matricula.usuario.cpf}
 			 					</div>
 			 				</div>			 				
 			 			</div>
 			 		</div>
-			 		<div class="p-field flex-inline-space">
+			 		<div class="field flex-inline-space">
 			 			<p:commandButton value="Anterior" icon="pi pi-chevron-circle-left" actionListener="#{visuUsuariosTurmaBean.anterior}" update="frmMain:otpDadoAluno"></p:commandButton>
 			 			<p:commandButton value="Proximo" icon="pi pi-chevron-circle-right" actionListener="#{visuUsuariosTurmaBean.proximo}" update="frmMain:otpDadoAluno"></p:commandButton>
 			 		</div>

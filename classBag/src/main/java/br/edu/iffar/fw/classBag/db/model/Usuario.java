@@ -16,6 +16,7 @@ import org.primefaces.model.charts.pie.PieChartModel;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
+import br.auth.models.AuthUser;
 import br.edu.iffar.fw.classBag.db.Model;
 import br.edu.iffar.fw.classBag.enun.TypeCredito;
 import br.edu.iffar.fw.classBag.enun.TypeSituacao;
@@ -25,7 +26,9 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.OrderBy;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotEmpty;
@@ -79,6 +82,10 @@ public class Usuario extends Model<UUID> implements Serializable {
 		
 	@Column(name = "token_ru")
 	private String tokenRU;	
+	
+	@JoinColumn(name = "id_auth_user")
+	@OneToOne(fetch = FetchType.LAZY)
+	private AuthUser authUser;
 	
 		
 	public String getTokenRU() {
@@ -306,4 +313,12 @@ public class Usuario extends Model<UUID> implements Serializable {
 	public String getNomeCpf() {
 		return this.cpf + " - " + this.nome;
 	}
+
+	public AuthUser getAuthUser() {
+		return authUser;
+	}
+
+	public void setAuthUser(AuthUser authUser) {
+		this.authUser = authUser;
+	}	
 }

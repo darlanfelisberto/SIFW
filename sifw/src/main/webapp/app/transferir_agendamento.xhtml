@@ -37,8 +37,8 @@
 				
 				<p:panel header="Transferir Agendamento" >
 					<div class="card">
-						<div class="ui-fluid p-formgrid p-grid">
-			 				<div class="p-field p-col-12 p-md-6">
+						<div class="ui-fluid formgrid grid">
+			 				<div class="field col-12 md:col-6">
 	    						<label for="somAgenTrans">Agen. Transferíveis:</label>
 	    						<p:selectOneMenu id="somAgenTrans" converter="#{modelConverter}" value="#{transferirAgendamentosBean.altAgendamento.agendamento}" required="true" 
 		    						requiredMessage="Selecione um Agendamento." >
@@ -46,7 +46,7 @@
 	    							<f:selectItems value="#{transferirAgendamentosBean.listAgendTransferiveis}" var="a" itemLabel="#{a.description}" itemValue="#{t}"></f:selectItems>
 	    						</p:selectOneMenu>
 	    					</div>
-	    					<div class="p-field p-col-12 p-md-6">
+	    					<div class="field col-12 md:col-6">
 	    						<label for="autoNomeCpf">Destino(Nome/CPF):</label>
 	    						<p:autoComplete id="autoNomeCpf" minQueryLength="11" completeMethod="#{transferirAgendamentosBean.buscarUserDestino}"
 	    							value="#{transferirAgendamentosBean.altAgendamento.usuarioDestino}" converter="#{modelConverter}" required="true" 
@@ -55,7 +55,7 @@
 	    					</div>
 						</div>
 						
-						<div class="p-field flex-inline-space">
+						<div class="field flex-inline-space">
     						<p:commandButton value="Transferír" update="frmMain:messages frmMain:otpTranferirAge frmMain:otpEnviRece" icon="pi pi-send" actionListener="#{transferirAgendamentosBean.transferirAgendamento}"
     							process="somAgenTrans autoNomeCpf @this" styleClass="ui-button-success">
     							<p:confirm type="popup" header="Atenção" message="Você esta certo disso?" icon="pi pi-exclamation-triangle"></p:confirm>
@@ -63,7 +63,7 @@
     						<p:commandButton value="Cancelar" actionListener="#{transferirAgendamentosBean.brnCancelarTransferencia}" styleClass="ui-button-secondary" 
     							icon="pi pi-times" update="frmMain:otpTranferirAge" immediate="true"/>
     					</div>
-    					<div class="p-field flex-inline-space">
+    					<div class="field flex-inline-space">
 							* As transferências de agendamentos podem ser realizadas até o termino da respectiva refeição. 
 						</div>	
 					</div>
@@ -115,8 +115,8 @@
 			
 			<p:dialog header="Recebimento de Transferência de Agendamento" widgetVar="dlgRecebimeno" id="dlgAceitar" modal="true" style="max-width:405px">
 				<p:outputPanel id="otpDlgAceitar">
-					<div class="ui-fluid p-formgrid p-grid">
-						<div class="p-field p-col-12 p-md-12">
+					<div class="ui-fluid formgrid grid">
+						<div class="field col-12 md:col-12">
 							<label>Data do Agendamento:</label>
 							<b>
 								<h:outputText value="#{transferirAgendamentosBean.altAgendamento.agendamento.dtAgendamento}" >
@@ -124,13 +124,13 @@
 								</h:outputText>
 							</b>
 						</div>
-						<div class="p-field p-col-12 p-md-12">
+						<div class="field col-12 md:col-12">
 							<label>Usuário de Origem:</label>
 							<span><b>#{transferirAgendamentosBean.altAgendamento.usuarioOrigem.nome}</b></span>
 						</div>
-						<div class="p-field p-col-12 p-md-12">
+						<div class="field col-12 md:col-12">
 						</div>
-				 		<div class="p-field p-col-12 p-md-12">
+				 		<div class="field col-12 md:col-12">
 				 			<label>Refeições Disponíveis:</label>
 				 			<p:selectOneMenu value="#{transferirAgendamentosBean.altAgendamento.agendamento.refeicao}" id="somRefeicaoDisponivel" required="true" label="Refeição Disponível" 
 				 				converter="#{modelConverter}">
@@ -138,11 +138,11 @@
 				 				<f:selectItems value="#{transferirAgendamentosBean.listRefeicoes}" var="r" itemValue="#{r}" itemLabel="#{r.label()}"></f:selectItems>
 				 			</p:selectOneMenu>
 				 		</div>
-				 		<div class="p-field p-col-12 p-md-12">
+				 		<div class="field col-12 md:col-12">
 				 		</div>
 				 		
 				 	</div>
-				 	<div class="p-field flex-inline-space">
+				 	<div class="field flex-inline-space">
 				 		<p:commandButton value="Aceitar" icon="pi pi-check" styleClass="ui-button-success" actionListener="#{transferirAgendamentosBean.aceitarTransferencia}"
 				 			process="somRefeicaoDisponivel @this" update="frmMain:messages frmMain:otpEnviRece frmMain:otpDlgAceitar" oncomplete="handleOpenDlg(xhr, status, args)">
 							<p:confirm type="popup" header="Atenção" message="Você esta certo disso?" icon="pi pi-exclamation-triangle"></p:confirm>

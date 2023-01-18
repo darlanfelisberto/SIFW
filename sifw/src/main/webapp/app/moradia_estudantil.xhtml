@@ -43,18 +43,18 @@
     				padding: 9px;
     			}
 			</style>
-			<div class="ui-fluid p-formgrid p-grid">
-				<div class="p-col-12 p-md-6">
+			<div class="ui-fluid formgrid grid">
+				<div class="col-12 md:col-6">
 					<p:panel header="Filtros">
-						<div class="ui-fluid p-formgrid p-grid">
-							<div class="p-field p-col-12 p-md-12">
+						<div class="ui-fluid formgrid grid">
+							<div class="field col-12 md:col-12">
 								<p:selectOneRadio id="console" value="#{moradiaEstudantilBean.tipoBusca}" >
 						            <f:selectItem itemLabel="Item" itemValue="1"/>
 						            <f:selectItem itemLabel="Habitante" itemValue="3"/>
 						            <p:ajax />
 						        </p:selectOneRadio>
 							</div>
-							<div class="p-field p-col-12 p-md-12">
+							<div class="field col-12 md:col-12">
 								<label>Buscar por</label>
 								<p:autoComplete id="autoItem"   value="#{moradiaEstudantilBean.treeNodeSearch}" completeMethod="#{moradiaEstudantilBean.filtroAutoComplete}" 
 						         	var="item" itemLabel="#{item.label()}" converter="#{modelConverter}" emptyMessage="Nenhuma correspondência encontrado."
@@ -101,7 +101,7 @@
 						</p:tree>
 					</p:panel>
 				</div>
-				<div class="p-col-12 p-md-6">
+				<div class="col-12 md:col-6">
 					<p:panel id="panelUnidade">
 						<f:facet name="header">
 							<div style="display: flex; justify-content: space-between; align-content: center;">
@@ -126,29 +126,29 @@
 						<p:outputPanel rendered="#{moradiaEstudantilBean.nodeSelecionado != null}" id="teste2">
 							<fieldset style="border: 1px solid #dee2e6; margin: 0 0 1rem 0;" >
 								<legend>Dados da unidade</legend>
-								<div class="ui-fluid p-formgrid p-grid">
-									<div class="p-field p-col-12 p-md-12">
+								<div class="ui-fluid formgrid grid">
+									<div class="field col-12 md:col-12">
 								        <label for="firstname6">Unidade:</label>
 								        <p:inputText value="#{moradiaEstudantilBean.nodeSelecionado.desc}"></p:inputText>
 								    </div>
-								    <div class="p-field p-col-12 p-md-12">
+								    <div class="field col-12 md:col-12">
 								        <label for="firstname6">Tipo Unidade:</label>
 								        <p:selectOneMenu value="#{moradiaEstudantilBean.nodeSelecionado.tipoUnidade}" converter="#{modelConverter}" disabled="#{moradiaEstudantilBean.nodeSelecionado.parrent == null}">
 								        	<f:selectItem />
 								        	<f:selectItems value="#{moradiaEstudantilBean.listAllTipoUnidade}" var="tipo" itemLabel="#{tipo.desc}" itemValue="#{tipo}"></f:selectItems>
 								        </p:selectOneMenu>
 								    </div>
-								    <div class="p-field p-col-12 p-md-12">
-								    	<div class="p-field flex-inline-space" >
+								    <div class="field col-12 md:col-12">
+								    	<div class="field flex-inline-space" >
 							 				<p:commandButton value="Salvar dados" icon="pi pi-save" update="frmMain:treeMoradia" action="#{moradiaEstudantilBean.atualizarUnidade}" styleClass=" ui-button-info"></p:commandButton>
 							 				<p:commandButton value="Cancelar" icon="pi pi-times"  immediate="true" process="@this" update="frmMain" styleClass="ui-button-secondary " actionListener="#{moradiaEstudantilBean.clean}" ></p:commandButton>
 							 			</div>
 								    </div>
 								 </div>
 							</fieldset>
-							<div class="ui-fluid p-formgrid p-grid">
+							<div class="ui-fluid formgrid grid">
 							    
-							    <div class="p-field p-col-12 p-md-12">
+							    <div class="field col-12 md:col-12">
 								    <p:panel toggleable="true" header="Unidades Filhas" id="panel__" styleClass="padding0 panel-add-footer">
 								    	<p:dataTable id="datatable__" value="#{moradiaEstudantilBean.nodeSelecionado.listUnidadeChildren}" var="children" rendered="#{moradiaEstudantilBean.nodeSelecionado != null}"
 							        	emptyMessage="Nenhuma unidade encontrada." size="small">
@@ -169,7 +169,7 @@
 								        </f:facet>
 								    </p:panel>
 							    </div>
-							    <div class="p-field p-col-12 p-md-12">
+							    <div class="field col-12 md:col-12">
 								    <p:panel toggleable="true"  header="Itens da Unidade" styleClass="padding0 panel-add-footer" >
 								    	<p:dataTable  value="#{moradiaEstudantilBean.nodeSelecionado.listItemUnidade}" var="item" rendered="#{moradiaEstudantilBean.nodeSelecionado != null}"
 							        	emptyMessage="Nenhum Item encontrado." size="small">
@@ -199,7 +199,7 @@
 								        </f:facet>
 								    </p:panel>
 							    </div>
-							    <div class="p-field p-col-12 p-md-12">
+							    <div class="field col-12 md:col-12">
 								    <p:panel toggleable="true" header="Habitantes da Unidade" styleClass="padding0 panel-add-footer" >
 								    	<p:dataTable  value="#{moradiaEstudantilBean.nodeSelecionado.listHabitanteUnidade}" var="hab" rendered="#{moradiaEstudantilBean.nodeSelecionado != null}"
 							        	emptyMessage="Nenhuma matrícula encontrado." size="small">
@@ -250,19 +250,19 @@
 					</span>
 				</f:facet>
 				
-				<div class="ui-fluid p-formgrid p-grid" faces:rendered="#{moradiaEstudantilBean.itemUnidade != null}" >
-					<div class="p-field p-col-12 p-md-12">
+				<div class="ui-fluid formgrid grid" faces:rendered="#{moradiaEstudantilBean.itemUnidade != null}" >
+					<div class="field col-12 md:col-12">
 						<label>Descrição</label>
 						<p:inputText value="#{moradiaEstudantilBean.itemUnidade.desc}"></p:inputText>
 					</div>
-					<div class="p-field p-col-12 p-md-12">
+					<div class="field col-12 md:col-12">
 						<label>Patrimônio</label>
 						<p:inputNumber value="#{moradiaEstudantilBean.itemUnidade.patrimonio}" decimalPlaces="0"></p:inputNumber>
 					</div>
 					
 				</div>
 				<f:facet name="footer">
-					<div class="p-field flex-inline-space">
+					<div class="field flex-inline-space">
 		 				<p:commandButton value="Salvar" icon="pi pi-save" actionListener="#{moradiaEstudantilBean.saveItemUnidade}" styleClass=" ui-button-info" oncomplete="handleHabitanteRequest(xhr, status, args)"  update="frmMain:treeMoradia frmMain:panelUnidade frmMain:messages"></p:commandButton>
 		 				<p:commandButton value="Cancelar" icon="pi pi-times"  immediate="true" actionListener="#{moradiaEstudantilBean.cancelarTudo}" onclick="PF('editItem').hide()" styleClass="ui-button-secondary "></p:commandButton>
 		 			</div>
@@ -276,12 +276,12 @@
 					</span>
 				</f:facet>
 				
-				<div class="ui-fluid p-formgrid p-grid" faces:rendered="#{moradiaEstudantilBean.nodeOperado != null}">
-					<div class="p-field p-col-12 p-md-12">
+				<div class="ui-fluid formgrid grid" faces:rendered="#{moradiaEstudantilBean.nodeOperado != null}">
+					<div class="field col-12 md:col-12">
 				        <label for="firstname6">Unidade:</label>
 				        <p:inputText value="#{moradiaEstudantilBean.nodeOperado.desc}"></p:inputText>
 				    </div>
-				    <div class="p-field p-col-12 p-md-12">
+				    <div class="field col-12 md:col-12">
 				        <label for="firstname6">Tipo Unidade:</label>
 				        <p:selectOneMenu value="#{moradiaEstudantilBean.nodeOperado.tipoUnidade}" converter="#{modelConverter}">
 				        	<f:selectItem />
@@ -291,7 +291,7 @@
 				 </div>
 				
 				<f:facet name="footer">
-					<div class="p-field flex-inline-space">
+					<div class="field flex-inline-space">
 		 				<p:commandButton value="Salvar" icon="pi pi-save" actionListener="#{moradiaEstudantilBean.salvarNovaUnidade}" styleClass=" ui-button-info" oncomplete="handleHabitanteRequest(xhr, status, args)" update="frmMain:treeMoradia frmMain:panelUnidade frmMain:messages"></p:commandButton>
 		 				<p:commandButton value="Cancelar" icon="pi pi-times"  immediate="true" actionListener="#{moradiaEstudantilBean.cancelarTudo}" onclick="PF('novaUnidade').hide()" styleClass="ui-button-secondary "></p:commandButton>
 		 			</div>
@@ -305,24 +305,24 @@
 					</span>
 				</f:facet>
 				
-				<div class="ui-fluid p-formgrid p-grid" faces:rendered="#{moradiaEstudantilBean.habitanteUnidade != null}">
-					<div class="p-field p-col-12 p-md-12">
+				<div class="ui-fluid formgrid grid" faces:rendered="#{moradiaEstudantilBean.habitanteUnidade != null}">
+					<div class="field col-12 md:col-12">
 				        <label for="firstname6">Matrícula:</label>
 				        <p:autoComplete id="autoMatricula" value="#{moradiaEstudantilBean.habitanteUnidade.matricula}" converter="#{modelConverter}" completeMethod="#{moradiaEstudantilBean.autoCompleteMatricla}" 
 				         	var="mat" itemLabel="#{mat.juntaNomeMatricula()}" itemValue="#{mat}" scrollHeight="250" minQueryLength="5" pt:placeholder="Digite 5 letras para pesquisar"/>
 				    </div>
-				    <div class="p-field p-col-12 p-md-3">
+				    <div class="field col-12 md:col-3">
 				        <label for="habDtEntrada">Data Entrada:</label>
 				        <p:datePicker id="habDtEntrada" value="#{moradiaEstudantilBean.habitanteUnidade.dtEntrada}"></p:datePicker>
 				    </div>
-				    <div class="p-field p-col-12 p-md-3">
+				    <div class="field col-12 md:col-3">
 				        <label for="firstname6">Data Saída:</label>
 				        <p:datePicker value="#{moradiaEstudantilBean.habitanteUnidade.dtSaida}"></p:datePicker>
 				    </div>
 				 </div>
 				
 				<f:facet name="footer">
-					<div class="p-field flex-inline-space">
+					<div class="field flex-inline-space">
 		 				<p:commandButton  action="#{moradiaEstudantilBean.salvarHabitanteUnidade}" oncomplete="handleHabitanteRequest(xhr, status, args)" value="Salvar" icon="pi pi-save" styleClass=" ui-button-info" update="frmMain:treeMoradia frmMain:panelUnidade frmMain:messages"></p:commandButton>
 		 				<p:commandButton value="Cancelar" icon="pi pi-times"  immediate="true" actionListener="#{moradiaEstudantilBean.cancelarTudo}" onclick="PF('novoHabitante').hide()" styleClass="ui-button-secondary "></p:commandButton>
 		 			</div>

@@ -27,13 +27,13 @@
 			
 			<p:outputPanel id="otpBusca">
 				<p:panel header="Busca de grupo" rendered="#{grupoRefeicoesBean.rendOtpBusca}">
-					<div class="ui-fluid p-formgrid p-grid">
-			 			<div class="p-field p-col-12 p-md-6">
+					<div class="ui-fluid grid">
+			 			<div class="field col-12 md:col-6">
 			 				<label for="iptName">Grupo:</label>
 			 				<p:inputText id="iptName" value="#{grupoRefeicoesBean.descGrupo}"></p:inputText>
 			 			</div>
 			 		</div>
-			 		<div class="p-field flex-inline-space">
+			 		<div class="field flex-inline-space">
 		 				<p:commandButton id="btnBusca" value="Buscar" icon="pi pi-search" actionListener="#{grupoRefeicoesBean.searchGroups}" update="frmMain:otpBusca frmMain:otpListGroup" styleClass="ui-button-info"></p:commandButton>
 		 				<p:commandButton id="btnNovoGrupo" value="Novo" icon="pi pi-plus" actionListener="#{grupoRefeicoesBean.novoGrupoRefeicoes}" update="frmMain:otpBusca frmMain:otpGrupoRefeicoe" immediate="true" process="@this" styleClass="ui-button-info"></p:commandButton>
 		 			</div>
@@ -59,24 +59,24 @@
 			
 			<p:outputPanel id="otpGrupoRefeicoe">
  				<p:panel header="Grupo de Refeições" rendered="#{grupoRefeicoesBean.rendOtpGrupoRefeicoes}">
-	 				<div class="p-grid">
-	 					<div class="p-col-12 p-md-12">
-		 					<div class="ui-fluid p-formgrid p-grid">
-	 							<div class="p-field p-col-12 p-md-12">
+	 				<div class="grid">
+	 					<div class="col-12 md:col-12">
+		 					<div class="ui-fluid formgrid grid">
+	 							<div class="field col-12 md:col-12">
 				 					<label for="iptDescri">Descrição:</label>
 				 					<p:inputText id="iptDescri" value="#{grupoRefeicoesBean.grupoRefeicoes.descricao}"></p:inputText>
 			 					</div>
-			 					<div class="p-field p-col-12 p-md-2">
+			 					<div class="field col-12 md:col-2">
 				 					<label for="iptDescri">Sigla:</label>
 				 					<p:inputText id="iptSigla" value="#{grupoRefeicoesBean.grupoRefeicoes.sigla}"></p:inputText>
 			 					</div>
-			 					<div class="p-field p-col-12 p-md-2" style="display: flex;flex-direction: column;">	
+			 					<div class="field col-12 md:col-2" style="display: flex;flex-direction: column;">	
 			 						<label for="iptVinculo">Vínculo Automático:</label>
 			 						<p:selectBooleanCheckbox value="#{grupoRefeicoesBean.grupoRefeicoes.vinculoAutomatico}" disabled="#{!grupoRefeicoesBean.grupoRefeicoes.novo}">
 			 							<p:ajax update="somTipoVinculo"/>
 			 						</p:selectBooleanCheckbox>
 			 					</div>
-			 					<div class="p-field p-col-12 p-md-4">
+			 					<div class="field col-12 md:col-4">
 				 					<label for="iptVinculo">Tipo de Vínculo:</label>
 				 					<p:selectOneMenu id="somTipoVinculo" value="#{grupoRefeicoesBean.grupoRefeicoes.tipoVinculo}" converter="#{modelConverter}" disabled="#{!grupoRefeicoesBean.grupoRefeicoes.vinculoAutomatico or !grupoRefeicoesBean.grupoRefeicoes.novo}">
 				 						<f:selectItem />
@@ -87,10 +87,10 @@
 			 			</div>
 			 		</div>
 			 				
-			 		<div class="p-grid">
-	 					<div class="p-col-12 p-md-12">
-	 						<div class="p-grid">
-	 							<div class="p-col-12 p-md-12">
+			 		<div class="grid">
+	 					<div class="col-12 md:col-12">
+	 						<div class="ui-fluid formgrid grid">
+	 							<div class="field col-12 md:col-12">
 			 						<p:dataTable emptyMessage="Nenhum tipo de refeicao encontrado." value="#{grupoRefeicoesBean.grupoRefeicoes.listRefeicao}" var="tr">
 				 						<f:facet name="header">
 				 							Refeições
@@ -124,14 +124,14 @@
 			 								</p:commandButton>
 			 							</p:column>				 						
 			 						</p:dataTable>		 					
-						 			<div class="p-field ">
+						 			<div class=" flex-inline-space ">
 						 				<p:commandButton value="Adicionar Refeição" actionListener="#{grupoRefeicoesBean.novaRefeicao}" update="frmMain:otpGrupoRefeicoe frmMain:otpTipoRefeicao" icon="pi pi-plus" styleClass="rounded-button ui-button-info ui-button-flat"></p:commandButton>
 						 			</div>
 	 							</div>
  							</div>
  						</div>
  					</div>
- 					<div class="p-field flex-inline-space">
+ 					<div class="flex-inline-space">
 		 				<p:commandButton value="Salvar" icon="pi pi-check" styleClass="ui-button-success" update="frmMain" actionListener="#{grupoRefeicoesBean.salvarGrupoRefeicao}"></p:commandButton>
 		 				<p:commandButton value="Cancelar" immediate="true" process="@this" update="frmMain" actionListener="#{grupoRefeicoesBean.telaBuscaGrupoRefeicoes}" icon="pi pi-times" styleClass="ui-button-secondary"></p:commandButton>
 		 			</div>
@@ -141,24 +141,24 @@
 			<p:outputPanel id="otpTipoRefeicao">
 				<p:outputPanel rendered="#{grupoRefeicoesBean.rendOtpTipoRefeicao}">
 					<p:panel header="Grupo de refeições selecionado">
-						<div class="ui-fluid p-formgrid p-grid">
-	 						<div class="p-field p-col-12 p-md-6">
+						<div class="ui-fluid formgrid grid">
+	 						<div class="field col-12 md:col-6">
 	 							<label><b>Descrição:</b></label>
 	 							#{grupoRefeicoesBean.grupoRefeicoes.descricao}
 	 						</div>
-	 						<div class="p-field p-col-12 p-md-6">
+	 						<div class="p-field p-col-12 p-mdfield col-12 md:col-6">
 	 							<label><b>Vinculo automatico:</b></label>
 	 							#{grupoRefeicoesBean.grupoRefeicoes.vinculoAutomatico?'Sim':'Não'}
 	 						</div>
-	 						<div class="p-field p-col-12 p-md-6" faces:rendered="#{grupoRefeicoesBean.grupoRefeicoes.vinculoAutomatico}">
+	 						<div class="field col-12 md:col-6" faces:rendered="#{grupoRefeicoesBean.grupoRefeicoes.vinculoAutomatico}">
 	 							<label><b>Tipo do vinculo:</b></label>
 	 							#{grupoRefeicoesBean.grupoRefeicoes.tipoVinculo.descricao}
 	 						</div>
 	 					</div>				
 					</p:panel>
 					<p:panel header="Refeição">
-	 					<div class="ui-fluid p-formgrid p-grid">
-	 						<div class="p-field p-col-12 p-md-6">
+	 					<div class="ui-fluid formgrid grid">
+	 						<div class="field col-12 md:col-6">
 								<label>Tipo de Refeição:</label>
 								<p:selectOneMenu value="#{grupoRefeicoesBean.refeicao.tipoRefeicao}" converter="#{modelConverter}">
 									<f:selectItem />
@@ -166,28 +166,28 @@
 									<p:ajax update="dpiUtil dpiFind"></p:ajax>
 								</p:selectOneMenu>
 							</div>
-							<div class="p-field p-col-6 p-md-6">
+							<div class="field col-12 md:col-6">
 								<label>Valor(R$):</label>
 								<p:inputNumber id="input2" value="#{grupoRefeicoesBean.refeicao.valor}" decimalSeparator="," thousandSeparator="." />
 							</div>							
-							<div class="p-field p-col-12 p-md-6">
+							<div class="field col-12 md:col-6">
 								<label>Início em dias uteis:</label>
 								<p:datePicker id="dpiUtil" timeOnly="true" value="#{grupoRefeicoesBean.refeicao.horaInicioUtil}" ></p:datePicker>
 							</div>
-							<div class="p-field p-col-12 p-md-6">
+							<div class="field col-12 md:col-6">
 								<label>Início em finais de semana:</label>
 								<p:datePicker id="dpiFind" timeOnly="true" value="#{grupoRefeicoesBean.refeicao.horaInicioFind}" ></p:datePicker>
 							</div>
-							<div class="p-field p-col-6 p-md-6">
+							<div class="field col-12 md:col-6">
 								<label><abbt title="Tempo, em horas, que não será permitido realizar agendamentos/alterações para este tipo de refeição.">Bloquear:</abbt></label> 
 								<p:inputNumber  value="#{grupoRefeicoesBean.refeicao.bloquear}"  symbol=" horas" symbolPosition="s" decimalPlaces="0" />
 							</div>							
-							<div class="p-field p-col-6 p-md-6">
+							<div class="field col-12 md:col-6">
 								<label>Término:</label>
 								<p:inputNumber  value="#{grupoRefeicoesBean.refeicao.termino}"  symbol=" minutos" symbolPosition="s" decimalPlaces="0" />
 							</div>
 						</div>
-						<div class="p-field flex-inline-space">
+						<div class="field flex-inline-space">
 			 				<p:commandButton value="Ok" icon="pi pi-check" update="frmMain" action="#{grupoRefeicoesBean.addRefeicaoOrUpdate}" styleClass=" ui-button-info"></p:commandButton>
 			 				<p:commandButton value="Cancelar" icon="pi pi-times"  immediate="true" actionListener="#{grupoRefeicoesBean.cancelarAddTipoRefeicao}" update="frmMain" styleClass="ui-button-secondary "></p:commandButton>
 			 			</div>

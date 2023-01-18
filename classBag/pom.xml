@@ -246,6 +246,13 @@
 			<artifactId>hibernate-core</artifactId>
 			<scope>provided</scope>
 		</dependency>
+<!-- https://mvnrepository.com/artifact/org.hibernate.orm/hibernate-jcache -->
+<dependency>
+    <groupId>org.hibernate.orm</groupId>
+    <artifactId>hibernate-jcache</artifactId>
+    <version>6.1.5.Final</version>
+</dependency>
+
 		<dependency>
             <groupId>jakarta.servlet</groupId>
             <artifactId>jakarta.servlet-api</artifactId>

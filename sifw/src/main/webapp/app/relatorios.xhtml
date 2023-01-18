@@ -29,19 +29,19 @@
 				<p:panel header="Relatórios de Gestão">
 					<div class="card">
 					
-						<div class="ui-fluid p-formgrid p-grid">
-		        			<div class="p-field p-col-12 p-md-2">
+						<div class="ui-fluid formgrid grid">
+		        			<div class="field col-12 md:col-2">
 						        <label for="firstname">Início:<span class="obrigatorio">*</span></label>
 						        <p:datePicker value="#{relatorioBean.dtInicio}"/>
 						    </div>
-						    <div class="p-field p-col-12 p-md-2">
+						    <div class="field col-12 md:col-2">
 						        <label for="firstname">Fim:<span class="obrigatorio">*</span></label>
 						        <p:datePicker value="#{relatorioBean.dtFim}"/>
 						    </div>
 						</div>
 					    
-			    		<div class="ui-fluid p-formgrid p-grid">
-			    			<div class="p-field p-col-12 p-md-4">
+			    		<div class="ui-fluid formgrid grid">
+			    			<div class="field col-12 md:col-4">
 						    	<label>Grupo de Refeições:</label>
 						    	<DIV class="ident-filter">
 							    	<div class="item-filter" style="background-color: #fbc02d;width: 0"></div>
@@ -52,7 +52,7 @@
 							    	</p:selectOneMenu>
 						    	</DIV>
 						    </div>
-						    <div class="p-field p-col-12 p-md-4" >
+						    <div class="field col-12 md:col-4" >
 						    	<label>Tipo Refeição:</label>
 						    	<DIV class="ident-filter">
 							    	<div class="item-filter" style="background-color: #d32f2f;width: 0"></div>
@@ -63,7 +63,7 @@
 							    	</p:selectOneMenu>
 						    	</DIV>
 						    </div>
-						    <div class="p-field p-col-12 p-md-4" >
+						    <div class="field col-12 md:col-4" >
 						    	<label>Tipo do Vínculo:</label>
 						    	<DIV class="ident-filter">
 							    	<div class="item-filter" style="background-color: #14a118;width: 0"></div>
@@ -78,14 +78,14 @@
 
 					    					    
 						<div class="ui-outputpanel ui-widget">
-							<div class="p-field ">
+							<div class="field ">
 								<DIV class="ident-filter">
 									<p:commandButton value="Total de entradas" icon="pi pi-download"  ajax="false" onclick="PrimeFaces.monitorDownload(start, stop);">
 										<p:fileDownload value="#{relatorioBean.pdfTotalEntradasRefeicaoVinculo}"></p:fileDownload>
 									</p:commandButton>
 								</DIV>
 							</div>
-							<div class="p-field ">
+							<div class="field ">
 								<DIV class="ident-filter">
 									<p:commandButton value="Entradas" icon="pi pi-download"  ajax="false" onclick="PrimeFaces.monitorDownload(start, stop);">
 										<p:fileDownload value="#{relatorioBean.pdfEntradas}"></p:fileDownload>
@@ -93,7 +93,7 @@
 								</DIV>
 							</div>
 							
-							<div class="p-field ">
+							<div class="field ">
 								<DIV class="ident-filter">
 									<p:commandButton value="Transferência de Agendamentos" icon="pi pi-download"  ajax="false" onclick="PrimeFaces.monitorDownload(start, stop);">
 										<p:fileDownload value="#{relatorioBean.pdfTransferenciaDeAgendamentos}"></p:fileDownload>
@@ -101,7 +101,7 @@
 								</DIV>
 							</div>
 							<sec:secTag role="IFFAR_ADMIN,IFFAR_MORADIA" >
-								<div class="p-field ">
+								<div class="field ">
 									<DIV class="ident-filter">
 										<fieldset style="width: fit-content;border: 1px solid #ced4da;margin:0">
 											<legend>Agendamentos Frustrados</legend>
@@ -117,7 +117,7 @@
 							</sec:secTag>
 							
 							<sec:secTag role="IFFAR_ADMIN,IFFAR_MORADIA" >
-								<div class="p-field ">
+								<div class="field ">
 									<DIV class="ident-filter">
 										<p:commandButton value="Agendamentos integralizados" icon="pi pi-download"  ajax="false" onclick="PrimeFaces.monitorDownload(start, stop);">
 											<p:fileDownload value="#{relatorioBean.relatorioIntegralizados}"></p:fileDownload>

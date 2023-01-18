@@ -27,23 +27,23 @@
 			
 			<p:remoteCommand actionListener="#{catracaBean.atualizaBean}" name="atualizaBean" immediate="true" process="@this"> </p:remoteCommand>
 			
-			<div class="ui-fluid p-formgrid p-grid">
-				<div class="p-field p-col-12 p-md-4">
+			<div class="ui-fluid formgrid grid">
+				<div class="field col-12 md:col-4">
 					<p:panel header="Scanner">
 						<div id="reader" style="width: 300px" ></div>
 						<p:outputPanel id="otpBusca">
-							<div class="ui-fluid p-formgrid p-grid">
-								<div class="p-field p-col-12 p-md-12">
+							<div class="ui-fluid formgrid grid">
+								<div class="field col-12 md:col-12">
 									
 								</div>
 								
-								<div class="p-field p-col-12 p-md-12">
+								<div class="field col-12 md:col-12">
 									<p:outputLabel value="Data de Referência:" for="dtReferencia"/>
 									<p:datePicker id="dtReferencia" value="#{catracaBean.dtReferencia}" required="true" disabled="#{not hasRoleBean.hasIffarAdmin or not hasRoleBean.hasIffarMoradia}">
 									</p:datePicker>
 								</div>
 								
-					 			<div class="p-field p-col-12 p-md-12" >
+					 			<div class="field col-12 md:col-12" >
 									<p:outputLabel value="Refeição do dia:" for="somRefeicao"/>
 									<p:selectOneMenu id="somRefeicao" value="#{catracaBean.tipoRefeicao}" converter="#{modelConverter}" required="true">
 										<f:selectItem/>
@@ -51,12 +51,12 @@
 									</p:selectOneMenu>
 								</div>
 					 			
-					 			<div class="p-field p-col-12 p-md-12" faces:id="tokenId" >
+					 			<div class="field col-12 md:col-12" faces:id="tokenId" >
 									<p:outputLabel value="Usuário:" for="teste" />
 									<p:inputText id="teste" value="#{catracaBean.token}" ></p:inputText>
 								</div>
 								
-								<div class="p-field p-col-12 p-md-12" >
+								<div class="field col-12 md:col-12" >
 									<div class="grid-inline">
 						 				<p:commandButton id="btnBusca" value="Buscar" icon="pi pi-search" update="frmMain:otpDados" actionListener="#{catracaBean.buscarUsuario}" 
 						 				process="dtReferencia,somRefeicao,teste,@this"/>
@@ -70,7 +70,7 @@
 					</p:panel>
 				</div>
 				
-				<div class="p-field p-col-12 p-md-8">
+				<div class="field col-12 md:col-8">
 					<p:panel header="Informações do Usuário" id="otpDados">
 						
 						<div class="boaRefeicao" faces:rendered="#{catracaBean.boaRefeicao != null}" >
@@ -92,32 +92,32 @@
 							</p:outputPanel>
 							
 							<p:outputPanel id="otpDadosUsuario">
-								<div class="ui-fluid p-formgrid p-grid" style="padding-left: 20px">
-						 			<div class="p-field p-col-12 p-md-12">
+								<div class="ui-fluid formgrid grid" style="padding-left: 20px">
+						 			<div class="field col-12 md:col-12">
 										<label ><b>Nome:</b></label>
 										<SPAN class="ui-inputnumber">
 											<h:outputText value="#{catracaBean.usuario.nome}" />
 										</SPAN>
 									</div>
 									
-									<div class="p-field p-col-12 p-md-12" faces:rendered="#{not catracaBean.agendamento.novo}">
+									<div class="field col-12 md:col-12" faces:rendered="#{not catracaBean.agendamento.novo}">
 										<label ><b>Agendado como:</b></label>
 										<SPAN class="ui-inputnumber">
 											<h:outputText value="#{catracaBean.agendamento.vinculosAtivosUsuario.label}" />
 										</SPAN>
 									</div>
 									
-									<div class="p-field p-col-12 p-md-12">
+									<div class="field col-12 md:col-12">
 										<label><b>Saldo:</b></label>
 										<h:outputText value="#{catracaBean.saldo.saldo}" />
 									</div>
 									
-									<div class="p-field p-col-12 p-md-12">
+									<div class="field col-12 md:col-12">
 										<label><b>Agendamento:</b> </label>
 										<h:outputText value="#{catracaBean.agendamento.agendado ? catracaBean.agendamento.description : ' Não Agendado.'}"  rendered="#{catracaBean.usuario != null and catracaBean.credito == null}"/>
 									</div>
 																		
-									<p:outputPanel styleClass="p-field p-col-12 p-md-12" rendered="#{catracaBean.credito != null}">
+									<p:outputPanel styleClass="field col-12 md:col-12" rendered="#{catracaBean.credito != null}">
 										<label><b>Entrada(crédito):</b></label>
 										<h:outputText value="#{catracaBean.credito.dtCredito}" >
 											<f:convertDateTime type="localDate" pattern="'Dia' dd/MM/YYYY 'às' HH:mm"/>
@@ -125,8 +125,8 @@
 									</p:outputPanel>
 									
 								</div>
-								<div class="ui-fluid p-formgrid p-grid" style="padding-left: 20px" faces:rendered="#{catracaBean.rendCreditar}">
-									<div class="p-field p-col-12 p-md-12">
+								<div class="ui-fluid formgrid grid" style="padding-left: 20px" faces:rendered="#{catracaBean.rendCreditar}">
+									<div class="field col-12 md:col-12">
 										<p:outputPanel rendered="#{catracaBean.agendamento.novo and catracaBean.listVinculosAtivosUsuario.size()>1}">
 											<label><b>Vínculo:</b></label>
 											<p:selectOneMenu id="somVinvulo" value="#{catracaBean.vinculoSelecionado}" required="true" converter="#{modelConverter}" label="Vínculo">
@@ -138,7 +138,7 @@
 										</p:outputPanel>
 									</div>
 									
-									<div class="p-field p-col-12 p-md-12">
+									<div class="field col-12 md:col-12">
 										<p:outputPanel rendered="#{catracaBean.agendamento.novo}">
 											<label><b>Refeição:</b></label>
 											<p:selectOneMenu id="somRefeicaoNaoAgendada" value="#{catracaBean.agendamento.refeicao}" required="true" converter="#{modelConverter}" label="Refeição">
@@ -148,7 +148,7 @@
 										</p:outputPanel>
 									</div>
 									
-									<div class="p-field p-col-12 p-md-12" >
+									<div class="field col-12 md:col-12" >
 										<div class="grid-inline">
 							 				<p:commandButton id="btn1" value="Creditar" icon="pi pi-credit-card" actionListener="#{catracaBean.creditar}" update="frmMain:otpBusca frmMain:otpDados" 
 							 					process="somVinvulo,somRefeicaoNaoAgendada,@this">

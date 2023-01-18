@@ -24,13 +24,13 @@
 			
 			<p:outputPanel rendered="#{cardapioAdminBean.rendTelaFiltro}">
 				<p:panel 	header="Buscar Cardápio">
-					<div class="ui-fluid p-formgrid p-grid">
-						<div class="p-field p-col-12 p-md-6">
+					<div class="ui-fluid formgrid grid">
+						<div class="field col-12 md:col-6">
 					        <label for="firstname">Data:</label>
 					        <p:datePicker showTime="false" value="#{cardapioAdminBean.data}"></p:datePicker>
 					    </div>
 					</div>
-					<div class="p-field flex-inline-space">
+					<div class="field flex-inline-space">
 						<p:commandButton value="Novo" icon="pi pi-plus" actionListener="#{cardapioAdminBean.newCardapio}" process="@this" update="frmMain"></p:commandButton>
 						<p:commandButton value="Buscar" icon="pi pi-search" actionListener="#{cardapioAdminBean.buscar}" process="@this" update="frmMain"></p:commandButton>
 					</div>
@@ -72,27 +72,27 @@
 			
 			<p:outputPanel rendered="#{cardapioAdminBean.rendTelaCardapio}">
 				<p:panel header="Editar/Novo Cardápio">
-					<div class="ui-fluid p-formgrid p-grid">
-						<div class="p-field p-col-12 p-md-6">
+					<div class="ui-fluid formgrid grid">
+						<div class="field col-12 md:col-6">
 							<p:outputLabel for="dtInicio">Data de Início:</p:outputLabel>
 							<p:datePicker id="dtInicio" value="#{cardapioAdminBean.cardapio.dtInicio}" required="true" label="Data de início">
 								<p:ajax/>
 							</p:datePicker>
 						</div>
-						<div class="p-field p-col-12 p-md-6">
+						<div class="field col-12 md:col-6">
 							<p:outputLabel for="dtFim">Data de Fim:</p:outputLabel>
 							<p:datePicker id="dtFim" value="#{cardapioAdminBean.cardapio.dtFim}" required="true" label="Data de fim">
 								<p:ajax/>
 							</p:datePicker>
 						</div>
-						<div class="p-field p-col-12 p-md-6">
+						<div class="field col-12 md:col-6">
 							<p:outputLabel for="somDia">Texto do cardápio para o dia de:</p:outputLabel>
 							<p:selectOneMenu id="somDia" value="#{cardapioAdminBean.diaDaSemana}" onfocus="document.getElementById('frmMain:btnSendText').click()">
 								<f:selectItems value="#{cardapioAdminBean.fieldsCardapio}" var="dia" itemLabel="#{dia.descricao}" itemValue="#{dia}"></f:selectItems>
 								<p:ajax update="frmMain:txtEDia"></p:ajax>
 							</p:selectOneMenu>
 						</div>
-						<div class="p-field p-col-12 p-md-12">
+						<div class="field col-12 md:col-12">
 							<p:textEditor id="txtEDia" value="#{cardapioAdminBean.textoEmEdicao}" height="300" >
 								<f:facet name="toolbar">
 									<span class="ql-formats" style="width: 100px">
@@ -119,7 +119,7 @@
 							</p:textEditor>
 						</div>
 					</div>
-					<div class="p-field flex-inline-space">
+					<div class="field flex-inline-space">
 		 				<p:commandButton value="Salvar" icon="pi pi-check" styleClass="ui-button-success" update="frmMain" actionListener="#{cardapioAdminBean.salvarCardapio}"></p:commandButton>
 		 				<p:commandButton value="Cancelar" immediate="true" process="@this" update="frmMain" actionListener="#{cardapioAdminBean.telaFiltro()}" icon="pi pi-times" styleClass="ui-button-secondary"></p:commandButton>
 		 			</div>

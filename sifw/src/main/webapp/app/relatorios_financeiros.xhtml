@@ -29,18 +29,18 @@
 				<p:panel header="Relatórios de Financeiros">
 					<div class="card">
 					
-						<div class="ui-fluid p-formgrid p-grid">
-		        			<div class="p-field p-col-12 p-md-2">
+						<div class="ui-fluid formgrid grid">
+		        			<div class="field col-12 md:col-2">
 						        <label for="firstname">Início:<span class="obrigatorio">*</span></label>
 						        <p:datePicker value="#{relatorioBean.dtInicio}"/>
 						    </div>
-						    <div class="p-field p-col-12 p-md-2">
+						    <div class="field col-12 md:col-2">
 						        <label for="firstname">Fim:<span class="obrigatorio">*</span></label>
 						        <p:datePicker value="#{relatorioBean.dtFim}"/>
 						    </div>
 						</div>
 						<div class="ui-outputpanel ui-widget">
-							<div class="p-field ">
+							<div class="field ">
 								<p:commandButton value="Movimentações Diárias" icon="pi pi-download"  ajax="false" onclick="PrimeFaces.monitorDownload(start, stop);">
 									<p:fileDownload value="#{relatorioBean.pdfMovimentacoesDiarias}"></p:fileDownload>
 								</p:commandButton>

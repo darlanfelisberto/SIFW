@@ -446,6 +446,7 @@
 		</web-resource-collection>
 		<auth-constraint>
 			<role-name>IFFAR_MORADIA_CHAMADA</role-name>
+			<role-name>IFFAR_MORADIA</role-name>
 		</auth-constraint>
 	</security-constraint>
 		

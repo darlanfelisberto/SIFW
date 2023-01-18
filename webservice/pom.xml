@@ -195,6 +195,11 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/ma
 		  <version>3.1.1.RELEASE</version>
 		</dependency>
 		<!-- and auth-->
+		
+		 <dependency>
+            <groupId>org.eclipse.angus</groupId>
+            <artifactId>angus-mail</artifactId>
+        </dependency>
 
 	</dependencies>
 

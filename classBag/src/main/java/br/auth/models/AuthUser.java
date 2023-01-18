@@ -16,7 +16,7 @@ import jakarta.persistence.Table;
 import jakarta.persistence.Transient;
 
 @Entity
-@Table(name = "usuario", schema = "auth")
+@Table(name = "auth_user", schema = "auth")
 public class AuthUser extends  Model<Integer>{
 
     /**
@@ -26,8 +26,8 @@ public class AuthUser extends  Model<Integer>{
 
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_usuario")
-    private Integer idUsuario;
+    @Column(name = "id_auth_user")
+    private Integer idAuthUser;
 
     private String username;
 
@@ -38,24 +38,23 @@ public class AuthUser extends  Model<Integer>{
     @Transient
     private String nome;
 
-    @Transient
     private String email;
 
     @ManyToMany
     @JoinTable(
-            name ="usuario_permissao",
+            name ="auth_user_permissao",
             schema = "auth",
-            joinColumns = @JoinColumn(name = "id_usuario"),
+            joinColumns = @JoinColumn(name = "id_auth_user"),
             inverseJoinColumns = @JoinColumn(name = "id_permissao")
     )
     private Set<Permissao> listPermissao;
 
     public Integer getMMId() {
-        return this.idUsuario;
+        return this.idAuthUser;
     }
 
-    public Integer getIdUsuario() {
-        return idUsuario;
+    public Integer getIdAuthUser() {
+        return idAuthUser;
     }
 
     public String getUsername() {
