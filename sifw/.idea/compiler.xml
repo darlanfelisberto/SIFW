@@ -20,6 +20,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="classBag" />
         <module name="sifw" />
+        <module name="service" />
       </profile>
     </annotationProcessing>
   </component>

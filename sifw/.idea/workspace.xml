@@ -9,320 +9,7 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="08207d44-b3d4-4d79-ae36-a51c5793c659" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/.name" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/artifacts/sifw_war.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/artifacts/sifw_war_exploded.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/compiler.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/encodings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/jarRepositories.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__avalon_framework_avalon_framework_impl_4_2_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__com_beust_jcommander_1_78.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__com_fasterxml_classmate_1_5_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__com_fasterxml_jackson_core_jackson_annotations_2_13_4.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__com_fasterxml_jackson_core_jackson_core_2_13_4.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__com_fasterxml_jackson_core_jackson_databind_2_13_4_2.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__com_fasterxml_jackson_datatype_jackson_datatype_jsr310_2_13_4.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__com_fasterxml_jackson_jakarta_rs_jackson_jakarta_rs_base_2_13_4.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__com_fasterxml_jackson_jakarta_rs_jackson_jakarta_rs_json_provider_2_13_4.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__com_fasterxml_jackson_module_jackson_module_jakarta_xmlbind_annotations_2_13_4.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__com_google_code_findbugs_jsr305_3_0_2.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__com_google_code_gson_gson_2_8_9.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__com_google_errorprone_error_prone_annotations_2_3_4.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__com_google_guava_failureaccess_1_0_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__com_google_guava_guava_30_1_jre.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__com_google_guava_listenablefuture_9999_0_empty_to_avoid_conflict_with_guava.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__com_google_j2objc_j2objc_annotations_1_3.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__com_google_zxing_core_3_4_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__com_googlecode_javaewah_JavaEWAH_1_1_12.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__com_googlecode_owasp_java_html_sanitizer_owasp_java_html_sanitizer_20220608_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__com_ibm_async_asyncutil_0_1_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__com_lowagie_itext_2_1_7_js9.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__com_sun_istack_istack_commons_runtime_4_1_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__com_sun_istack_istack_commons_tools_4_1_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__com_sun_xml_bind_external_relaxng_datatype_4_0_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__com_sun_xml_bind_external_rngom_4_0_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__com_zaxxer_SparseBitSet_1_2.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__commons_beanutils_commons_beanutils_1_9_4.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__commons_cli_commons_cli_1_4.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__commons_codec_commons_codec_1_15.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__commons_collections_commons_collections_3_2_2.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__commons_digester_commons_digester_2_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__commons_fileupload_commons_fileupload_1_4.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__commons_io_commons_io_2_11_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__commons_logging_commons_logging_1_1_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__io_nayuki_qrcodegen_1_8_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__io_undertow_undertow_core_2_3_0_Final.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__io_undertow_undertow_servlet_2_3_0_Final.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__jakarta_activation_jakarta_activation_api_2_1_1_jbossorg_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__jakarta_annotation_jakarta_annotation_api_2_1_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__jakarta_enterprise_concurrent_jakarta_enterprise_concurrent_api_3_0_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__jakarta_enterprise_jakarta_enterprise_cdi_api_4_0_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__jakarta_enterprise_jakarta_enterprise_lang_model_4_0_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__jakarta_faces_jakarta_faces_api_4_0_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__jakarta_inject_jakarta_inject_api_2_0_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__jakarta_interceptor_jakarta_interceptor_api_2_1_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__jakarta_json_jakarta_json_api_2_1_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__jakarta_mail_jakarta_mail_api_2_1_1_jbossorg_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__jakarta_persistence_jakarta_persistence_api_3_1_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__jakarta_security_enterprise_jakarta_security_enterprise_api_3_0_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__jakarta_servlet_jakarta_servlet_api_6_0_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__jakarta_transaction_jakarta_transaction_api_2_0_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__jakarta_validation_jakarta_validation_api_3_0_2.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__jakarta_ws_rs_jakarta_ws_rs_api_3_1_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__jakarta_xml_bind_jakarta_xml_bind_api_4_0_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__javax_inject_javax_inject_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__joda_time_joda_time_2_9_9.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__net_bytebuddy_byte_buddy_1_12_18.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__net_sf_barcode4j_barcode4j_2_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__net_sf_jasperreports_jasperreports_6_18_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__net_sf_jasperreports_jasperreports_fonts_6_18_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__net_sf_jasperreports_jasperreports_functions_6_18_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__net_sf_jasperreports_jasperreports_metadata_6_18_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_antlr_antlr4_runtime_4_10.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_apache_ant_ant_1_7_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_apache_ant_ant_launcher_1_7_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_apache_commons_commons_collections4_4_2.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_apache_commons_commons_collections4_4_4.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_apache_commons_commons_csv_1_8.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_apache_commons_commons_lang3_3_8_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_apache_commons_commons_math3_3_6_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_apache_httpcomponents_httpclient_4_5_13.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_apache_httpcomponents_httpcore_4_4_15.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_apache_james_apache_mime4j_core_0_8_7.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_apache_james_apache_mime4j_dom_0_8_7.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_apache_james_apache_mime4j_storage_0_8_7.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_apache_logging_log4j_log4j_api_2_17_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_apache_poi_poi_5_2_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_apache_sshd_sshd_common_2_8_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_apache_xmlgraphics_batik_anim_1_14.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_apache_xmlgraphics_batik_awt_util_1_14.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_apache_xmlgraphics_batik_bridge_1_14.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_apache_xmlgraphics_batik_constants_1_14.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_apache_xmlgraphics_batik_css_1_14.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_apache_xmlgraphics_batik_dom_1_14.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_apache_xmlgraphics_batik_ext_1_14.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_apache_xmlgraphics_batik_gvt_1_14.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_apache_xmlgraphics_batik_i18n_1_14.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_apache_xmlgraphics_batik_parser_1_14.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_apache_xmlgraphics_batik_script_1_14.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_apache_xmlgraphics_batik_shared_resources_1_14.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_apache_xmlgraphics_batik_svg_dom_1_14.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_apache_xmlgraphics_batik_util_1_14.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_apache_xmlgraphics_batik_xml_1_14.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_apache_xmlgraphics_xmlgraphics_commons_2_6.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_bitbucket_b_c_jose4j_0_8_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_bouncycastle_bcpkix_jdk15on_1_68.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_bouncycastle_bcprov_jdk15on_1_68.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_checkerframework_checker_qual_3_5_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_codehaus_castor_castor_core_1_4_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_codehaus_castor_castor_xml_1_4_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_eclipse_angus_angus_activation_1_0_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_eclipse_angus_angus_mail_1_0_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_eclipse_jdt_ecj_3_21_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_eclipse_jgit_org_eclipse_jgit_5_13_0_202109080827_r.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_glassfish_jaxb_codemodel_4_0_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_glassfish_jaxb_jaxb_core_4_0_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_glassfish_jaxb_jaxb_jxc_4_0_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_glassfish_jaxb_jaxb_runtime_4_0_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_glassfish_jaxb_jaxb_xjc_4_0_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_glassfish_jaxb_txw2_4_0_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_glassfish_jaxb_xsom_4_0_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_hibernate_common_hibernate_commons_annotations_6_0_1_Final.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_hibernate_orm_hibernate_core_6_1_5_Final.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_hibernate_orm_hibernate_envers_6_1_5_Final.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_hibernate_validator_hibernate_validator_8_0_0_Final.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_jboss_arquillian_config_arquillian_config_api_1_7_0_Alpha12.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_jboss_arquillian_config_arquillian_config_impl_base_1_7_0_Alpha12.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_jboss_arquillian_config_arquillian_config_spi_1_7_0_Alpha12.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_jboss_arquillian_container_arquillian_container_impl_base_1_7_0_Alpha12.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_jboss_arquillian_container_arquillian_container_spi_1_7_0_Alpha12.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_jboss_arquillian_container_arquillian_container_test_api_1_7_0_Alpha12.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_jboss_arquillian_container_arquillian_container_test_impl_base_1_7_0_Alpha12.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_jboss_arquillian_container_arquillian_container_test_spi_1_7_0_Alpha12.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_jboss_arquillian_core_arquillian_core_api_1_7_0_Alpha12.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_jboss_arquillian_core_arquillian_core_impl_base_1_7_0_Alpha12.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_jboss_arquillian_core_arquillian_core_spi_1_7_0_Alpha12.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_jboss_arquillian_test_arquillian_test_api_1_7_0_Alpha12.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_jboss_arquillian_test_arquillian_test_impl_base_1_7_0_Alpha12.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_jboss_arquillian_test_arquillian_test_spi_1_7_0_Alpha12.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_jboss_arquillian_testng_arquillian_testng_container_1_7_0_Alpha12.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_jboss_arquillian_testng_arquillian_testng_core_1_7_0_Alpha12.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_jboss_jboss_dmr_1_6_1_Final.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_jboss_logging_jboss_logging_3_4_3_Final.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_jboss_logmanager_jboss_logmanager_2_1_18_Final.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_jboss_modules_jboss_modules_2_0_0_Final.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_jboss_msc_jboss_msc_1_4_13_Final.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_jboss_remoting_jboss_remoting_5_0_23_Final.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_jboss_resteasy_resteasy_client_6_2_1_Final.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_jboss_resteasy_resteasy_client_api_6_2_1_Final.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_jboss_resteasy_resteasy_core_6_2_1_Final.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_jboss_resteasy_resteasy_core_spi_6_2_1_Final.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_jboss_resteasy_resteasy_jackson2_provider_6_2_1_Final.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_jboss_resteasy_resteasy_jaxb_provider_6_2_1_Final.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_jboss_resteasy_resteasy_multipart_provider_6_2_1_Final.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_jboss_shrinkwrap_descriptors_shrinkwrap_descriptors_api_base_2_0_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_jboss_shrinkwrap_descriptors_shrinkwrap_descriptors_spi_2_0_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_jboss_shrinkwrap_shrinkwrap_api_1_2_6.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_jboss_shrinkwrap_shrinkwrap_impl_base_1_2_6.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_jboss_shrinkwrap_shrinkwrap_spi_1_2_6.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_jboss_staxmapper_1_3_0_Final.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_jboss_threads_jboss_threads_2_4_0_Final.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_jboss_xnio_xnio_api_3_8_8_Final.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_jboss_xnio_xnio_nio_3_8_8_Final.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_jfree_jcommon_1_0_23.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_jfree_jfreechart_1_0_19.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_keycloak_keycloak_admin_client_jakarta_18_0_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_keycloak_keycloak_common_18_0_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_keycloak_keycloak_core_18_0_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_omnifaces_omnifaces_4_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_primefaces_primefaces_jakarta_12_0_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_projectodd_vdx_vdx_core_1_1_6.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_projectodd_vdx_vdx_wildfly_1_1_6.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_reactivestreams_reactive_streams_1_0_4.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_slf4j_jcl_over_slf4j_1_7_36.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_slf4j_slf4j_api_1_7_36.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_testng_testng_6_11.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_webjars_font_awesome_5_12_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_wildfly_client_wildfly_client_config_1_0_1_Final.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_wildfly_common_wildfly_common_1_6_0_Final.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_wildfly_core_wildfly_controller_18_0_1_Final.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_wildfly_core_wildfly_controller_client_18_0_1_Final.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_wildfly_core_wildfly_core_security_18_0_1_Final.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_wildfly_core_wildfly_protocol_18_0_1_Final.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_wildfly_core_wildfly_version_18_0_1_Final.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_wildfly_security_wildfly_elytron_2_0_0_Final.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_wildfly_security_wildfly_elytron_asn1_2_0_0_Final.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_wildfly_security_wildfly_elytron_audit_2_0_0_Final.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_wildfly_security_wildfly_elytron_auth_2_0_0_Final.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_wildfly_security_wildfly_elytron_auth_server_2_0_0_Final.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_wildfly_security_wildfly_elytron_auth_server_deprecated_2_0_0_Final.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_wildfly_security_wildfly_elytron_auth_server_http_2_0_0_Final.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_wildfly_security_wildfly_elytron_auth_server_sasl_2_0_0_Final.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_wildfly_security_wildfly_elytron_auth_util_2_0_0_Final.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_wildfly_security_wildfly_elytron_base_2_0_0_Final.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_wildfly_security_wildfly_elytron_client_2_0_0_Final.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_wildfly_security_wildfly_elytron_credential_2_0_0_Final.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_wildfly_security_wildfly_elytron_credential_source_impl_2_0_0_Final.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_wildfly_security_wildfly_elytron_credential_store_2_0_0_Final.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_wildfly_security_wildfly_elytron_digest_2_0_0_Final.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_wildfly_security_wildfly_elytron_encryption_2_0_0_Final.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_wildfly_security_wildfly_elytron_http_2_0_0_Final.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_wildfly_security_wildfly_elytron_http_basic_2_0_0_Final.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_wildfly_security_wildfly_elytron_http_bearer_2_0_0_Final.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_wildfly_security_wildfly_elytron_http_cert_2_0_0_Final.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_wildfly_security_wildfly_elytron_http_digest_2_0_0_Final.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_wildfly_security_wildfly_elytron_http_external_2_0_0_Final.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_wildfly_security_wildfly_elytron_http_form_2_0_0_Final.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_wildfly_security_wildfly_elytron_http_oidc_2_0_0_Final.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_wildfly_security_wildfly_elytron_http_spnego_2_0_0_Final.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_wildfly_security_wildfly_elytron_http_sso_2_0_0_Final.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_wildfly_security_wildfly_elytron_http_util_2_0_0_Final.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_wildfly_security_wildfly_elytron_jose_jwk_2_0_0_Final.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_wildfly_security_wildfly_elytron_jose_util_2_0_0_Final.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_wildfly_security_wildfly_elytron_json_util_2_0_0_Final.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_wildfly_security_wildfly_elytron_keystore_2_0_0_Final.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_wildfly_security_wildfly_elytron_mechanism_2_0_0_Final.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_wildfly_security_wildfly_elytron_mechanism_digest_2_0_0_Final.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_wildfly_security_wildfly_elytron_mechanism_gssapi_2_0_0_Final.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_wildfly_security_wildfly_elytron_mechanism_http_2_0_0_Final.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_wildfly_security_wildfly_elytron_mechanism_oauth2_2_0_0_Final.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_wildfly_security_wildfly_elytron_mechanism_scram_2_0_0_Final.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_wildfly_security_wildfly_elytron_password_impl_2_0_0_Final.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_wildfly_security_wildfly_elytron_permission_2_0_0_Final.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_wildfly_security_wildfly_elytron_provider_util_2_0_0_Final.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_wildfly_security_wildfly_elytron_realm_2_0_0_Final.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_wildfly_security_wildfly_elytron_realm_jdbc_2_0_0_Final.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_wildfly_security_wildfly_elytron_realm_ldap_2_0_0_Final.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_wildfly_security_wildfly_elytron_realm_token_2_0_0_Final.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_wildfly_security_wildfly_elytron_sasl_2_0_0_Final.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_wildfly_security_wildfly_elytron_sasl_anonymous_2_0_0_Final.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_wildfly_security_wildfly_elytron_sasl_auth_util_2_0_0_Final.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_wildfly_security_wildfly_elytron_sasl_digest_2_0_0_Final.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_wildfly_security_wildfly_elytron_sasl_entity_2_0_0_Final.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_wildfly_security_wildfly_elytron_sasl_external_2_0_0_Final.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_wildfly_security_wildfly_elytron_sasl_gs2_2_0_0_Final.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_wildfly_security_wildfly_elytron_sasl_gssapi_2_0_0_Final.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_wildfly_security_wildfly_elytron_sasl_localuser_2_0_0_Final.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_wildfly_security_wildfly_elytron_sasl_oauth2_2_0_0_Final.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_wildfly_security_wildfly_elytron_sasl_otp_2_0_0_Final.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_wildfly_security_wildfly_elytron_sasl_plain_2_0_0_Final.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_wildfly_security_wildfly_elytron_sasl_scram_2_0_0_Final.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_wildfly_security_wildfly_elytron_security_manager_2_0_0_Final.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_wildfly_security_wildfly_elytron_security_manager_action_2_0_0_Final.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_wildfly_security_wildfly_elytron_ssl_2_0_0_Final.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_wildfly_security_wildfly_elytron_util_2_0_0_Final.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_wildfly_security_wildfly_elytron_x500_2_0_0_Final.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_wildfly_security_wildfly_elytron_x500_cert_2_0_0_Final.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_wildfly_security_wildfly_elytron_x500_cert_acme_2_0_0_Final.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_wildfly_security_wildfly_elytron_x500_cert_util_2_0_0_Final.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_wildfly_security_wildfly_elytron_x500_principal_2_0_0_Final.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__org_yaml_snakeyaml_1_17.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__xalan_serializer_2_7_2.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__xalan_xalan_2_7_2.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__xml_apis_xml_apis_1_4_01.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Maven__xml_apis_xml_apis_ext_1_3_04.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../catra/.classpath" beforeDir="false" afterPath="$PROJECT_DIR$/../catra/.classpath" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../catra/.project" beforeDir="false" afterPath="$PROJECT_DIR$/../catra/.project" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../catra/.settings/org.eclipse.jdt.core.prefs" beforeDir="false" afterPath="$PROJECT_DIR$/../catra/.settings/org.eclipse.jdt.core.prefs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../classBag/.classpath" beforeDir="false" afterPath="$PROJECT_DIR$/../classBag/.classpath" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../classBag/.project" beforeDir="false" afterPath="$PROJECT_DIR$/../classBag/.project" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../classBag/.settings/org.eclipse.jdt.core.prefs" beforeDir="false" afterPath="$PROJECT_DIR$/../classBag/.settings/org.eclipse.jdt.core.prefs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../classBag/classBag.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../classBag/classBag.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../classBag/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../classBag/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../classBag/src/main/java/br/auth/dao/AuthLoginDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/../classBag/src/main/java/br/auth/dao/AuthLoginDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../classBag/src/main/java/br/auth/models/AuthLogin.java" beforeDir="false" afterPath="$PROJECT_DIR$/../classBag/src/main/java/br/auth/models/AuthLogin.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../classBag/src/main/java/br/auth/models/AuthUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/../classBag/src/main/java/br/auth/models/AuthUser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../classBag/src/main/java/br/auth/oidc/OidcTokenUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/../classBag/src/main/java/br/auth/oidc/OidcTokenUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../classBag/src/main/java/br/edu/iffar/fw/classBag/db/model/Usuario.java" beforeDir="false" afterPath="$PROJECT_DIR$/../classBag/src/main/java/br/edu/iffar/fw/classBag/db/model/Usuario.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../outros.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.classpath" beforeDir="false" afterPath="$PROJECT_DIR$/.classpath" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.project" beforeDir="false" afterPath="$PROJECT_DIR$/.project" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.settings/org.eclipse.jdt.core.prefs" beforeDir="false" afterPath="$PROJECT_DIR$/.settings/org.eclipse.jdt.core.prefs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.settings/org.eclipse.wst.common.project.facet.core.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.settings/org.eclipse.wst.common.project.facet.core.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sifw.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/edu/iffar/fw/comendo/bean/MatriculaBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/edu/iffar/fw/comendo/bean/MatriculaBean.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/app/cardapio_admin.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/app/cardapio_admin.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/app/catraca.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/app/catraca.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/app/creditos.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/app/creditos.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/app/grupoRefeicoes.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/app/grupoRefeicoes.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/app/index.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/app/index.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/app/matricula.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/app/matricula.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/app/moradia_chamada.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/app/moradia_chamada.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/app/moradia_estudantil.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/app/moradia_estudantil.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/app/nav.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/app/nav.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/app/perfil.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/app/perfil.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/app/relatorios.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/app/relatorios.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/app/relatorios_financeiros.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/app/relatorios_financeiros.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/app/servidor.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/app/servidor.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/app/transferencia.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/app/transferencia.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/app/transferir_agendamento.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/app/transferir_agendamento.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/app/usuarios.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/app/usuarios.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/app/vincularAluno.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/app/vincularAluno.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/app/visu_aluno_turma.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/app/visu_aluno_turma.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/css/grid.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/resources/css/grid.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/css/main_.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/resources/css/main_.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/sass/grid.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/resources/sass/grid.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/sass/main_.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/resources/sass/main_.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../webservice/.classpath" beforeDir="false" afterPath="$PROJECT_DIR$/../webservice/.classpath" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../webservice/.project" beforeDir="false" afterPath="$PROJECT_DIR$/../webservice/.project" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../webservice/.settings/org.eclipse.jdt.core.prefs" beforeDir="false" afterPath="$PROJECT_DIR$/../webservice/.settings/org.eclipse.jdt.core.prefs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../webservice/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../webservice/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../webservice/src/main/java/br/edu/iffar/api/ImageEndPoint.java" beforeDir="false" afterPath="$PROJECT_DIR$/../webservice/src/main/java/br/edu/iffar/api/ImageEndPoint.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../webservice/src/main/webapp/WEB-INF/tymeleaf/formLogin.html" beforeDir="false" afterPath="$PROJECT_DIR$/../webservice/src/main/webapp/WEB-INF/tymeleaf/formLogin.html" afterDir="false" />
-    </list>
+    <list default="true" id="08207d44-b3d4-4d79-ae36-a51c5793c659" name="Changes" comment="usando o intelj" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -333,6 +20,7 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+    <option name="SET_USER_NAME_GLOBALLY" value="false" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -359,6 +47,7 @@
     "NewWatcherDialog.advanced.open": "true",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
     "last_opened_file_path": "E:/darlan/git/sifw/classBag",
     "node.js.detected.package.eslint": "true",
@@ -466,8 +155,23 @@
       <workItem from="1673870745000" duration="578000" />
       <workItem from="1674040592994" duration="944000" />
       <workItem from="1674042570428" duration="317000" />
-      <workItem from="1674042899394" duration="1068000" />
+      <workItem from="1674042899394" duration="1455000" />
     </task>
+    <task id="LOCAL-00001" summary="usando o intelj">
+      <created>1674044329278</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1674044329278</updated>
+    </task>
+    <task id="LOCAL-00002" summary="usando o intelj">
+      <created>1674044344994</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1674044344994</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -483,6 +187,10 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="usando o intelj" />
+    <option name="LAST_COMMIT_MESSAGE" value="usando o intelj" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
