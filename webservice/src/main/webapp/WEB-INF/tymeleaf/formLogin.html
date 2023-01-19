@@ -1,5 +1,4 @@
-<!DOCTYPE html>
-<html>
+<html  xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
@@ -63,8 +62,7 @@
     </head>
     <body class="background">
 
-
-        <div class="center-box {#if msgError} mostrarErro {/if}">
+        <div class="" th:class=" 'center-box ' + (${msgError != null} ?'mostrarErro':'')">
             <form method="post" action="loginAuth">
                 <div class="section-box" >
                     <div class="">

@@ -5,8 +5,9 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.auth.models.Permissao;
 import org.apache.commons.csv.CSVRecord;
-import org.keycloak.representations.idm.RoleRepresentation;
+//import org.keycloak.representations.idm.RoleRepresentation;
 import org.omnifaces.util.selectitems.SelectItemsBuilder;
 import org.primefaces.model.DualListModel;
 
@@ -85,9 +86,7 @@ public class MatriculaBean implements Serializable, BreadCrumbControl{
 	private Matricula matricula;
 	private Servidor servidor;
 	private Imagen imagen;
-	private DualListModel<String> listModelPermissaoes;
 
-	private List<RoleRepresentation> roles;
 	private List<SelectItem> listSelectIten = new ArrayList<SelectItem>();
 	
 	@PostConstruct
@@ -368,10 +367,6 @@ public class MatriculaBean implements Serializable, BreadCrumbControl{
 		this.imagen = imagen;
 	}
 
-	public List<RoleRepresentation> getRoles() {
-		return roles;
-	}
-
 	public List<SelectItem> getListSelectIten() {
 		return listSelectIten;
 	}
@@ -433,14 +428,6 @@ public class MatriculaBean implements Serializable, BreadCrumbControl{
 			this.listTipoVinculo = this.tipoVinculoDAO.listTipoVinculoAlunos();
 		}
 		return listTipoVinculo;
-	}
-
-	public DualListModel<String> getListModelPermissaoes() {
-		return listModelPermissaoes;
-	}
-
-	public void setListModelPermissaoes(DualListModel<String> listModelPermissaoes) {
-		this.listModelPermissaoes = listModelPermissaoes;
 	}
 
 	public List<Usuario> getListUsuarios() {

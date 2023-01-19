@@ -25,7 +25,7 @@
 			
 			 <p:tabView dynamic="true" >
 			 	<p:tab title="Meus dados">
-			 		<div class="formgrid grid">
+			 		<div class="ui-fluid formgrid grid">
 			 			<div class="field col-12 md:col-6">
 			 				<label for="iptName">Nome:</label>
 			 				<p:inputText id="iptName" value="#{perfilBean.usuario.nome}" disabled="true" styleClass="w-full"></p:inputText>
@@ -44,7 +44,8 @@
 			 			</div>
 			 			
 			 			<div class="field col-12 md:col-6">
-			 				<p:link href="#{headerBean.linkAccount}" target="_blanc" value="Para mudar o e-mail clique aqui."></p:link>
+							<label >E-mail:</label>
+							<p:inputText value="#{perfilBean.usuario.email}" disabled="true"/>
 			 			</div>	
 			 		</div>
 			 		

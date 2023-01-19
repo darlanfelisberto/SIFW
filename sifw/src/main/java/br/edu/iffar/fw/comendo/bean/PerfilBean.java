@@ -84,21 +84,15 @@ public class PerfilBean implements Serializable {
 			e.printStackTrace();
 		}
 	}
-	
 
     public void oncapture(CaptureEvent captureEvent) {
 		if(this.imagen == null || this.imagen.equals(Imagen.SEMIMAGEN)) {
-//	    	SecureRandom random = new SecureRandom();
-//	    	byte []bname = new byte[32];
-//	    	random.nextBytes(bname);
-//    		Base64.getEncoder().encodeToString(bname).replaceAll("\\W", "_")
 	    	this.imagen= new Imagen(UUID.randomUUID().toString(),this.getUsuario(),captureEvent.getData());
     	}else {
     		this.imagen.setBytes(captureEvent.getData());
     	}
-    	
     }
-    
+
 	public StreamedContent gerarNewMyQRCode(boolean nova) {
 		Usuario u = usuariosDAO.getUsuarioLogado();
 		return this.carterinhaUtil.gerarCarterinhaQRCode(nova, u);
@@ -119,6 +113,4 @@ public class PerfilBean implements Serializable {
 	public void setNewImage(Imagen newImage) {
 		this.newImage = newImage;
 	}
-
-	
 }

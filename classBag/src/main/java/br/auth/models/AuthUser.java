@@ -1,20 +1,13 @@
 package br.auth.models;
 
+import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 
 import br.auth.oidc.Pbkdf2Hash;
 import br.edu.iffar.fw.classBag.db.Model;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinTable;
-import jakarta.persistence.ManyToMany;
-import jakarta.persistence.Table;
-import jakarta.persistence.Transient;
+import br.edu.iffar.fw.classBag.db.model.Usuario;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "auth_user", schema = "auth")
@@ -33,10 +26,7 @@ public class AuthUser extends  Model<UUID>{
 
     private String salt;
 
-    @Transient
-    private String nome;
-
-    private String email;
+    private boolean inativo;
 
     @ManyToMany
     @JoinTable(
@@ -45,7 +35,10 @@ public class AuthUser extends  Model<UUID>{
             joinColumns = @JoinColumn(name = "auth_user_id"),
             inverseJoinColumns = @JoinColumn(name = "permissao_id")
     )
-    private Set<Permissao> listPermissao;
+    private Set<Permissao> setPermissao;
+
+    @OneToOne(fetch = FetchType.LAZY, mappedBy = "authUser")
+    private Usuario usuario;
 
     public UUID getMMId() {
         return this.authUserId;
@@ -68,7 +61,11 @@ public class AuthUser extends  Model<UUID>{
     }
 
     public void setPassword(String password) {
-        this.password = password;
+        if(password == null || password.trim().isEmpty()){
+            return;
+        }
+        Pbkdf2Hash pbkd = new Pbkdf2Hash().initialize(Pbkdf2Hash.parametersDefault);
+        this.password = pbkd.generate(password, this.salt);
     }
 
     public boolean authenticate(String password){
@@ -77,35 +74,36 @@ public class AuthUser extends  Model<UUID>{
     }
 
     public String[] getArrayPermissoes(){
-        String[] array = new String[this.listPermissao.size()+1];
+        String[] array = new String[this.setPermissao.size()+1];
         int c = 0;
-        for (Permissao p : this.listPermissao) {
+        for (Permissao p : this.setPermissao) {
             array[c++] = p.getNome();
         }
         array[c] = "user";
         return array;
     }
 
-    public Set<Permissao> getListPermissao() {
-        return listPermissao;
+    public Set<Permissao> getSetPermissao() {
+        return setPermissao;
     }
 
-    public void setListPermissao(Set<Permissao> listPermissao) {
-        this.listPermissao = listPermissao;
+    public void setSetPermissao(Set<Permissao> listPermissao) {
+        this.setPermissao = listPermissao;
     }
 
-    public String getNome() {
-        return nome;
-    }
-    public void setNome(String nome) {
-        this.nome = nome;
+    public Usuario getUsuario() {
+        return usuario;
     }
 
-    public String getEmail() {
-        return email;
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public boolean isInativo() {
+        return inativo;
+    }
+
+    public void setInativo(boolean inativo) {
+        this.inativo = inativo;
     }
 }

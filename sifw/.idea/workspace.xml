@@ -10,20 +10,33 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="08207d44-b3d4-4d79-ae36-a51c5793c659" name="Changes" comment="usando o intelj">
-      <change beforePath="$PROJECT_DIR$/../classBag/src/main/java/br/auth/models/AuthLogin.java" beforeDir="false" afterPath="$PROJECT_DIR$/../classBag/src/main/java/br/auth/models/AuthLogin.java" afterDir="false" />
+    <list default="true" id="08207d44-b3d4-4d79-ae36-a51c5793c659" name="Changes" comment="to jpa3 uuid in auth scheme">
+      <change afterPath="$PROJECT_DIR$/../classBag/src/main/java/br/auth/dao/PermissaoDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../classBag/.classpath" beforeDir="false" afterPath="$PROJECT_DIR$/../classBag/.classpath" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../classBag/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../classBag/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../classBag/src/main/java/br/auth/dao/AuthLoginDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/../classBag/src/main/java/br/auth/dao/AuthLoginDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../classBag/src/main/java/br/auth/dao/UsuarioDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/../classBag/src/main/java/br/auth/dao/AuthUserDAO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../classBag/src/main/java/br/auth/models/AuthUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/../classBag/src/main/java/br/auth/models/AuthUser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../classBag/src/main/java/br/auth/models/Cliente.java" beforeDir="false" afterPath="$PROJECT_DIR$/../classBag/src/main/java/br/auth/models/Cliente.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../classBag/src/main/java/br/auth/models/Permissao.java" beforeDir="false" afterPath="$PROJECT_DIR$/../classBag/src/main/java/br/auth/models/Permissao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../classBag/src/main/java/br/auth/oidc/OidcTokenUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/../classBag/src/main/java/br/auth/oidc/OidcTokenUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../classBag/src/main/java/br/edu/iffar/fw/classBag/db/model/Permissao.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../classBag/src/main/java/br/edu/iffar/fw/classBag/db/model/Usuario.java" beforeDir="false" afterPath="$PROJECT_DIR$/../classBag/src/main/java/br/edu/iffar/fw/classBag/db/model/Usuario.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../classBag/src/main/java/br/edu/iffar/fw/classBag/sec/KeycloakAdminUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/../classBag/src/main/java/br/edu/iffar/fw/classBag/sec/KeycloakAdminUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../classBag/src/main/java/br/edu/iffar/fw/classBag/sec/KeycloakPrincipalContext__.java" beforeDir="false" afterPath="$PROJECT_DIR$/../classBag/src/main/java/br/edu/iffar/fw/classBag/sec/KeycloakPrincipalContext__.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../classBag/src/main/java/br/edu/iffar/fw/classBag/util/ModelConverter.java" beforeDir="false" afterPath="$PROJECT_DIR$/../classBag/src/main/java/br/edu/iffar/fw/classBag/util/ModelConverter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/app/index.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/app/index.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/edu/iffar/fw/comendo/bean/BackgroundUserCreate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/edu/iffar/fw/comendo/bean/BackgroundUserCreate.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/edu/iffar/fw/comendo/bean/ImportarUsuariosBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/edu/iffar/fw/comendo/bean/ImportarUsuariosBean.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/edu/iffar/fw/comendo/bean/MatriculaBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/edu/iffar/fw/comendo/bean/MatriculaBean.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/edu/iffar/fw/comendo/bean/PerfilBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/edu/iffar/fw/comendo/bean/PerfilBean.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/edu/iffar/fw/comendo/bean/UsuariosBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/edu/iffar/fw/comendo/bean/UsuariosBean.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/app/perfil.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/app/perfil.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/app/usuarios.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/app/usuarios.xhtml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../webservice/src/main/java/br/auth/oidc/OidcCoreEndPointBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/../webservice/src/main/java/br/auth/oidc/OidcCoreEndPointBean.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../webservice/src/main/java/br/auth/util/ThymeleafUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/../webservice/src/main/java/br/auth/util/ThymeleafUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../webservice/src/main/resources/META-INF/microprofile-config.properties.prod" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../webservice/src/main/resources/META-INF/public_key_dev.pem" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../webservice/src/main/resources/META-INF/public_key_prod.pem" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webservice/src/main/java/br/edu/iffar/api/EmailEndPoint.java" beforeDir="false" afterPath="$PROJECT_DIR$/../webservice/src/main/java/br/edu/iffar/api/EmailEndPoint.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../webservice/src/main/webapp/WEB-INF/tymeleaf/formLogin.html" beforeDir="false" afterPath="$PROJECT_DIR$/../webservice/src/main/webapp/WEB-INF/tymeleaf/formLogin.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../webservice/src/main/webapp/img/background.png" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,7 +50,11 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
     <option name="SET_USER_NAME_GLOBALLY" value="false" />
   </component>
+  <component name="GitToolBoxStore">
+    <option name="projectConfigVersion" value="5" />
+  </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="jar://$MAVEN_REPOSITORY$/org/primefaces/primefaces/12.0.0/primefaces-12.0.0-sources.jar!/org/primefaces/model/DualListModel.java" root0="SKIP_INSPECTION" />
     <setting file="jar://$MAVEN_REPOSITORY$/org/thymeleaf/thymeleaf/3.1.1.RELEASE/thymeleaf-3.1.1.RELEASE-sources.jar!/org/thymeleaf/templateresolver/AbstractConfigurableTemplateResolver.java" root0="SKIP_INSPECTION" />
     <setting file="jar://$MAVEN_REPOSITORY$/org/thymeleaf/thymeleaf/3.1.1.RELEASE/thymeleaf-3.1.1.RELEASE-sources.jar!/org/thymeleaf/templateresolver/FileTemplateResolver.java" root0="SKIP_INSPECTION" />
   </component>
@@ -61,29 +78,36 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "NewWatcherDialog.advanced.open": "true",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "E:/darlan/git/sifw/webservice",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "project.structure.last.edited": "Facets",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "settings.build.tools.auto.reload": "ALL",
-    "settings.editor.selected.configurable": "preferences.editor",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;NewWatcherDialog.advanced.open&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;E:/darlan/git/sifw/webservice&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Facets&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.build.tools.auto.reload&quot;: &quot;ALL&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;inlay.hints&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
+  <component name="RecentsManager">
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="br.auth.dao" />
+    </key>
+  </component>
   <component name="RunManager">
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
-      <option name="TEST_OBJECT" value="class" />
+    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
+      <option name="TEST_OBJECT" value="CLASS" />
+      <properties />
+      <listeners />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -178,7 +202,8 @@
       <workItem from="1673870745000" duration="578000" />
       <workItem from="1674040592994" duration="944000" />
       <workItem from="1674042570428" duration="317000" />
-      <workItem from="1674042899394" duration="4636000" />
+      <workItem from="1674042899394" duration="24988000" />
+      <workItem from="1674152623775" duration="3167000" />
     </task>
     <task id="LOCAL-00001" summary="usando o intelj">
       <created>1674044329278</created>
@@ -201,7 +226,14 @@
       <option name="project" value="LOCAL" />
       <updated>1674044710280</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="to jpa3 uuid in auth scheme">
+      <created>1674049536666</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1674049536666</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -220,7 +252,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="usando o intelj" />
-    <option name="LAST_COMMIT_MESSAGE" value="usando o intelj" />
+    <MESSAGE value="to jpa3 uuid in auth scheme" />
+    <option name="LAST_COMMIT_MESSAGE" value="to jpa3 uuid in auth scheme" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

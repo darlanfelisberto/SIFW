@@ -6,8 +6,6 @@ import java.net.InetAddress;
 import org.jboss.as.controller.client.ModelControllerClient;
 import org.jboss.as.controller.client.helpers.ClientConstants;
 import org.jboss.dmr.ModelNode;
-import org.keycloak.admin.client.Keycloak;
-import org.wildfly.security.http.oidc.OidcSecurityContext;
 
 public class KeycloakAdminUtil {
 	public static String AUTH_SERVER; 
@@ -58,9 +56,9 @@ public class KeycloakAdminUtil {
 	public static final String LINK_ADMIN_AUTH = AUTH_SERVER + "admin/realms/" + AUTH_REALM ;
 
 	
-	public static Keycloak getKeyCloak(OidcSecurityContext context) {
-		return Keycloak.getInstance(AUTH_SERVER, AUTH_REALM, AUTH_CLIENT, context.getTokenString());
-	}
+//	public static Keycloak getKeyCloak(OidcSecurityContext context) {
+//		return Keycloak.getInstance(AUTH_SERVER, AUTH_REALM, AUTH_CLIENT, context.getTokenString());
+//	}
 	
 //	public static JsonObject getKeycloakInfo() throws JsonIOException, JsonSyntaxException, IOException {
 //		JsonElement e = JsonParser.parseReader(new FileReader(ConnectProducer.getAPP_REAL_PATH() + OIDC_JSON));

@@ -34,7 +34,7 @@ import java.util.UUID;
 
 import br.auth.dao.AuthLoginDAO;
 import br.auth.dao.ClienteDAO;
-import br.auth.dao.UsuarioDAO;
+import br.auth.dao.AuthUserDAO;
 import br.auth.models.AuthLogin;
 import br.auth.models.AuthUser;
 import br.auth.models.Cliente;
@@ -66,7 +66,7 @@ public class OidcCoreEndPointBean {
     @Inject
     ClienteDAO clienteDAO;
     @Inject
-    UsuarioDAO usuarioDAO;
+    AuthUserDAO authUserDAO;
     @Inject
     AuthLoginDAO authLoginDAO;
     @Inject
@@ -123,20 +123,18 @@ public class OidcCoreEndPointBean {
         	return Response.ok(thymeleafUtil.processes("erroAuth"), TEXT_HTML).build();
         }
 
-        return retornaLoginPage(clientId,scope,state,redirectUri,false);
+        return retornaLoginPage(clientId,scope,state,redirectUri, new HashMap<String,Object>());
     }
 
-    public Response retornaLoginPage(String clientId,String scope,String state,String redirectUri,boolean msgErros){
+    public Response retornaLoginPage(String clientId,String scope,String state,String redirectUri,Map<String,Object> variable){
         CacheControl cc = new CacheControl();
         cc.setNoCache(true);
         cc.setNoStore(true);
-        Map<String, Object> variable = new HashMap<>();
         variable.put(CLIENT_ID, clientId);
         variable.put(SCOPE, scope);
         variable.put(STATE, state);
         variable.put(REDIRECT_URI, redirectUri);
-        variable.put("msgError", msgErros);
-        
+
         return Response.ok(thymeleafUtil.processes("formLogin",variable), TEXT_HTML)
                 .cacheControl(cc)
                 .build();
@@ -169,9 +167,11 @@ public class OidcCoreEndPointBean {
         if (client == null) {
             return this.createJsonError("invalid_client_id");
         }
-        AuthUser user = this.usuarioDAO.findUsuarioByUsername(username);
+        AuthUser user = this.authUserDAO.findUsuarioByUsername(username);
         if (user == null || !user.authenticate(password)) {
-            return retornaLoginPage(clientId,scope,state,redirectUri,true);
+            Map<String,Object> variables = new HashMap<>();
+            variables.put("msgError", "Usuário ou senha inválidos.");
+            return retornaLoginPage(clientId,scope,state,redirectUri,variables);
         }
 
         AuthLogin authLogin = new AuthLogin(UUID.fromString(state), randomUUID(), user, client);

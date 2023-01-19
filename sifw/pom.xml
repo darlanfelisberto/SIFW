@@ -140,7 +140,7 @@
 			<artifactId>jakarta.activation-api</artifactId>
 		</dependency>
 
-		<dependency>
+		<!--dependency>
 		  <groupId>org.keycloak</groupId>
 		  <artifactId>keycloak-admin-client-jakarta</artifactId>
 		  <version>18.0.1</version>
@@ -168,7 +168,7 @@
 			<groupId>org.keycloak</groupId>
 			<artifactId>keycloak-core</artifactId>
 			<version>${keycloak.version}</version>
-		</dependency>
+		</dependency-->
 
 
 <dependency>

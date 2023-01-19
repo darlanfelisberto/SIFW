@@ -18,7 +18,7 @@ public class Permissao extends Model<UUID> {
 
 	@Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    @Column(name = "permissao_id", insertable = false)
+    @Column(name = "permissao_id")
     private UUID permissaoId;
 
     private String nome;
@@ -31,6 +31,10 @@ public class Permissao extends Model<UUID> {
 
     public UUID getPermissaoId() {
         return permissaoId;
+    }
+
+    public void setPermissaoId(UUID permissaoId) {
+        this.permissaoId = permissaoId;
     }
 
     public String getNome() {

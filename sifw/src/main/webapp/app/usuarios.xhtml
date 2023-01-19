@@ -90,24 +90,19 @@
 					 		<div class="ui-fluid formgrid grid">
 					 			<div class="field col-12 md:col-6">
 					 				<label for="iptName">Nome:</label>
-					 				<p:inputText id="iptName" value="#{usuariosBean.user.nome}"></p:inputText>
+					 				<p:inputText id="iptName" value="#{usuariosBean.userSel.nome}"></p:inputText>
 					 			</div>
-					 			<div class="field col-12 md:col-6">
-					 				<label for="iptUsername">Username:</label>
-					 				<p:inputText id="iptUsername" value="#{usuariosBean.user.userName}" disabled="#{!usuariosBean.user.novoUsuario}"/>
-					 			</div>
-					 			
 					 			<div class="field col-12 md:col-6">
 					 				<label for="iptEmail">E-mail:</label>
-					 				<p:inputText id="iptEmail" value="#{usuariosBean.user.email}"/>
+					 				<p:inputText id="iptEmail" value="#{usuariosBean.userSel.email}"/>
 					 			</div>	
 					 			<div class="field col-12 md:col-6">
 					 				<label for="iptCpf">CPF:</label>
-					 				<p:inputText id="iptCpf" value="#{usuariosBean.user.cpf}"/>
+					 				<p:inputText id="iptCpf" value="#{usuariosBean.userSel.cpf}"/>
 					 			</div>			 			
 					 			<div class="field col-12 md:col-6">
 					 				<label for="iptDtNac">Data de Nascimento:</label>
-					 				 <p:datePicker id="iptDtNac" value="#{usuariosBean.user.dtnasc}" pattern="dd/MM/yyyy"  mask="true" monthNavigator="true" yearNavigator="true"/>
+					 				 <p:datePicker id="iptDtNac" value="#{usuariosBean.userSel.dtnasc}" pattern="dd/MM/yyyy"  mask="true" monthNavigator="true" yearNavigator="true"/>
 					 			</div>			 			
 					 		</div>
 					 	</p:tab>
@@ -169,7 +164,7 @@
 					 	</p:tab>
 					 	
 					 	<p:tab title="Carteria RU" >
-					 		<p:outputPanel rendered="#{not usuariosBean.user.novo}">
+					 		<p:outputPanel rendered="#{not usuariosBean.userSel.novo}">
 						 		<div class="grid">
 									<div class="col-12 md:col-6 lg:col6">
 										<p:commandButton value="Download da carterinha" icon="pi pi-download"  ajax="false" onclick="PrimeFaces.monitorDownload(start, stop);">
@@ -185,21 +180,34 @@
 								</div>
 							</p:outputPanel>
 					 	</p:tab>
-					 	
-					 	<p:tab title="Permissões">
-							<p:dataTable value="#{usuariosBean.roles}" var="role" emptyMessage="Usuário sem permissões" rendered="false">
-								<p:column headerText="Permissões do usuário">
-									<span>#{role.name}</span>
-								</p:column>
-							</p:dataTable>
-							
-							<p:pickList  value="#{usuariosBean.listModelPermissaoes}" var="role" itemLabel="#{role}" itemValue="#{role}" 
-							required="true" requiredMessage="Selecione uma permissão."
-							 showSourceControls="false" showTargetControls="false" styleClass="pick-list" disabled="#{!usuariosBean.user.novoUsuario}">
+
+						<p:tab title="Auth">
+
+
+							<h4>Dados de acesso</h4>
+							<div class="ui-fluid formgrid grid">
+								<div class="field col-12 md:col-6">
+									<label>Username:</label>
+									<p:inputText value="#{usuariosBean.userSel.authUser.username}" disabled="#{!usuariosBean.userSel.authUser.novo}"/>
+								</div>
+								<div class="field col-12 md:col-6">
+									<label class="w-full">Inativo:</label>
+									<p:selectBooleanCheckbox value="#{usuariosBean.userSel.authUser.inativo}"/>
+								</div>
+								<div class="field col-12 md:col-6">
+									<label><abbr title="Utiliza o algoritimo PBKDF2WithHmacSHA256">Senha:</abbr> </label>
+									<p:password value="#{usuariosBean.userSel.authUser.password}"/>
+								</div>
+							</div>
+							<h4>Permissões de acesso</h4>
+							<p:pickList  value="#{usuariosBean.listModelPermissaoes}" var="role" itemLabel="#{role.nome}" itemValue="#{role}"
+										 required="false" requiredMessage="Selecione uma permissão." converter="#{modelConverter}"
+										 showSourceControls="false" showTargetControls="false" styleClass="pick-list" >
 								<f:facet name="sourceCaption">Disponíveis</f:facet>
-            					<f:facet name="targetCaption">Do Usuário</f:facet>
+								<f:facet name="targetCaption">Do Usuário</f:facet>
 							</p:pickList>
-				 		</p:tab>
+						</p:tab>
+
 					 </p:tabView>
 										 
 					 <div>

@@ -9,8 +9,6 @@ import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 
-import org.keycloak.representations.idm.CredentialRepresentation;
-import org.keycloak.representations.idm.UserRepresentation;
 import org.primefaces.model.charts.pie.PieChartModel;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
@@ -35,11 +33,6 @@ import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import jakarta.xml.bind.annotation.XmlTransient;
 
-
-/**
- * The persistent class for the usuarios database table.
- * 
- */
 @Entity
 @Table(name="usuarios")
 public class Usuario extends Model<UUID> implements Serializable {
@@ -222,25 +215,6 @@ public class Usuario extends Model<UUID> implements Serializable {
     	}else {
     		return null;
     	}
-    }
-    
-    public UserRepresentation createUserRepresentation() {
-		UserRepresentation user = new UserRepresentation();
-        user.setEnabled(true);
-        user.setUsername(this.userName);
-        user.setFirstName(this.nome);
-//        user.setLastName("Last");
-        user.setEmail(this.email);
-        user.setEmailVerified(true);
-        return user;
-    }
-    
-    public CredentialRepresentation createCredentialRepresentation() {
-    	CredentialRepresentation cre = new CredentialRepresentation();
-		cre.setType(CredentialRepresentation.PASSWORD);
-		cre.setTemporary(true);
-		cre.setValue(this.userName);
-		return  cre;
     }
 
 	public List<Matricula> getListMatricula() {

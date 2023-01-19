@@ -3,6 +3,7 @@ package br.edu.iffar.fw.classBag.util;
 import java.lang.reflect.ParameterizedType;
 import java.util.HashMap;
 
+import br.auth.models.Permissao;
 import br.edu.iffar.fw.classBag.db.Model;
 import br.edu.iffar.fw.classBag.db.dao.ConverterModelDAO;
 import br.edu.iffar.fw.classBag.db.model.Agendamento;
@@ -61,8 +62,10 @@ public class ModelConverter implements Converter< Model> {
 		classes.put(Matricula.class.getName().hashCode(), Matricula.class.getName());
 
 		classes.put(Refeicao.class.getName().hashCode(), Refeicao.class.getName());
-		
+
 		classes.put(Servidor.class.getName().hashCode(), Servidor.class.getName());
+
+		classes.put(Permissao.class.getName().hashCode(), Permissao.class.getName());
 
 		classes.put(TipoCredito.class.getName().hashCode(), TipoCredito.class.getName());
 		classes.put(TipoUnidade.class.getName().hashCode(), TipoUnidade.class.getName());
