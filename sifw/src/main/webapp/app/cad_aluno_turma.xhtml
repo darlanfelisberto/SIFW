@@ -1,0 +1,168 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="jakarta.faces.html"
+	xmlns:f="jakarta.faces.core"
+	xmlns:ui="jakarta.faces.facelets"
+	xmlns:faces="jakarta.faces"
+	xmlns:pt="jakarta.faces.passthrough"
+	xmlns:p="http://primefaces.org/ui" template="/public/_template.xhtml">
+
+
+	<ui:define name="header">
+		<ui:include src="/app/header.xhtml" />
+	</ui:define>
+	
+	<ui:define name="title">
+		Alunos de Turmas
+	</ui:define>
+
+	<ui:define name="nav">
+		<ui:include src="/app/nav.xhtml" />
+	</ui:define>
+	
+	<ui:define name="main">
+		<h:form id="frmMain" styleClass="">
+			
+			<p:breadCrumb model="#{cadAlunosTurmaBean.breadCrumb.model}">
+				<p:autoUpdate/>
+			</p:breadCrumb>
+			<p:growl>
+				<p:autoUpdate></p:autoUpdate>
+			</p:growl>
+			
+		
+			<p:outputPanel id="otpBuscaTurma">
+				<p:panel header="Busca da turma" rendered="#{cadAlunosTurmaBean.rendBuscaTurma}">
+					<div class="ui-fluid formgrid grid">
+			 			<div class="field col-12 md:col-2">
+			 				<label>Ano:</label>
+			 				<p:selectOneMenu value="#{cadAlunosTurmaBean.ano}">
+			 					<f:selectItem />
+			 					<f:selectItems value="#{cadAlunosTurmaBean.listAnos}" var="ano" itemValue="#{ano}"></f:selectItems>
+			 					<p:ajax event="change" update="somTurma" listener="#{cadAlunosTurmaBean.mudaAno}"></p:ajax>
+			 				</p:selectOneMenu>
+			 			</div>
+			 			
+			 			<div class="field col-12 md:col-2">
+			 				<label>Turma:</label>
+			 				<p:selectOneMenu value="#{cadAlunosTurmaBean.turma}" converter="#{modelConverter}" id="somTurma">
+			 					<f:selectItem />
+			 					<f:selectItems value="#{cadAlunosTurmaBean.listTurmas}" var="t" itemValue="#{t}" itemLabel="#{t.numero} - #{t.curso.nome}"></f:selectItems>
+			 				</p:selectOneMenu>
+			 			</div>
+			 		</div>
+			 		<p:commandButton value="Buscar" action="#{cadAlunosTurmaBean.buscarTurma}" update="otpBuscaTurma otpListaAluno otpTurmaSelecionada"></p:commandButton>
+				</p:panel>
+			</p:outputPanel>
+			
+			<p:outputPanel id="otpTurmaSelecionada">
+				<p:panel header="Turma selecionada" rendered="#{!cadAlunosTurmaBean.rendBuscaTurma}">
+					<div class="ui-fluid formgrid grid">
+			 			<div class="field col-12 md:col-2">
+			 				<label>Ano:</label>
+			 				<span>#{cadAlunosTurmaBean.turma.ano}</span>
+			 			</div>
+			 			<div class="field col-12 md:col-2">
+			 				<label>Número:</label>
+			 				<span>#{cadAlunosTurmaBean.turma.numero}</span>
+			 			</div>
+			 			<div class="field col-12 md:col-8">
+			 				<label>Curso:</label>
+			 				<span>#{cadAlunosTurmaBean.turma.curso.nome}</span>
+			 			</div>
+			 		</div>
+			 		<p:commandButton value="Copia Turma" action="#{cadAlunosTurmaBean.copiaTurmaSelecionada}" update="otpListaAluno otpCopiaTurma" immediate="true" process="@this" ></p:commandButton>
+				</p:panel>			
+			</p:outputPanel>
+			
+			<p:outputPanel id="otpListaAluno">
+				<p:panel rendered="#{cadAlunosTurmaBean.rendListaAluno}" header="Lista Alunos da Turma">
+					<div style="display: flex;">
+						<p:dataTable value="#{cadAlunosTurmaBean.turma.listMatriculaTurma}" var="mat" styleClass="table_width_unset">  
+							<p:column headerText="Nome">
+								#{mat.usuario.nome}
+							</p:column>
+							<p:column headerText="Matricula">
+								#{mat.idMatricula}
+							</p:column>
+							<p:column>
+								<p:commandButton icon="pi pi-trash" styleClass="rounded-button ui-button-danger ui-button-flat"
+												 action="#{cadAlunosTurmaBean.removerAlunoTurma}" update="frmMain:otpListaAluno">
+									<f:setPropertyActionListener target="#{cadAlunosTurmaBean.matricula}" value="#{mat}" />
+									<p:confirm type="popup" header="Confirme" message="Tem certeza disso?" icon="pi pi-exclamation-triangle"/>
+								</p:commandButton>
+							</p:column>
+						</p:dataTable>
+						<div class="space" faces:id="divAddAluno">
+							<div class="">
+								<p:commandButton id="cmbAddAluno" value="Add aluno" action="#{cadAlunosTurmaBean.setRendAddAluno(!cadAlunosTurmaBean.rendAddAluno)}" 
+								immediate="true" process="@this" update="divAddAluno"></p:commandButton>
+							</div>
+							<div faces:rendered="#{cadAlunosTurmaBean.rendAddAluno}">
+								<p:autoComplete value="#{cadAlunosTurmaBean.matricula}" completeMethod="#{cadAlunosTurmaBean.buscaMatriculaNome}" var="mat"
+									pt:placeholder="Nome"
+									itemValue="#{mat}" itemLabel="#{mat.juntaNomeMatricula()}" minQueryLength="3" converter="#{modelConverter}"></p:autoComplete>
+								<p:commandButton value="Add" icon="pi pi-plus" actionListener="#{cadAlunosTurmaBean.addAlunoTurma}" update="otpListaAluno">
+									<p:confirm type="popup" header="Confime" message="Você tem certeza?" icon="pi pi-question"></p:confirm>
+								</p:commandButton>
+								<p:commandButton value="Cancelar" icon="pi pi-times" styleClass="ui-button-secondary" onclick="document.getElementById('frmMain:cmbAddAluno').click()"></p:commandButton>
+							</div>
+						</div>
+					</div>
+				</p:panel>
+			</p:outputPanel>
+			
+			<p:outputPanel id="otpCopiaTurma">
+				<p:panel header="Copia turma" rendered="#{cadAlunosTurmaBean.rendCopiaTela}">
+					<p:tabView  >
+						<p:tab title="Turma">
+							<div class="ui-fluid formgrid grid">
+					 			<div class="field col-12 md:col-2">
+					 				<label>Ano:</label>
+					 				<p:inputNumber  value="#{cadAlunosTurmaBean.novaTurma.ano}" decimalPlaces="0"></p:inputNumber>
+					 			</div>
+					 			<div class="field col-12 md:col-2">
+					 				<label>Número:</label>
+					 				<p:inputNumber  value="#{cadAlunosTurmaBean.novaTurma.numero}" decimalPlaces="0"></p:inputNumber>
+					 			</div>
+					 			<div class="field col-12 md:col-8">
+					 				<label>Curso:</label>
+					 				<p:selectOneMenu value="#{cadAlunosTurmaBean.novaTurma.curso}" converter="#{modelConverter}">
+					 					<f:selectItem />
+					 					<f:selectItems value="#{cadAlunosTurmaBean.listCursos}" var="curso" itemValue="#{curso}" itemLabel="#{curso.nome}"></f:selectItems>
+					 				</p:selectOneMenu>
+					 			</div>
+					 			<div class="field col-12 md:col-12">
+					 				<label>Descricção:</label>
+					 				<p:inputTextarea value="#{cadAlunosTurmaBean.novaTurma.descricao}"></p:inputTextarea>
+					 			</div>
+					 		</div>
+						</p:tab>
+						<p:tab title="Alunos">
+							<p:dataTable value="#{cadAlunosTurmaBean.novaTurma.listMatriculaTurma}" var="mat">
+								<p:column headerText="Nome">
+									#{mat.usuario.nome}
+								</p:column>
+								<p:column headerText="Matricula">
+									#{mat.idMatricula}
+								</p:column>
+							</p:dataTable>
+						</p:tab>
+					</p:tabView>
+					
+					<div class="space">
+						<p:commandButton value="Salvar" icon="pi pi-save" action="#{cadAlunosTurmaBean.salvarNovaTurma}" update="@form"></p:commandButton>
+						<p:commandButton value="Cancelar" icon="pi pi-times" immediate="true" process="@this" action="#{cadAlunosTurmaBean.telaListaALuno()}" update="@form"></p:commandButton>
+					</div>
+					
+				</p:panel>
+			</p:outputPanel>
+		
+		
+			 <p:confirmPopup global="true">
+	            <p:commandButton value="Não" type="button" styleClass="ui-confirm-popup-no "/>
+	            <p:commandButton value="Sim" type="button" styleClass="ui-confirm-popup-yes ui-button-success" />
+	        </p:confirmPopup>
+		</h:form>
+	</ui:define>
+
+</ui:composition>

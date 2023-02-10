@@ -189,7 +189,10 @@ public class UsuariosBean implements Serializable, BreadCrumbControl{
     
     public void salvarUser() {
     	try {
-			if(this.userSel.isNovoUsuario()) {// para edição
+			this.userSel.getAuthUser().getSetPermissao().clear();
+			this.userSel.getAuthUser().getSetPermissao().addAll(listModelPermissaoes.getTarget());
+
+			if(this.userSel.isNovoUsuario()) {
 				if(this.usuariosDAO.findByUserName(this.userSel.getUserName()) != null) {
 					this.messages.addError("Username já existe!");
 					return;
@@ -199,12 +202,12 @@ public class UsuariosBean implements Serializable, BreadCrumbControl{
 					this.messages.addError("CPF já existe!");
 					return;
 				}
+				this.authUserDAO.persistT(this.userSel.getAuthUser());
+				this.usuariosDAO.persistT(this.userSel);
+			}else{
+				this.authUserDAO.updateT(this.userSel.getAuthUser());
+				this.usuariosDAO.updateT(this.userSel);
 			}
-
-			this.userSel.getAuthUser().getSetPermissao().clear();
-			this.userSel.getAuthUser().getSetPermissao().addAll(listModelPermissaoes.getTarget());
-			this.authUserDAO.persistT(this.userSel.getAuthUser());
-			this.usuariosDAO.persistT(this.userSel);
 
 			if(this.capturouImage) {
 				this.imagenDAO.substituiImagen(this.imagen);

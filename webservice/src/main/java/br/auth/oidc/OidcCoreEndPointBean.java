@@ -174,6 +174,12 @@ public class OidcCoreEndPointBean {
             return retornaLoginPage(clientId,scope,state,redirectUri,variables);
         }
 
+        if (user.isInativo()) {
+            Map<String,Object> variables = new HashMap<>();
+            variables.put("msgError", "Usuário Inativo.");
+            return retornaLoginPage(clientId,scope,state,redirectUri,variables);
+        }
+
         AuthLogin authLogin = new AuthLogin(UUID.fromString(state), randomUUID(), user, client);
 
         try {

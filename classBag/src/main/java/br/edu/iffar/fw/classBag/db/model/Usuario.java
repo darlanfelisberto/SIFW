@@ -74,8 +74,11 @@ public class Usuario extends Model<UUID> implements Serializable {
 	private List<Servidor> listServidor;
 		
 	@Column(name = "token_ru")
-	private String tokenRU;	
-	
+	private String tokenRU;
+
+	/**
+	 * nao ativar o cascade no authUser, se for necessario, inverta o dono da relação
+	 * */
 	@JoinColumn(name = "auth_user_id")
 	@OneToOne(fetch = FetchType.LAZY)
 	private AuthUser authUser;

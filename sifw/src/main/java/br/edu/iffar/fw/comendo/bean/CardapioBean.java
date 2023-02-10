@@ -17,66 +17,15 @@ import jakarta.inject.Named;
 public class CardapioBean  implements Serializable{
 
 	private static final long serialVersionUID = 22021991L;
-	
-	private BreadCrumb breadCrumb;
-	
-	private boolean rendTelaFiltro;
-	private boolean rendTelaList;
-	private boolean rendTelaCardapio;
-	
+
 	@Inject private CardapioDAO cardapioDAO;
 	
 	private Cardapio cardapio;
-	
-	
-	private List<Cardapio> listLastCardapio;
 	
 	@PostConstruct
 	public void init() {
 		this.cardapio = this.cardapioDAO.findUltimoCardapio();
 	}
-		
-	public void telaFiltro() {
-		this.rendTelaFiltro = true;
-		this.rendTelaList = false;
-		this.rendTelaCardapio = false;
-		this.breadCrumb.setAtivo(2);
-	}
-	public void telaLista() {
-		this.rendTelaFiltro = false;
-		this.rendTelaList = true;
-		this.rendTelaCardapio = false;
-		this.breadCrumb.setAtivo(3);
-	}
-	public void telaNewCardapio() {
-		this.rendTelaFiltro = false;
-		this.rendTelaList = false;
-		this.rendTelaCardapio = true;
-		this.breadCrumb.setAtivo(4);
-		this.cardapio = new Cardapio();
-	}
-	
-	public void telaEditarCardapio() {
-		this.rendTelaFiltro = false;
-		this.rendTelaList = false;
-		this.rendTelaCardapio = true;
-		this.breadCrumb.setAtivo(5);
-	}
-
-
-
-	public boolean isRendTelaFiltro() {
-		return rendTelaFiltro;
-	}
-
-	public boolean isRendTelaList() {
-		return rendTelaList;
-	}
-
-	public boolean isRendTelaCardapio() {
-		return rendTelaCardapio;
-	}
-
 
 	public Cardapio getCardapio() {
 		return cardapio;
@@ -85,8 +34,4 @@ public class CardapioBean  implements Serializable{
 	public void setCardapio(Cardapio cardapio) {
 		this.cardapio = cardapio;
 	}
-
-	public DiasDaSemana[] getFieldsCardapio() {
-		return Cardapio.DiasDaSemana.values();
-	}	
 }

@@ -59,5 +59,17 @@ public class TurmaDAO extends DAO<Turma> {
 				.setParameter("turma", turma)
 				.getResultList();
 	}
+	
+	public Turma buscaTurma(Turma turma) {
+		return (Turma) this.em.createQuery("""
+				select t from Turma t
+				left join fetch t.listMatriculaTurma lt
+				left join fetch lt.usuario u
+				where t = :turma
+				""")
+				.setParameter("turma", turma)
+				.getSingleResult();
+		
+	}
 
 }

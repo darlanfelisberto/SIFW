@@ -1,5 +1,6 @@
 package br.edu.iffar.fw.classBag.db.model;
 
+import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -31,10 +32,10 @@ public class Turma  extends Model<UUID>{
 	@Column(name = "turma_id", unique = true, nullable = false)
 	private UUID turmaId;
 
-	@NotEmpty(message = "Informe o identificador da turma.")
+	@NotNull(message = "Informe o identificador da turma.")
 	private Integer numero;
 
-	@NotEmpty(message = "Informe o ano da turma.")
+	@NotNull(message = "Informe o ano da turma.")
 	private Integer ano;
 	
 	private String descricao;
@@ -111,4 +112,28 @@ public class Turma  extends Model<UUID>{
 		this.curso = curso;
 	}
 	
+	public void addMatricula(Matricula matricula) {
+		if(this.listMatriculaTurma == null) {
+			this.listMatriculaTurma = new HashSet<>();
+		}
+		this.listMatriculaTurma.add(matricula);
+	}
+
+	public void removeMatricula(Matricula matricula) {
+		if(this.listMatriculaTurma != null) {
+			this.listMatriculaTurma.remove(matricula);
+		}
+	}
+	
+	public Turma clone() {
+		Turma novaTurma = new Turma();
+		
+		novaTurma.ano = this.ano + 1;
+		novaTurma.setCurso(this.curso);
+		novaTurma.setListMatriculaTurma(this.listMatriculaTurma);
+		novaTurma.setDescricao(this.descricao);
+		novaTurma.setNumero(this.numero + 10);
+		
+		return novaTurma;
+	}
 }

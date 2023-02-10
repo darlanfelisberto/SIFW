@@ -70,10 +70,10 @@
 			<property name="hibernate.jpa.compliance.query" value="fase" />
 			
 			
-			<!-- -->
+			<!-- - ->
 			<property name="hibernate.cache.use_second_level_cache" value="true" />
             <property name="hibernate.cache.use_query_cache" value="true" />  
-            <!-- -->
+            <!- - -->
 
 			<property name="hibernate.ejb.interceptor" value="br.edu.iffar.fw.classBag.db.HInterceptor" />
 		</properties>

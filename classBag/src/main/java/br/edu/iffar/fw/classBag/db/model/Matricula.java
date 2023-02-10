@@ -57,7 +57,7 @@ public class Matricula extends Model<UUID> implements Serializable,VinculosAtivo
 	@NotNull(message = "Informe o curso.")
 	private Curso curso;
 	
-	@OneToMany(mappedBy="matricula",fetch = FetchType.LAZY,orphanRemoval = true,cascade = CascadeType.ALL)
+	@OneToMany(mappedBy="matricula",fetch = FetchType.LAZY,orphanRemoval = true,cascade = {CascadeType.PERSIST,CascadeType.MERGE,CascadeType.REMOVE})
 	@OrderBy(value = "momento desc")
 	private List<SituacaoMatricula> listSituacaoMatricula;
 	

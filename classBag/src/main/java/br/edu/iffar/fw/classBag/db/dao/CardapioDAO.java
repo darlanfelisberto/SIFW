@@ -8,6 +8,7 @@ import java.util.List;
 import br.edu.iffar.fw.classBag.db.DAO;
 import br.edu.iffar.fw.classBag.db.model.Cardapio;
 import jakarta.enterprise.context.RequestScoped;
+import jakarta.persistence.NoResultException;
 
 @SuppressWarnings("unchecked")
 @RequestScoped
@@ -27,8 +28,7 @@ public class CardapioDAO extends DAO<Cardapio> {
 	}
 	
 	public List<Cardapio> findLastCardapio(){
-		String hql = "from Cardapio c\n"
-				+ "order by c.dtInicio desc";
+		String hql = "from Cardapio c order by c.dtInicio desc";
 		
 		return this.em.createQuery(hql).setMaxResults(5).getResultList();
 	}
@@ -38,8 +38,16 @@ public class CardapioDAO extends DAO<Cardapio> {
 				from Cardapio c
 				order by c.dtInicio desc
 				""";
-		
-		return (Cardapio) this.em.createQuery(hql).setMaxResults(1).getSingleResult();
+		Cardapio c = null;
+		try {
+			c = (Cardapio) this.em.createQuery(hql).setMaxResults(1).getSingleResult();
+		}catch (NoResultException e){
+
+		}catch (Exception e){
+			e.printStackTrace();
+		}
+
+		return c;
 	}
 	
 	public List<Cardapio> listAll(){

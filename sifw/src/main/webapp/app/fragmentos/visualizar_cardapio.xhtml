@@ -2,12 +2,24 @@
 	xmlns:h="jakarta.faces.html"
 	xmlns:f="jakarta.faces.core"
 	xmlns:ui="jakarta.faces.facelets"
+	xmlns:c="jakarta.tags.core"
 	xmlns:p="http://primefaces.org/ui">
 
 	<p:fragment>
+		<p:outputPanel id="otpPreVisualizar" >
+			<c:if test="${cardapio == null}">
+				<div class="ui-messages ui-widget" aria-live="polite">
+					<div class="ui-messages-warn ui-corner-all"><span class="ui-messages-warn-icon"></span>
+						<ul>
+							<li aria-atomic="true"><span
+									class="ui-messages-warn-summary">Nenhum cardapio cadastrado.</span><span
+									class="ui-messages-warn-detail"></span></li>
+						</ul>
+					</div>
+				</div>
 
-		<p:outputPanel id="otpPreVisualizar">
-			<p:panel header="#{cardapio.descricao()}">
+			</c:if>
+			<p:panel header="#{cardapio.descricao()}" rendered="${cardapio != null}">
 				<div class=" grid">
 					<div class="col-12 md:col-4 lg:col-3">
 						<label><b>Segunda:</b></label>

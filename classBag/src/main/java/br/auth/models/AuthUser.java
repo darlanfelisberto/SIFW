@@ -17,7 +17,7 @@ public class AuthUser extends  Model<UUID>{
 
 	@Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    @Column(name = "auth_user_id")
+    @Column(name = "auth_user_id",insertable = true,updatable = false,unique = true)
     private UUID authUserId;
 
     private String username;
@@ -28,6 +28,8 @@ public class AuthUser extends  Model<UUID>{
 
     private boolean inativo;
 
+    private String email;
+
     @ManyToMany
     @JoinTable(
             name ="auth_user_permissao",
@@ -37,7 +39,7 @@ public class AuthUser extends  Model<UUID>{
     )
     private Set<Permissao> setPermissao;
 
-    @OneToOne(fetch = FetchType.LAZY, mappedBy = "authUser")
+    @OneToOne(fetch = FetchType.LAZY, mappedBy = "authUser",optional = false)
     private Usuario usuario;
 
     public UUID getMMId() {
@@ -64,12 +66,15 @@ public class AuthUser extends  Model<UUID>{
         if(password == null || password.trim().isEmpty()){
             return;
         }
-        Pbkdf2Hash pbkd = new Pbkdf2Hash().initialize(Pbkdf2Hash.parametersDefault);
+        Pbkdf2Hash pbkd = new Pbkdf2Hash();
+        if(this.salt == null){
+            this.salt = pbkd.generateSalt();
+        }
         this.password = pbkd.generate(password, this.salt);
     }
 
     public boolean authenticate(String password){
-        Pbkdf2Hash pbkd = new Pbkdf2Hash().initialize(Pbkdf2Hash.parametersDefault);
+        Pbkdf2Hash pbkd = new Pbkdf2Hash();
         return pbkd.verify(this.password,pbkd.generate(password, this.salt));
     }
 
@@ -97,6 +102,7 @@ public class AuthUser extends  Model<UUID>{
 
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
+        this.usuario.setAuthUser(this);
     }
 
     public boolean isInativo() {
@@ -105,5 +111,23 @@ public class AuthUser extends  Model<UUID>{
 
     public void setInativo(boolean inativo) {
         this.inativo = inativo;
+    }
+
+    public static AuthUser gerarNovo(Usuario usuario,Set<Permissao> permissoes){
+        AuthUser au = new AuthUser();
+        au.setUsuario(usuario);
+        au.setUsername(usuario.getCpf());
+        au.setSetPermissao(permissoes);
+        au.setPassword(usuario.getCpf());
+        au.inativo = false;
+        return au;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }

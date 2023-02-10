@@ -12,13 +12,13 @@ echo "";
 cd classBag/ &&
 print 'COMPILANDO' "classbag" &&
 mvn clean install &&
-cd ../comendo/ &&
+cd ../sifw/ &&
 print 'COMPILANDO' "comendo(SIFW)" &&
 mvn clean install &&
 print 'COPIANDO' "comendo(SIFW) para backup" &&
 cp target/sifw.war /home/darlan/backup/war/sifw.war-`date +"%F"` &&
 print 'COPIANDO' "comendo(SIFW) para SERVIDOR" &&
-scp target/sifw.war  darlan@ruproducao.br:/tmp &&
+scp target/sifw.war  darlan@ru.fw.iffarroupilha.edu.br:/tmp &&
 cd /home/darlan/backup/war &&
 ls -la
 
