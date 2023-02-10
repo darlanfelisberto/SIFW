@@ -5,7 +5,7 @@
 	<title>
 		<band height="59" splitType="Stretch">
 			<image>
-				<reportElement x="-2" y="0" width="35" height="35" isPrintWhenDetailOverflows="true" uuid="e29a0e04-334b-4c3a-88ef-941896fcda26">
+				<reportElement x="-2" y="0" width="41" height="41" isPrintWhenDetailOverflows="true" uuid="e29a0e04-334b-4c3a-88ef-941896fcda26">
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
@@ -18,7 +18,7 @@
 				<imageExpression><![CDATA[this.getClass().getResourceAsStream("br/edu/iffar/relatorios/logo_iff.png")]]></imageExpression>
 			</image>
 			<staticText>
-				<reportElement stretchType="RelativeToTallestObject" x="68" y="1" width="330" height="12" isPrintWhenDetailOverflows="true" uuid="5c76c351-8ffa-47c5-8acb-90baaf46dc44">
+				<reportElement stretchType="RelativeToTallestObject" x="68" y="1" width="330" height="14" isPrintWhenDetailOverflows="true" uuid="5c76c351-8ffa-47c5-8acb-90baaf46dc44">
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
@@ -34,7 +34,7 @@
 				<text><![CDATA[MINISTÉRIO DA EDUCAÇÃO]]></text>
 			</staticText>
 			<image>
-				<reportElement x="412" y="0" width="38" height="38" isPrintWhenDetailOverflows="true" uuid="f9191ec7-ec73-429d-88ab-75f08428d384">
+				<reportElement x="410" y="0" width="40" height="42" isPrintWhenDetailOverflows="true" uuid="f9191ec7-ec73-429d-88ab-75f08428d384">
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
@@ -47,7 +47,7 @@
 				<imageExpression><![CDATA[this.getClass().getResourceAsStream("br/edu/iffar/relatorios/brasao_brasil.png")]]></imageExpression>
 			</image>
 			<staticText>
-				<reportElement x="68" y="13" width="330" height="12" uuid="b47a85b0-eb91-47e6-9f2a-83b1ddfd712f">
+				<reportElement x="68" y="13" width="330" height="14" uuid="b47a85b0-eb91-47e6-9f2a-83b1ddfd712f">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
@@ -56,7 +56,7 @@
 				<text><![CDATA[INSTITUTO FEDERAL FARROUPILHA]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="68" y="25" width="330" height="12" uuid="da05f091-58ab-4623-b398-084041f5f9b3">
+				<reportElement x="68" y="25" width="330" height="14" uuid="da05f091-58ab-4623-b398-084041f5f9b3">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
@@ -65,7 +65,7 @@
 				<text><![CDATA[Campus Frederico Westphalen]]></text>
 			</staticText>
 			<textField isBlankWhenNull="true">
-				<reportElement x="68" y="42" width="330" height="15" uuid="ca74fbef-d1b0-4b84-805c-69ffab57b414">
+				<reportElement x="68" y="42" width="330" height="17" uuid="ca74fbef-d1b0-4b84-805c-69ffab57b414">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Center">
