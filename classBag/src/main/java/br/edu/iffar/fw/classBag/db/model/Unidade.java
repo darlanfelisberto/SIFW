@@ -122,7 +122,9 @@ public class Unidade extends Model<UUID> implements TreeNode<Unidade> {
 
 
 	public List<HabitanteUnidade> getListHabitanteUnidade() {
-		listHabitanteUnidade.sort((h1, h2) -> h1.getMatricula().getUsuario().getNome().compareTo(h2.getMatricula().getUsuario().getNome()));
+		if(this.listHabitanteUnidade != null){
+			listHabitanteUnidade.sort((h1, h2) -> h1.getMatricula().getUsuario().getNome().compareTo(h2.getMatricula().getUsuario().getNome()));
+		}
 		return listHabitanteUnidade;
 	}
 

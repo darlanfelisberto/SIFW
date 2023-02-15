@@ -10,9 +10,9 @@ import java.math.BigInteger;
 import java.sql.Date;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
-import java.time.DayOfWeek;
-import java.time.LocalDate;
+import java.time.*;
 import java.time.format.DateTimeFormatter;
+import java.time.temporal.TemporalAccessor;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -93,32 +93,26 @@ public class RelatorioBean implements Serializable{
     public BarChartModel getBarModel() {
 
 
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+		DateTimeFormatter sdf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
     	BarChartModel barModel = new BarChartModel();
         ChartData data = new ChartData();
 
         List<String> labels = new ArrayList<String>();
         
         List<TipoRefeicao> tipo = this.tipoRefeicaoDAO.listAll();
-        
-//        tipo.forEach(tr -> {
-//        	labels.add(tr.getDescricao());
-//        });
+
         boolean datas = true;
         for (TipoRefeicao tipoRefeicao : tipo) {
         	BarChartDataSet barDataSetJanta = new BarChartDataSet();
             barDataSetJanta.setLabel(tipoRefeicao.getDescricao());
             barDataSetJanta.setBackgroundColor(tipoRefeicao.getBackgroundColor());
-//             barDataSetJanta.setBackgroundColor("rgb(0, 0, 0,0.7)");
-            
+
             List<Number> days = new ArrayList<Number>();
             barDataSetJanta.setData(days);
             for (Object[] a : agendamentosDAO.getAgendamentoEmDataPeriodo(this.dtInicio, this.dtFim,tipoRefeicao)) {
-            	
-            	days.add(((BigInteger)a[1]).intValue());
-            	
+            	days.add(((Number)a[1]).intValue());
             	if(datas) {
-            		labels.add(sdf.format((Timestamp)a[0]));
+            		labels.add(sdf.format(((Instant)a[0]).atOffset(ZoneOffset.UTC)));
             	}
      		}
             datas = false;
@@ -130,10 +124,8 @@ public class RelatorioBean implements Serializable{
         barModel.setData(data);
         
 		return barModel;
-
     }
-    
-    
+
 	private Map<String, Object> getMap(){		
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("header", RelatoriosPath.PATH_JAR_JASPER_SUB_HEADER);
@@ -306,14 +298,14 @@ public class RelatorioBean implements Serializable{
 		
 		return map;
 	}
-
-	public void valida() {
-		if(this.dtFim != null && this.dtInicio != null) {
-			if(this.dtFim.isBefore(this.dtInicio)) {
-				this.messagesUtil.addError("Data de fim é maior que a data de Início");
-			}
-		}
-	}
+//
+//	public void valida() {
+//		if(this.dtFim != null && this.dtInicio != null) {
+//			if(this.dtFim.isBefore(this.dtInicio)) {
+//				this.messagesUtil.addError("Data de fim é maior que a data de Início");
+//			}
+//		}
+//	}
 
 	public LocalDate getDtInicio() {
 		return dtInicio;
@@ -360,15 +352,15 @@ public class RelatorioBean implements Serializable{
 		this.grupoRefeicoes = grupoRefeicoes;
 	}
 	
+//
+//	public List<TipoVinculo> getSelecTipoVinculos() {
+//
+//		return selecTipoVinculos;
+//	}
 
-	public List<TipoVinculo> getSelecTipoVinculos() {
-		
-		return selecTipoVinculos;
-	}
-
-	public void setSelecTipoVinculos(List<TipoVinculo> selecTipoVinculos) {
-		this.selecTipoVinculos = selecTipoVinculos;
-	}
+//	public void setSelecTipoVinculos(List<TipoVinculo> selecTipoVinculos) {
+//		this.selecTipoVinculos = selecTipoVinculos;
+//	}
 
 	public TipoRefeicao getTipoRefeicao() {
 		return tipoRefeicao;

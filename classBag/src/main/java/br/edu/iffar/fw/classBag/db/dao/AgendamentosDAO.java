@@ -16,13 +16,14 @@ import br.edu.iffar.fw.classBag.db.model.Usuario;
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.persistence.NoResultException;
 import jakarta.persistence.Query;
+import org.hibernate.Session;
 
 @SuppressWarnings("unchecked")
 @RequestScoped
 public class AgendamentosDAO extends DAO<Agendamento> {
-		
+
 	private static final long serialVersionUID = 22021991L;
-	
+
 	public Agendamento findById(UUID id) {
 		try {
 			Query q = this.em.createQuery("""
@@ -40,7 +41,7 @@ public class AgendamentosDAO extends DAO<Agendamento> {
 
 		
 	public List<Object[]> getAgendamentoEmDataPeriodo(LocalDate dtInicial,LocalDate dtFim,TipoRefeicao tf) {
-		
+
 		Query q = this.em.createNativeQuery("""
 				select dia,	coalesce(
 						(select count(a.agendamento_id)  from agendamentos a
@@ -52,8 +53,8 @@ public class AgendamentosDAO extends DAO<Agendamento> {
 				 ) as foo """)
 		.setParameter("dtInicial", dtInicial)
 		.setParameter("dtFim", dtFim)
-		.setParameter("tipoRefeicao", tf);
-		
+		.setParameter("tipoRefeicao", tf.getMMId());
+
 		return  q.getResultList();
 	}
 	
