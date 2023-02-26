@@ -135,7 +135,7 @@ public class OidcTokenUtil {
         jstClaimsBuilder.claim(LOCALE, "pt-BR");
         jstClaimsBuilder.claim(GIVEN_NAME, authLogin.getAuthUser().getUsuario().getNome());
         jstClaimsBuilder.claim(FAMILY_NAME, authLogin.getAuthUser().getUsuario().getNome());
-        jstClaimsBuilder.claim(EMAIL, authLogin.getAuthUser().getUsuario().getEmail());
+        jstClaimsBuilder.claim(EMAIL, authLogin.getAuthUser().getEmail());
 
         JWSSigner signer = null;
         SignedJWT signedJWT = null;

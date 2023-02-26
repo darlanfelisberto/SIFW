@@ -54,8 +54,12 @@ public class AuthUser extends  Model<UUID>{
         return username;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setUsername(String userName) {
+        if(userName != null) {
+            this.username = userName.replaceAll("[^0-9a-zA-Z]", "");
+        } else {
+            this.username = userName;
+        }
     }
 
     public String getPassword() {
@@ -113,7 +117,7 @@ public class AuthUser extends  Model<UUID>{
         this.inativo = inativo;
     }
 
-    public static AuthUser gerarNovo(Usuario usuario,Set<Permissao> permissoes){
+    public static AuthUser  createNew(Usuario usuario,Set<Permissao> permissoes){
         AuthUser au = new AuthUser();
         au.setUsuario(usuario);
         au.setUsername(usuario.getCpf());

@@ -61,14 +61,6 @@ public class APIUsuario extends Model<UUID> {
         return this.usuarioId;
     }
 
-    public Usuario converteForUsuario() {
-        Usuario u = new Usuario();
-        u.setCpf(this.cpf);
-        u.setIdUsuario(this.getUsuarioId());
-        u.setUserName(this.username);
-        return u;
-    }
-
     public UUID getUsuarioId() {
         return usuarioId;
     }

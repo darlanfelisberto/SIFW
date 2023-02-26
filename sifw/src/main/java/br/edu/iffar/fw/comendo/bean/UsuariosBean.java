@@ -16,6 +16,7 @@ import br.auth.dao.AuthUserDAO;
 import br.auth.dao.PermissaoDAO;
 import br.auth.models.AuthUser;
 import br.auth.models.Permissao;
+import jakarta.transaction.*;
 import org.primefaces.event.CaptureEvent;
 import org.primefaces.event.FileUploadEvent;
 import org.primefaces.model.DualListModel;
@@ -37,7 +38,6 @@ import jakarta.faces.model.SelectItem;
 import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
-import jakarta.transaction.RollbackException;
 
 @Named
 @ViewScoped
@@ -52,6 +52,9 @@ public class UsuariosBean implements Serializable, BreadCrumbControl{
 	@Inject private CarteirinhaUtil carteirinhaUtil;
 	@Inject private PermissaoDAO permissaoDAO;
 	@Inject private AuthUserDAO authUserDAO;
+
+	@Inject
+	private UserTransaction transaction;
 
 	private List<Usuario> listUsuarios;
 
@@ -166,34 +169,37 @@ public class UsuariosBean implements Serializable, BreadCrumbControl{
 	}
 
 	public void carregaDadosUserNecessario() {
-		this.listModelPermissaoes = new DualListModel<Permissao>(new ArrayList<Permissao>(), new ArrayList<Permissao>());
 		this.imagen = this.imagenDAO.findByUsuarioIfNullPattern(this.userSel);
 		this.userSel.setAuthUser(this.authUserDAO.findAuthUser(this.userSel));
+		carregaPermissoesDisponiveis();
+		this.telaDadosUsuario();
+	}
+
+	private void carregaPermissoesDisponiveis(){
+		this.listModelPermissaoes = new DualListModel<Permissao>(new ArrayList<Permissao>(), new ArrayList<Permissao>());
 		this.listModelPermissaoes.setTarget((this.userSel.getAuthUser().getSetPermissao() != null ? this.userSel.getAuthUser().getSetPermissao().stream().toList():new ArrayList<Permissao>()));
 
-//			permissoes que o usuario que esta logado no momento possui, são as que ele pode mudar nos demais usuarios
+		//permissoes que o usuario que esta logado no momento possui, são as que ele pode mudar nos demais usuarios
 		AuthUser u = this.authUserDAO.findAuthUser(this.usuariosDAO.getUsuarioLogado());
 		this.listModelPermissaoes.setSource((u.getSetPermissao() != null ? u.getSetPermissao().stream().toList():new ArrayList<Permissao>()));
-		this.telaDadosUsuario();
 	}
 
 	public void novoUsuario() {
-		this.userSel = new Usuario();
-		this.userSel.setTokenRU(UUID.randomUUID().toString());
-
-		this.carregaDadosUserNecessario();
-
+		this.userSel = Usuario.createNew();
+		carregaPermissoesDisponiveis();
 		this.telaDadosUsuario();
 		this.breadCrumb.setAtivo(4);
 	}
-    
+
     public void salvarUser() {
+		//TODO refactory
     	try {
 			this.userSel.getAuthUser().getSetPermissao().clear();
 			this.userSel.getAuthUser().getSetPermissao().addAll(listModelPermissaoes.getTarget());
 
-			if(this.userSel.isNovoUsuario()) {
-				if(this.usuariosDAO.findByUserName(this.userSel.getUserName()) != null) {
+			transaction.begin();
+			if(this.userSel.isNovo()) {
+				if(this.usuariosDAO.findByUserName(this.userSel.getAuthUser().getUsername()) != null) {
 					this.messages.addError("Username já existe!");
 					return;
 				}
@@ -202,12 +208,14 @@ public class UsuariosBean implements Serializable, BreadCrumbControl{
 					this.messages.addError("CPF já existe!");
 					return;
 				}
-				this.authUserDAO.persistT(this.userSel.getAuthUser());
-				this.usuariosDAO.persistT(this.userSel);
+				this.authUserDAO.persist(this.userSel.getAuthUser());
+				this.usuariosDAO.persist(this.userSel);
 			}else{
-				this.authUserDAO.updateT(this.userSel.getAuthUser());
-				this.usuariosDAO.updateT(this.userSel);
+				this.authUserDAO.update(this.userSel.getAuthUser());
+				this.usuariosDAO.update(this.userSel);
 			}
+
+			transaction.commit();
 
 			if(this.capturouImage) {
 				this.imagenDAO.substituiImagen(this.imagen);
@@ -217,14 +225,18 @@ public class UsuariosBean implements Serializable, BreadCrumbControl{
 			}
 			this.telaFiltroBusca();
 			this.messages.addSuccess("Informações do usuário foram salvas com sucesso.");
-		} catch (RollbackException e) {
-			this.messages.addError(e);
-		} catch (IOException e) {
+		}  catch (IOException e) {
+			e.printStackTrace();
+			this.messages.addError("Erro ao escrever mudanças na imagem do usuário.");
+		}  catch (Exception e) {
 			e.printStackTrace();
 			this.messages.addError("Não foi possivel salvar os dados do usuário.");
-			this.messages.addError("Erro ao escrever mudanças na imagem do usuário.");
+			try {
+				this.transaction.rollback();
+			} catch (SystemException ex) {
+			}
 		}
-    }
+	}
         
 	public StreamedContent gerarCarterinhaQRCode(boolean nova) {
 		return this.carteirinhaUtil.gerarCarterinhaQRCode(nova, this.userSel);

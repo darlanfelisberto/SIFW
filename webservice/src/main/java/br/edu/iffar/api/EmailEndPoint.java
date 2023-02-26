@@ -55,7 +55,7 @@ public class EmailEndPoint implements Serializable{
 		try{
             MimeMessage m = new MimeMessage(mailSession);
             Address from = new InternetAddress("darlan.felisberto@iffarroupilha.edu.br");
-            Address[] to = new InternetAddress[] {new InternetAddress(user.getEmail()) };
+            Address[] to = new InternetAddress[] {new InternetAddress(user.getAuthUser().getEmail()) };
             m.setFrom(from);
             m.setRecipients(Message.RecipientType.TO, to);
             m.setSubject("WildFly Mail");

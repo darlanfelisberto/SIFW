@@ -33,10 +33,6 @@ public class HeaderBean implements Serializable {
 	public void init() {
 		this.user = this.usuariosDAO.getUsuarioLogado();
 		this.imagen = this.imagenDAO.findByUsuarioIfNullPattern(getUsuarioLogado());
-		
-		if (this.imagen == null) {
-			this.imagen = Imagen.SEMIMAGEN;
-		}
 	}
 	
 	public Usuario getUsuarioLogado() {

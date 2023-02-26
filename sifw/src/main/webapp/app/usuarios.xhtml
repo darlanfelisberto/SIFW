@@ -93,10 +93,6 @@
 					 				<p:inputText id="iptName" value="#{usuariosBean.userSel.nome}"></p:inputText>
 					 			</div>
 					 			<div class="field col-12 md:col-6">
-					 				<label for="iptEmail">E-mail:</label>
-					 				<p:inputText id="iptEmail" value="#{usuariosBean.userSel.email}"/>
-					 			</div>	
-					 			<div class="field col-12 md:col-6">
 					 				<label for="iptCpf">CPF:</label>
 					 				<p:inputText id="iptCpf" value="#{usuariosBean.userSel.cpf}"/>
 					 			</div>			 			
@@ -192,11 +188,15 @@
 								</div>
 								<div class="field col-12 md:col-6">
 									<label class="w-full">Inativo:</label>
-									<p:selectBooleanCheckbox value="#{usuariosBean.userSel.authUser.inativo}"/>
+									<p:toggleSwitch value="#{usuariosBean.userSel.authUser.inativo}" />
 								</div>
 								<div class="field col-12 md:col-6">
 									<label><abbr title="Utiliza o algoritimo PBKDF2WithHmacSHA256">Senha:</abbr> </label>
 									<p:password value="#{usuariosBean.userSel.authUser.password}"/>
+								</div>
+								<div class="field col-12 md:col-6">
+									<label for="iptEmail">E-mail:</label>
+									<p:inputText id="iptEmail" value="#{usuariosBean.userSel.authUser.email}"/>
 								</div>
 							</div>
 							<h4>Permissões de acesso</h4>

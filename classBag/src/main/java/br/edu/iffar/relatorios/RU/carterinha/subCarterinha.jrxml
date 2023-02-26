@@ -16,11 +16,14 @@
 	</parameter>
 	<queryString language="SQL">
 		<![CDATA[select
- u.*
-,coalesce( i.file_name,'semfoto') AS file_name
+ u.*,
+ au.username,
+ au.email,
+coalesce( i.file_name,'semfoto') AS file_name
 ,foo.matricula_id
 ,s.servidor_id 
  from usuarios u
+ left join auth.auth_user au on au.auth_user_id = u.auth_user_id
 left outer  join (
 	select m2.matricula_id, m2.usuario_id, m2.curso_id from  matricula m2
 	inner join situacao_matricula sm2 on sm2.matricula_id = m2.matricula_id 
@@ -50,11 +53,6 @@ order by c.nome,u.nome]]>
 		<property name="com.jaspersoft.studio.field.label" value="dt_nasc"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="usuarios"/>
 	</field>
-	<field name="email" class="java.lang.String">
-		<property name="com.jaspersoft.studio.field.name" value="email"/>
-		<property name="com.jaspersoft.studio.field.label" value="email"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="usuarios"/>
-	</field>
 	<field name="nome" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.name" value="nome"/>
 		<property name="com.jaspersoft.studio.field.label" value="nome"/>
@@ -65,10 +63,20 @@ order by c.nome,u.nome]]>
 		<property name="com.jaspersoft.studio.field.label" value="token_ru"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="usuarios"/>
 	</field>
+	<field name="auth_user_id" class="java.util.UUID">
+		<property name="com.jaspersoft.studio.field.name" value="auth_user_id"/>
+		<property name="com.jaspersoft.studio.field.label" value="auth_user_id"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="usuarios"/>
+	</field>
 	<field name="username" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.name" value="username"/>
 		<property name="com.jaspersoft.studio.field.label" value="username"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="usuarios"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="auth_user"/>
+	</field>
+	<field name="email" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="email"/>
+		<property name="com.jaspersoft.studio.field.label" value="email"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="auth_user"/>
 	</field>
 	<field name="file_name" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.name" value="file_name"/>

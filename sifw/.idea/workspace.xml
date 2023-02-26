@@ -10,33 +10,40 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="08207d44-b3d4-4d79-ae36-a51c5793c659" name="Changes" comment="gerenciamento de usuarios esta operacional">
+    <list default="true" id="08207d44-b3d4-4d79-ae36-a51c5793c659" name="Changes" comment="commit arrumação na tela do grafico de agendamentos">
       <change beforePath="$PROJECT_DIR$/../classBag/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../classBag/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../classBag/src/main/java/br/auth/models/AuthUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/../classBag/src/main/java/br/auth/models/AuthUser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../classBag/src/main/java/br/auth/oidc/Pbkdf2Hash.java" beforeDir="false" afterPath="$PROJECT_DIR$/../classBag/src/main/java/br/auth/oidc/Pbkdf2Hash.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../classBag/src/main/java/br/auth/oidc/OidcTokenUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/../classBag/src/main/java/br/auth/oidc/OidcTokenUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../classBag/src/main/java/br/edu/iffar/fw/classBag/db/dao/AgendamentosDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/../classBag/src/main/java/br/edu/iffar/fw/classBag/db/dao/AgendamentosDAO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../classBag/src/main/java/br/edu/iffar/fw/classBag/db/dao/BackgroudDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/../classBag/src/main/java/br/edu/iffar/fw/classBag/db/dao/BackgroudDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../classBag/src/main/java/br/edu/iffar/fw/classBag/db/dao/CardapioDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/../classBag/src/main/java/br/edu/iffar/fw/classBag/db/dao/CardapioDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../classBag/src/main/java/br/edu/iffar/fw/classBag/db/dao/TurmaDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/../classBag/src/main/java/br/edu/iffar/fw/classBag/db/dao/TurmaDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../classBag/src/main/java/br/edu/iffar/fw/classBag/db/model/Matricula.java" beforeDir="false" afterPath="$PROJECT_DIR$/../classBag/src/main/java/br/edu/iffar/fw/classBag/db/model/Matricula.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../classBag/src/main/java/br/edu/iffar/fw/classBag/db/model/Turma.java" beforeDir="false" afterPath="$PROJECT_DIR$/../classBag/src/main/java/br/edu/iffar/fw/classBag/db/model/Turma.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../classBag/src/main/java/br/edu/iffar/fw/classBag/db/dao/ImagenDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/../classBag/src/main/java/br/edu/iffar/fw/classBag/db/dao/ImagenDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../classBag/src/main/java/br/edu/iffar/fw/classBag/db/dao/UsuariosDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/../classBag/src/main/java/br/edu/iffar/fw/classBag/db/dao/UsuariosDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../classBag/src/main/java/br/edu/iffar/fw/classBag/db/model/Log.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../classBag/src/main/java/br/edu/iffar/fw/classBag/db/model/Usuario.java" beforeDir="false" afterPath="$PROJECT_DIR$/../classBag/src/main/java/br/edu/iffar/fw/classBag/db/model/Usuario.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../classBag/src/main/java/br/edu/iffar/fw/classBag/db/model/api/APIUsuario.java" beforeDir="false" afterPath="$PROJECT_DIR$/../classBag/src/main/java/br/edu/iffar/fw/classBag/db/model/api/APIUsuario.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../classBag/src/main/java/br/edu/iffar/fw/classBag/db/model/log/Log.java" beforeDir="false" afterPath="$PROJECT_DIR$/../classBag/src/main/java/br/edu/iffar/fw/classBag/db/model/log/Log.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../classBag/src/main/java/br/edu/iffar/fw/classBag/db/model/log/LogLeitura.java" beforeDir="false" afterPath="$PROJECT_DIR$/../classBag/src/main/java/br/edu/iffar/fw/classBag/db/model/log/LogLeitura.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../classBag/src/main/java/br/edu/iffar/relatorios/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../classBag/src/main/java/br/edu/iffar/relatorios/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../classBag/src/main/java/br/edu/iffar/relatorios/RU/admin/movimentacoes_diarias.jrxml" beforeDir="false" afterPath="$PROJECT_DIR$/../classBag/src/main/java/br/edu/iffar/relatorios/RU/admin/movimentacoes_diarias.jrxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../classBag/src/main/java/br/edu/iffar/relatorios/RU/carterinha/subCarterinha.jasper" beforeDir="false" afterPath="$PROJECT_DIR$/../classBag/src/main/java/br/edu/iffar/relatorios/RU/carterinha/subCarterinha.jasper" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../classBag/src/main/java/br/edu/iffar/relatorios/RU/carterinha/subCarterinha.jrxml" beforeDir="false" afterPath="$PROJECT_DIR$/../classBag/src/main/java/br/edu/iffar/relatorios/RU/carterinha/subCarterinha.jrxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../classBag/src/main/resources/META-INF/persistence.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../classBag/src/main/resources/META-INF/persistence.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../compila.sh" beforeDir="false" afterPath="$PROJECT_DIR$/../compila.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.settings/org.eclipse.wst.common.component" beforeDir="false" afterPath="$PROJECT_DIR$/.settings/org.eclipse.wst.common.component" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/edu/iffar/fw/comendo/api/API_SaldoUsuario.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/edu/iffar/fw/comendo/api/RestAPI.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/br/edu/iffar/fw/comendo/bean/BackgroundUserCreate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/edu/iffar/fw/comendo/bean/BackgroundUserCreate.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/edu/iffar/fw/comendo/bean/CardapioBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/edu/iffar/fw/comendo/bean/CardapioBean.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/edu/iffar/fw/comendo/bean/ImportarUsuariosBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/edu/iffar/fw/comendo/bean/ImportarUsuariosBean.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/edu/iffar/fw/comendo/bean/CatracaBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/edu/iffar/fw/comendo/bean/CatracaBean.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/edu/iffar/fw/comendo/bean/CreditosBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/edu/iffar/fw/comendo/bean/CreditosBean.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/edu/iffar/fw/comendo/bean/HeaderBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/edu/iffar/fw/comendo/bean/HeaderBean.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/br/edu/iffar/fw/comendo/bean/UsuariosBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/edu/iffar/fw/comendo/bean/UsuariosBean.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/app/fragmentos/visualizar_cardapio.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/app/fragmentos/visualizar_cardapio.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/app/importar_usuarios.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/app/importar_usuarios.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/app/nav.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/app/nav.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/app/visu_aluno_turma.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/app/visu_aluno_turma.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/public/_template.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/public/_template.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/css/main_.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/resources/css/main_.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/sass/main_.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/resources/sass/main_.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../webservice/src/main/java/br/auth/oidc/OidcCoreEndPointBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/../webservice/src/main/java/br/auth/oidc/OidcCoreEndPointBean.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/edu/iffar/fw/comendo/bean/fragment/SaldoUserFrament.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/edu/iffar/fw/comendo/bean/fragment/SaldoUserFrament.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/app/header.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/app/header.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/app/perfil.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/app/perfil.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/app/usuarios.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/app/usuarios.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webservice/src/main/java/br/edu/iffar/api/EmailEndPoint.java" beforeDir="false" afterPath="$PROJECT_DIR$/../webservice/src/main/java/br/edu/iffar/api/EmailEndPoint.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,6 +52,13 @@
   </component>
   <component name="CompilerWorkspaceConfiguration">
     <option name="MAKE_PROJECT_ON_SAVE" value="true" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Record" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
@@ -97,7 +111,7 @@
     &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
     &quot;settings.build.tools.auto.reload&quot;: &quot;ALL&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;database.query.execution&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;Errors&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
   &quot;keyToStringList&quot;: {
@@ -110,6 +124,9 @@
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="br.auth.dao" />
     </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="openRunningConfigInTab" value="true" />
   </component>
   <component name="RunManager">
     <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
@@ -188,7 +205,6 @@
         </SHUTDOWN>
       </ConfigurationWrapper>
       <method v="2">
-        <option name="Make" enabled="true" />
         <option name="BuildArtifacts" enabled="true">
           <artifact name="sifw:war exploded" />
           <artifact name="service:war exploded" />
@@ -303,7 +319,17 @@
       <workItem from="1675877115261" duration="1062000" />
       <workItem from="1675878231549" duration="972000" />
       <workItem from="1676040114919" duration="3713000" />
-      <workItem from="1676046438511" duration="7548000" />
+      <workItem from="1676046438511" duration="10092000" />
+      <workItem from="1676253167692" duration="12000" />
+      <workItem from="1676465280912" duration="12764000" />
+      <workItem from="1676540747912" duration="16453000" />
+      <workItem from="1676831229697" duration="1137000" />
+      <workItem from="1676842585675" duration="8000" />
+      <workItem from="1677000815406" duration="2119000" />
+      <workItem from="1677020710466" duration="5000" />
+      <workItem from="1677083963652" duration="2162000" />
+      <workItem from="1677094220059" duration="2832000" />
+      <workItem from="1677367537004" duration="600000" />
     </task>
     <task id="LOCAL-00001" summary="usando o intelj">
       <created>1674044329278</created>
@@ -340,7 +366,28 @@
       <option name="project" value="LOCAL" />
       <updated>1674161691198</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="commit migração openid e cadastros e mudança de alunos das turmas">
+      <created>1676052448832</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1676052448832</updated>
+    </task>
+    <task id="LOCAL-00007" summary="commit correção espaçamento fields relatorios jasper">
+      <created>1676054234558</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1676054234558</updated>
+    </task>
+    <task id="LOCAL-00008" summary="commit arrumação na tela do grafico de agendamentos">
+      <created>1676490146483</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1676490146483</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -361,7 +408,10 @@
     <MESSAGE value="usando o intelj" />
     <MESSAGE value="to jpa3 uuid in auth scheme" />
     <MESSAGE value="gerenciamento de usuarios esta operacional" />
-    <option name="LAST_COMMIT_MESSAGE" value="gerenciamento de usuarios esta operacional" />
+    <MESSAGE value="commit migração openid e cadastros e mudança de alunos das turmas" />
+    <MESSAGE value="commit correção espaçamento fields relatorios jasper" />
+    <MESSAGE value="commit arrumação na tela do grafico de agendamentos" />
+    <option name="LAST_COMMIT_MESSAGE" value="commit arrumação na tela do grafico de agendamentos" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -373,7 +423,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/br/edu/iffar/fw/comendo/bean/BackgroundUserCreate.java</url>
-          <line>147</line>
+          <line>145</line>
           <option name="timeStamp" value="17" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
@@ -388,8 +438,13 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/br/edu/iffar/fw/comendo/bean/UsuariosBean.java</url>
-          <line>171</line>
+          <line>172</line>
           <option name="timeStamp" value="25" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/br/edu/iffar/fw/comendo/bean/UsuariosBean.java</url>
+          <line>196</line>
+          <option name="timeStamp" value="27" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

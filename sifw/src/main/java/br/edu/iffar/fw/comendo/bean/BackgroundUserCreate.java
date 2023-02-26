@@ -88,9 +88,9 @@ public class BackgroundUserCreate implements Runnable{
 
 				try {
 					this.backDAO.createUser(usuario, matricula);
-					this.saidaSucess("Usuário " + usuario.getUserName() + " criado com sucesso.");
+					this.saidaSucess("Usuário " + usuario.getCpf() + " criado com sucesso.");
 				} catch (Exception e) {
-					this.saidaErro("Ocorreu um problema com o usuário: " + usuario.getUserName() + "." + e.getMessage());
+					this.saidaErro("Ocorreu um problema com o usuário: " + usuario.getCpf() + "." + e.getMessage());
 					e.printStackTrace();
 				}
 			}
@@ -101,7 +101,7 @@ public class BackgroundUserCreate implements Runnable{
 						mat.getUsuario().getAuthUser().setInativo(true);
 						this.backDAO.updateT(mat.getUsuario().getAuthUser());
 						this.backDAO.persistT(new SituacaoMatricula(TypeSituacao.INATIVA, momento, mat));
-						this.saidaInfo("Lançando situação: " + TypeSituacao.INATIVA.getDesc() + " para a matrícula: "+mat.getIdMatricula() + " para o usuário:"+mat.getUsuario().getUserName());
+						this.saidaInfo("Lançando situação: " + TypeSituacao.INATIVA.getDesc() + " para a matrícula: "+mat.getIdMatricula() + " para o usuário:"+mat.getUsuario().getCpf());
 					} catch (RollbackException e) {
 						e.printStackTrace();
 						this.saidaErro("Erro ao Lançar situacão Inativa para o aluno: " + mat.getUsuario().getCpf()+"  --  "+e.getMessage());
@@ -121,14 +121,13 @@ public class BackgroundUserCreate implements Runnable{
 		if(u == null) {
 			u = new Usuario();
 			u.setCpf(record.get(1).trim().replace(".", "").replace("-", ""));
-			u.setUserName(u.getCpf());
 			u.setTokenRU(UUID.randomUUID().toString());
 		}else {
-			this.saidaInfo("Usuário "+u.getUserName()+" já existe na base.");
+			this.saidaInfo("Usuário "+u.getCpf()+" já existe na base.");
 		}
 
 		if(u.getAuthUser() == null){
-			AuthUser.gerarNovo(u,roles);
+			AuthUser.createNew(u,roles);
 		}else{
 			u.getAuthUser().getSetPermissao().addAll(roles);
 		}
@@ -137,7 +136,6 @@ public class BackgroundUserCreate implements Runnable{
 		u.setNome(this.getNomePadrao((record.get(3).trim().length() > 0 ? record.get(3) : record.get(4))));
 
 		//TODO ver questao do email
-		u.setEmail(record.get(5).trim().toLowerCase());
 		u.getAuthUser().setEmail(record.get(5).trim().toLowerCase());
 		u.setDtnasc(LocalDate.parse(record.get(9).trim(), DateTimeFormatter.ofPattern("dd/MM/yyyy")));
 		return u;

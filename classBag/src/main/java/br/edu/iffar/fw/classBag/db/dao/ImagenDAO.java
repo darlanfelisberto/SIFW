@@ -40,21 +40,6 @@ public class ImagenDAO extends DAO<Imagen> {
 		}
 		return null;
 	}
-	
-	public Imagen findImagenbyUsername(String username) {
-		try {
-			Query q = this.em.createQuery("""
-					select i from Imagen i
-					left join fetch i.usuario u
-					where u.userName = :username
-					""").setParameter("username", username);
-			return (Imagen) q.getSingleResult();
-		}
-		catch (NoResultException e) {
-
-		}
-		return null;
-	}
 
 	private static final long serialVersionUID = 22021991L;
 

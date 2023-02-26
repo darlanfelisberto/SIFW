@@ -112,7 +112,7 @@ public class CatracaBean implements Serializable{
 			this.usuario = this.usuariosDAO.findUsuarioByToken(info[1]);
 			this.tokenRu = true;
 		}else {
-			this.usuario = this.usuariosDAO.getUsuarioByUserName(token);
+			this.usuario = this.usuariosDAO.getUsuarioByCPF(token);
 			this.tokenRu = false;
 		}
 		

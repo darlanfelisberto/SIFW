@@ -31,22 +31,18 @@ public class UsuariosDAO extends DAO<Usuario> {
 		List<Usuario> u = this.em.createQuery("from Usuario u order by unaccent(u.nome) asc").getResultList();
 		return u;
 	}
-	
-	public Usuario findById(UUID usuarioId) {
-		try {
-			return (Usuario) this.em.createQuery("from Usuario u where u.usuarioId = :usuarioId").setParameter("usuarioId", usuarioId).getSingleResult();
-		} catch (NoResultException  e) {
-			return null;
-		}catch (NonUniqueResultException e) {
-			e.printStackTrace();
-			return null;
-		}	
-	}
-	
+
 	public Usuario findByUserName(String userName) {
 		try {
-			return (Usuario) this.em.createQuery("from Usuario u where u.userName = :userName").setParameter("userName", userName).getSingleResult();
+			return (Usuario) this.em.createQuery("""
+  				from Usuario u 
+  				left join fetch u.authUser au
+  				where au.username = :username
+			""")
+			.setParameter("username", userName)
+			.getSingleResult();
 		} catch (NoResultException e) {
+			System.out.println("Usuario logado, NoResultException.");
 			return null;
 		} catch (NonUniqueResultException e) {
 			e.printStackTrace();
@@ -75,23 +71,22 @@ public class UsuariosDAO extends DAO<Usuario> {
 		try {
 			return (Usuario) this.em.createQuery("from Usuario u where u.cpf = :cpf").setParameter("cpf", cpf.trim()).getSingleResult();
 		} catch (NoResultException e) {
+			System.out.println("Usuario logado, NoResultException.");
 		}
 		return null;
 	}
-	
-	
-	public Usuario getUsuarioByEmail(String email) {
-		return (Usuario) this.em.createQuery("from Usuario u where u.email = :email").setParameter("email", email).getSingleResult();
-	}
-	
+
 	public Usuario getUsuarioByUserName(String userName) {
 		try {
 			return (Usuario) this.em.createQuery("""
-					select u from Usuario u where u.userName = :userName
+					select u from Usuario u 
+					left join fetch u.authUser au
+					where au.username = :userName
 					""")
 					.setParameter("userName", userName)
 					.getSingleResult();
 		} catch (NoResultException e) {
+			System.out.println("Usuario logado, NoResultException.");
 		}
 		return null;
 	}
@@ -104,6 +99,7 @@ public class UsuariosDAO extends DAO<Usuario> {
 					.setParameter("token", token)
 					.getSingleResult();
 		} catch (NoResultException e) {
+			System.out.println("Usuario logado, NoResultException.");
 		}
 		return null;
 	}
@@ -114,7 +110,11 @@ public class UsuariosDAO extends DAO<Usuario> {
 				return null;
 			}
 			
-			this.usuarioLogado = (Usuario) this.em.createQuery("select u from Usuario u where u.userName = :userName")
+			this.usuarioLogado = (Usuario) this.em.createQuery("""
+						select u from Usuario u 
+						left join fetch u.authUser au
+						where au.username = :userName
+					""")
 					.setParameter("userName", oidcSecurityContext.getIDToken().getPreferredUsername())
 					.getSingleResult();
 		} catch (NoResultException e) {
@@ -146,6 +146,7 @@ public class UsuariosDAO extends DAO<Usuario> {
 					group by c.usuario_id
 			""" ,Saldo.class).setParameter("user", u.getMMId()).getSingleResult();
 		} catch (NoResultException e) {
+			System.out.println("Usuario logado, NoResultException.");
 			return new Saldo();
 		}
 	}

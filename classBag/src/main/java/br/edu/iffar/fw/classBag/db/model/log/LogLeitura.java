@@ -3,6 +3,7 @@ package br.edu.iffar.fw.classBag.db.model.log;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
+import br.edu.iffar.fw.classBag.db.Model;
 import br.edu.iffar.fw.classBag.db.model.Usuario;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -13,7 +14,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "leituras",schema = "log")
-public class LogLeitura extends Log{
+public class LogLeitura extends Model<UUID> {
 
 	private static final long serialVersionUID = 1L;
 

@@ -22,7 +22,7 @@
 		<class>br.edu.iffar.fw.classBag.db.model.Imagen</class>
 		<class>br.edu.iffar.fw.classBag.db.model.ItemUnidade</class>
 		<class>br.edu.iffar.fw.classBag.db.model.HabitanteUnidade</class>
-		<class>br.edu.iffar.fw.classBag.db.model.Log</class>
+		<class>br.edu.iffar.fw.classBag.db.model.log.Log</class>
 		<class>br.edu.iffar.fw.classBag.db.model.Matricula</class>
 		<class>br.edu.iffar.fw.classBag.db.model.Parametros</class>
 		<class>br.edu.iffar.fw.classBag.db.model.Refeicao</class>

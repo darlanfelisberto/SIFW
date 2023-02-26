@@ -9,6 +9,8 @@ import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 
+import br.auth.models.Permissao;
+import jakarta.persistence.*;
 import org.primefaces.model.charts.pie.PieChartModel;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
@@ -20,15 +22,6 @@ import br.edu.iffar.fw.classBag.enun.TypeCredito;
 import br.edu.iffar.fw.classBag.enun.TypeSituacao;
 import br.edu.iffar.fw.classBag.util.JsonDateDeserializer;
 import br.edu.iffar.fw.classBag.util.JsonLocalDateSerializer;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.OneToOne;
-import jakarta.persistence.OrderBy;
-import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import jakarta.xml.bind.annotation.XmlTransient;
@@ -42,18 +35,10 @@ public class Usuario extends Model<UUID> implements Serializable {
 	@Column(name="usuario_id")
 	private UUID usuarioId;
 
-	@Column(name="username")
-	@NotEmpty(message = "Informe o username.")
-	private String userName;
-	
 	@Column(name="nome")
 	@NotNull(message = "Informe o nome do usuario.")
 	private String nome;
-	
-	@Column(name = "email")
-	@NotNull(message = "Informe o email.")
-	private String email;
-	
+
 	@JsonDeserialize(using = JsonDateDeserializer.class)
 	@JsonSerialize(using = JsonLocalDateSerializer.class)
 	@Column(name = "dt_nasc")
@@ -82,8 +67,10 @@ public class Usuario extends Model<UUID> implements Serializable {
 	@JoinColumn(name = "auth_user_id")
 	@OneToOne(fetch = FetchType.LAZY)
 	private AuthUser authUser;
-	
-		
+
+	@Transient
+	private boolean novo;
+
 	public String getTokenRU() {
 		return tokenRU;
 	}
@@ -132,18 +119,6 @@ public class Usuario extends Model<UUID> implements Serializable {
 		return this.usuarioId;
 	}
 
-	public String getUserName() {
-		return userName;
-	}
-
-	public void setUserName(String userName) {
-		if(userName != null) {
-			this.userName = userName.replaceAll("[^0-9]", "");
-		} else {
-			this.userName = userName;
-		}
-	}
-	
 	public String labelIniciais() {
 		String[] nome = this.nome.split(" ");
 		StringBuilder iniciais = new StringBuilder();
@@ -168,14 +143,6 @@ public class Usuario extends Model<UUID> implements Serializable {
 		}
 		// esse trim remove o espaço colocado no for
 		this.nome = s.toString().trim();;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
 	}
 
 	public String getCpf() {
@@ -224,8 +191,8 @@ public class Usuario extends Model<UUID> implements Serializable {
 		return listMatricula;
 	}
 	
-	public boolean isNovoUsuario() {
-		return this.getMMId() == null;
+	public boolean isNovo() {
+		return this.novo;
 	}
 
 	public void setListMatricula(List<Matricula> listMatricula) {
@@ -297,5 +264,15 @@ public class Usuario extends Model<UUID> implements Serializable {
 
 	public void setAuthUser(AuthUser authUser) {
 		this.authUser = authUser;
-	}	
+		//cuidado com o loop dentro dos set
+	}
+
+	public static Usuario createNew(){
+		Usuario u = new Usuario();
+		u.novo = true;
+		u.setIdUsuario(UUID.randomUUID());
+		u.setTokenRU(UUID.randomUUID().toString());
+		u.setAuthUser(AuthUser.createNew(u, new HashSet<Permissao>()));
+		return u;
+	}
 }

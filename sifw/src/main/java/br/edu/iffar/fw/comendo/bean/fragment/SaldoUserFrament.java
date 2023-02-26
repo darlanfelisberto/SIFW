@@ -69,15 +69,10 @@ public class SaldoUserFrament implements Serializable{
 		
 		this.selectTab(0,hoje.getMonthValue(),hoje.getYear());
 		
-		
 		for (int i = 0; i < 12; ++i) {
 			String mes = hoje.getMonth().getDisplayName(TextStyle.SHORT, portugese);
 			String title = mes.substring(0,1).toUpperCase().concat(mes.substring(1, 3)) +(hoje.getYear() == anoAtual?"":"/"+String.valueOf(hoje.getYear()).substring(2,4));
-			
-			
 
-//			String title = hoje.getMonth().getValue()+"/"+hoje.getYear();
-			
 			MenuItem m = DefaultMenuItem.builder()
 					.value(title)
 //					.command("#{bean[saldoUserF][selectTabc]}")
@@ -159,7 +154,7 @@ public class SaldoUserFrament implements Serializable{
 	public void setActiveIndexLabel(String activeIndexLabel) {
 		this.activeIndexLabel = activeIndexLabel;
 	}
-	
+
 	public boolean isRenSemInfo(){
 		return (this.listCreditos == null || this.listCreditos.isEmpty());
 	}

@@ -33,7 +33,6 @@ public class CreditosBean implements Serializable,BreadCrumbControl {
 
 	@PostConstruct
 	private void init() {
-//		this.createBreadCrumb();
 		this.user = this.headerBean.getUsuarioLogado();
 		this.saldoUserF.init(user,"creditosBean.saldoUserF");		
 	}
@@ -45,31 +44,6 @@ public class CreditosBean implements Serializable,BreadCrumbControl {
 			;
 		this.breadCrumb.setAtivo(1);
 	}
-		
-//	@Transactional
-//	public void sav() {
-//		Usuario u = new Usuario();
-//		u.setSenha("dasdas");
-//		u.setUserName(UUID.randomUUID().toString().substring(0, 10));
-//		
-//		Credito c = this.user.addCredito(new Credito());
-//		c.setTipoCredito(TypeCredito.ENTRADA);
-//		c.setTipoRefeicao(TypeRefeicao.ALMOCO);
-//		c.setValor(2.9F);
-////		c.setUsuario(this.user);
-//		c.setDtCredito(LocalDateTime.now());
-//		
-//		this.usuariosDAO.update(this.user);
-//		System.out.println("saida");
-//	}
-	
-//	public List<Credito> getlistCreditos(){
-//		if(this.listCreditos == null) {
-//			this.listCreditos = this.creditosDAO.listAllByUserName(sc.getIdToken().getPreferredUsername());
-//		}
-//		Float g = this.creditosDAO.getSaldo(sc.getIdToken().getPreferredUsername());
-//		return this.listCreditos;
-//	}
 
 	public Usuario getUser() {
 		return user;

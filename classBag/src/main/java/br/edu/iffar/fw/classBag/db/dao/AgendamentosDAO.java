@@ -88,13 +88,13 @@ public class AgendamentosDAO extends DAO<Agendamento> {
 				left join fetch a.servidor s
 				left join s.usuario us
 				left join m.usuario um
-				where (us.userName = :username or um.userName = :username) 
+				where (us = :user or um = :user) 
 				and tr = :tipoRefeicao  
-				and :dateToday = a.dtAgendamento """);
-    	
-    	q.setParameter("dateToday",date);
-    	q.setParameter("username", user.getUserName());
-    	q.setParameter("tipoRefeicao", tipoRefeicao);
+				and :dateToday = a.dtAgendamento 
+		""")
+		.setParameter("dateToday",date)
+		.setParameter("user", user)
+		.setParameter("tipoRefeicao", tipoRefeicao);
     	try {
         	 return (Agendamento) q.getSingleResult();			
 		} catch (NoResultException e) {

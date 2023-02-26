@@ -54,24 +54,24 @@ public class BackgroudDAO  extends DAO<Model<?>> {
 		}
 		
 	}
-	
-	public Matricula getMatriculaByNumero(Integer numero) {
-		try {
-			return (Matricula)this.em.createQuery("from Matricula m where m.idMatricula = :numero").setParameter("numero", numero).getSingleResult();
-		} catch (NoResultException e) {
-			System.out.println("Nenhuma matricula encontrada.");
-			return null;
-		}
-	}
-	
-	public TipoVinculo getTipoVinculoByIdTipoVinculo(int vinculo) {
-		try {
-			return (TipoVinculo)this.em.createQuery("from TipoVinculo tv where tv.idTipoVinculo = :numero").setParameter("numero", vinculo).getSingleResult();
-		} catch (NoResultException e) {
-			System.out.println("Nenhuma matricula encontrada.");
-			return null;
-		}
-	}
+//
+//	public Matricula getMatriculaByNumero(Integer numero) {
+//		try {
+//			return (Matricula)this.em.createQuery("from Matricula m where m.idMatricula = :numero").setParameter("numero", numero).getSingleResult();
+//		} catch (NoResultException e) {
+//			System.out.println("Nenhuma matricula encontrada.");
+//			return null;
+//		}
+//	}
+//
+//	public TipoVinculo getTipoVinculoByIdTipoVinculo(int vinculo) {
+//		try {
+//			return (TipoVinculo)this.em.createQuery("from TipoVinculo tv where tv.idTipoVinculo = :numero").setParameter("numero", vinculo).getSingleResult();
+//		} catch (NoResultException e) {
+//			System.out.println("Nenhuma matricula encontrada.");
+//			return null;
+//		}
+//	}
 	
 	@SuppressWarnings("unchecked")
 	public List<Matricula> listAllMatriculaByCurso(Curso curso){
@@ -118,7 +118,7 @@ public class BackgroudDAO  extends DAO<Model<?>> {
 			}
 		}catch (Exception e) {
 			e.printStackTrace();
-			throw new RuntimeException("Ocorreu um problema com o usuário: " + usuario.getUserName() + "." + e.getMessage());
+			throw new RuntimeException("Ocorreu um problema com o usuário: " + usuario.getNome() + "." + e.getMessage());
 		}
 	}
 
