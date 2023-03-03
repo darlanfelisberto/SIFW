@@ -53,7 +53,9 @@
 							</p:commandLink>
 		        			<p:tieredMenu overlay="true" trigger="dynaButton" my="left top" at="bottom" style="width:200px">	
 								<p:menuitem value="Perfil" outcome="/app/perfil.xhtml" ></p:menuitem>
-								<p:menuitem value="Senha" url="#{headerBean.linkAccount}/password" target="_blanc"></p:menuitem>
+								<p:menuitem value="Senha" outcome="/app/perfil.xhtml">
+									<f:param name="tabIndex" value="3"></f:param>
+								</p:menuitem>
 							</p:tieredMenu>
 						</sec:secTag>
 					</div>

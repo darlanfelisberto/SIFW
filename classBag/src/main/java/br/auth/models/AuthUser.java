@@ -117,6 +117,14 @@ public class AuthUser extends  Model<UUID>{
         this.inativo = inativo;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     public static AuthUser  createNew(Usuario usuario,Set<Permissao> permissoes){
         AuthUser au = new AuthUser();
         au.setUsuario(usuario);
@@ -125,13 +133,5 @@ public class AuthUser extends  Model<UUID>{
         au.setPassword(usuario.getCpf());
         au.inativo = false;
         return au;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
     }
 }

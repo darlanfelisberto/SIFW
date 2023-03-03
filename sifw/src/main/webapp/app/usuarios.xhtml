@@ -52,7 +52,7 @@
 										<p:inputMask label="CPF" mask="999.999.999-99" value="#{usuariosBean.busca}" required="true" />
 									</p:outputPanel>
 									<p:outputPanel  rendered="#{usuariosBean.tipoBusca == 4}">
-										<p:inputText label="Nome" value="#{usuariosBean.busca}" required="true" minlength="3"/>
+										<p:inputText label="Nome" value="#{usuariosBean.busca}" required="true"/>
 									</p:outputPanel>
 								</div>
 							</div>
@@ -85,7 +85,7 @@
 			
 			<p:outputPanel  id="optDadosUsuario">
 				<p:panel header="Informações de Usuário" rendered="#{usuariosBean.rendDadosUsuario}">
-					<p:tabView id="tabView" >
+					<p:tabView id="tabView"  activeIndex="0">
 					 	<p:tab title="Dados">
 					 		<div class="ui-fluid formgrid grid">
 					 			<div class="field col-12 md:col-6">

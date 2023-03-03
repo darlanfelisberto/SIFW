@@ -2,6 +2,7 @@
 	xmlns:h="jakarta.faces.html"
 	xmlns:f="jakarta.faces.core"
 	xmlns:ui="jakarta.faces.facelets"
+	xmlns:faces="jakarta.faces"
 	xmlns:p="http://primefaces.org/ui" template="/public/_template.xhtml">
 
 
@@ -23,7 +24,7 @@
             	<p:menuitem value="Perfil" outcome="/app/perfil.xhtml"/>
 			</p:breadCrumb>				
 			
-			 <p:tabView dynamic="true" >
+			 <p:tabView dynamic="true"  activeIndex="#{param['tabIndex']}" id="twPerfil">
 			 	<p:tab title="Meus dados">
 			 		<div class="ui-fluid formgrid grid">
 			 			<div class="field col-12 md:col-6">
@@ -42,11 +43,7 @@
 			 				<label for="iptDtNac">Data de Nascimento:</label>
 			 				 <p:datePicker id="iptDtNac" value="#{perfilBean.usuario.dtnasc}" pattern="dd/MM/yyyy"  mask="true" monthNavigator="true" yearNavigator="true" disabled="true" styleClass="w-full"/>
 			 			</div>
-			 			
-			 			<div class="field col-12 md:col-6">
-							<label >E-mail:</label>
-							<p:inputText value="TODO" disabled="true"/>
-			 			</div>	
+
 			 		</div>
 			 		
 			 		<p:dataTable value="#{perfilBean.usuario.listMatricula}" var ="mat" showGridlines="true" size="small" rendered="#{perfilBean.usuario.listMatricula != null and perfilBean.usuario.listMatricula.size() > 0}">
@@ -106,6 +103,38 @@
 			        	<p:confirm type="popup" header="Confirmação" message="Você tem certeza disso?" icon="pi pi-exclamation-triangle"/>
 			        </p:commandButton>
 			 	</p:tab>
+				 <p:tab title="Auth" id="tSenha">
+					 <div class="ui-fluid formgrid grid" >
+						 <div class="field col-12 md:col-6">
+							 <p:outputLabel value="Username:"/>
+							 <p:inputText value="#{perfilBean.usuario.authUser.username}" disabled="true"/>
+						 </div>
+						 <div class="field col-12 md:col-6">
+							 <p:outputLabel value="E-mail:" />
+							 <p:inputText value="#{perfilBean.usuario.authUser.email}" disabled="true"/>
+						 </div>
+					 </div>
+					 <p:fieldset legend="Senha">
+						 <div class="ui-fluid formgrid grid" faces:id="divSenha">
+							 <div class="field col-12 md:col-6">
+								 <p:outputLabel value="Senha:" for="pass1"/>
+								 <p:password value="#{perfilBean.usuarioBO.senha}" id="pass1" ></p:password>
+							 </div>
+							 <div class="field col-12 md:col-6">
+								 <p:outputLabel value="Confirme a Senha:" for="pass2"/>
+								 <p:password value="#{perfilBean.usuarioBO.reSenha}" id="pass2" ></p:password>
+							 </div>
+						 </div>
+						 <div>
+							 <div class="field flex-inline-space">
+								 <p:commandButton value="Salvar" icon="pi pi-check" update="frmMain" actionListener="#{perfilBean.trocarSenha}" styleClass="ui-button-success">
+									 <p:confirm type="popup" header="Confimation" message="Você tem certeza disso?" icon="pi pi-question-circle"></p:confirm>
+								 </p:commandButton>
+								 <p:commandButton value="Cancelar" process="@none" update="divSenha" icon="pi pi-times"></p:commandButton>
+							 </div>
+						 </div>
+					 </p:fieldset>
+				 </p:tab>
 			 </p:tabView>
 			
 		    <p:confirmPopup global="true">

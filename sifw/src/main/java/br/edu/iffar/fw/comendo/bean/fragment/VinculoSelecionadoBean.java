@@ -30,7 +30,7 @@ public class VinculoSelecionadoBean implements Serializable {
 	
 	private List<VinculosAtivosUsuarios> lisVinculosAtivosUsuarios = null;
 	
-		public boolean isNecessarioSelecionarVinculo(Usuario u) throws RuntimeException{
+	public boolean isNecessarioSelecionarVinculo(Usuario u) throws RuntimeException{
 		
 		if(this.dadaBean.getData(VINCULO) != null) {
 			return false;

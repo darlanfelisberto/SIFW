@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.util.UUID;
 
+import br.edu.iffar.fw.classBag.bo.UsuarioBO;
+import br.edu.iffar.fw.classBag.excecoes.SenhaException;
 import org.primefaces.event.CaptureEvent;
 import org.primefaces.model.StreamedContent;
 
@@ -36,6 +38,8 @@ public class PerfilBean implements Serializable {
 	@Inject private MessagesUtil messagesUtil;
 	@Inject
 	private HeaderBean headerBean;
+
+	@Inject private UsuarioBO usuarioBO;
 	
 	private Usuario user = null;
 	private Imagen imagen = null;
@@ -97,6 +101,17 @@ public class PerfilBean implements Serializable {
 		Usuario u = usuariosDAO.getUsuarioLogado();
 		return this.carterinhaUtil.gerarCarterinhaQRCode(nova, u);
 	}
+
+	public void trocarSenha() {
+		try {
+			this.usuarioBO.init(this.user).trocaSenha().salvarAuth();
+			this.messagesUtil.addSuccess("Senha atualizada com sucesso.");
+		} catch (SenhaException e) {
+			this.messagesUtil.addError(e.getMessage());
+		} catch (RollbackException e) {
+			this.messagesUtil.addError(e);
+		}
+	}
 	
 	public Usuario getUsuario() {
 		return this.user;
@@ -112,5 +127,9 @@ public class PerfilBean implements Serializable {
 
 	public void setNewImage(Imagen newImage) {
 		this.newImage = newImage;
+	}
+
+	public UsuarioBO getUsuarioBO() {
+		return usuarioBO;
 	}
 }

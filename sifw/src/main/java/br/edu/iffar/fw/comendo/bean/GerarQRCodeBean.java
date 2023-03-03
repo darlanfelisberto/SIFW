@@ -50,24 +50,13 @@ public class GerarQRCodeBean implements Serializable{
 	}
 	
 	public StreamedContent getAllQRCode() {
-//		Pbkdf2Hash c = new Pbkdf2Hash()
-//		
-//		Map<String, String> parameters =  new HashMap<>();
-//		parameters.put("Pbkdf2PasswordHash.Algorithm", "PBKDF2WithHmacSHA256");
-//		parameters.put("Pbkdf2PasswordHash.Iterations", "27500");
-//		parameters.put("Pbkdf2PasswordHash.SaltSizeBytes", "128");
-//		parameters.put("Pbkdf2PasswordHash.KeySizeBytes", "64");
-//		c.initialize(parameters);
-//		System.out.println(c.generate("teste".toCharArray()));
-		
 		Map<String, Object> map = this.getMap();
 
 		if (this.curso != null) {
-			map.put("WHERE", " and c.curso_id = '" + curso.getMMId() + "'");
+			map.put("WHERE", " c.curso_id = '" + curso.getMMId() + "'");
 		}
 
 		try {
-
 			return this.path.getJasper("AllQrCode", map, RelatoriosPath.JASPER_ALL_QRCODE);
 		} catch (Throwable e) {
 			// TODO Auto-generated catch block

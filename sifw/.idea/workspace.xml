@@ -10,40 +10,26 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="08207d44-b3d4-4d79-ae36-a51c5793c659" name="Changes" comment="commit arrumação na tela do grafico de agendamentos">
-      <change beforePath="$PROJECT_DIR$/../classBag/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../classBag/pom.xml" afterDir="false" />
+    <list default="true" id="08207d44-b3d4-4d79-ae36-a51c5793c659" name="Changes" comment="commit arrumação">
+      <change afterPath="$PROJECT_DIR$/../classBag/src/main/java/br/edu/iffar/fw/classBag/bo/UsuarioBO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../classBag/src/main/java/br/edu/iffar/fw/classBag/excecoes/SenhaException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../classBag/src/main/java/br/edu/iffar/fw/classBag/excecoes/UsuarioException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/META-INF/ValidationMessages_pt_BR.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../classBag/src/main/java/br/auth/models/AuthUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/../classBag/src/main/java/br/auth/models/AuthUser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../classBag/src/main/java/br/auth/oidc/OidcTokenUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/../classBag/src/main/java/br/auth/oidc/OidcTokenUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../classBag/src/main/java/br/edu/iffar/fw/classBag/db/dao/AgendamentosDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/../classBag/src/main/java/br/edu/iffar/fw/classBag/db/dao/AgendamentosDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../classBag/src/main/java/br/edu/iffar/fw/classBag/db/dao/BackgroudDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/../classBag/src/main/java/br/edu/iffar/fw/classBag/db/dao/BackgroudDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../classBag/src/main/java/br/edu/iffar/fw/classBag/db/dao/ImagenDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/../classBag/src/main/java/br/edu/iffar/fw/classBag/db/dao/ImagenDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../classBag/src/main/java/br/edu/iffar/fw/classBag/db/dao/UsuariosDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/../classBag/src/main/java/br/edu/iffar/fw/classBag/db/dao/UsuariosDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../classBag/src/main/java/br/edu/iffar/fw/classBag/db/model/Log.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../classBag/src/main/java/br/edu/iffar/fw/classBag/db/model/Usuario.java" beforeDir="false" afterPath="$PROJECT_DIR$/../classBag/src/main/java/br/edu/iffar/fw/classBag/db/model/Usuario.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../classBag/src/main/java/br/edu/iffar/fw/classBag/db/model/api/APIUsuario.java" beforeDir="false" afterPath="$PROJECT_DIR$/../classBag/src/main/java/br/edu/iffar/fw/classBag/db/model/api/APIUsuario.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../classBag/src/main/java/br/edu/iffar/fw/classBag/db/model/log/Log.java" beforeDir="false" afterPath="$PROJECT_DIR$/../classBag/src/main/java/br/edu/iffar/fw/classBag/db/model/log/Log.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../classBag/src/main/java/br/edu/iffar/fw/classBag/db/model/log/LogLeitura.java" beforeDir="false" afterPath="$PROJECT_DIR$/../classBag/src/main/java/br/edu/iffar/fw/classBag/db/model/log/LogLeitura.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../classBag/src/main/java/br/edu/iffar/relatorios/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../classBag/src/main/java/br/edu/iffar/relatorios/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../classBag/src/main/java/br/edu/iffar/relatorios/RU/admin/movimentacoes_diarias.jrxml" beforeDir="false" afterPath="$PROJECT_DIR$/../classBag/src/main/java/br/edu/iffar/relatorios/RU/admin/movimentacoes_diarias.jrxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../classBag/src/main/java/br/edu/iffar/relatorios/RU/carterinha/subCarterinha.jasper" beforeDir="false" afterPath="$PROJECT_DIR$/../classBag/src/main/java/br/edu/iffar/relatorios/RU/carterinha/subCarterinha.jasper" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../classBag/src/main/java/br/edu/iffar/relatorios/RU/carterinha/subCarterinha.jrxml" beforeDir="false" afterPath="$PROJECT_DIR$/../classBag/src/main/java/br/edu/iffar/relatorios/RU/carterinha/subCarterinha.jrxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../classBag/src/main/resources/META-INF/persistence.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../classBag/src/main/resources/META-INF/persistence.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../classBag/src/main/java/br/edu/iffar/relatorios/RU/carterinha/principal.jasper" beforeDir="false" afterPath="$PROJECT_DIR$/../classBag/src/main/java/br/edu/iffar/relatorios/RU/carterinha/principal.jasper" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../classBag/src/main/java/br/edu/iffar/relatorios/RU/carterinha/principal.jrxml" beforeDir="false" afterPath="$PROJECT_DIR$/../classBag/src/main/java/br/edu/iffar/relatorios/RU/carterinha/principal.jrxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.settings/org.eclipse.wst.common.component" beforeDir="false" afterPath="$PROJECT_DIR$/.settings/org.eclipse.wst.common.component" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/edu/iffar/fw/comendo/api/API_SaldoUsuario.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/edu/iffar/fw/comendo/api/RestAPI.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/edu/iffar/fw/comendo/bean/BackgroundUserCreate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/edu/iffar/fw/comendo/bean/BackgroundUserCreate.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/edu/iffar/fw/comendo/bean/CatracaBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/edu/iffar/fw/comendo/bean/CatracaBean.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/edu/iffar/fw/comendo/bean/CreditosBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/edu/iffar/fw/comendo/bean/CreditosBean.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/edu/iffar/fw/comendo/bean/HeaderBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/edu/iffar/fw/comendo/bean/HeaderBean.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/edu/iffar/fw/comendo/MensagensPersonalizadas.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/edu/iffar/fw/comendo/MensagensPersonalizadas.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/edu/iffar/fw/comendo/bean/GerarQRCodeBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/edu/iffar/fw/comendo/bean/GerarQRCodeBean.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/edu/iffar/fw/comendo/bean/PerfilBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/edu/iffar/fw/comendo/bean/PerfilBean.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/br/edu/iffar/fw/comendo/bean/UsuariosBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/edu/iffar/fw/comendo/bean/UsuariosBean.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/edu/iffar/fw/comendo/bean/fragment/SaldoUserFrament.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/edu/iffar/fw/comendo/bean/fragment/SaldoUserFrament.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/edu/iffar/fw/comendo/bean/fragment/VinculoSelecionadoBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/edu/iffar/fw/comendo/bean/fragment/VinculoSelecionadoBean.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/app/header.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/app/header.xhtml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/app/perfil.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/app/perfil.xhtml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/app/usuarios.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/app/usuarios.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../webservice/src/main/java/br/edu/iffar/api/EmailEndPoint.java" beforeDir="false" afterPath="$PROJECT_DIR$/../webservice/src/main/java/br/edu/iffar/api/EmailEndPoint.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/css/componentesPrimeFaces.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/resources/css/componentesPrimeFaces.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/css/main_.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/resources/css/main_.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/sass/componentesPrimeFaces.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/resources/sass/componentesPrimeFaces.scss" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,6 +43,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Record" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -102,7 +89,7 @@
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;E:/darlan/portuguese-brazil.dic&quot;,
+    &quot;last_opened_file_path&quot;: &quot;E:/darlan/git/sifw/sifw/src/main/java/br/edu/iffar/fw/comendo&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -121,7 +108,14 @@
   }
 }</component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\darlan\git\sifw\sifw\src\main\java\br\edu\iffar\fw\comendo" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\darlan\git\sifw\sifw\src\main\webapp\META-INF" />
+    </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="br.edu.iffar.fw.classBag.excecoes" />
       <recent name="br.auth.dao" />
     </key>
   </component>
@@ -129,8 +123,10 @@
     <option name="openRunningConfigInTab" value="true" />
   </component>
   <component name="RunManager">
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
-      <option name="TEST_OBJECT" value="class" />
+    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
+      <option name="TEST_OBJECT" value="CLASS" />
+      <properties />
+      <listeners />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -151,7 +147,7 @@
         <option name="SERVER" />
         <option name="BINDING_SET_NAME" value="" />
         <option name="DOMAIN" value="false" />
-        <option name="SERVER_GROUP" value="main-server-group" />
+        <option name="SERVER_GROUP" />
         <option name="USERNAME" value="" />
         <option name="CREDENTIAL_ALIAS" />
       </server-settings>
@@ -205,10 +201,7 @@
         </SHUTDOWN>
       </ConfigurationWrapper>
       <method v="2">
-        <option name="BuildArtifacts" enabled="true">
-          <artifact name="sifw:war exploded" />
-          <artifact name="service:war exploded" />
-        </option>
+        <option name="Make" enabled="true" />
       </method>
     </configuration>
     <configuration default="true" type="JBossConfiguration" factoryName="Local" ALTERNATIVE_JRE_ENABLED="false">
@@ -330,6 +323,11 @@
       <workItem from="1677083963652" duration="2162000" />
       <workItem from="1677094220059" duration="2832000" />
       <workItem from="1677367537004" duration="600000" />
+      <workItem from="1677441163681" duration="129000" />
+      <workItem from="1677606997565" duration="8754000" />
+      <workItem from="1677621623426" duration="3397000" />
+      <workItem from="1677661966295" duration="6159000" />
+      <workItem from="1677835287198" duration="2656000" />
     </task>
     <task id="LOCAL-00001" summary="usando o intelj">
       <created>1674044329278</created>
@@ -387,7 +385,14 @@
       <option name="project" value="LOCAL" />
       <updated>1676490146483</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="commit arrumação">
+      <created>1677441257491</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1677441257491</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -411,7 +416,8 @@
     <MESSAGE value="commit migração openid e cadastros e mudança de alunos das turmas" />
     <MESSAGE value="commit correção espaçamento fields relatorios jasper" />
     <MESSAGE value="commit arrumação na tela do grafico de agendamentos" />
-    <option name="LAST_COMMIT_MESSAGE" value="commit arrumação na tela do grafico de agendamentos" />
+    <MESSAGE value="commit arrumação" />
+    <option name="LAST_COMMIT_MESSAGE" value="commit arrumação" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -438,13 +444,18 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/br/edu/iffar/fw/comendo/bean/UsuariosBean.java</url>
-          <line>172</line>
-          <option name="timeStamp" value="25" />
+          <line>196</line>
+          <option name="timeStamp" value="21" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/br/edu/iffar/fw/comendo/bean/UsuariosBean.java</url>
-          <line>196</line>
-          <option name="timeStamp" value="27" />
+          <line>214</line>
+          <option name="timeStamp" value="22" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/br/edu/iffar/fw/comendo/bean/GerarQRCodeBean.java</url>
+          <line>59</line>
+          <option name="timeStamp" value="25" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

@@ -16,7 +16,12 @@ import br.auth.dao.AuthUserDAO;
 import br.auth.dao.PermissaoDAO;
 import br.auth.models.AuthUser;
 import br.auth.models.Permissao;
+import br.edu.iffar.fw.classBag.bo.UsuarioBO;
+import br.edu.iffar.fw.classBag.excecoes.UsuarioException;
 import jakarta.transaction.*;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import org.primefaces.event.CaptureEvent;
 import org.primefaces.event.FileUploadEvent;
 import org.primefaces.model.DualListModel;
@@ -56,6 +61,8 @@ public class UsuariosBean implements Serializable, BreadCrumbControl{
 	@Inject
 	private UserTransaction transaction;
 
+	@Inject private UsuarioBO usuarioBO;
+
 	private List<Usuario> listUsuarios;
 
 	private boolean rendBusca;
@@ -74,7 +81,9 @@ public class UsuariosBean implements Serializable, BreadCrumbControl{
 	private boolean redimencionarPadrao = true;
 
 	//sessao usuarios
-	
+
+	@Size(min = 4)
+	@NotNull
 	private String busca = "";
 	private Usuario userSel;
 //	private AuthUser authUserSel;
@@ -152,12 +161,6 @@ public class UsuariosBean implements Serializable, BreadCrumbControl{
 			this.telaDadosUsuario();
 			this.breadCrumb.setAtivo(4);
 		} else if(this.tipoBusca == 4) {// nome
-
-			if(this.busca.trim().length() < 3) {
-				this.messages.addError("Informe 3 caracteres para iniciar a busca.");
-				return;
-			}
-
 			this.listUsuarios = this.usuariosDAO.listAllUsersByName(this.busca);
 			this.telaListaResultadoBusca();
 		}
@@ -176,12 +179,10 @@ public class UsuariosBean implements Serializable, BreadCrumbControl{
 	}
 
 	private void carregaPermissoesDisponiveis(){
-		this.listModelPermissaoes = new DualListModel<Permissao>(new ArrayList<Permissao>(), new ArrayList<Permissao>());
+		this.listModelPermissaoes = new DualListModel<Permissao>();
 		this.listModelPermissaoes.setTarget((this.userSel.getAuthUser().getSetPermissao() != null ? this.userSel.getAuthUser().getSetPermissao().stream().toList():new ArrayList<Permissao>()));
 
-		//permissoes que o usuario que esta logado no momento possui, são as que ele pode mudar nos demais usuarios
-		AuthUser u = this.authUserDAO.findAuthUser(this.usuariosDAO.getUsuarioLogado());
-		this.listModelPermissaoes.setSource((u.getSetPermissao() != null ? u.getSetPermissao().stream().toList():new ArrayList<Permissao>()));
+		this.listModelPermissaoes.setSource(this.usuarioBO.init(this.userSel).buscaPermissoesDisponiveis());
 	}
 
 	public void novoUsuario() {
@@ -192,30 +193,10 @@ public class UsuariosBean implements Serializable, BreadCrumbControl{
 	}
 
     public void salvarUser() {
-		//TODO refactory
     	try {
-			this.userSel.getAuthUser().getSetPermissao().clear();
-			this.userSel.getAuthUser().getSetPermissao().addAll(listModelPermissaoes.getTarget());
-
-			transaction.begin();
-			if(this.userSel.isNovo()) {
-				if(this.usuariosDAO.findByUserName(this.userSel.getAuthUser().getUsername()) != null) {
-					this.messages.addError("Username já existe!");
-					return;
-				}
-
-				if(this.usuariosDAO.getUsuarioByCPF(this.userSel.getCpf()) != null) {
-					this.messages.addError("CPF já existe!");
-					return;
-				}
-				this.authUserDAO.persist(this.userSel.getAuthUser());
-				this.usuariosDAO.persist(this.userSel);
-			}else{
-				this.authUserDAO.update(this.userSel.getAuthUser());
-				this.usuariosDAO.update(this.userSel);
-			}
-
-			transaction.commit();
+			this.usuarioBO.init(this.userSel)
+					.setPermissao(listModelPermissaoes.getTarget())
+					.salvarUser();
 
 			if(this.capturouImage) {
 				this.imagenDAO.substituiImagen(this.imagen);
@@ -225,16 +206,14 @@ public class UsuariosBean implements Serializable, BreadCrumbControl{
 			}
 			this.telaFiltroBusca();
 			this.messages.addSuccess("Informações do usuário foram salvas com sucesso.");
+		}  catch (UsuarioException e) {
+			this.messages.addError(e.getMessage());
 		}  catch (IOException e) {
 			e.printStackTrace();
 			this.messages.addError("Erro ao escrever mudanças na imagem do usuário.");
 		}  catch (Exception e) {
 			e.printStackTrace();
 			this.messages.addError("Não foi possivel salvar os dados do usuário.");
-			try {
-				this.transaction.rollback();
-			} catch (SystemException ex) {
-			}
 		}
 	}
         
