@@ -6,6 +6,12 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
+import br.edu.iffar.fw.classBag.db.SessionDataStore;
+import br.edu.iffar.fw.classBag.db.model.interfaces.VinculosAtivosUsuarios;
+import br.edu.iffar.fw.comendo.interceptor.SelecionaVinculo;
+import jakarta.enterprise.context.SessionScoped;
+import jakarta.faces.view.ViewScoped;
+import jakarta.interceptor.InvocationContext;
 import org.primefaces.event.SelectEvent;
 
 import br.edu.iffar.fw.classBag.db.dao.AgendamentosDAO;
@@ -21,23 +27,24 @@ import br.edu.iffar.fw.comendo.bean.fragment.VinculoSelecionadoBean;
 import br.edu.iffar.fw.comendo.primefaces.AgendamentosLazyLoad;
 import jakarta.annotation.PostConstruct;
 import jakarta.faces.context.FacesContext;
-import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
 import jakarta.transaction.RollbackException;
-
+import static br.edu.iffar.fw.classBag.db.SessionDataStore.VINCULO_SELECIONDO;
 @Named
 @ViewScoped
+//@SelecionaVinculo
 public class AgendamentoBean  implements Serializable{
 
 	private static final long serialVersionUID = 22021991L;
-	
-	@Inject private HeaderBean headerBean;
+
 	@Inject private AgendamentosDAO agendamentosDAO;
 	@Inject private RefeicaoDAO refeicaoDAO;
 	@Inject private ParametrosDAO parametrosDAO;
 	@Inject private MessagesUtil messages;
 	@Inject private AgendamentosLazyLoad ageLazyLoad;
+	@Inject private SessionDataStore sessionDataStore;
+
 	@Inject private VinculoSelecionadoBean vinculoSelecionadoBean;
 		
 	private Agendamento agendamento = null;
@@ -46,18 +53,21 @@ public class AgendamentoBean  implements Serializable{
 	private List<Refeicao> listRefeicao;
 	
 	private Usuario user = null;
-			
+
+
 	@PostConstruct
-	private void init() {
-		this.parametro = this.parametrosDAO.findParametroByTypeParam(TypeParam.AGENDAMENTO_FUTURO_DIAS);
-		
-		this.user = this.headerBean.getUsuarioLogado();
-		
-		if(this.vinculoSelecionadoBean.isNecessarioSelecionarVinculo(this.user)) {
-			this.vinculoSelecionadoBean.redirect();	
-		}else {
-	    	this.listRefeicao = this.refeicaoDAO.listRefeicaoByVinculo(this.vinculoSelecionadoBean.getVinculoSelecionado(),null);
+	public void init() {
+		if(this.vinculoSelecionadoBean.isNecessarioSelecionarVinculo()){
+			this.vinculoSelecionadoBean.redirect();
+			return;
 		}
+
+		System.out.println("agenda");
+		this.parametro = this.parametrosDAO.findParametroByTypeParam(TypeParam.AGENDAMENTO_FUTURO_DIAS);
+
+		this.user = this.sessionDataStore.getUsuarioLogado();
+	    this.listRefeicao = this.refeicaoDAO.listRefeicaoByVinculo((VinculosAtivosUsuarios) this.sessionDataStore.getData(VINCULO_SELECIONDO),null);
+
 	}
 	
     public Usuario getUser() {
@@ -82,7 +92,7 @@ public class AgendamentoBean  implements Serializable{
     		this.messages.addError("Data passada não pode ser editada.");
     		return;
     	}
-		agendamento = new Agendamento(selectEvent.getObject().toLocalDate(), this.vinculoSelecionadoBean.getVinculoSelecionado());
+		agendamento = new Agendamento(selectEvent.getObject().toLocalDate(), this.sessionDataStore.getVinculoSelecionado());
     	FacesContext.getCurrentInstance().getPartialViewContext().getEvalScripts().add("PF('eventDialog').show();");
     }
             
@@ -108,7 +118,7 @@ public class AgendamentoBean  implements Serializable{
 			this.messages.addError(this.agendamento.mensagemAlteracaoDtAgendamento());
 			return;
 		}
-		if (this.agendamentosDAO.existeSobreposicaoDeRefeicao(this.agendamento, this.vinculoSelecionadoBean.getVinculoSelecionado().getUsuario())) {
+		if (this.agendamentosDAO.existeSobreposicaoDeRefeicao(this.agendamento, this.sessionDataStore.getVinculoSelecionado().getUsuario())) {
 			this.messages.addError("Não é possivel sobrepor períodos/agendamentos de " + this.agendamento.getRefeicao().getTipoRefeicao().getDescricao() + ", verifique seus vínculos.");
 			return;
 		}

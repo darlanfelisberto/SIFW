@@ -50,7 +50,7 @@
 						#{vinc.label}
 					</p:column>
 					<p:column>
-						<p:commandButton action="#{vinculoSelecionadoBean.selecionouVinculo(vinc)}" process="@this"
+						<p:commandButton  action="#{vinculoSelecionadoBean.selecionouVinculo(vinc)}" process="@this" immediate="true"
 							 icon="pi pi-arrow-circle-right" styleClass="rounded-button ui-button-info ui-button-flat">
 							<f:param name="return" value="#{param['return']}"></f:param>
 						</p:commandButton>

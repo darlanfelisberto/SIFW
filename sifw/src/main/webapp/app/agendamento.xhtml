@@ -48,7 +48,7 @@
 			<p:outputPanel >
 				<div class="ui-panel ui-widget ui-widget-content ui-corner-all">
 					<p:panel header="Horários e refeições disponiveis para agendamento">
-						<p:dataTable value="#{agendamentoBean.listRefeicao}" var="r" size="small">
+						<p:dataTable value="#{agendamentoBean.listRefeicao}" var="r" size="small" id="dtListRefeicoes">
 							<p:column headerText="Refeição" responsivePriority="0" width="55%">
 								#{r.label()}
 							</p:column>

@@ -2,6 +2,7 @@ package br.edu.iffar.fw.comendo.bean;
 
 import java.io.Serializable;
 
+import br.edu.iffar.fw.classBag.db.SessionDataStore;
 import br.edu.iffar.fw.classBag.db.dao.ImagenDAO;
 import br.edu.iffar.fw.classBag.db.dao.UsuariosDAO;
 import br.edu.iffar.fw.classBag.db.model.Imagen;
@@ -21,6 +22,9 @@ public class HeaderBean implements Serializable {
 		
 	@Inject private UsuariosDAO usuariosDAO;
 	@Inject private ImagenDAO imagenDAO;
+
+	@Inject
+	SessionDataStore sessionDataStore;
 	
 	@Inject
 	private HttpServletRequest request;
@@ -31,8 +35,8 @@ public class HeaderBean implements Serializable {
 	
 	@PostConstruct
 	public void init() {
-		this.user = this.usuariosDAO.getUsuarioLogado();
-		this.imagen = this.imagenDAO.findByUsuarioIfNullPattern(getUsuarioLogado());
+		this.user = this.sessionDataStore.getUsuarioLogado();
+		this.imagen = this.imagenDAO.imagenUsuarioLogado();
 	}
 	
 	public Usuario getUsuarioLogado() {

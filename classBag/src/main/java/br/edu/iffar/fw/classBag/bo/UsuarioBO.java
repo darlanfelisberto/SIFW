@@ -62,6 +62,14 @@ public class UsuarioBO {
         return this.trocaSenha(this.senha,this.reSenha);
     }
 
+    public UsuarioBO trocaSenhaNullPass() throws SenhaException{
+        if((this.senha== null || this.senha.trim().isEmpty()) && (this.reSenha== null || this.reSenha.trim().isEmpty())){
+            return this;
+        }else {
+            return this.trocaSenha(this.senha, this.reSenha);
+        }
+    }
+
     public void salvarAuth() throws RollbackException {
         this.authUserDAO.update(this.user.getAuthUser());
     }

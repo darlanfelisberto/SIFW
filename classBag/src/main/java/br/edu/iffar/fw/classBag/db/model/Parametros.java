@@ -2,17 +2,13 @@ package br.edu.iffar.fw.classBag.db.model;
 
 import br.edu.iffar.fw.classBag.db.Model;
 import br.edu.iffar.fw.classBag.enun.TypeParam;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 
 
 @Entity
 @Table(name = "parametros")
+@Cacheable
 public class Parametros extends Model<TypeParam> {
 	
 	private static final long serialVersionUID = 22021991L;

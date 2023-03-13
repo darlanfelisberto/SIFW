@@ -7,73 +7,73 @@ import java.util.List;
 import br.edu.iffar.fw.classBag.db.dao.VinculosAtivosUsuariosDAO;
 import br.edu.iffar.fw.classBag.db.model.Usuario;
 import br.edu.iffar.fw.classBag.db.model.interfaces.VinculosAtivosUsuarios;
-import br.edu.iffar.fw.comendo.SessionDadaBean;
+import br.edu.iffar.fw.classBag.db.SessionDataStore;
 import br.edu.iffar.fw.comendo.bean.HeaderBean;
+import jakarta.annotation.PostConstruct;
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.faces.context.FacesContext;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import org.omnifaces.util.Faces;
+import static br.edu.iffar.fw.classBag.db.SessionDataStore.VINCULO_SELECIONDO;
 
 @Named
 @RequestScoped
 public class VinculoSelecionadoBean implements Serializable {
 
 	private static final long serialVersionUID = 2022021991L;
-	
-	private static final String VINCULO = "VINCULO";
-	
-	@Inject private HeaderBean headerBean;
+
 	@Inject private VinculosAtivosUsuariosDAO vinculosAtivosUsuariosDAO;
-	@Inject private SessionDadaBean dadaBean;
+	@Inject private SessionDataStore sessionDataStore;
 	@Inject private HttpServletRequest request;
+	@Inject private HttpServletResponse response;
 	
 	private List<VinculosAtivosUsuarios> lisVinculosAtivosUsuarios = null;
-	
-	public boolean isNecessarioSelecionarVinculo(Usuario u) throws RuntimeException{
-		
-		if(this.dadaBean.getData(VINCULO) != null) {
+
+	public boolean isNecessarioSelecionarVinculo() throws RuntimeException{
+		if(this.sessionDataStore.getData(VINCULO_SELECIONDO) != null){
 			return false;
 		}
-		
-		this.lisVinculosAtivosUsuarios = this.vinculosAtivosUsuariosDAO.listVinculosAtivos(u);
-		
-		if(this.lisVinculosAtivosUsuarios == null || this.lisVinculosAtivosUsuarios.size() ==0) {
+
+		this.lisVinculosAtivosUsuarios = this.getListVinculosAtivosUsuario();
+		if(this.lisVinculosAtivosUsuarios.size() == 1) {
+			this.sessionDataStore.putData(VINCULO_SELECIONDO, this.lisVinculosAtivosUsuarios.get(0));
+			return false;
+		}
+
+		if(this.lisVinculosAtivosUsuarios == null || this.lisVinculosAtivosUsuarios.size() > 1) {
 			//throw new RuntimeException("Usuário não possui vinculo como aluno ou servidor.");
 			return true;
 		}
-		
-		if(this.lisVinculosAtivosUsuarios.size() ==1) {
-			this.dadaBean.putData(VINCULO, this.lisVinculosAtivosUsuarios.get(0));
-			return false;
-		}else {
-			return true;
-		}
+
+		return false;
 	}
 	
-	public void redirect() {		
+	public void redirect() {
 		try {
-			FacesContext.getCurrentInstance().getExternalContext()
-			.redirect("selecionaVinculo.xhtml?faces-redirect=true&return=" + request.getServletPath());
+			FacesContext fc = FacesContext.getCurrentInstance();
+			fc.getExternalContext().redirect(request.getContextPath() + "/app/selecionaVinculo.xhtml?faces-redirect=true&return="+ request.getServletPath());
+			fc.responseComplete();
 		} catch (IOException e) {
-			e.printStackTrace();
+			throw new RuntimeException(e);
 		}
 	}
-	
-	public void redirectReturn() {
-		
-	}
-	
+
 	public String selecionouVinculo(VinculosAtivosUsuarios vinc) {
-		this.dadaBean.putData(VINCULO, vinc);
+		this.sessionDataStore.putData(VINCULO_SELECIONDO, vinc);
 		return request.getParameter("return")+"?faces-redirect=true";
 	}
 	
 	public List<VinculosAtivosUsuarios> getListVinculosAtivosUsuario(){
-		return this.vinculosAtivosUsuariosDAO.listVinculosAtivos(headerBean.getUsuarioLogado());
+		if(this.lisVinculosAtivosUsuarios == null){
+			this.lisVinculosAtivosUsuarios = this.vinculosAtivosUsuariosDAO.listVinculosAtivos(sessionDataStore.getUsuarioLogado());
+		}
+		return lisVinculosAtivosUsuarios;
 	}
 	
 	public VinculosAtivosUsuarios getVinculoSelecionado() {
-		return (VinculosAtivosUsuarios) this.dadaBean.getData(VINCULO);
+		return (VinculosAtivosUsuarios) this.sessionDataStore.getData(VINCULO_SELECIONDO);
 	}
 }

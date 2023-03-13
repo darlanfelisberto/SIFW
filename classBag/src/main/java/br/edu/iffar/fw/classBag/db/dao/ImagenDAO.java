@@ -5,17 +5,33 @@ import java.io.IOException;
 //import org.keycloak.KeycloakSecurityContext;
 
 import br.edu.iffar.fw.classBag.db.DAO;
+import br.edu.iffar.fw.classBag.db.SessionDataStore;
 import br.edu.iffar.fw.classBag.db.model.Imagen;
 import br.edu.iffar.fw.classBag.db.model.Usuario;
 import jakarta.enterprise.context.RequestScoped;
+import jakarta.inject.Inject;
 import jakarta.persistence.NoResultException;
 import jakarta.persistence.Query;
 import jakarta.transaction.RollbackException;
 import jakarta.transaction.Transactional;
 import jakarta.transaction.Transactional.TxType;
+import static br.edu.iffar.fw.classBag.db.SessionDataStore.IMAGEN_USUARIO_LOGADO;
 
 @RequestScoped
 public class ImagenDAO extends DAO<Imagen> {
+
+	@Inject private SessionDataStore sessionDataStore;
+
+	@Inject private UsuariosDAO usuariosDAO;
+	public Imagen imagenUsuarioLogado() {
+
+		Imagen i = (Imagen) sessionDataStore.getData(IMAGEN_USUARIO_LOGADO);
+		if(i == null) {
+			i = findByUsuarioIfNullPattern(usuariosDAO.getUsuarioLogado());
+			sessionDataStore.putData(IMAGEN_USUARIO_LOGADO,i);
+		}
+		return i;
+	}
 
 	public Imagen findByUsuarioIfNullPattern(Usuario u) {
 		Imagen i = null;
@@ -23,7 +39,7 @@ public class ImagenDAO extends DAO<Imagen> {
 			Query q = this.em.createQuery("select i from Imagen i where i.usuario = :usuario").setParameter("usuario", u);
 			i = (Imagen) q.getSingleResult();
 		} catch (NoResultException e) {
-			
+
 		}
 		if(i == null) {
 			i = Imagen.SEMIMAGEN;

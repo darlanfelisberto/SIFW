@@ -191,8 +191,12 @@
 									<p:toggleSwitch value="#{usuariosBean.userSel.authUser.inativo}" />
 								</div>
 								<div class="field col-12 md:col-6">
-									<label><abbr title="Utiliza o algoritimo PBKDF2WithHmacSHA256">Senha:</abbr> </label>
-									<p:password value="#{usuariosBean.userSel.authUser.password}"/>
+									<label><abbr title="">Senha:</abbr> </label>
+									<p:password value="#{usuariosBean.usuarioBO.senha}" toggleMask="true" redisplay="true"  promptLabel="Fraca Boa Forte" weakLabel="Fraca" goodLabel="Boa" strongLabel="Forte" feedback= "true"/>
+								</div>
+								<div class="field col-12 md:col-6">
+									<label><abbr title="">Redigite a Senha:</abbr> </label>
+									<p:password value="#{usuariosBean.usuarioBO.reSenha}" toggleMask="true" redisplay="true"/>
 								</div>
 								<div class="field col-12 md:col-6">
 									<label for="iptEmail">E-mail:</label>

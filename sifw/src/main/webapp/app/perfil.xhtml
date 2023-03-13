@@ -117,12 +117,12 @@
 					 <p:fieldset legend="Senha">
 						 <div class="ui-fluid formgrid grid" faces:id="divSenha">
 							 <div class="field col-12 md:col-6">
-								 <p:outputLabel value="Senha:" for="pass1"/>
-								 <p:password value="#{perfilBean.usuarioBO.senha}" id="pass1" ></p:password>
+								 <label><abbr title="">Senha:</abbr> </label>
+								 <p:password value="#{usuariosBean.usuarioBO.senha}" toggleMask="true" redisplay="true"  promptLabel="Fraca Boa Forte" weakLabel="Fraca" goodLabel="Boa" strongLabel="Forte" feedback= "true"/>
 							 </div>
 							 <div class="field col-12 md:col-6">
-								 <p:outputLabel value="Confirme a Senha:" for="pass2"/>
-								 <p:password value="#{perfilBean.usuarioBO.reSenha}" id="pass2" ></p:password>
+								 <label><abbr title="">Redigite a Senha:</abbr> </label>
+								 <p:password value="#{usuariosBean.usuarioBO.reSenha}" toggleMask="true" redisplay="true"/>
 							 </div>
 						 </div>
 						 <div>

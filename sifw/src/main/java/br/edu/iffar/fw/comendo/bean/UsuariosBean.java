@@ -55,12 +55,7 @@ public class UsuariosBean implements Serializable, BreadCrumbControl{
 	@Inject private UsuariosDAO usuariosDAO;
 	@Inject private ImagenDAO imagenDAO;
 	@Inject private CarteirinhaUtil carteirinhaUtil;
-	@Inject private PermissaoDAO permissaoDAO;
 	@Inject private AuthUserDAO authUserDAO;
-
-	@Inject
-	private UserTransaction transaction;
-
 	@Inject private UsuarioBO usuarioBO;
 
 	private List<Usuario> listUsuarios;
@@ -68,25 +63,19 @@ public class UsuariosBean implements Serializable, BreadCrumbControl{
 	private boolean rendBusca;
 	private boolean rendCreateUsers;
 	private boolean rendResultadoBusca;
-	
 	private boolean rendDadosUsuario;
-
 	private int tipoBusca = 1;
 	private BreadCrumb breadCrumb;
 	
 	private boolean capturouImage = false;
 	private String imageCut = "";
 	private Imagen imagenCap;
-	
 	private boolean redimencionarPadrao = true;
-
-	//sessao usuarios
 
 	@Size(min = 4)
 	@NotNull
 	private String busca = "";
 	private Usuario userSel;
-//	private AuthUser authUserSel;
 	private Imagen imagen;
 	private DualListModel<Permissao> listModelPermissaoes;
 
@@ -195,6 +184,7 @@ public class UsuariosBean implements Serializable, BreadCrumbControl{
     public void salvarUser() {
     	try {
 			this.usuarioBO.init(this.userSel)
+					.trocaSenhaNullPass()
 					.setPermissao(listModelPermissaoes.getTarget())
 					.salvarUser();
 
@@ -318,7 +308,6 @@ public class UsuariosBean implements Serializable, BreadCrumbControl{
 		return rendBusca;
 	}
 
-	@Override
 	public BreadCrumb getBreadCrumb() {
 		return this.breadCrumb;
 	}
@@ -397,5 +386,9 @@ public class UsuariosBean implements Serializable, BreadCrumbControl{
 
 	public void setRedimencionarPadrao(boolean redimencionarPadrao) {
 		this.redimencionarPadrao = redimencionarPadrao;
+	}
+
+	public UsuarioBO getUsuarioBO() {
+		return usuarioBO;
 	}
 }

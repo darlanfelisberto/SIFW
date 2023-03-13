@@ -15,7 +15,7 @@
 
 	pg_dump --format plain --no-owner --file /home/darlan/backup/keycloak17-21-03.backup keycloak17
 
-	pg_dump --format plain --no-owner --file /tmp/base-2022-08-22.backup base --exclude-table-data 'public.log' --exclude-table-data 'log.leituras'
+	pg_dump --format plain --no-owner --file /tmp/base-2023-03-08.backup base --exclude-table-data 'public.log' --exclude-table-data 'log.leituras'
 
 	scp darlan@ruproducao.br:/home/darlan/backup/keycloak17-21-03.backup /home/darlan/backup/
 

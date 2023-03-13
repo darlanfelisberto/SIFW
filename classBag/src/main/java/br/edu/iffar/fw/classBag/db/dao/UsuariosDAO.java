@@ -23,9 +23,7 @@ public class UsuariosDAO extends DAO<Usuario> {
 	private static final long serialVersionUID = 22021991L;
 	
 	@Inject private OidcSecurityContext oidcSecurityContext;
-	
-	private Usuario usuarioLogado;
-	
+
 	@SuppressWarnings("unchecked")
 	public List<Usuario> listAllUsers() {
 		List<Usuario> u = this.em.createQuery("from Usuario u order by unaccent(u.nome) asc").getResultList();
@@ -110,7 +108,7 @@ public class UsuariosDAO extends DAO<Usuario> {
 				return null;
 			}
 			
-			this.usuarioLogado = (Usuario) this.em.createQuery("""
+			return (Usuario) this.em.createQuery("""
 						select u from Usuario u 
 						left join fetch u.authUser au
 						where au.username = :userName
@@ -123,7 +121,7 @@ public class UsuariosDAO extends DAO<Usuario> {
 		catch (NullPointerException e) {
 			e.printStackTrace();
 		}
-		return this.usuarioLogado; 
+		return null;
 	}
 	
 	public String getUsernameLogado() {

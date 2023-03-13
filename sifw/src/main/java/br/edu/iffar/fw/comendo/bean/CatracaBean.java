@@ -172,25 +172,22 @@ public class CatracaBean implements Serializable{
 	}
 
 	public void creditar() {
-		if(saldo.getSaldo()>=this.agendamento.getRefeicao().getValor()) {
-			//aqui nao pode usar a dtReferencia, pq é o horario que ocorrei o credito e dia, que podem ser feitos em outro momento
-			LocalDateTime data = LocalDateTime.now();
-			this.credito = new Credito(data, this.agendamento, this.agendamento.getRefeicao().getValor(), this.usuario, new TipoCredito(TypeCredito.SAIDA), data);
-			try {
-				this.creditosDAO.updateT(this.credito);
-					
-				String boarefeicao = "Foi debitado " + this.credito.getValor() + " de <b>" + this.usuario.getNome() + "</b>. Boa Refeição!";
-				this.boaRefeicao = boarefeicao;
-			}catch (RollbackException e) {
-				messagesUtil.addError(e);
-				this.msgErroSom(ERRO_ADD_CREDITO);
-			} 
-			catch (Exception e) {
-				e.printStackTrace();
-				this.msgErroSom(ERRO_ADD_CREDITO);
-			}
-		}else {
+		if(saldo.getSaldo() <= this.agendamento.getRefeicao().getValor()) {
 			this.msgErroSom("Usuário não possui créditos suficiente!");
+			return;
+		}
+		//aqui nao pode usar a dtReferencia, pq  aqui é o momento que ocorreu o credito. Eles podem ser lançados para um agendamento anterior.
+		LocalDateTime data = LocalDateTime.now();
+		this.credito = new Credito(data, this.agendamento, this.agendamento.getRefeicao().getValor(), this.usuario, new TipoCredito(TypeCredito.SAIDA), data);
+		try {
+			this.creditosDAO.updateT(this.credito);
+			this.boaRefeicao = "Foi debitado " + this.credito.getValor() + " de <b>" + this.usuario.getNome() + "</b>. Boa Refeição!";
+		} catch (RollbackException e) {
+			messagesUtil.addError(e);
+			this.msgErroSom(ERRO_ADD_CREDITO);
+		} catch (Exception e) {
+			e.printStackTrace();
+			this.msgErroSom(ERRO_ADD_CREDITO);
 		}
 	}
 	

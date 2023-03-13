@@ -8,6 +8,7 @@ import br.auth.oidc.Pbkdf2Hash;
 import br.edu.iffar.fw.classBag.db.Model;
 import br.edu.iffar.fw.classBag.db.model.Usuario;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "auth_user", schema = "auth")
@@ -20,14 +21,17 @@ public class AuthUser extends  Model<UUID>{
     @Column(name = "auth_user_id",insertable = true,updatable = false,unique = true)
     private UUID authUserId;
 
+    @NotNull
     private String username;
 
+    @NotNull
     private String password;
-
+    @NotNull
     private String salt;
 
     private boolean inativo;
 
+    @NotNull
     private String email;
 
     @ManyToMany
@@ -39,6 +43,7 @@ public class AuthUser extends  Model<UUID>{
     )
     private Set<Permissao> setPermissao;
 
+    @NotNull
     @OneToOne(fetch = FetchType.LAZY, mappedBy = "authUser",optional = false)
     private Usuario usuario;
 

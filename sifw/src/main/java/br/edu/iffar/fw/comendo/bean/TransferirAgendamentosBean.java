@@ -6,6 +6,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
+import br.edu.iffar.fw.classBag.db.SessionDataStore;
 import br.edu.iffar.fw.classBag.db.dao.AgendamentosDAO;
 import br.edu.iffar.fw.classBag.db.dao.AlteracoesAgendamentoDAO;
 import br.edu.iffar.fw.classBag.db.dao.RefeicaoDAO;
@@ -34,10 +35,11 @@ public class TransferirAgendamentosBean implements Serializable{
 	@Inject private AgendamentosDAO agendamentosDAO;
 	@Inject private UsuariosDAO usuariosDAO;
 	@Inject private RefeicaoDAO refeicaoDAO;
-	@Inject	private HeaderBean headerBean;
 	@Inject private AlteracoesAgendamentoDAO altAgendDAO; 
 	@Inject private UserTransaction userTransaction;
 	@Inject private VinculoSelecionadoBean vinculoSelecionadoBean;
+
+	@Inject private SessionDataStore sessionDataStore;
 	
 	private BreadCrumb breadCrumb;
 	
@@ -51,13 +53,12 @@ public class TransferirAgendamentosBean implements Serializable{
 
 	@PostConstruct
 	private void init() {
-		this.userLogado = headerBean.getUsuarioLogado();
-				
-		if(this.vinculoSelecionadoBean.isNecessarioSelecionarVinculo(this.userLogado)) {
-			this.vinculoSelecionadoBean.redirect();	
-		}else {
-			this.initListas();
+		if(this.vinculoSelecionadoBean.isNecessarioSelecionarVinculo()){
+			this.vinculoSelecionadoBean.redirect();
+			return;
 		}
+		this.userLogado = this.sessionDataStore.getUsuarioLogado();
+		this.initListas();
 	}
 	
 	public void initListas() {

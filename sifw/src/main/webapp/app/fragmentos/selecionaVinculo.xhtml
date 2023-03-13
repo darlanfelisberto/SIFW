@@ -10,7 +10,7 @@
 				<span class="ui-panel-title">Selecione um Vínculo de usuário para prosseguir</span>
 			</div>
 			<div  class="ui-panel-content ui-widget-content">
-				<p:dataTable value="#{fragment.lisVinculosAtivosUsuarios}" var="vinc">
+				<p:dataTable value="#{fragment.lisVinculosAtivosUsuarios}" var="vinc" id="dtFragSelecionaFinculo">
 					<p:column headerText="Vinculo">
 						#{vinc.label}
 					</p:column>
