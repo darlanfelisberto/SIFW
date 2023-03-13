@@ -10,47 +10,7 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="08207d44-b3d4-4d79-ae36-a51c5793c659" name="Changes" comment="commit arrumação">
-      <change afterPath="$PROJECT_DIR$/src/main/java/br/edu/iffar/fw/comendo/interceptor/SelecionaVinculo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/br/edu/iffar/fw/comendo/interceptor/SelecionaVinculoInterceptor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../base/Scripts/Script-3.sql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../base/Scripts/Script-4.sql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../base/Scripts/Script-5.sql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../base/Scripts/Script-6.sql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../base/Scripts/Script-7.sql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../base/Scripts/Script-8.sql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../base/Scripts/Script-9.sql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../base/Scripts/Script.sql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../base/Scripts/dump-base-202101131544.sql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../classBag/src/main/java/br/auth/models/AuthUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/../classBag/src/main/java/br/auth/models/AuthUser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../classBag/src/main/java/br/edu/iffar/fw/classBag/bo/UsuarioBO.java" beforeDir="false" afterPath="$PROJECT_DIR$/../classBag/src/main/java/br/edu/iffar/fw/classBag/bo/UsuarioBO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../classBag/src/main/java/br/edu/iffar/fw/classBag/db/dao/ImagenDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/../classBag/src/main/java/br/edu/iffar/fw/classBag/db/dao/ImagenDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../classBag/src/main/java/br/edu/iffar/fw/classBag/db/dao/UsuariosDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/../classBag/src/main/java/br/edu/iffar/fw/classBag/db/dao/UsuariosDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../classBag/src/main/java/br/edu/iffar/fw/classBag/db/model/Parametros.java" beforeDir="false" afterPath="$PROJECT_DIR$/../classBag/src/main/java/br/edu/iffar/fw/classBag/db/model/Parametros.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../classBag/src/main/resources/META-INF/beans.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../classBag/src/main/resources/META-INF/beans.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/edu/iffar/fw/comendo/SessionDadaBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/../classBag/src/main/java/br/edu/iffar/fw/classBag/db/SessionDataStore.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/edu/iffar/fw/comendo/bean/AgendamentoBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/edu/iffar/fw/comendo/bean/AgendamentoBean.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/edu/iffar/fw/comendo/bean/CatracaBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/edu/iffar/fw/comendo/bean/CatracaBean.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/edu/iffar/fw/comendo/bean/HeaderBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/edu/iffar/fw/comendo/bean/HeaderBean.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/edu/iffar/fw/comendo/bean/TransferirAgendamentosBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/edu/iffar/fw/comendo/bean/TransferirAgendamentosBean.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/edu/iffar/fw/comendo/bean/UsuariosBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/edu/iffar/fw/comendo/bean/UsuariosBean.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/edu/iffar/fw/comendo/bean/fragment/VinculoSelecionadoBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/edu/iffar/fw/comendo/bean/fragment/VinculoSelecionadoBean.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/META-INF/ValidationMessages_pt_BR.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ValidationMessages.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/beans.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/beans.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/faces-config.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/faces-config.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/app/agendamento.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/app/agendamento.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/app/fragmentos/selecionaVinculo.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/app/fragmentos/selecionaVinculo.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/app/perfil.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/app/perfil.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/app/selecionaVinculo.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/app/selecionaVinculo.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/app/usuarios.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/app/usuarios.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/css/componentesPrimeFaces.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/resources/css/componentesPrimeFaces.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/css/main_.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/resources/css/main_.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/sass/componentesPrimeFaces.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/resources/sass/componentesPrimeFaces.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../webservice/src/main/webapp/WEB-INF/beans.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../webservice/src/main/webapp/WEB-INF/beans.xml" afterDir="false" />
-    </list>
+    <list default="true" id="08207d44-b3d4-4d79-ae36-a51c5793c659" name="Changes" comment="commit arrumação/ refatoração, UsuarioBO como nova camada para reutilização de código" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -370,7 +330,7 @@
       <workItem from="1678360312471" duration="1621000" />
       <workItem from="1678389689214" duration="950000" />
       <workItem from="1678461673609" duration="2278000" />
-      <workItem from="1678705785355" duration="5721000" />
+      <workItem from="1678705785355" duration="6218000" />
     </task>
     <task id="LOCAL-00001" summary="usando o intelj">
       <created>1674044329278</created>
@@ -442,7 +402,14 @@
       <option name="project" value="LOCAL" />
       <updated>1677843862286</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="commit arrumação/ refatoração, UsuarioBO como nova camada para reutilização de código">
+      <created>1678714213420</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1678714213420</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -467,7 +434,8 @@
     <MESSAGE value="commit correção espaçamento fields relatorios jasper" />
     <MESSAGE value="commit arrumação na tela do grafico de agendamentos" />
     <MESSAGE value="commit arrumação" />
-    <option name="LAST_COMMIT_MESSAGE" value="commit arrumação" />
+    <MESSAGE value="commit arrumação/ refatoração, UsuarioBO como nova camada para reutilização de código" />
+    <option name="LAST_COMMIT_MESSAGE" value="commit arrumação/ refatoração, UsuarioBO como nova camada para reutilização de código" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
