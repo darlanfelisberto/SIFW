@@ -10,7 +10,19 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="08207d44-b3d4-4d79-ae36-a51c5793c659" name="Changes" comment="commit arrumação/ refatoração, UsuarioBO como nova camada para reutilização de código" />
+    <list default="true" id="08207d44-b3d4-4d79-ae36-a51c5793c659" name="Changes" comment="commit arrumação/ refatoração, UsuarioBO como nova camada para reutilização de código">
+      <change afterPath="$PROJECT_DIR$/../authBag/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../authBag/src/main/java/br/edu/iffar/auth/App.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../authBag/src/test/java/br/edu/iffar/auth/AppTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/css/componentesPrimeFaces.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/resources/css/componentesPrimeFaces.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/css/main_.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/resources/css/main_.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/sass/componentesPrimeFaces.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/resources/sass/componentesPrimeFaces.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webservice/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../webservice/pom.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -73,6 +85,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
+    "jdk.selected.JAVA_MODULE": "temurin-17",
     "last_opened_file_path": "E:/darlan/git/sifw/sifw/src/main/webapp/WEB-INF",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -110,8 +123,10 @@
     <option name="openRunningConfigInTab" value="true" />
   </component>
   <component name="RunManager">
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
-      <option name="TEST_OBJECT" value="class" />
+    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
+      <option name="TEST_OBJECT" value="CLASS" />
+      <properties />
+      <listeners />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -330,7 +345,8 @@
       <workItem from="1678360312471" duration="1621000" />
       <workItem from="1678389689214" duration="950000" />
       <workItem from="1678461673609" duration="2278000" />
-      <workItem from="1678705785355" duration="6218000" />
+      <workItem from="1678705785355" duration="8039000" />
+      <workItem from="1678735624906" duration="864000" />
     </task>
     <task id="LOCAL-00001" summary="usando o intelj">
       <created>1674044329278</created>
@@ -409,7 +425,14 @@
       <option name="project" value="LOCAL" />
       <updated>1678714213420</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="commit arrumação/ refatoração, UsuarioBO como nova camada para reutilização de código">
+      <created>1678714667662</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1678714667662</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -489,6 +512,11 @@
           <url>file://$PROJECT_DIR$/../classBag/src/main/java/br/auth/models/AuthUser.java</url>
           <line>74</line>
           <option name="timeStamp" value="47" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/../webservice/src/main/java/br/edu/iffar/api/EmailEndPoint.java</url>
+          <line>49</line>
+          <option name="timeStamp" value="48" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

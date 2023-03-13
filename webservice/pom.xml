@@ -147,8 +147,8 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/ma
         <!--rest fim-->
 		
 		<dependency>
-			<groupId>br.edu.iffar.fw</groupId>
-			<artifactId>classBag</artifactId>
+			<groupId>br.edu.iffar</groupId>
+			<artifactId>authBag</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 

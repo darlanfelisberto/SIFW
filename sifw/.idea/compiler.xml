@@ -19,9 +19,10 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="classBag" />
         <module name="sifw" />
+        <module name="classBag" />
         <module name="service" />
+        <module name="authBag" />
       </profile>
     </annotationProcessing>
   </component>
