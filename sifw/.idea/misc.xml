@@ -11,7 +11,6 @@
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/../classBag/pom.xml" />
         <option value="$PROJECT_DIR$/../webservice/pom.xml" />
-        <option value="$PROJECT_DIR$/../authBag/pom.xml" />
       </list>
     </option>
   </component>
