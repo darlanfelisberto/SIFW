@@ -12,6 +12,11 @@ echo "";
 cd classBag/ &&
 print 'COMPILANDO' "classbag" &&
 mvn clean install &&
+
+cd ../webservice/ &&
+print 'COMPILANDO' "webservice" &&
+mvn clean install &&
+
 cd ../sifw/ &&
 print 'COMPILANDO' "comendo(SIFW)" &&
 mvn clean install &&

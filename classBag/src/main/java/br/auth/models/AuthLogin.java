@@ -1,9 +1,5 @@
 package br.auth.models;
 
-import static br.auth.oidc.OpenIdConstant.BASIC_TYPE;
-import static br.auth.oidc.OpenIdConstant.CODE;
-import static br.auth.oidc.OpenIdConstant.STATE;
-
 import java.nio.charset.StandardCharsets;
 import java.time.LocalDateTime;
 import java.util.Base64;
@@ -64,7 +60,7 @@ public class AuthLogin extends Model<UUID> {
     public boolean verifyHeaderAuthorization(String authorizationHeader){
         String autorization = new String(Base64.getDecoder()
                                         .decode(authorizationHeader
-                                        .substring(BASIC_TYPE.length() + 1))
+                                        .substring(OpenIdConstant.BASIC_TYPE.length() + 1))
                                 , StandardCharsets.UTF_8);
         return autorization.equals(this.cliente.getNome() + ":" + this.cliente.getSecret().toString());
     }
@@ -80,7 +76,7 @@ public class AuthLogin extends Model<UUID> {
     }
 
     public String queryParam(){
-        return "?" + STATE + "=" + state + "&" + CODE + "=" + getCode();
+        return "?" + OpenIdConstant.STATE + "=" + state + "&" + OpenIdConstant.CODE + "=" + getCode();
     }
 
     @Override

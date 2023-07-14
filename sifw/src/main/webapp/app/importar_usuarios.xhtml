@@ -59,7 +59,7 @@
 							</div>
 							<div class="ui-fluid formgrid grid">
 								<div class="field col-12 md:col-4">
-									<p:commandButton value="Download de todas as carteirinhas" icon="pi pi-download"  ajax="false" onclick="PrimeFaces.monitorDownload(start, stop);">
+									<p:commandButton value="Download de todas as carteirinhas" icon="pi pi-download"  ajax="false" onclick="PrimeFaces.monitorDownload(start, stop);" disabled="true">
 										<p:fileDownload value="#{gerarQRCodeBean.allQRCode}"></p:fileDownload>
 									</p:commandButton>
 								</div>

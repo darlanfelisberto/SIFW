@@ -3,6 +3,7 @@ package br.auth.oidc;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.io.Serializable;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.UUID;
@@ -14,57 +15,52 @@ import com.nimbusds.jose.jwk.KeyUse;
 import com.nimbusds.jose.jwk.RSAKey;
 import com.nimbusds.jose.jwk.gen.RSAKeyGenerator;
 
-import jakarta.enterprise.context.ApplicationScoped;
+import static  br.edu.iffar.fw.classBag.init.InitConstantes.OIDC_JWT_SIZE;
+import static  br.edu.iffar.fw.classBag.init.InitConstantes.OIDC_JWK_PATH;
+import static  br.edu.iffar.fw.classBag.init.InitConstantes.OIDC_JWT_FILENAME;
 
-@ApplicationScoped
-public class OidcKeysUtil {
 
-    static final int SIZE_RSA_KEY = 3072;
-    static final String NAME_KEY_PAIR = "/WEB-INF/pairKeyJWK.json";
+public class OidcKeysUtil implements Serializable{
+
+    private static final long serialVersionUID = 1L;
     static RSAKey pairRsaKey;
-    static String PATH_KEY_FILE;
-    static public  String PATH_WAR =  OidcKeysUtil.class.getResource("").getPath().split("/WEB-INF")[0];
-
-    static {
-    	
-    	if(System.getProperty("os.name").contains("Win") && PATH_WAR.charAt(0) == '/') {
-    	//TODO parece que tem algum bug que fica uma / antes da uri do path, verificar futuramente 17.0.5.8
-    		PATH_WAR = PATH_WAR.substring(1);
-    	}
-    	PATH_KEY_FILE = PATH_WAR + NAME_KEY_PAIR;
-        readKey();
+       
+    static {    	
+    	readKey();   
     }
 
     public static void generateKeys() {
         RSAKey jwk2 = null;
         try {
-            jwk2 = new RSAKeyGenerator(SIZE_RSA_KEY)
+            jwk2 = new RSAKeyGenerator(OIDC_JWT_SIZE)
                     .algorithm(JWSAlgorithm.RS256)
                     .keyUse(KeyUse.SIGNATURE) // indicate the intended use of the key
                     .keyID(UUID.randomUUID().toString()) // give the key a unique ID
                     .generate();
-            Files.createFile(Paths.get(PATH_KEY_FILE));
-            OutputStream ops = Files.newOutputStream(Paths.get(PATH_KEY_FILE));
+            Files.createFile(Paths.get(OIDC_JWK_PATH + OIDC_JWT_FILENAME));
+            OutputStream ops = Files.newOutputStream(Paths.get(OIDC_JWK_PATH + OIDC_JWT_FILENAME));
             ops.write(jwk2.toJSONString().getBytes());
             ops.close();
             
         } catch (JOSEException e1) {
             e1.printStackTrace();
         } catch (IOException e) {
-			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+        catch (Exception e) {
 			e.printStackTrace();
 		}
     }
 
     static void readKey() {
         //https://connect2id.com/products/nimbus-jose-jwt/examples/jwk-generation
-    	if(!Files.exists(Paths.get(PATH_KEY_FILE))){
-    		System.out.println(NAME_KEY_PAIR + "Não encontrado.");
+    	if(!Files.exists(Paths.get(OIDC_JWK_PATH + OIDC_JWT_FILENAME))){
+    		System.out.println(OIDC_JWK_PATH + OIDC_JWT_FILENAME + " Não encontrado.");
     		
     		generateKeys();
     	}
         try {
-            FileInputStream f = new FileInputStream(PATH_KEY_FILE);
+            FileInputStream f = new FileInputStream(OIDC_JWK_PATH + OIDC_JWT_FILENAME);
             String result = new String(f.readAllBytes());
             f.close();
 

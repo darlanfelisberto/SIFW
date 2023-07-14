@@ -40,7 +40,7 @@ public class UsuariosDAO extends DAO<Usuario> {
 			.setParameter("username", userName)
 			.getSingleResult();
 		} catch (NoResultException e) {
-			System.out.println("Usuario logado, NoResultException.");
+			System.out.println("NoResultException.");
 			return null;
 		} catch (NonUniqueResultException e) {
 			e.printStackTrace();

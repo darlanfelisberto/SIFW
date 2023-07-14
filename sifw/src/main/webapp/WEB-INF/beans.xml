@@ -2,7 +2,7 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/beans_3_0.xsd" bean-discovery-mode="all" version="3.0">
 
-    <interceptors>
+    <!-- interceptors>
         <class>br.edu.iffar.fw.comendo.interceptor.SelecionaVinculoInterceptor</class>
-    </interceptors>
+    </interceptors-->
 </beans>

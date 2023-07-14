@@ -1,4 +1,4 @@
-package br.auth.oidc;
+package br.auth.models;
 
 public enum ResponseTypeEnum {
     CODE,

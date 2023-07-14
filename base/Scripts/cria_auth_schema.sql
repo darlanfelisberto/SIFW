@@ -1,4 +1,4 @@
-atualiza
+
 CREATE SCHEMA auth;
 
 CREATE TABLE auth.auth_login (
@@ -42,7 +42,14 @@ CREATE TABLE auth.permissao (
 
 INSERT INTO auth.auth_user VALUES ('02365495028', 'CHtWhreVIUC3R3wvyiqhJZ8iCb2fRZV/HQCBxIelr0tv7K0oar+Cn4PEA1hjq84fQ3mrtF2JKIDt9SvxE3IILA==', 'darlan.felisberto@iffarroupilha.edu.br', 'H57a/ti0h9f2ujVlrEcnbQ==', 'bf874c2e-85a7-4e92-93c6-f0b9b4370d15', false);
 
-INSERT INTO auth.auth_user_permissao VALUES ('bf874c2e-85a7-4e92-93c6-f0b9b4370d15', '1fc1d1f7-59f0-4bbb-a903-df39ec898891');
+INSERT INTO auth.auth_user_permissao (auth_user_id,permissao_id) VALUES
+	 ('bf874c2e-85a7-4e92-93c6-f0b9b4370d15','1fc1d1f7-59f0-4bbb-a903-df39ec898891'),
+	 ('bf874c2e-85a7-4e92-93c6-f0b9b4370d15','463d740f-b0fe-48fe-a65a-4ca8673c7ca4'),
+	 ('bf874c2e-85a7-4e92-93c6-f0b9b4370d15','e945e9ee-53f6-418f-bc58-831a2dcb9574'),
+	 ('bf874c2e-85a7-4e92-93c6-f0b9b4370d15','ed6818c4-ee4a-4e31-96a2-b8bdea3efdd3'),
+	 ('bf874c2e-85a7-4e92-93c6-f0b9b4370d15','3e8f7ac5-4372-4691-80e1-c90a6bd91912'),
+	 ('bf874c2e-85a7-4e92-93c6-f0b9b4370d15','b43c01af-875b-4c3a-83ab-cb669e9f940e');
+
 
 INSERT INTO auth.cliente VALUES ('fw', 'http://localhost:8080/comendo', 'localhost:8080/comendo', '3fd70ff4-fe2b-47b6-a8a3-cd1cf281a937', 'CODE', '05d684a6-f47f-48eb-9089-f3dbddfc6ac4');
 INSERT INTO auth.cliente VALUES ('angular', 'http://localhost:4200', 'http://localhost:4200', '3fd70ff4-fe2b-47b6-a8a3-cd1cf281a937', 'TOKEN', '1373b43d-76db-44ce-821c-f55d1e1dfa4f');
@@ -98,9 +105,6 @@ ALTER TABLE public.usuarios ADD auth_user_id uuid NULL;
 update public.usuarios set auth_user_id = 'bf874c2e-85a7-4e92-93c6-f0b9b4370d15' where cpf = '02365495028';
 ALTER TABLE public.usuarios ADD CONSTRAINT usuarios_auth_user_fk FOREIGN KEY (auth_user_id) REFERENCES auth.auth_user(auth_user_id);
 
----- verificar isso
-ALTER TABLE public.usuarios DROP COLUMN email;
-
 
 drop VIEW public.api_saldo;
 drop VIEW public.api_usuarios;
@@ -140,4 +144,5 @@ AS SELECT DISTINCT u.usuario_id,
 
  
  ALTER TABLE public.usuarios DROP COLUMN username;
+ ALTER TABLE public.usuarios DROP COLUMN email;
  

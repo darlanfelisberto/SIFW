@@ -7,44 +7,49 @@
     </artifacts-to-build>
   </component>
   <component name="AutoImportSettings">
-    <option name="autoReloadType" value="ALL" />
+    <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="08207d44-b3d4-4d79-ae36-a51c5793c659" name="Changes" comment="commit arrumação/ refatoração, UsuarioBO como nova camada para reutilização de código" />
+    <list default="true" id="63909a27-9172-464b-8f4c-d4ec4735bed8" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../base/Scripts/cria_auth_schema.sql" beforeDir="false" afterPath="$PROJECT_DIR$/../base/Scripts/cria_auth_schema.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../classBag/.classpath" beforeDir="false" afterPath="$PROJECT_DIR$/../classBag/.classpath" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../classBag/src/main/java/br/auth/oidc/OidcKeysUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/../classBag/src/main/java/br/auth/oidc/OidcKeysUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../classBag/src/main/java/br/auth/oidc/OidcTokenUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/../classBag/src/main/java/br/auth/oidc/OidcTokenUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../classBag/src/main/java/br/auth/oidc/OpenIdConstant.java" beforeDir="false" afterPath="$PROJECT_DIR$/../classBag/src/main/java/br/auth/oidc/OpenIdConstant.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../classBag/src/main/java/br/edu/iffar/fw/classBag/sec/Pbkdf2Hash.java" beforeDir="false" afterPath="$PROJECT_DIR$/../classBag/src/main/java/br/edu/iffar/fw/classBag/sec/Pbkdf2Hash.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../compila.sh" beforeDir="false" afterPath="$PROJECT_DIR$/../compila.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.classpath" beforeDir="false" afterPath="$PROJECT_DIR$/.classpath" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.externalToolBuilders/New_Builder.launch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/deployment.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/git_toolbox_prj.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/watcherTasks.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.project" beforeDir="false" afterPath="$PROJECT_DIR$/.project" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.settings/org.eclipse.wst.common.component" beforeDir="false" afterPath="$PROJECT_DIR$/.settings/org.eclipse.wst.common.component" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/beans.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/beans.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/app/importar_usuarios.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/app/importar_usuarios.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/app/usuarios.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/app/usuarios.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webservice/.classpath" beforeDir="false" afterPath="$PROJECT_DIR$/../webservice/.classpath" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webservice/src/main/java/br/auth/util/ThymeleafUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/../webservice/src/main/java/br/auth/util/ThymeleafUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webservice/src/main/java/br/edu/iffar/api/EmailEndPoint.java" beforeDir="false" afterPath="$PROJECT_DIR$/../webservice/src/main/java/br/edu/iffar/api/EmailEndPoint.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webservice/src/main/webapp/WEB-INF/tymeleaf/formLogin.html" beforeDir="false" afterPath="$PROJECT_DIR$/../webservice/src/main/webapp/WEB-INF/tymeleaf/formLogin.html" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="CompilerWorkspaceConfiguration">
-    <option name="CLEAR_OUTPUT_DIRECTORY" value="false" />
     <option name="MAKE_PROJECT_ON_SAVE" value="true" />
-    <option name="REBUILD_ON_DEPENDENCY_CHANGE" value="false" />
-  </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="Record" />
-        <option value="Class" />
-        <option value="Interface" />
-      </list>
-    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
-    <option name="SET_USER_NAME_GLOBALLY" value="false" />
-  </component>
-  <component name="GitToolBoxStore">
-    <option name="projectConfigVersion" value="5" />
-  </component>
-  <component name="HighlightingSettingsPerFile">
-    <setting file="jar://$MAVEN_REPOSITORY$/jakarta/faces/jakarta.faces-api/4.0.1/jakarta.faces-api-4.0.1-sources.jar!/jakarta/faces/context/FacesContext.java" root0="SKIP_INSPECTION" />
-    <setting file="jar://$MAVEN_REPOSITORY$/org/primefaces/primefaces/12.0.0/primefaces-12.0.0-sources.jar!/org/primefaces/model/DualListModel.java" root0="SKIP_INSPECTION" />
-    <setting file="jar://$MAVEN_REPOSITORY$/org/thymeleaf/thymeleaf/3.1.1.RELEASE/thymeleaf-3.1.1.RELEASE-sources.jar!/org/thymeleaf/templateresolver/AbstractConfigurableTemplateResolver.java" root0="SKIP_INSPECTION" />
-    <setting file="jar://$MAVEN_REPOSITORY$/org/thymeleaf/thymeleaf/3.1.1.RELEASE/thymeleaf-3.1.1.RELEASE-sources.jar!/org/thymeleaf/templateresolver/FileTemplateResolver.java" root0="SKIP_INSPECTION" />
-  </component>
-  <component name="JpbToolWindowState">
-    <option name="isToolWindowVisible" value="false" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -55,60 +60,27 @@
         <option name="useMavenConfig" value="true" />
       </MavenGeneralSettings>
     </option>
-    <option name="importingSettings">
-      <MavenImportingSettings>
-        <option name="workspaceImportEnabled" value="true" />
-      </MavenImportingSettings>
-    </option>
   </component>
-  <component name="ProjectId" id="2KPHjx21wUomp7jXR1lWiajHuAp" />
+  <component name="ProjectId" id="2O42s9kwcPAfiGSslfxCPfuzzam" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    "NewWatcherDialog.advanced.open": "true",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "E:/darlan/git/sifw/sifw/src/main/webapp/WEB-INF",
+    "jdk.selected.JAVA_MODULE": "17",
+    "last_opened_file_path": "/opt/darlan/SIFW/webservice",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
-    "project.structure.last.edited": "Artifacts",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "settings.build.tools.auto.reload": "ALL",
-    "settings.editor.selected.configurable": "project.propCompiler",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "Debugger_Data_Views_Java",
     "vue.rearranger.settings.migration": "true"
-  },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "postgresql"
-    ]
   }
 }]]></component>
-  <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="E:\darlan\git\sifw\sifw\src\main\webapp\WEB-INF" />
-      <recent name="E:\darlan\git\sifw\sifw\src\main\webapp\META-INF" />
-      <recent name="E:\darlan\git\sifw\sifw\src\main\java\br\edu\iffar\fw\comendo" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="E:\darlan\git\sifw\sifw\src\main\java" />
-      <recent name="E:\darlan\git\sifw\sifw\src\main\webapp\META-INF" />
-    </key>
-    <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="br.edu.iffar.fw.classBag.excecoes" />
-      <recent name="br.auth.dao" />
-    </key>
-  </component>
-  <component name="RunDashboard">
-    <option name="openRunningConfigInTab" value="true" />
-  </component>
   <component name="RunManager">
     <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
       <option name="TEST_OBJECT" value="class" />
@@ -116,15 +88,14 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="JBoss/WildFly 27.0.1.Final (1)" type="JBossConfiguration" factoryName="Local" APPLICATION_SERVER_NAME="JBoss/WildFly 27.0.1.Final" ALTERNATIVE_JRE_ENABLED="true" ALTERNATIVE_JRE_PATH="C:/Program Files/Eclipse Adoptium/jdk-17.0.5.8-hotspot" nameIsGenerated="true">
-      <option name="OPEN_IN_BROWSER" value="false" />
+    <configuration name="wildfly-28.0.0.Beta1" type="JBossConfiguration" factoryName="Local" APPLICATION_SERVER_NAME="wildfly-28.0.0.Beta1" ALTERNATIVE_JRE_ENABLED="true" ALTERNATIVE_JRE_PATH="$PROJECT_DIR$/../../../jdk17" nameIsGenerated="true">
       <option name="UPDATE_ON_FRAME_DEACTIVATION" value="true" />
       <option name="UPDATE_CLASSES_ON_FRAME_DEACTIVATION" value="true" />
       <deployment>
-        <artifact name="sifw:war exploded">
+        <artifact name="service:war exploded">
           <settings />
         </artifact>
-        <artifact name="service:war exploded">
+        <artifact name="sifw:war exploded">
           <settings />
         </artifact>
       </deployment>
@@ -132,13 +103,13 @@
         <option name="SERVER" />
         <option name="BINDING_SET_NAME" value="" />
         <option name="DOMAIN" value="false" />
-        <option name="SERVER_GROUP" />
-        <option name="USERNAME" value="" />
-        <option name="CREDENTIAL_ALIAS" />
+        <option name="SERVER_GROUP" value="main-server-group" />
+        <option name="USERNAME" value="manager" />
+        <option name="CREDENTIAL_ALIAS" value="183e5b66-3840-48d5-8bbf-78995d5acb2f" />
       </server-settings>
       <predefined_log_file enabled="true" id="JBoss" />
       <RunnerSettings RunnerId="Debug">
-        <option name="DEBUG_PORT" value="50812" />
+        <option name="DEBUG_PORT" value="38289" />
       </RunnerSettings>
       <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Cover">
         <option name="USE_ENV_VARIABLES" value="true" />
@@ -186,315 +157,28 @@
         </SHUTDOWN>
       </ConfigurationWrapper>
       <method v="2">
-        <option name="FwBeforeLaunchTask" enabled="true" />
-        <option name="MakeProject" enabled="true" />
+        <option name="Make" enabled="true" />
         <option name="BuildArtifacts" enabled="true">
           <artifact name="service:war exploded" />
           <artifact name="sifw:war exploded" />
         </option>
       </method>
     </configuration>
-    <configuration default="true" type="JBossConfiguration" factoryName="Local" ALTERNATIVE_JRE_ENABLED="false">
-      <deployment />
-      <server-settings>
-        <option name="SERVER" value="" />
-        <option name="BINDING_SET_NAME" value="" />
-        <option name="DOMAIN" value="false" />
-        <option name="SERVER_GROUP" value="" />
-        <option name="USERNAME" value="" />
-      </server-settings>
-      <predefined_log_file enabled="true" id="JBoss" />
-      <RunnerSettings RunnerId="Debug">
-        <option name="DEBUG_PORT" value="53731" />
-      </RunnerSettings>
-      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Cover">
-        <option name="USE_ENV_VARIABLES" value="true" />
-        <STARTUP>
-          <option name="USE_DEFAULT" value="true" />
-          <option name="SCRIPT" value="" />
-          <option name="VM_PARAMETERS" value="" />
-          <option name="PROGRAM_PARAMETERS" value="" />
-        </STARTUP>
-        <SHUTDOWN>
-          <option name="USE_DEFAULT" value="true" />
-          <option name="SCRIPT" value="" />
-          <option name="VM_PARAMETERS" value="" />
-          <option name="PROGRAM_PARAMETERS" value="" />
-        </SHUTDOWN>
-      </ConfigurationWrapper>
-      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Debug">
-        <option name="USE_ENV_VARIABLES" value="true" />
-        <STARTUP>
-          <option name="USE_DEFAULT" value="true" />
-          <option name="SCRIPT" value="" />
-          <option name="VM_PARAMETERS" value="" />
-          <option name="PROGRAM_PARAMETERS" value="" />
-        </STARTUP>
-        <SHUTDOWN>
-          <option name="USE_DEFAULT" value="true" />
-          <option name="SCRIPT" value="" />
-          <option name="VM_PARAMETERS" value="" />
-          <option name="PROGRAM_PARAMETERS" value="" />
-        </SHUTDOWN>
-      </ConfigurationWrapper>
-      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Run">
-        <option name="USE_ENV_VARIABLES" value="true" />
-        <STARTUP>
-          <option name="USE_DEFAULT" value="true" />
-          <option name="SCRIPT" value="" />
-          <option name="VM_PARAMETERS" value="" />
-          <option name="PROGRAM_PARAMETERS" value="" />
-        </STARTUP>
-        <SHUTDOWN>
-          <option name="USE_DEFAULT" value="true" />
-          <option name="SCRIPT" value="" />
-          <option name="VM_PARAMETERS" value="" />
-          <option name="PROGRAM_PARAMETERS" value="" />
-        </SHUTDOWN>
-      </ConfigurationWrapper>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="JBossConfiguration" factoryName="Remote" ALTERNATIVE_JRE_ENABLED="false">
-      <option name="LOCAL" value="false" />
-      <deployment />
-      <server-settings>
-        <data>
-          <option name="serverGroup" value="" />
-          <option name="transportHostId" />
-          <server-group />
-        </data>
-      </server-settings>
-      <predefined_log_file enabled="true" id="JBoss" />
-      <RunnerSettings RunnerId="Debug">
-        <option name="DEBUG_PORT" value="53732" />
-        <option name="LOCAL" value="false" />
-      </RunnerSettings>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="08207d44-b3d4-4d79-ae36-a51c5793c659" name="Changes" comment="" />
-      <created>1673869437598</created>
+      <changelist id="63909a27-9172-464b-8f4c-d4ec4735bed8" name="Changes" comment="" />
+      <created>1680805741284</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1673869437598</updated>
-      <workItem from="1673869439229" duration="1289000" />
-      <workItem from="1673870745000" duration="578000" />
-      <workItem from="1674040592994" duration="944000" />
-      <workItem from="1674042570428" duration="317000" />
-      <workItem from="1674042899394" duration="24988000" />
-      <workItem from="1674152623775" duration="3536000" />
-      <workItem from="1674221152010" duration="11935000" />
-      <workItem from="1674499419857" duration="6411000" />
-      <workItem from="1674737687249" duration="78000" />
-      <workItem from="1674737776582" duration="76000" />
-      <workItem from="1674738023993" duration="6677000" />
-      <workItem from="1674821936775" duration="5151000" />
-      <workItem from="1675431960079" duration="4234000" />
-      <workItem from="1675455203676" duration="676000" />
-      <workItem from="1675780493254" duration="654000" />
-      <workItem from="1675877115261" duration="1062000" />
-      <workItem from="1675878231549" duration="972000" />
-      <workItem from="1676040114919" duration="3713000" />
-      <workItem from="1676046438511" duration="10092000" />
-      <workItem from="1676253167692" duration="12000" />
-      <workItem from="1676465280912" duration="12764000" />
-      <workItem from="1676540747912" duration="16453000" />
-      <workItem from="1676831229697" duration="1137000" />
-      <workItem from="1676842585675" duration="8000" />
-      <workItem from="1677000815406" duration="2119000" />
-      <workItem from="1677020710466" duration="5000" />
-      <workItem from="1677083963652" duration="2162000" />
-      <workItem from="1677094220059" duration="2832000" />
-      <workItem from="1677367537004" duration="600000" />
-      <workItem from="1677441163681" duration="129000" />
-      <workItem from="1677606997565" duration="8754000" />
-      <workItem from="1677621623426" duration="3397000" />
-      <workItem from="1677661966295" duration="6159000" />
-      <workItem from="1677835287198" duration="2901000" />
-      <workItem from="1677868339456" duration="6346000" />
-      <workItem from="1678016798156" duration="4122000" />
-      <workItem from="1678101954587" duration="13409000" />
-      <workItem from="1678124225539" duration="4637000" />
-      <workItem from="1678141891935" duration="9908000" />
-      <workItem from="1678195050649" duration="4571000" />
-      <workItem from="1678206824999" duration="6426000" />
-      <workItem from="1678228518309" duration="15000" />
-      <workItem from="1678279804586" duration="5255000" />
-      <workItem from="1678360312471" duration="1621000" />
-      <workItem from="1678389689214" duration="950000" />
-      <workItem from="1678461673609" duration="2278000" />
-      <workItem from="1678705785355" duration="6218000" />
+      <updated>1680805741284</updated>
+      <workItem from="1680805743062" duration="15000" />
+      <workItem from="1680805808682" duration="850000" />
     </task>
-    <task id="LOCAL-00001" summary="usando o intelj">
-      <created>1674044329278</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1674044329278</updated>
-    </task>
-    <task id="LOCAL-00002" summary="usando o intelj">
-      <created>1674044344994</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1674044344994</updated>
-    </task>
-    <task id="LOCAL-00003" summary="usando o intelj">
-      <created>1674044710280</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1674044710280</updated>
-    </task>
-    <task id="LOCAL-00004" summary="to jpa3 uuid in auth scheme">
-      <created>1674049536666</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1674049536666</updated>
-    </task>
-    <task id="LOCAL-00005" summary="gerenciamento de usuarios esta operacional">
-      <created>1674161691198</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1674161691198</updated>
-    </task>
-    <task id="LOCAL-00006" summary="commit migração openid e cadastros e mudança de alunos das turmas">
-      <created>1676052448832</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1676052448832</updated>
-    </task>
-    <task id="LOCAL-00007" summary="commit correção espaçamento fields relatorios jasper">
-      <created>1676054234558</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1676054234558</updated>
-    </task>
-    <task id="LOCAL-00008" summary="commit arrumação na tela do grafico de agendamentos">
-      <created>1676490146483</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1676490146483</updated>
-    </task>
-    <task id="LOCAL-00009" summary="commit arrumação">
-      <created>1677441257491</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1677441257491</updated>
-    </task>
-    <task id="LOCAL-00010" summary="commit arrumação">
-      <created>1677843862286</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1677843862286</updated>
-    </task>
-    <task id="LOCAL-00011" summary="commit arrumação/ refatoração, UsuarioBO como nova camada para reutilização de código">
-      <created>1678714213420</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1678714213420</updated>
-    </task>
-    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
-  </component>
-  <component name="Vcs.Log.Tabs.Properties">
-    <option name="TAB_STATES">
-      <map>
-        <entry key="MAIN">
-          <value>
-            <State />
-          </value>
-        </entry>
-      </map>
-    </option>
-  </component>
-  <component name="VcsManagerConfiguration">
-    <MESSAGE value="usando o intelj" />
-    <MESSAGE value="to jpa3 uuid in auth scheme" />
-    <MESSAGE value="gerenciamento de usuarios esta operacional" />
-    <MESSAGE value="commit migração openid e cadastros e mudança de alunos das turmas" />
-    <MESSAGE value="commit correção espaçamento fields relatorios jasper" />
-    <MESSAGE value="commit arrumação na tela do grafico de agendamentos" />
-    <MESSAGE value="commit arrumação" />
-    <MESSAGE value="commit arrumação/ refatoração, UsuarioBO como nova camada para reutilização de código" />
-    <option name="LAST_COMMIT_MESSAGE" value="commit arrumação/ refatoração, UsuarioBO como nova camada para reutilização de código" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/br/edu/iffar/fw/comendo/bean/BackgroundUserCreate.java</url>
-          <line>96</line>
-          <option name="timeStamp" value="14" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/br/edu/iffar/fw/comendo/bean/BackgroundUserCreate.java</url>
-          <line>145</line>
-          <option name="timeStamp" value="17" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/br/edu/iffar/fw/comendo/bean/BackgroundUserCreate.java</url>
-          <line>97</line>
-          <option name="timeStamp" value="18" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/br/edu/iffar/fw/comendo/bean/BackgroundUserCreate.java</url>
-          <line>100</line>
-          <option name="timeStamp" value="19" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/br/edu/iffar/fw/comendo/interceptor/SelecionaVinculoInterceptor.java</url>
-          <line>43</line>
-          <option name="timeStamp" value="39" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/br/edu/iffar/fw/comendo/interceptor/SelecionaVinculoInterceptor.java</url>
-          <line>30</line>
-          <option name="timeStamp" value="41" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/br/edu/iffar/fw/comendo/interceptor/SelecionaVinculoInterceptor.java</url>
-          <line>39</line>
-          <option name="timeStamp" value="42" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/br/edu/iffar/fw/comendo/interceptor/SelecionaVinculoInterceptor.java</url>
-          <line>34</line>
-          <option name="timeStamp" value="44" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/br/edu/iffar/fw/comendo/bean/CatracaBean.java</url>
-          <line>174</line>
-          <option name="timeStamp" value="45" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/../classBag/src/main/java/br/auth/models/AuthUser.java</url>
-          <line>74</line>
-          <option name="timeStamp" value="47" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
-  </component>
-  <component name="XSLT-Support.FileAssociations.UIState">
-    <expand />
-    <select />
   </component>
 </project>

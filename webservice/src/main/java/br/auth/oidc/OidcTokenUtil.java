@@ -1,26 +1,27 @@
 package br.auth.oidc;
 
-import static br.auth.oidc.OpenIdConstant.ACCESS_TOKEN;
-import static br.auth.oidc.OpenIdConstant.AUTHORIZED_PARTY;
-import static br.auth.oidc.OpenIdConstant.BEARER_TYPE;
-import static br.auth.oidc.OpenIdConstant.CODE;
-import static br.auth.oidc.OpenIdConstant.EMAIL;
-import static br.auth.oidc.OpenIdConstant.EMAIL_VERIFIED;
-import static br.auth.oidc.OpenIdConstant.EXPIRES_IN;
-import static br.auth.oidc.OpenIdConstant.FAMILY_NAME;
-import static br.auth.oidc.OpenIdConstant.GIVEN_NAME;
-import static br.auth.oidc.OpenIdConstant.GROUPS;
-import static br.auth.oidc.OpenIdConstant.IDENTITY_TOKEN;
-import static br.auth.oidc.OpenIdConstant.LOCALE;
-import static br.auth.oidc.OpenIdConstant.NAME;
-import static br.auth.oidc.OpenIdConstant.NONCE;
-import static br.auth.oidc.OpenIdConstant.OPENID_SCOPE;
-import static br.auth.oidc.OpenIdConstant.PREFERRED_USERNAME;
-import static br.auth.oidc.OpenIdConstant.SCOPE;
-import static br.auth.oidc.OpenIdConstant.SESSION_STATE;
-import static br.auth.oidc.OpenIdConstant.SID;
-import static br.auth.oidc.OpenIdConstant.TOKEN_TYPE;
-import static br.auth.oidc.OpenIdConstant.USER_PRINCIPAL_NAME;
+import static br.auth.models.OpenIdConstant.ACCESS_TOKEN;
+import static br.auth.models.OpenIdConstant.AUTHORIZED_PARTY;
+import static br.auth.models.OpenIdConstant.BEARER_TYPE;
+import static br.auth.models.OpenIdConstant.CODE;
+import static br.auth.models.OpenIdConstant.EMAIL;
+import static br.auth.models.OpenIdConstant.EMAIL_VERIFIED;
+import static br.auth.models.OpenIdConstant.EXPIRES_IN;
+import static br.auth.models.OpenIdConstant.FAMILY_NAME;
+import static br.auth.models.OpenIdConstant.GIVEN_NAME;
+import static br.auth.models.OpenIdConstant.GROUPS;
+import static br.auth.models.OpenIdConstant.IDENTITY_TOKEN;
+import static br.edu.iffar.fw.classBag.init.InitConstantes.OIDC_ISSUR;
+import static br.auth.models.OpenIdConstant.LOCALE;
+import static br.auth.models.OpenIdConstant.NAME;
+import static br.auth.models.OpenIdConstant.NONCE;
+import static br.auth.models.OpenIdConstant.OPENID_SCOPE;
+import static br.auth.models.OpenIdConstant.PREFERRED_USERNAME;
+import static br.auth.models.OpenIdConstant.SCOPE;
+import static br.auth.models.OpenIdConstant.SESSION_STATE;
+import static br.auth.models.OpenIdConstant.SID;
+import static br.auth.models.OpenIdConstant.TOKEN_TYPE;
+import static br.auth.models.OpenIdConstant.USER_PRINCIPAL_NAME;
 import static java.util.UUID.randomUUID;
 
 import java.net.URISyntaxException;
@@ -40,6 +41,7 @@ import com.nimbusds.jwt.JWTClaimsSet;
 import com.nimbusds.jwt.SignedJWT;
 
 import br.auth.models.AuthLogin;
+import br.auth.models.OpenIdConstant;
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.inject.Inject;
 import jakarta.json.Json;
@@ -51,7 +53,6 @@ import jakarta.ws.rs.core.Response;
 public class OidcTokenUtil {
 
     public static final int expira = 1000 * 60 * 200;
-    public static final String ISSUR = "http://localhost:8080/service/auth/realms/fw";
 
     @Inject OidcKeysUtil oidcKeysUtil;
 
@@ -60,7 +61,7 @@ public class OidcTokenUtil {
 
         JWTClaimsSet.Builder jstClaimsBuilder =
                 new JWTClaimsSet.Builder()
-                        .issuer(ISSUR)
+                        .issuer(OIDC_ISSUR)
                         .subject(authLogin.getAuthUser().getMMId().toString())
                         .audience(List.of(authLogin.getCliente().getNome()))
                         .expirationTime(new Date(now.getTime() + expira))
@@ -107,7 +108,7 @@ public class OidcTokenUtil {
         Date now = new Date();
 
         JWTClaimsSet.Builder jstClaimsBuilder = new JWTClaimsSet.Builder()
-                .issuer(ISSUR)
+                .issuer(OIDC_ISSUR)
                 .subject(authLogin.getAuthUser().getMMId().toString())//id do usuario na api
                 .audience(List.of(authLogin.getCliente().getNome()))
                 .expirationTime(new Date(now.getTime() + expira))

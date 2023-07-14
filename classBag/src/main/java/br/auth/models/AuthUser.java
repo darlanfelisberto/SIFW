@@ -4,9 +4,9 @@ import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 
-import br.auth.oidc.Pbkdf2Hash;
 import br.edu.iffar.fw.classBag.db.Model;
 import br.edu.iffar.fw.classBag.db.model.Usuario;
+import br.edu.iffar.fw.classBag.sec.Pbkdf2Hash;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 

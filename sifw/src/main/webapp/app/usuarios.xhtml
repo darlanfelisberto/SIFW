@@ -192,15 +192,15 @@
 								</div>
 								<div class="field col-12 md:col-6">
 									<label><abbr title="">Senha:</abbr> </label>
-									<p:password value="#{usuariosBean.usuarioBO.senha}" toggleMask="true" redisplay="true"  promptLabel="Fraca Boa Forte" weakLabel="Fraca" goodLabel="Boa" strongLabel="Forte" feedback= "true"/>
+									<p:password value="#{usuariosBean.usuarioBO.senha}" toggleMask="true" redisplay="true"  promptLabel="Fraca Boa Forte" weakLabel="Fraca" goodLabel="Boa" strongLabel="Forte" feedback= "true" autocomplete="off"/>
 								</div>
 								<div class="field col-12 md:col-6">
 									<label><abbr title="">Redigite a Senha:</abbr> </label>
-									<p:password value="#{usuariosBean.usuarioBO.reSenha}" toggleMask="true" redisplay="true"/>
+									<p:password value="#{usuariosBean.usuarioBO.reSenha}" toggleMask="true" redisplay="true" autocomplete="off"/>
 								</div>
 								<div class="field col-12 md:col-6">
 									<label for="iptEmail">E-mail:</label>
-									<p:inputText id="iptEmail" value="#{usuariosBean.userSel.authUser.email}"/>
+									<p:inputText id="iptEmail" value="#{usuariosBean.userSel.authUser.email}" autocomplete="off"/>
 								</div>
 							</div>
 							<h4>Permissões de acesso</h4>

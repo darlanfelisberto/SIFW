@@ -122,7 +122,7 @@ EMAIL
 Agora em ambos os servidores, no jboss-cli execute o seguinte:
 
 	$ /subsystem=datasources:installed-drivers-list
-	$ module add --name=org.postgresql.jdbc --resources=/opt/postgresql-42.2.23.jar  --dependencies=javax.api,javax.transaction.api
+	$ module add --name=org.postgresql.jdbc --resources=/opt/darlan/postgresql-42.6.0.jar  --dependencies=javax.api,javax.transaction.api
 	$ /subsystem=datasources/jdbc-driver=postgresql:add(driver-name="postgresql", driver-module-name="org.postgresql.jdbc", driver-class-name="org.postgresql.Driver", driver-xa-datasource-class-name="org.postgresql.xa.PGXADataSource")
 
 

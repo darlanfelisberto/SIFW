@@ -1,0 +1,30 @@
+#configuração e-mail
+/subsystem=mail/mail-session=default/server=smtp/:write-attribute(name=username,value=email@iffarroupilha.edu.br)
+/subsystem=mail/mail-session=default/server=smtp/:write-attribute(name=password,value=senha)
+/subsystem=mail/mail-session=default/server=smtp/:write-attribute(name=tls,value=true)
+/socket-binding-group=standard-sockets/remote-destination-outbound-socket-binding=mail-smtp/:write-attribute(name=host,value=smtp.gmail.com)
+/socket-binding-group=standard-sockets/remote-destination-outbound-socket-binding=mail-smtp/:write-attribute(name=port,value=587)
+
+#configuração drive postgres
+module add --name=org.postgresql.jdbc --resources=/opt/darlan/postgresql-42.6.0.jar  --dependencies=javax.api,javax.transaction.api
+/subsystem=datasources/jdbc-driver=postgresql:add(driver-name="postgresql", driver-module-name="org.postgresql.jdbc", driver-class-name="org.postgresql.Driver", driver-xa-datasource-class-name="org.postgresql.xa.PGXADataSource")
+
+#configuração datasource
+/subsystem=datasources/data-source=baseDS:add(driver-name=postgresql,jndi-name="java:jboss/datasources/baseDS",connection-url="jdbc:postgresql://localhost:5432/base",user-name=keyuser, password=12345678)
+
+#configuração numero de conexoes do datasource
+/subsystem=datasources/data-source=baseDS:write-attribute(name=min-pool-size,value=10)
+/subsystem=datasources/data-source=baseDS:write-attribute(name=max-pool-size,value=50)
+
+#desativa http2, exception não padronizada na especificação
+/subsystem=undertow/server=default-server/https-listener=https:write-attribute(name=enable-http2,value=false)
+/subsystem=undertow/server=default-server/http-listener=default:write-attribute(name=enable-http2,value=false)
+
+#oidc config
+/subsystem=elytron-oidc-client/secure-deployment="sifw2.war"/:add( \
+    realm="iffar", \
+    resource="sifw", \
+    auth-server-url=http://localhost:8080/service/auth/, \
+    ssl-required=EXTERNAL)
+
+/subsystem=elytron-oidc-client/secure-deployment=sifw2.war/credential=secret:add(secret=3fd70ff4-fe2b-47b6-a8a3-cd1cf281a937)

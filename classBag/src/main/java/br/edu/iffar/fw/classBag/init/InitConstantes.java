@@ -1,5 +1,9 @@
 package br.edu.iffar.fw.classBag.init;
 
+import static br.edu.iffar.fw.classBag.init.InitConstantes.OIDC_JWK_PATH;
+import static br.edu.iffar.fw.classBag.init.InitConstantes.OIDC_JWT_FILENAME;
+
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.Serializable;
@@ -7,34 +11,26 @@ import java.util.Properties;
 
 import org.omnifaces.cdi.Eager;
 
+import com.nimbusds.jose.jwk.RSAKey;
+
 import jakarta.annotation.PostConstruct;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
 import jakarta.servlet.ServletContext;
 
-@Named
-@ApplicationScoped
-@Eager
-public class InitConstantes implements Serializable {
-
-	private static final long serialVersionUID = 1L;
+public class InitConstantes {
 
 	private static Properties config = new Properties();
 	
 	static {
+		String nameFileContantes = "/opt/sifw/configuration_linux.properties";
 		try {
-			String nameFileContantes = "configuration_linux.properties";
-			//TODO parece que tem algum bug que fica uma / antes da uri do path, verificar futuramente 17.0.5.8
 			if(System.getProperty("os.name").contains("Win")) {
-//				 if(InitConstantes.class.getResource("").getPath().charAt(0) == '/') {
-//					 nameFileContantes = InitConstantes.class.getResource("").getPath().substring(1) + "configuration_win.properties";
-//				 }else {
-					 nameFileContantes = "configuration_win.properties";
-//				 }
+				nameFileContantes = "C:\\app\\sifw\\configuration_win.properties";
 		    }
 			
-	        InputStream configFile = InitConstantes.class.getResourceAsStream(nameFileContantes);
+			FileInputStream configFile = new FileInputStream(nameFileContantes);
 	        if (configFile != null) {
 	            try {
 	                config.load(configFile);
@@ -43,29 +39,16 @@ public class InitConstantes implements Serializable {
 	            }
 	        }
 		} catch (Exception e) {
-			System.err.println("Não foi encontrado arquivo de configuração de constantes.");
+			System.err.println("Não foi encontrado arquivo de configuração de constantes: " + nameFileContantes);
 			System.exit(1);
 		}
 	}
 
-	private static String APP_REAL_PATH;
 	
-	static public final String IMAGEM_PATH = config.getProperty("imagem.path");
-	static public final String IMAGEM_EXTENSAO = config.getProperty("imagem.extencao");
-	
-
-	
-	@Inject
-	ServletContext servletContext;
-
-
-	@PostConstruct
-	public void init() {
-		try {
-			APP_REAL_PATH = servletContext.getRealPath("");
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
+	static public final String IMAGEM_PATH 			= config.getProperty("imagem.path");
+	static public final String IMAGEM_EXTENSAO 		= config.getProperty("imagem.extencao");
+	static public final int    OIDC_JWT_SIZE 		= Integer.parseInt(config.getProperty("oidc.jwk.size"));
+    static public final String OIDC_JWT_FILENAME 	= config.getProperty("oidc.jwk.filename");
+    static public final String OIDC_JWK_PATH 		= config.getProperty("oidc.jwk.path");
+    static public final String OIDC_ISSUR 			= config.getProperty("oidc.issur");
 }

@@ -34,10 +34,10 @@ public class Producer {
 				FacesContext fc = FacesContext.getCurrentInstance();
 				String url = fc.getExternalContext().getRequestContextPath();
 				fc.getExternalContext().redirect(url);
-			} catch (IOException e) {
+			} catch (Throwable e) {
 				e.printStackTrace();
 			}
-			return null;
+			return new OidcSecurityContext();
 		}
 		return oidcPrincipal.getOidcSecurityContext();
 	}

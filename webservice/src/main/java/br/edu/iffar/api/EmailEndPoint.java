@@ -45,11 +45,11 @@ public class EmailEndPoint implements Serializable{
 	
 	@POST                                                             
     @Path("/gerarlink")
-    public void gerarLink(@FormParam("usuario") String usuario) {
+    public void gerarLink(@FormParam("username") String username) {
 		
-		Usuario user = this.usuarioDAO.findByUserName(usuario);
+		Usuario user = this.usuarioDAO.findByUserName(username);
 		if(user == null) {
-			
+			return;
 		}
 
 		try{
