@@ -31,13 +31,13 @@ else :
 
 
 def execute(command):
-    print(subprocess.list2cmdline(command))
-    os.system(subprocess.list2cmdline(command))
+    print("".join(command))
+    os.system("".join(command))
     # saida = subprocess.run(command, capture_output=True, text=True)    
     # return saida
 
 def executeOS(command):
-    print(subprocess.list2cmdline(command))
+    print(command)
     os.system(command)
 
 def replaceInFile(fileName, source,target):
