@@ -11,6 +11,7 @@ parser = argparse.ArgumentParser(description="Just an example")
 
 parser.add_argument("-i", "--install", help="versão de instalação", default="wildfly-28.0.1.Final")
 parser.add_argument("-d", "--destino", help="Pasta de instalação", default="/opt/sifw")
+parser.add_argument("-j", "--jarDrivePostgres", help="vesao drive jar postgres jdbc", default="postgresql-42.6.0"])")
 args = parser.parse_args()
 config = vars(args)
 print(config)
@@ -43,6 +44,7 @@ def replaceInFile(fileName, source,target):
         w.write(text)
 
 pastaInstall = args.destino;
+jarDrivePostgres = args.jarDrivePostgres
 wildflyName = args.install;
 wildflyVersao = match.group(2);
 
@@ -52,6 +54,7 @@ urlDowloadWildfly = "https://github.com/wildfly/wildfly/releases/download/" + wi
 execute(["mkdir", "-p", pastaInstall]);
 
 execute(["wget", "-cv", urlDowloadWildfly])
+execute(["wget", "-cv", "https://jdbc.postgresql.org/download/" + jarDrivePostgres + ".jar"])
 
 execute(["tar", "-xvzf", wildflyName+".tar.gz", "-C", pastaInstall])
 
@@ -73,6 +76,8 @@ executeOS("useradd -r -g wildfly -d " +pastaInstall + " -s /sbin/nologin wildfly
 executeOS("chown -R wildfly:wildfly " + pastaInstall)
 executeOS("mkdir /etc/wildfly")
 
+
+replaceInFile("configure-wildfly.cli",jarDrivePostgres,"<#jarDrivePostgres#>")
 replaceInFile("launch.sh",pastaInstall,"<#pastaInstall#>")
 replaceInFile("wildfly.conf",pastaInstall,"<#pastaInstall#>")
 replaceInFile("wildfly.service",pastaInstall,"<#pastaInstall#>")

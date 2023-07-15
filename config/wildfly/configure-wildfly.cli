@@ -6,7 +6,7 @@
 /socket-binding-group=standard-sockets/remote-destination-outbound-socket-binding=mail-smtp/:write-attribute(name=port,value=587)
 
 #configuração drive postgres
-module add --name=org.postgresql.jdbc --resources=/opt/darlan/postgresql-42.6.0.jar  --dependencies=javax.api,javax.transaction.api
+module add --name=org.postgresql.jdbc --resources=<#jarDrivePostgres#>.jar  --dependencies=javax.api,javax.transaction.api
 /subsystem=datasources/jdbc-driver=postgresql:add(driver-name="postgresql", driver-module-name="org.postgresql.jdbc", driver-class-name="org.postgresql.Driver", driver-xa-datasource-class-name="org.postgresql.xa.PGXADataSource")
 
 #configuração datasource
