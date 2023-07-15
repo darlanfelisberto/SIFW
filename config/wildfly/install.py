@@ -10,8 +10,11 @@ import time
 parser = argparse.ArgumentParser(description="Just an example")
 
 parser.add_argument("-i", "--install", help="versão de instalação", default="wildfly-28.0.1.Final")
+parser.add_argument("-e", "--email", help="E-mail para envio de mensagens", default="email@dom.com")
+parser.add_argument("-se", "--senhaEmail", help="Senha do 0mail", default="senha")
+parser.add_argument("--urlOidc", help="url do auth-server", default="http://localhost:8080")
 parser.add_argument("-d", "--destino", help="Pasta de instalação", default="/opt/sifw")
-parser.add_argument("-j", "--jarDrivePostgres", help="vesao drive jar postgres jdbc", default="postgresql-42.6.0"])")
+parser.add_argument("-j", "--jarDrivePostgres", help="vesao drive jar postgres jdbc", default="postgresql-42.6.0")
 args = parser.parse_args()
 config = vars(args)
 print(config)
@@ -44,7 +47,6 @@ def replaceInFile(fileName, source,target):
         w.write(text)
 
 pastaInstall = args.destino;
-jarDrivePostgres = args.jarDrivePostgres
 wildflyName = args.install;
 wildflyVersao = match.group(2);
 
@@ -77,7 +79,11 @@ executeOS("chown -R wildfly:wildfly " + pastaInstall)
 executeOS("mkdir /etc/wildfly")
 
 
-replaceInFile("configure-wildfly.cli",jarDrivePostgres,"<#jarDrivePostgres#>")
+replaceInFile("configure-wildfly.cli",args.jarDrivePostgres,"<#jarDrivePostgres#>")
+replaceInFile("configure-wildfly.cli",args.urlOidc,"<#urlOidc#>")
+replaceInFile("configure-wildfly.cli",args.email,"<#email#>")
+replaceInFile("configure-wildfly.cli",args.urlOidc,"<#senhaEmail#>")
+
 replaceInFile("launch.sh",pastaInstall,"<#pastaInstall#>")
 replaceInFile("wildfly.conf",pastaInstall,"<#pastaInstall#>")
 replaceInFile("wildfly.service",pastaInstall,"<#pastaInstall#>")

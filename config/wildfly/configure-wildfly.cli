@@ -1,12 +1,12 @@
 #configuração e-mail
-/subsystem=mail/mail-session=default/server=smtp/:write-attribute(name=username,value=email@iffarroupilha.edu.br)
-/subsystem=mail/mail-session=default/server=smtp/:write-attribute(name=password,value=senha)
+/subsystem=mail/mail-session=default/server=smtp/:write-attribute(name=username,value=<#email#>)
+/subsystem=mail/mail-session=default/server=smtp/:write-attribute(name=password,value=<#senhaEmail#>)
 /subsystem=mail/mail-session=default/server=smtp/:write-attribute(name=tls,value=true)
 /socket-binding-group=standard-sockets/remote-destination-outbound-socket-binding=mail-smtp/:write-attribute(name=host,value=smtp.gmail.com)
 /socket-binding-group=standard-sockets/remote-destination-outbound-socket-binding=mail-smtp/:write-attribute(name=port,value=587)
 
 #configuração drive postgres
-module add --name=org.postgresql.jdbc --resources=<#jarDrivePostgres#>.jar  --dependencies=javax.api,javax.transaction.api
+module add --name=org.postgresql.jdbc --resources=postgresql-42.6.0.jar  --dependencies=javax.api,javax.transaction.api
 /subsystem=datasources/jdbc-driver=postgresql:add(driver-name="postgresql", driver-module-name="org.postgresql.jdbc", driver-class-name="org.postgresql.Driver", driver-xa-datasource-class-name="org.postgresql.xa.PGXADataSource")
 
 #configuração datasource
@@ -24,7 +24,7 @@ module add --name=org.postgresql.jdbc --resources=<#jarDrivePostgres#>.jar  --de
 /subsystem=elytron-oidc-client/secure-deployment="sifw2.war"/:add( \
     realm="iffar", \
     resource="sifw", \
-    auth-server-url=http://localhost:8080/service/auth/, \
+    auth-server-url=<#urlOidc#>/service/auth/, \
     ssl-required=EXTERNAL)
 
 /subsystem=elytron-oidc-client/secure-deployment=sifw2.war/credential=secret:add(secret=3fd70ff4-fe2b-47b6-a8a3-cd1cf281a937)
