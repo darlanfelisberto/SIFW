@@ -30,6 +30,10 @@ else :
     exit()
 
 
+pastaInstall = args.destino;
+wildflyName = args.install;
+wildflyVersao = match.group(2);
+
 def execute(command):
     print(" ".join(command))
     os.system(" ".join(command))
@@ -45,23 +49,42 @@ def replaceInFile(fileName, source,target):
         text = r.read().replace(target, source)
     with open(fileName, "w") as w:
         w.write(text)
+        
+def replaceInFileRegex(fileName):
+    with open(fileName) as r:
+        text = r.read()
+    re.sub("<#PATH_RESOURCES#>([\W\w\D\t\n\r])+<#PATH_RESOURCES#>", 	"//<#PATH_RESOURCES#>\n"+"\tstatic public final String PATH_RESOURCES = \"" + pastaInstall+ "\";\n"+"\t//<#PATH_RESOURCES#>\n", text)
+    with open(fileName, "w") as w:
+        w.write(text)
 
-pastaInstall = args.destino;
-wildflyName = args.install;
-wildflyVersao = match.group(2);
 
 
 urlDowloadWildfly = "https://github.com/wildfly/wildfly/releases/download/" + wildflyVersao + "/" + wildflyName +".tar.gz"
 
+
+#sifw
 execute(["mkdir", "-p", pastaInstall]);
+execute(["mkdir", "-p", pastaInstall + "/imagens"]);
+replaceInFileRegex("../../classBag/src/main/java/br/edu/iffar/fw/classBag/init/InitConstantes.java")
+executeOS("cp configuration_linux.properties " + pastaInstall);
+#fim sifw
 
-execute(["wget", "-cv", urlDowloadWildfly])
+
+#java
+execute(["mkdir", "-p", "/usr/lib/jvm"]);
+execute(["wget", "-cv", "https://download.oracle.com/java/17/archive/jdk-17.0.7_linux-x64_bin.tar.gz"])
+execute(["tar", "-xvzf", "jdk-17.0.7_linux-x64_bin.tar.gz", "-C", "/usr/lib/jvm"])
+execute(["ln", "-s", pastaInstall +"/jdk-17.0.7", "/usr/lib/jvm/jdk17"])
+executeOS("update-alternatives --install \"/usr/bin/java\" \"java\" \"/usr/lib/jvm/jdk17cp /bin/java\" 10")
+#fim java
+
+
+
+#wildfly
 execute(["wget", "-cv", "https://jdbc.postgresql.org/download/" + args.jarDrivePostgres + ".jar"])
-
+execute(["wget", "-cv", urlDowloadWildfly])
 execute(["tar", "-xvzf", wildflyName+".tar.gz", "-C", pastaInstall])
-
 execute(["ln", "-s", pastaInstall +"/"+ wildflyName, pastaInstall + "/wildfly"])
-
 executeOS(pastaInstall + "/wildfly/bin/add-user.sh -u manager -p manager")
 executeOS(pastaInstall + "/wildfly/bin/standalone.sh &")
 
@@ -94,4 +117,4 @@ executeOS("cp launch.sh " + pastaInstall + "/wildfly/bin/")
 executeOS("chmod +x " + pastaInstall + "/wildfly/bin/launch.sh")
 #executeOS("systemctl start wildfly.service")
 #executeOS("systemctl enable wildfly.service")
-
+#fim wildfly

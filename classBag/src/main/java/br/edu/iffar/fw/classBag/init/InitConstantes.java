@@ -1,36 +1,22 @@
 package br.edu.iffar.fw.classBag.init;
 
-import static br.edu.iffar.fw.classBag.init.InitConstantes.OIDC_JWK_PATH;
-import static br.edu.iffar.fw.classBag.init.InitConstantes.OIDC_JWT_FILENAME;
-
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.Serializable;
 import java.util.Properties;
-
-import org.omnifaces.cdi.Eager;
-
-import com.nimbusds.jose.jwk.RSAKey;
-
-import jakarta.annotation.PostConstruct;
-import jakarta.enterprise.context.ApplicationScoped;
-import jakarta.inject.Inject;
-import jakarta.inject.Named;
-import jakarta.servlet.ServletContext;
 
 public class InitConstantes {
 
-	private static Properties config = new Properties();
+	//PATH_RESOURCEs é alterado por script de instalacao
+	//<#PATH_RESOURCES#>
+	static public final String PATH_RESOURCES = "/opt/sifw";
+	//<#PATH_RESOURCES#>
 	
+	private static Properties config = new Properties();
+
 	static {
 		// TODO fazer scripty install.py mudar esse arquivo
-		String nameFileContantes = "/opt/sifw/configuration_linux.properties";
+		String nameFileContantes = PATH_RESOURCES + "/configuration_linux.properties";
 		try {
-			if(System.getProperty("os.name").contains("Win")) {
-				nameFileContantes = "C:\\app\\sifw\\configuration_win.properties";
-		    }
-			
 			FileInputStream configFile = new FileInputStream(nameFileContantes);
 	        if (configFile != null) {
 	            try {
@@ -44,6 +30,7 @@ public class InitConstantes {
 			System.exit(1);
 		}
 	}
+	
 
 	
 	static public final String IMAGEM_PATH 			= config.getProperty("imagem.path");
