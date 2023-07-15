@@ -1,6 +1,4 @@
 #!/usr/bin/env python
-# Desenvolvimento Aberto
-# shell.py
 
 import argparse
 import re 
@@ -38,30 +36,80 @@ def executeOS(command):
     print(subprocess.list2cmdline(command))
     os.system(command)
 
+def replaceInFile(fileName, source,target):
+    with open(fileName) as r:
+        text = r.read().replace(target, source)
+    with open(fileName, "w") as w:
+        w.write(text)
+
 pastaInstall = args.destino;
 wildflyName = args.install;
 wildflyVersao = match.group(2);
 
-print("fim")
 
 urlDowloadWildfly = "https://github.com/wildfly/wildfly/releases/download/" + wildflyVersao + "/" + wildflyName +".tar.gz"
 
-execute(["cd", "/tmp"])
 execute(["mkdir", "-p", pastaInstall]);
 
 execute(["wget", "-cv", urlDowloadWildfly])
+
 execute(["tar", "-xvzf", wildflyName+".tar.gz", "-C", pastaInstall])
 
-list_files = execute(["ln", "-s", pastaInstall +"/"+ wildflyName, pastaInstall + "/wildfly"])
+execute(["ln", "-s", pastaInstall +"/"+ wildflyName, pastaInstall + "/wildfly"])
 
-executeOS("/opt/sifw/wildfly/bin/add-user.sh -u manager -p manager")
-executeOS("/opt/sifw/wildfly/bin/standalone.sh &")
-
+executeOS(pastaInstall + "/wildfly/bin/add-user.sh -u manager -p manager")
+executeOS(pastaInstall + "/wildfly/bin/standalone.sh &")
 
 print("Sleep(10 segundos): aguarda wildfly subir para continuar.")
-time.sleep(5)
+time.sleep(10)
+
 executeOS(pastaInstall + "/wildfly/bin/jboss-cli.sh --connect --file=configure-wildfly.cli")
 executeOS(pastaInstall + "/wildfly/bin/jboss-cli.sh --connect  --command=shutdown")
+
+
+executeOS("groupadd -r wildfly")
+executeOS("useradd -r -g wildfly -d " +pastaInstall + " -s /sbin/nologin wildfly")
+
+executeOS("chown -R wildfly:wildfly " + pastaInstall)
+executeOS("mkdir /etc/wildfly")
+
+replaceInFile("launch.sh",pastaInstall,"<#pastaInstall#>")
+replaceInFile("wildfly.conf",pastaInstall,"<#pastaInstall#>")
+replaceInFile("wildfly.service",pastaInstall,"<#pastaInstall#>")
+
+executeOS("cp wildfly.conf /etc/wildfly/")
+executeOS("cp wildfly.service /etc/systemd/system/")
+executeOS("cp launch.sh " + pastaInstall + "/wildfly/bin/")
+executeOS("chmod +x " + pastaInstall + "/wildfly/bin/launch.sh")
+#executeOS("systemctl start wildfly.service")
+#executeOS("systemctl enable wildfly.service")
+executeOS("")
+
+
+
+executeOS("")
+executeOS("")
+executeOS("")
+executeOS("")
+executeOS("")
+executeOS("")
+executeOS("")
+executeOS("")
+executeOS("")
+executeOS("")
+executeOS("")
+
+executeOS("")
+executeOS("")
+executeOS("")
+executeOS("")
+executeOS("")
+executeOS("")
+executeOS("")
+executeOS("")
+executeOS("")
+executeOS("")
+executeOS("")
 
 
 

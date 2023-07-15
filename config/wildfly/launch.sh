@@ -1,7 +1,7 @@
 #!/bin/bash
 
 if [ "x$WILDFLY_HOME" = "x" ]; then
-    WILDFLY_HOME="/opt/wildfly/wildfly"
+    WILDFLY_HOME="<#pastaInstall#>/wildfly"
 fi
 
 if [[ "$1" == "domain" ]]; then
