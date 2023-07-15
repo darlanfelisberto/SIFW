@@ -24,6 +24,7 @@ public class InitConstantes {
 	private static Properties config = new Properties();
 	
 	static {
+		// TODO fazer scripty install.py mudar esse arquivo
 		String nameFileContantes = "/opt/sifw/configuration_linux.properties";
 		try {
 			if(System.getProperty("os.name").contains("Win")) {

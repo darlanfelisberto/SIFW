@@ -31,8 +31,8 @@ else :
 
 
 def execute(command):
-    print("".join(command))
-    os.system("".join(command))
+    print(" ".join(command))
+    os.system(" ".join(command))
     # saida = subprocess.run(command, capture_output=True, text=True)    
     # return saida
 
@@ -56,7 +56,7 @@ urlDowloadWildfly = "https://github.com/wildfly/wildfly/releases/download/" + wi
 execute(["mkdir", "-p", pastaInstall]);
 
 execute(["wget", "-cv", urlDowloadWildfly])
-execute(["wget", "-cv", "https://jdbc.postgresql.org/download/" + jarDrivePostgres + ".jar"])
+execute(["wget", "-cv", "https://jdbc.postgresql.org/download/" + args.jarDrivePostgres + ".jar"])
 
 execute(["tar", "-xvzf", wildflyName+".tar.gz", "-C", pastaInstall])
 
@@ -82,7 +82,7 @@ executeOS("mkdir /etc/wildfly")
 replaceInFile("configure-wildfly.cli",args.jarDrivePostgres,"<#jarDrivePostgres#>")
 replaceInFile("configure-wildfly.cli",args.urlOidc,"<#urlOidc#>")
 replaceInFile("configure-wildfly.cli",args.email,"<#email#>")
-replaceInFile("configure-wildfly.cli",args.urlOidc,"<#senhaEmail#>")
+replaceInFile("configure-wildfly.cli",args.senhaEmail,"<#senhaEmail#>")
 
 replaceInFile("launch.sh",pastaInstall,"<#pastaInstall#>")
 replaceInFile("wildfly.conf",pastaInstall,"<#pastaInstall#>")
@@ -94,33 +94,4 @@ executeOS("cp launch.sh " + pastaInstall + "/wildfly/bin/")
 executeOS("chmod +x " + pastaInstall + "/wildfly/bin/launch.sh")
 #executeOS("systemctl start wildfly.service")
 #executeOS("systemctl enable wildfly.service")
-executeOS("")
-
-
-
-executeOS("")
-executeOS("")
-executeOS("")
-executeOS("")
-executeOS("")
-executeOS("")
-executeOS("")
-executeOS("")
-executeOS("")
-executeOS("")
-executeOS("")
-
-executeOS("")
-executeOS("")
-executeOS("")
-executeOS("")
-executeOS("")
-executeOS("")
-executeOS("")
-executeOS("")
-executeOS("")
-executeOS("")
-executeOS("")
-
-
 

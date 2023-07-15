@@ -6,7 +6,7 @@
 /socket-binding-group=standard-sockets/remote-destination-outbound-socket-binding=mail-smtp/:write-attribute(name=port,value=587)
 
 #configuração drive postgres
-module add --name=org.postgresql.jdbc --resources=postgresql-42.6.0.jar  --dependencies=javax.api,javax.transaction.api
+module add --name=org.postgresql.jdbc --resources=<#jarDrivePostgres#>.jar  --dependencies=javax.api,javax.transaction.api
 /subsystem=datasources/jdbc-driver=postgresql:add(driver-name="postgresql", driver-module-name="org.postgresql.jdbc", driver-class-name="org.postgresql.Driver", driver-xa-datasource-class-name="org.postgresql.xa.PGXADataSource")
 
 #configuração datasource
@@ -21,10 +21,10 @@ module add --name=org.postgresql.jdbc --resources=postgresql-42.6.0.jar  --depen
 /subsystem=undertow/server=default-server/http-listener=default:write-attribute(name=enable-http2,value=false)
 
 #oidc config
-/subsystem=elytron-oidc-client/secure-deployment="sifw2.war"/:add( \
+/subsystem=elytron-oidc-client/secure-deployment="sifw.war"/:add( \
     realm="iffar", \
     resource="sifw", \
     auth-server-url=<#urlOidc#>/service/auth/, \
     ssl-required=EXTERNAL)
 
-/subsystem=elytron-oidc-client/secure-deployment=sifw2.war/credential=secret:add(secret=3fd70ff4-fe2b-47b6-a8a3-cd1cf281a937)
+/subsystem=elytron-oidc-client/secure-deployment=sifw.war/credential=secret:add(secret=3fd70ff4-fe2b-47b6-a8a3-cd1cf281a937)
