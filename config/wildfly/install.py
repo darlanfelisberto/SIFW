@@ -44,8 +44,9 @@ def executeOS(command):
     print(command)
     os.system(command)
 
-def replaceInFile(fileName, source,target):
-    with open(fileName) as r:
+def replaceInFile(fileName, source,target,sufix):
+    #sufix é pra ontrolar a edicao do primeiro, quando cria o arquivo sem o _
+    with open(sufix + fileName) as r:
         text = r.read().replace(target, source)
     with open(fileName, "w") as w:
         w.write(text)
@@ -66,7 +67,7 @@ urlDowloadWildfly = "https://github.com/wildfly/wildfly/releases/download/" + wi
 execute(["mkdir", "-p", pastaInstall]);
 execute(["mkdir", "-p", pastaInstall + "/imagens"]);
 replaceInFileRegex("../../classBag/src/main/java/br/edu/iffar/fw/classBag/init/InitConstantes.java")
-executeOS("cp configuration_linux.properties " + pastaInstall);
+executeOS("cp _configuration_linux.properties " + pastaInstall + "/configuration_linux.properties");
 #fim sifw
 
 
@@ -74,8 +75,8 @@ executeOS("cp configuration_linux.properties " + pastaInstall);
 execute(["mkdir", "-p", "/usr/lib/jvm"]);
 execute(["wget", "-cv", "https://download.oracle.com/java/17/archive/jdk-17.0.7_linux-x64_bin.tar.gz"])
 execute(["tar", "-xvzf", "jdk-17.0.7_linux-x64_bin.tar.gz", "-C", "/usr/lib/jvm"])
-execute(["ln", "-s", pastaInstall +"/jdk-17.0.7", "/usr/lib/jvm/jdk17"])
-executeOS("update-alternatives --install \"/usr/bin/java\" \"java\" \"/usr/lib/jvm/jdk17cp /bin/java\" 10")
+execute(["ln", "-s", "/usr/lib/jvm/jdk-17.0.7", "/usr/lib/jvm/jdk17"])
+executeOS("update-alternatives --install \"/usr/bin/java\" \"java\" \"/usr/lib/jvm/jdk17/bin/java\" 10")
 #fim java
 
 
@@ -102,14 +103,14 @@ executeOS("chown -R wildfly:wildfly " + pastaInstall)
 executeOS("mkdir /etc/wildfly")
 
 
-replaceInFile("configure-wildfly.cli",args.jarDrivePostgres,"<#jarDrivePostgres#>")
-replaceInFile("configure-wildfly.cli",args.urlOidc,"<#urlOidc#>")
-replaceInFile("configure-wildfly.cli",args.email,"<#email#>")
-replaceInFile("configure-wildfly.cli",args.senhaEmail,"<#senhaEmail#>")
+replaceInFile("configure-wildfly.cli",args.jarDrivePostgres,"<#jarDrivePostgres#>","_")
+replaceInFile("configure-wildfly.cli",args.urlOidc,"<#urlOidc#>","")
+replaceInFile("configure-wildfly.cli",args.email,"<#email#>","")
+replaceInFile("configure-wildfly.cli",args.senhaEmail,"<#senhaEmail#>","")
 
-replaceInFile("launch.sh",pastaInstall,"<#pastaInstall#>")
-replaceInFile("wildfly.conf",pastaInstall,"<#pastaInstall#>")
-replaceInFile("wildfly.service",pastaInstall,"<#pastaInstall#>")
+replaceInFile("launch.sh",pastaInstall,"<#pastaInstall#>","_")
+replaceInFile("wildfly.conf",pastaInstall,"<#pastaInstall#>","_")
+replaceInFile("wildfly.service",pastaInstall,"<#pastaInstall#>","_")
 
 executeOS("cp wildfly.conf /etc/wildfly/")
 executeOS("cp wildfly.service /etc/systemd/system/")
