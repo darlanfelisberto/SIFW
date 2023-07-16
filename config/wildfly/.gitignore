@@ -1,0 +1,7 @@
+/configure-wildfly.cli
+/jdk-17.0.7_linux-x64_bin.tar.gz
+/launch.sh
+/postgresql-42.6.0.jar
+/wildfly-28.0.1.Final.tar.gz
+/wildfly.conf
+/wildfly.service
