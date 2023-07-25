@@ -10,7 +10,7 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
-import org.omnifaces.cdi.Eager;
+//import org.omnifaces.cdi.Eager;
 
 import jakarta.annotation.Resource;
 import jakarta.enterprise.context.ApplicationScoped;
@@ -22,13 +22,13 @@ import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.PersistenceUnit;
 
 
-@Eager
+//@Eager
 @ApplicationScoped
 public class ConnectProducer implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 
-	@PersistenceUnit // (name = "baseUnit")
+	@PersistenceUnit(name = "baseUnit")
 	private static EntityManagerFactory emBU;
 
 	@PersistenceContext // (unitName = "baseUnit")

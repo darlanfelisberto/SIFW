@@ -1,27 +1,20 @@
 package br.edu.iffar.fw.classBag.bo;
 
-import br.auth.dao.AuthUserDAO;
-import br.auth.dao.PermissaoDAO;
-import br.auth.models.AuthUser;
-import br.auth.models.Permissao;
+import java.util.ArrayList;
+import java.util.List;
+
+import br.edu.iffar.fw.authClassShared.dao.AuthUserDAO;
+import br.edu.iffar.fw.authClassShared.dao.PermissaoDAO;
+import br.edu.iffar.fw.authClassShared.models.Permissao;
 import br.edu.iffar.fw.classBag.db.dao.UsuariosDAO;
 import br.edu.iffar.fw.classBag.db.model.Usuario;
 import br.edu.iffar.fw.classBag.excecoes.SenhaException;
 import br.edu.iffar.fw.classBag.excecoes.UsuarioException;
-import br.edu.iffar.fw.classBag.sec.FaceletsAuthorizeTagHandler;
 import br.edu.iffar.fw.classBag.sec.HasRoleBean;
-import jakarta.enterprise.context.Dependent;
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.inject.Inject;
 import jakarta.transaction.RollbackException;
-import jakarta.transaction.SystemException;
 import jakarta.transaction.Transactional;
-import org.primefaces.model.DualListModel;
-import org.wildfly.security.http.oidc.OidcSecurityContext;
-
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 @RequestScoped
 @Transactional

@@ -9,10 +9,10 @@ import org.primefaces.model.LazyScheduleModel;
 import org.primefaces.model.ScheduleEvent;
 import org.primefaces.model.ScheduleModel;
 
-import br.edu.iffar.fw.classBag.db.Model;
 import br.edu.iffar.fw.classBag.db.dao.AgendamentosDAO;
 import br.edu.iffar.fw.classBag.db.model.Agendamento;
 import br.edu.iffar.fw.comendo.bean.fragment.VinculoSelecionadoBean;
+import br.edu.iffar.fw.genericClassShared.db.Model;
 import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Inject;
 
@@ -27,7 +27,7 @@ public class AgendamentosLazyLoad extends LazyScheduleModel implements Serializa
     private List<Agendamento> events = new ArrayList<Agendamento>();
     
 	public void loadEvents(LocalDateTime start, LocalDateTime end) {
-		this.events = this.agendamentosDAO.findAgendamentoEmPeriodo((Model<?>)this.vinculoSelecionadoBean.getVinculoSelecionado(),start,end);
+		this.events = this.agendamentosDAO.findAgendamentoEmPeriodo((Model)this.vinculoSelecionadoBean.getVinculoSelecionado(),start,end);
 	}
 	
 	@Override

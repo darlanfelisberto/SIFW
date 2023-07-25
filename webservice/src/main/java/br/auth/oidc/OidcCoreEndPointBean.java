@@ -1,28 +1,28 @@
 package br.auth.oidc;
 
-import static br.auth.models.OpenIdConstant.AUTHORIZATION_CODE;
-import static br.auth.models.OpenIdConstant.AUTHORIZATION_HEADER;
-import static br.auth.models.OpenIdConstant.AUTH_END_POINT_LINK;
-import static br.auth.models.OpenIdConstant.CERTS_END_POINT_LINK;
-import static br.auth.models.OpenIdConstant.CLIENT_ID;
-import static br.auth.models.OpenIdConstant.CLIENT_SECRET;
-import static br.auth.models.OpenIdConstant.CODE;
-import static br.auth.models.OpenIdConstant.END_SESSION_ENDPOINT;
-import static br.auth.models.OpenIdConstant.END_SESSION_ENDPOINT_LINK;
-import static br.auth.models.OpenIdConstant.ERROR_PARAM;
-import static br.auth.models.OpenIdConstant.GRANT_TYPE;
-import static br.auth.models.OpenIdConstant.LOGIN_AUTH_END_POINT_LINK;
-import static br.auth.models.OpenIdConstant.NONCE;
-import static br.auth.models.OpenIdConstant.OPENID_SCOPE;
-import static br.auth.models.OpenIdConstant.REDIRECT_URI;
-import static br.auth.models.OpenIdConstant.REFRESH_TOKEN;
-import static br.auth.models.OpenIdConstant.RESPONSE_TYPE;
-import static br.auth.models.OpenIdConstant.SCOPE;
-import static br.auth.models.OpenIdConstant.STATE;
-import static br.auth.models.OpenIdConstant.TOKEN_END_POINT_LINK;
-import static br.auth.models.OpenIdConstant.USERINFO_ENDPOINT;
-import static br.auth.models.OpenIdConstant.WELL_KNOW;
-import static br.auth.models.OpenIdConstant.WELL_KNOW_END_POINT_LINK;
+import static br.edu.iffar.fw.authClassShared.models.OpenIdConstant.AUTHORIZATION_CODE;
+import static br.edu.iffar.fw.authClassShared.models.OpenIdConstant.AUTHORIZATION_HEADER;
+import static br.edu.iffar.fw.authClassShared.models.OpenIdConstant.AUTH_END_POINT_LINK;
+import static br.edu.iffar.fw.authClassShared.models.OpenIdConstant.CERTS_END_POINT_LINK;
+import static br.edu.iffar.fw.authClassShared.models.OpenIdConstant.CLIENT_ID;
+import static br.edu.iffar.fw.authClassShared.models.OpenIdConstant.CLIENT_SECRET;
+import static br.edu.iffar.fw.authClassShared.models.OpenIdConstant.CODE;
+import static br.edu.iffar.fw.authClassShared.models.OpenIdConstant.END_SESSION_ENDPOINT;
+import static br.edu.iffar.fw.authClassShared.models.OpenIdConstant.END_SESSION_ENDPOINT_LINK;
+import static br.edu.iffar.fw.authClassShared.models.OpenIdConstant.ERROR_PARAM;
+import static br.edu.iffar.fw.authClassShared.models.OpenIdConstant.GRANT_TYPE;
+import static br.edu.iffar.fw.authClassShared.models.OpenIdConstant.LOGIN_AUTH_END_POINT_LINK;
+import static br.edu.iffar.fw.authClassShared.models.OpenIdConstant.NONCE;
+import static br.edu.iffar.fw.authClassShared.models.OpenIdConstant.OPENID_SCOPE;
+import static br.edu.iffar.fw.authClassShared.models.OpenIdConstant.REDIRECT_URI;
+import static br.edu.iffar.fw.authClassShared.models.OpenIdConstant.REFRESH_TOKEN;
+import static br.edu.iffar.fw.authClassShared.models.OpenIdConstant.RESPONSE_TYPE;
+import static br.edu.iffar.fw.authClassShared.models.OpenIdConstant.SCOPE;
+import static br.edu.iffar.fw.authClassShared.models.OpenIdConstant.STATE;
+import static br.edu.iffar.fw.authClassShared.models.OpenIdConstant.TOKEN_END_POINT_LINK;
+import static br.edu.iffar.fw.authClassShared.models.OpenIdConstant.USERINFO_ENDPOINT;
+import static br.edu.iffar.fw.classShared.constantes.InitConstantes.OIDC_ISSUR;
+import static br.edu.iffar.fw.authClassShared.models.OpenIdConstant.WELL_KNOW_END_POINT_LINK;
 import static jakarta.ws.rs.core.MediaType.APPLICATION_JSON;
 import static jakarta.ws.rs.core.MediaType.TEXT_HTML;
 import static java.util.UUID.randomUUID;
@@ -32,14 +32,14 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
-import br.auth.dao.AuthLoginDAO;
-import br.auth.dao.ClienteDAO;
-import br.auth.dao.AuthUserDAO;
-import br.auth.models.AuthLogin;
-import br.auth.models.AuthUser;
-import br.auth.models.Cliente;
-import br.auth.models.ResponseTypeEnum;
 import br.auth.util.ThymeleafUtil;
+import br.edu.iffar.fw.authClassShared.dao.AuthLoginDAO;
+import br.edu.iffar.fw.authClassShared.dao.AuthUserDAO;
+import br.edu.iffar.fw.authClassShared.dao.ClienteDAO;
+import br.edu.iffar.fw.authClassShared.models.AuthLogin;
+import br.edu.iffar.fw.authClassShared.models.AuthUser;
+import br.edu.iffar.fw.authClassShared.models.Cliente;
+import br.edu.iffar.fw.authClassShared.models.ResponseTypeEnum;
 import jakarta.annotation.security.PermitAll;
 import jakarta.annotation.security.RolesAllowed;
 import jakarta.enterprise.context.RequestScoped;
@@ -77,14 +77,15 @@ public class OidcCoreEndPointBean {
     
     @Inject
     ThymeleafUtil thymeleafUtil;
-    
 
+
+    
     @GET
     @Path(WELL_KNOW_END_POINT_LINK)
     @Produces(APPLICATION_JSON)
     @PermitAll
     public Response getConfiguration2(@PathParam("realm") String name) {
-        return Response.ok(WELL_KNOW).build();
+        return Response.ok(OidcKeysUtil.WELL_KNOW).build();
     }
 
     @GET
@@ -168,7 +169,7 @@ public class OidcCoreEndPointBean {
         if (client == null) {
             return this.createJsonError("invalid_client_id");
         }
-        AuthUser user = this.authUserDAO.findUsuarioByUsername(username);
+        AuthUser user = this.authUserDAO.findByUsername(username);
         if (user == null || !user.authenticate(password)) {
             Map<String,Object> variables = new HashMap<>();
             variables.put("msgError", "Usuário ou senha inválidos.");

@@ -3,8 +3,7 @@ package br.edu.iffar.fw.classBag.util;
 import java.lang.reflect.ParameterizedType;
 import java.util.HashMap;
 
-import br.auth.models.Permissao;
-import br.edu.iffar.fw.classBag.db.Model;
+import br.edu.iffar.fw.authClassShared.models.Permissao;
 import br.edu.iffar.fw.classBag.db.dao.ConverterModelDAO;
 import br.edu.iffar.fw.classBag.db.model.Agendamento;
 import br.edu.iffar.fw.classBag.db.model.AlteracoesAgendamentos;
@@ -25,6 +24,7 @@ import br.edu.iffar.fw.classBag.db.model.TipoVinculo;
 import br.edu.iffar.fw.classBag.db.model.Turma;
 import br.edu.iffar.fw.classBag.db.model.Unidade;
 import br.edu.iffar.fw.classBag.db.model.Usuario;
+import br.edu.iffar.fw.classShared.db.Model;
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.faces.component.UIComponent;
 import jakarta.faces.context.FacesContext;
@@ -34,10 +34,9 @@ import jakarta.inject.Named;
 
 
 @Named
-//@FacesConverter(managed = true,value = "modelConverter")
 @RequestScoped
 @SuppressWarnings("rawtypes") 
-public class ModelConverter implements Converter< Model> {
+public class ModelConverter implements Converter<Model> {
 	
 	private static HashMap<Integer, String> classes;
 	static{

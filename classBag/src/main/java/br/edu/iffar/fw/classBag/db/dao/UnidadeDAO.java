@@ -2,8 +2,8 @@ package br.edu.iffar.fw.classBag.db.dao;
 
 import java.util.List;
 
-import br.edu.iffar.fw.classBag.db.DAO;
 import br.edu.iffar.fw.classBag.db.model.Unidade;
+import br.edu.iffar.fw.classShared.db.DAO;
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.inject.Inject;
 import jakarta.persistence.EntityManager;

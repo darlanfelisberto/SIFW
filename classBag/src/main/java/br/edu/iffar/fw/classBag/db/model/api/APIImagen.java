@@ -9,9 +9,8 @@ import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.util.UUID;
 
-import br.edu.iffar.fw.classBag.db.Model;
-import br.edu.iffar.fw.classBag.init.InitConstantes;
-import br.edu.iffar.relatorios.RelatoriosPath;
+import br.edu.iffar.fw.classShared.constantes.InitConstantes;
+import br.edu.iffar.fw.classShared.db.Model;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;

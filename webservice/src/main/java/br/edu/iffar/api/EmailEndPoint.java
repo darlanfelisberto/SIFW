@@ -16,8 +16,9 @@ import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 
 import br.auth.util.ThymeleafUtil;
-import br.edu.iffar.fw.classBag.db.dao.UsuariosDAO;
-import br.edu.iffar.fw.classBag.db.model.Usuario;
+import br.edu.iffar.fw.authClassShared.dao.AuthUserDAO;
+import br.edu.iffar.fw.authClassShared.models.AuthUser;
+import br.edu.iffar.fw.authClassShared.models.Usuario;
 import jakarta.mail.Address;
 import jakarta.mail.Message;
 import jakarta.mail.MessagingException;
@@ -37,7 +38,7 @@ public class EmailEndPoint implements Serializable{
     private Session mailSession;
 	
 	@Inject
-	private UsuariosDAO usuarioDAO;
+	private AuthUserDAO authUserDAO;
 	
     @Inject
     ThymeleafUtil thymeleafUtil;
@@ -47,7 +48,7 @@ public class EmailEndPoint implements Serializable{
     @Path("/gerarlink")
     public void gerarLink(@FormParam("username") String username) {
 		
-		Usuario user = this.usuarioDAO.findByUserName(username);
+		AuthUser user = this.authUserDAO.findByUsername(username);
 		if(user == null) {
 			return;
 		}
@@ -55,7 +56,7 @@ public class EmailEndPoint implements Serializable{
 		try{
             MimeMessage m = new MimeMessage(mailSession);
             Address from = new InternetAddress("darlan.felisberto@iffarroupilha.edu.br");
-            Address[] to = new InternetAddress[] {new InternetAddress(user.getAuthUser().getEmail()) };
+            Address[] to = new InternetAddress[] {new InternetAddress(user.getEmail()) };
             m.setFrom(from);
             m.setRecipients(Message.RecipientType.TO, to);
             m.setSubject("WildFly Mail");

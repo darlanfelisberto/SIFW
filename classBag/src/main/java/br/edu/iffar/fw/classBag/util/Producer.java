@@ -1,7 +1,5 @@
 package br.edu.iffar.fw.classBag.util;
 
-import java.io.IOException;
-
 import org.wildfly.security.http.oidc.OidcPrincipal;
 import org.wildfly.security.http.oidc.OidcSecurityContext;
 

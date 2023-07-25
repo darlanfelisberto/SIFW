@@ -10,9 +10,9 @@ import org.primefaces.model.ScheduleDisplayMode;
 //import org.primefaces.model.ScheduleDisplayMode;
 import org.primefaces.model.ScheduleEvent;
 
-import br.edu.iffar.fw.classBag.db.Model;
 import br.edu.iffar.fw.classBag.db.model.api.APIAgendamento;
 import br.edu.iffar.fw.classBag.db.model.interfaces.VinculosAtivosUsuarios;
+import br.edu.iffar.fw.classShared.db.Model;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

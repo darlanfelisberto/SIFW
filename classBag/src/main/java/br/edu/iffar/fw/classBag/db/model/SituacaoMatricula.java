@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 import java.util.UUID;
 
 import br.edu.iffar.fw.classBag.enun.TypeSituacao;
+import br.edu.iffar.fw.classShared.db.Model;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -21,7 +22,7 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name="situacao_matricula")
 @NamedQuery(name="SituacaoMatricula.findAll", query="SELECT s FROM SituacaoMatricula s")
-public class SituacaoMatricula extends br.edu.iffar.fw.classBag.db.Model<UUID> implements Serializable {
+public class SituacaoMatricula extends Model<UUID> implements Serializable {
 	private static final long serialVersionUID = 22021991L;
 
 	@Id

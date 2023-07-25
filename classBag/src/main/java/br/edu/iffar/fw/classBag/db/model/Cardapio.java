@@ -7,7 +7,7 @@ import java.time.temporal.WeekFields;
 import java.util.Locale;
 import java.util.UUID;
 
-import br.edu.iffar.fw.classBag.db.Model;
+import br.edu.iffar.fw.classShared.db.Model;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

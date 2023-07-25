@@ -4,11 +4,11 @@ import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
-import br.edu.iffar.fw.classBag.db.DAO;
-import br.edu.iffar.fw.classBag.db.Model;
 import br.edu.iffar.fw.classBag.db.model.api.APIAgendamento;
 //import br.edu.iffar.fw.classBag.db.model.api.APIServidor;
 import br.edu.iffar.fw.classBag.db.model.api.APIAgendamentosDisponibilizados;
+import br.edu.iffar.fw.classShared.db.DAO;
+import br.edu.iffar.fw.classShared.db.Model;
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.persistence.Query;
 

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="3.0"
+             xmlns="https://jakarta.ee/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="
+        https://jakarta.ee/xml/ns/persistence
+        https://jakarta.ee/xml/ns/persistence/persistence_3_0.xsd">
+        
+	<persistence-unit name="authUnit" transaction-type="JTA">
+		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+		<jta-data-source>java:jboss/datasources/baseDS</jta-data-source>
+
+		<class>br.edu.iffar.fw.authClassShared.models.Cliente</class>
+		<class>br.edu.iffar.fw.authClassShared.models.Permissao</class>
+		<class>br.edu.iffar.fw.authClassShared.models.AuthUser</class>
+		
+		<shared-cache-mode>ENABLE_SELECTIVE</shared-cache-mode>
+		<properties>
+			<!-- property name="jakarta.persistence.schema-generation.database.action" value="update"/-->
+			<!--property name="jakarta.persistence.schema-generation.database.action" value="drop-and-create"/-->
+			<!--property name="hibernate.generate_statistics" value="true"/--> 
+			<property name="hibernate.enable_lazy_load_no_trans" value="true" />
+			<property name="wildfly.jpa.default-unit" value="true" />
+			<property name="hibernate.show_sql" value="true" />
+			<property name="hibernate.dialect" value="org.hibernate.dialect.PostgresPlusDialect" />
+			<property name="hibernate.jpa.compliance.query" value="fase" />
+			
+			
+			<!-- - ->
+			<property name="hibernate.cache.use_second_level_cache" value="true" />
+            <property name="hibernate.cache.use_query_cache" value="true" />  
+            <!- - -->
+
+			<property name="hibernate.ejb.interceptor" value="br.edu.iffar.fw.classBag.db.HInterceptor" />
+		</properties>
+	</persistence-unit>
+</persistence>

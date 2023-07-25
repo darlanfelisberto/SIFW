@@ -1,9 +1,7 @@
 package br.edu.iffar.fw.classBag.db.dao;
 
-//import org.keycloak.KeycloakSecurityContext;
-
-import br.edu.iffar.fw.classBag.db.DAO;
-import br.edu.iffar.fw.classBag.db.Model;
+import br.edu.iffar.fw.classShared.db.DAO;
+import br.edu.iffar.fw.classShared.db.Model;
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.transaction.RollbackException;
 import jakarta.transaction.Transactional;

@@ -1,15 +1,12 @@
 package br.edu.iffar.fw.classBag.db.dao;
 
 import java.util.List;
-import java.util.UUID;
 
 import org.wildfly.security.http.oidc.OidcSecurityContext;
 
-//import org.keycloak.KeycloakSecurityContext;
-
-import br.edu.iffar.fw.classBag.db.DAO;
 import br.edu.iffar.fw.classBag.db.model.Saldo;
 import br.edu.iffar.fw.classBag.db.model.Usuario;
+import br.edu.iffar.fw.classShared.db.DAO;
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.inject.Inject;
 import jakarta.persistence.NoResultException;

@@ -2,18 +2,15 @@ package br.edu.iffar.fw.classBag.db.dao;
 
 import java.util.List;
 import java.util.Map;
-import java.util.UUID;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
-import br.auth.models.Permissao;
-import br.edu.iffar.fw.classBag.db.DAO;
-import br.edu.iffar.fw.classBag.db.Model;
+import br.edu.iffar.fw.authClassShared.models.Permissao;
 import br.edu.iffar.fw.classBag.db.model.Curso;
 import br.edu.iffar.fw.classBag.db.model.Matricula;
-import br.edu.iffar.fw.classBag.db.model.TipoVinculo;
 import br.edu.iffar.fw.classBag.db.model.Usuario;
-import jakarta.enterprise.context.ApplicationScoped;
+import br.edu.iffar.fw.classShared.db.DAO;
+import br.edu.iffar.fw.classShared.db.Model;
 import jakarta.enterprise.context.Dependent;
 import jakarta.inject.Inject;
 import jakarta.persistence.EntityManager;
@@ -22,7 +19,6 @@ import jakarta.persistence.Query;
 import jakarta.transaction.RollbackException;
 import jakarta.transaction.SystemException;
 import jakarta.transaction.Transactional;
-import jakarta.transaction.UserTransaction;
 
 @Dependent
 public class BackgroudDAO  extends DAO<Model<?>> {

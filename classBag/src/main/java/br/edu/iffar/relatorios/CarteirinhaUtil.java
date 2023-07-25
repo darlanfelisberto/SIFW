@@ -8,8 +8,8 @@ import org.primefaces.model.StreamedContent;
 
 import br.edu.iffar.fw.classBag.db.dao.UsuariosDAO;
 import br.edu.iffar.fw.classBag.db.model.Usuario;
-import br.edu.iffar.fw.classBag.init.InitConstantes;
 import br.edu.iffar.fw.classBag.util.MessagesUtil;
+import br.edu.iffar.fw.classShared.constantes.InitConstantes;
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.inject.Inject;
 import jakarta.transaction.RollbackException;

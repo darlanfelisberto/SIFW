@@ -3,8 +3,8 @@ package br.edu.iffar.fw.classBag.db.dao;
 
 import java.util.UUID;
 
-import br.edu.iffar.fw.classBag.db.DAO;
-import br.edu.iffar.fw.classBag.db.Model;
+import br.edu.iffar.fw.classShared.db.DAO;
+import br.edu.iffar.fw.classShared.db.Model;
 import jakarta.enterprise.context.ApplicationScoped;
 
 @SuppressWarnings("rawtypes") 

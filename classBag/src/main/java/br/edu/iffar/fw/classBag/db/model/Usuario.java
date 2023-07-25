@@ -1,6 +1,5 @@
 package br.edu.iffar.fw.classBag.db.model;
 
-import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -9,45 +8,20 @@ import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 
-import br.auth.models.Permissao;
-import jakarta.persistence.*;
 import org.primefaces.model.charts.pie.PieChartModel;
 
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-
-import br.auth.models.AuthUser;
-import br.edu.iffar.fw.classBag.db.Model;
 import br.edu.iffar.fw.classBag.enun.TypeCredito;
 import br.edu.iffar.fw.classBag.enun.TypeSituacao;
-import br.edu.iffar.fw.classBag.util.JsonDateDeserializer;
-import br.edu.iffar.fw.classBag.util.JsonLocalDateSerializer;
-import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.NotNull;
+import jakarta.persistence.Column;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.OrderBy;
 import jakarta.xml.bind.annotation.XmlTransient;
+//
+//@Entity
+//@Table(name="usuarios")
+public class Usuario extends br.edu.iffar.fw.authClassShared.models.Usuario{
 
-@Entity
-@Table(name="usuarios")
-public class Usuario extends Model<UUID> implements Serializable {
-	private static final long serialVersionUID = 22021991L;
-
-	@Id
-	@Column(name="usuario_id")
-	private UUID usuarioId;
-
-	@Column(name="nome")
-	@NotNull(message = "Informe o nome do usuario.")
-	private String nome;
-
-	@JsonDeserialize(using = JsonDateDeserializer.class)
-	@JsonSerialize(using = JsonLocalDateSerializer.class)
-	@Column(name = "dt_nasc")
-	@NotNull(message = "Informe a data de nascimento.")
-	private LocalDate dtnasc;
-	
-	@NotEmpty(message = "Informe o cpf")
-	private String cpf;
-    
 	@OneToMany(mappedBy = "usuario", fetch = FetchType.LAZY)
 	@OrderBy(value = "dtCredito desc")
 	private List<Credito> listCreditos;
@@ -60,17 +34,7 @@ public class Usuario extends Model<UUID> implements Serializable {
 		
 	@Column(name = "token_ru")
 	private String tokenRU;
-
-	/**
-	 * nao ativar o cascade no authUser, se for necessario, inverta o dono da relação
-	 * */
-	@JoinColumn(name = "auth_user_id")
-	@OneToOne(fetch = FetchType.LAZY)
-	private AuthUser authUser;
-
-	@Transient
-	private boolean novo;
-
+	
 	public String getTokenRU() {
 		return tokenRU;
 	}
@@ -80,16 +44,9 @@ public class Usuario extends Model<UUID> implements Serializable {
 	}
 	
 	public Usuario() {
+		super();
 	}
 
-	public UUID getUsuarioId() {
-		return this.usuarioId;
-	}
-
-	public void setIdUsuario(UUID usuarioId) {
-		this.usuarioId = usuarioId;
-	}
-	
 	public Matricula getMatriculaAtiva() {
 		return this.listMatricula.get(0);
 	} 
@@ -112,11 +69,6 @@ public class Usuario extends Model<UUID> implements Serializable {
 		getListCreditos().remove(credito);
 		credito.setUsuario(null);
 		return credito;
-	}
-
-	@Override
-	public UUID getMMId() {
-		return this.usuarioId;
 	}
 
 	public String labelIniciais() {
@@ -258,21 +210,4 @@ public class Usuario extends Model<UUID> implements Serializable {
 		return this.cpf + " - " + this.nome;
 	}
 
-	public AuthUser getAuthUser() {
-		return authUser;
-	}
-
-	public void setAuthUser(AuthUser authUser) {
-		this.authUser = authUser;
-		//cuidado com o loop dentro dos set
-	}
-
-	public static Usuario createNew(){
-		Usuario u = new Usuario();
-		u.novo = true;
-		u.setIdUsuario(UUID.randomUUID());
-		u.setTokenRU(UUID.randomUUID().toString());
-		u.setAuthUser(AuthUser.createNew(u, new HashSet<Permissao>()));
-		return u;
-	}
 }

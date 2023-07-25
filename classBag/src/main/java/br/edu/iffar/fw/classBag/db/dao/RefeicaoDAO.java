@@ -5,13 +5,12 @@ import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 
-import br.edu.iffar.fw.classBag.db.DAO;
-import br.edu.iffar.fw.classBag.db.Model;
 import br.edu.iffar.fw.classBag.db.model.Refeicao;
 import br.edu.iffar.fw.classBag.db.model.TipoRefeicao;
-//import br.edu.iffar.fw.classBag.db.model.api.APIRefeicao;
 import br.edu.iffar.fw.classBag.db.model.api.APIRefeicao2;
 import br.edu.iffar.fw.classBag.db.model.interfaces.VinculosAtivosUsuarios;
+import br.edu.iffar.fw.classShared.db.DAO;
+import br.edu.iffar.fw.classShared.db.Model;
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.persistence.NoResultException;
 import jakarta.persistence.NonUniqueResultException;

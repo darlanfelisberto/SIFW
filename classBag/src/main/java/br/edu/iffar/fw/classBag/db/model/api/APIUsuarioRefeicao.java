@@ -1,6 +1,6 @@
 package br.edu.iffar.fw.classBag.db.model.api;
 
-import br.edu.iffar.fw.classBag.db.Model;
+import br.edu.iffar.fw.classShared.db.Model;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;

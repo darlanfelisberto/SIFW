@@ -9,8 +9,8 @@ import java.util.Map;
 
 import org.apache.commons.csv.CSVPrinter;
 
-import br.edu.iffar.fw.classBag.db.DAO;
-import br.edu.iffar.fw.classBag.db.Model;
+import br.edu.iffar.fw.classShared.db.DAO;
+import br.edu.iffar.fw.classShared.db.Model;
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.inject.Inject;
 
