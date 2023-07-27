@@ -5,3 +5,5 @@
 /wildfly-28.0.1.Final.tar.gz
 /wildfly.conf
 /wildfly.service
+/configuration_linux.properties
+/wildfly-29.0.0.Final.tar.gz

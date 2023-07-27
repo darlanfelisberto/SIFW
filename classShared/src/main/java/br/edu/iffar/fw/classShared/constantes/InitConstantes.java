@@ -7,9 +7,7 @@ import java.util.Properties;
 public class InitConstantes {
 
 	//PATH_RESOURCEs é alterado por script de instalacao
-	//<#PATH_RESOURCES#>
-	static public final String PATH_RESOURCES = "/opt/sifw";
-	//<#PATH_RESOURCES#>
+	static public final String PATH_RESOURCES = "/opt/sifw";//<#PATH#>
 	
 	private static Properties config = new Properties();
 
