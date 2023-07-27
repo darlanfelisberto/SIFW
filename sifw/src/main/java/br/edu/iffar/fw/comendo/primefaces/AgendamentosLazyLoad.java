@@ -12,7 +12,6 @@ import org.primefaces.model.ScheduleModel;
 import br.edu.iffar.fw.classBag.db.dao.AgendamentosDAO;
 import br.edu.iffar.fw.classBag.db.model.Agendamento;
 import br.edu.iffar.fw.comendo.bean.fragment.VinculoSelecionadoBean;
-import br.edu.iffar.fw.genericClassShared.db.Model;
 import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Inject;
 

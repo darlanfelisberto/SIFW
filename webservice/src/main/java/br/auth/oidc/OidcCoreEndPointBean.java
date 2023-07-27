@@ -21,7 +21,6 @@ import static br.edu.iffar.fw.authClassShared.models.OpenIdConstant.SCOPE;
 import static br.edu.iffar.fw.authClassShared.models.OpenIdConstant.STATE;
 import static br.edu.iffar.fw.authClassShared.models.OpenIdConstant.TOKEN_END_POINT_LINK;
 import static br.edu.iffar.fw.authClassShared.models.OpenIdConstant.USERINFO_ENDPOINT;
-import static br.edu.iffar.fw.classShared.constantes.InitConstantes.OIDC_ISSUR;
 import static br.edu.iffar.fw.authClassShared.models.OpenIdConstant.WELL_KNOW_END_POINT_LINK;
 import static jakarta.ws.rs.core.MediaType.APPLICATION_JSON;
 import static jakarta.ws.rs.core.MediaType.TEXT_HTML;

@@ -4,15 +4,15 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.util.UUID;
 
-import br.edu.iffar.fw.classBag.bo.UsuarioBO;
-import br.edu.iffar.fw.classBag.excecoes.SenhaException;
 import org.primefaces.event.CaptureEvent;
 import org.primefaces.model.StreamedContent;
 
+import br.edu.iffar.fw.classBag.bo.UsuarioBO;
 import br.edu.iffar.fw.classBag.db.dao.ImagenDAO;
 import br.edu.iffar.fw.classBag.db.dao.UsuariosDAO;
 import br.edu.iffar.fw.classBag.db.model.Imagen;
 import br.edu.iffar.fw.classBag.db.model.Usuario;
+import br.edu.iffar.fw.classBag.excecoes.SenhaException;
 import br.edu.iffar.fw.classBag.util.MessagesUtil;
 import br.edu.iffar.relatorios.CarteirinhaUtil;
 import jakarta.annotation.PostConstruct;

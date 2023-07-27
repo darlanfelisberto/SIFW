@@ -1,36 +1,21 @@
 package br.edu.iffar.api;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.Serializable;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.concurrent.TimeUnit;
 
+import br.edu.iffar.fw.classShared.constantes.InitConstantes;
 import jakarta.annotation.Resource;
 import jakarta.enterprise.context.RequestScoped;
+import jakarta.mail.Session;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.PathParam;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.CacheControl;
-import jakarta.ws.rs.core.Context;
-import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
-import jakarta.ws.rs.core.SecurityContext;
-
-import java.util.Properties;
-import java.util.concurrent.TimeUnit;
-
-import br.edu.iffar.fw.classShared.constantes.InitConstantes;
-import jakarta.mail.Address;
-import jakarta.mail.Authenticator;
-import jakarta.mail.Message;
-import jakarta.mail.MessagingException;
-import jakarta.mail.PasswordAuthentication;
-import jakarta.mail.Session;
-import jakarta.mail.Transport;
-import jakarta.mail.internet.InternetAddress;
-import jakarta.mail.internet.MimeMessage;
 
 @Path("/img")
 @RequestScoped

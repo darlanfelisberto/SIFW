@@ -3,12 +3,19 @@ package br.edu.iffar.fw.comendo.bean;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.UUID;
 
-import br.auth.models.AuthUser;
-import br.auth.models.Permissao;
 import org.apache.commons.csv.CSVRecord;
 
+import br.edu.iffar.fw.authClassShared.models.AuthUser;
+import br.edu.iffar.fw.authClassShared.models.Permissao;
 import br.edu.iffar.fw.classBag.db.dao.BackgroudDAO;
 import br.edu.iffar.fw.classBag.db.model.Curso;
 import br.edu.iffar.fw.classBag.db.model.Matricula;

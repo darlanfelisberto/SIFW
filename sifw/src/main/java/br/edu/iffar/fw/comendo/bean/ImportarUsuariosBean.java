@@ -3,39 +3,21 @@ package br.edu.iffar.fw.comendo.bean;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.Serializable;
-import java.net.URI;
-import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
-import br.auth.models.Permissao;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
-import org.hibernate.validator.constraints.br.CPF;
 import org.omnifaces.util.selectitems.SelectItemsBuilder;
-import org.primefaces.event.CaptureEvent;
-import org.primefaces.event.FileUploadEvent;
-import org.primefaces.model.StreamedContent;
 import org.primefaces.model.file.UploadedFile;
-import org.wildfly.security.http.oidc.OidcSecurityContext;
-
-import com.google.gson.JsonIOException;
-import com.google.gson.JsonSyntaxException;
 
 import br.edu.iffar.fw.classBag.db.dao.CursosDAO;
-import br.edu.iffar.fw.classBag.db.dao.ImagenDAO;
-import br.edu.iffar.fw.classBag.db.dao.UsuariosDAO;
 import br.edu.iffar.fw.classBag.db.model.Curso;
-import br.edu.iffar.fw.classBag.db.model.Imagen;
-import br.edu.iffar.fw.classBag.db.model.Usuario;
 import br.edu.iffar.fw.classBag.sec.HasRoleBean;
-import br.edu.iffar.fw.classBag.sec.KeycloakAdminUtil;
 import br.edu.iffar.fw.classBag.util.BreadCrumb;
 import br.edu.iffar.fw.classBag.util.BreadCrumbControl;
 import br.edu.iffar.fw.classBag.util.MessagesUtil;
-import br.edu.iffar.relatorios.CarteirinhaUtil;
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.Resource;
 import jakarta.enterprise.concurrent.ManagedExecutorService;
@@ -44,7 +26,6 @@ import jakarta.faces.model.SelectItem;
 import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
-import jakarta.transaction.RollbackException;
 import jakarta.validation.constraints.NotNull;
 
 @Named

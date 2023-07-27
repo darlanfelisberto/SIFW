@@ -5,11 +5,9 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.auth.models.Permissao;
 import org.apache.commons.csv.CSVRecord;
 //import org.keycloak.representations.idm.RoleRepresentation;
 import org.omnifaces.util.selectitems.SelectItemsBuilder;
-import org.primefaces.model.DualListModel;
 
 import br.edu.iffar.fw.classBag.db.dao.CursosDAO;
 import br.edu.iffar.fw.classBag.db.dao.GrupoRefeicoesDAO;

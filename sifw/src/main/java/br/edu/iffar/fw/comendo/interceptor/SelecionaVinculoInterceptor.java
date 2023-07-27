@@ -1,7 +1,7 @@
 package br.edu.iffar.fw.comendo.interceptor;
 
-import br.edu.iffar.fw.classBag.db.SessionDataStore;
-import br.edu.iffar.fw.classBag.db.dao.VinculosAtivosUsuariosDAO;
+import java.io.Serializable;
+
 import br.edu.iffar.fw.comendo.bean.fragment.VinculoSelecionadoBean;
 import jakarta.annotation.Priority;
 import jakarta.inject.Inject;
@@ -9,9 +9,6 @@ import jakarta.interceptor.AroundConstruct;
 import jakarta.interceptor.AroundInvoke;
 import jakarta.interceptor.Interceptor;
 import jakarta.interceptor.InvocationContext;
-import jakarta.persistence.EntityManager;
-
-import java.io.Serializable;
 
 @SelecionaVinculo
 @Priority(Interceptor.Priority.PLATFORM_AFTER+1)

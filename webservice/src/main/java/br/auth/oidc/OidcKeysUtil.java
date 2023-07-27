@@ -1,5 +1,34 @@
 package br.auth.oidc;
 
+import static br.edu.iffar.fw.authClassShared.models.OpenIdConstant.AUTHORIZATION_CODE_FLOW_TYPES;
+import static br.edu.iffar.fw.authClassShared.models.OpenIdConstant.AUTHORIZATION_ENDPOINT;
+import static br.edu.iffar.fw.authClassShared.models.OpenIdConstant.AUTH_END_POINT_LINK;
+import static br.edu.iffar.fw.authClassShared.models.OpenIdConstant.CERTS_END_POINT_LINK;
+import static br.edu.iffar.fw.authClassShared.models.OpenIdConstant.CLAIMS_SUPPORTED;
+import static br.edu.iffar.fw.authClassShared.models.OpenIdConstant.CLAIMS_SUPPORTED_LIST;
+import static br.edu.iffar.fw.authClassShared.models.OpenIdConstant.CODE_CHALLENGE_METHODS_SUPPORTED;
+import static br.edu.iffar.fw.authClassShared.models.OpenIdConstant.CODE_CHALLENGE_METHODS_SUPPORTED_LIST;
+import static br.edu.iffar.fw.authClassShared.models.OpenIdConstant.END_SESSION_ENDPOINT;
+import static br.edu.iffar.fw.authClassShared.models.OpenIdConstant.END_SESSION_ENDPOINT_LINK;
+import static br.edu.iffar.fw.authClassShared.models.OpenIdConstant.HYBRID_FLOW_TYPES;
+import static br.edu.iffar.fw.authClassShared.models.OpenIdConstant.ID_TOKEN_SIGNING_ALG_VALUES_SUPPORTED;
+import static br.edu.iffar.fw.authClassShared.models.OpenIdConstant.IMPLICIT_FLOW_TYPES;
+import static br.edu.iffar.fw.authClassShared.models.OpenIdConstant.ISSUER;
+import static br.edu.iffar.fw.authClassShared.models.OpenIdConstant.JWKS_URI;
+import static br.edu.iffar.fw.authClassShared.models.OpenIdConstant.RESPONSE_TYPES_SUPPORTED;
+import static br.edu.iffar.fw.authClassShared.models.OpenIdConstant.SCOPES_SUPPORTED;
+import static br.edu.iffar.fw.authClassShared.models.OpenIdConstant.SCOPES_SUPPORTED_LIST;
+import static br.edu.iffar.fw.authClassShared.models.OpenIdConstant.SUBJECT_TYPES_SUPPORTED;
+import static br.edu.iffar.fw.authClassShared.models.OpenIdConstant.TOKEN_ENDPOINT;
+import static br.edu.iffar.fw.authClassShared.models.OpenIdConstant.TOKEN_ENDPOINT_AUTH_METHODS_SUPPORTED;
+import static br.edu.iffar.fw.authClassShared.models.OpenIdConstant.TOKEN_ENDPOINT_AUTH_METHODS_SUPPORTED_LIST;
+import static br.edu.iffar.fw.authClassShared.models.OpenIdConstant.TOKEN_END_POINT_LINK;
+import static br.edu.iffar.fw.authClassShared.models.OpenIdConstant.USERINFO_ENDPOINT;
+import static br.edu.iffar.fw.classShared.constantes.InitConstantes.OIDC_ISSUR;
+import static br.edu.iffar.fw.classShared.constantes.InitConstantes.OIDC_JWK_PATH;
+import static br.edu.iffar.fw.classShared.constantes.InitConstantes.OIDC_JWT_FILENAME;
+import static br.edu.iffar.fw.classShared.constantes.InitConstantes.OIDC_JWT_SIZE;
+
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.OutputStream;
@@ -19,9 +48,6 @@ import com.nimbusds.jose.jwk.gen.RSAKeyGenerator;
 
 import jakarta.json.Json;
 import jakarta.json.JsonObjectBuilder;
-
-import static br.edu.iffar.fw.classShared.constantes.InitConstantes.*;
-import static br.edu.iffar.fw.authClassShared.models.OpenIdConstant.*;
 
 public class OidcKeysUtil implements Serializable{
 

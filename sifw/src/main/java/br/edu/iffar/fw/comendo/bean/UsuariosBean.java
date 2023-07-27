@@ -12,16 +12,6 @@ import java.util.UUID;
 
 import javax.imageio.ImageIO;
 
-import br.auth.dao.AuthUserDAO;
-import br.auth.dao.PermissaoDAO;
-import br.auth.models.AuthUser;
-import br.auth.models.Permissao;
-import br.edu.iffar.fw.classBag.bo.UsuarioBO;
-import br.edu.iffar.fw.classBag.excecoes.UsuarioException;
-import jakarta.transaction.*;
-import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
 import org.primefaces.event.CaptureEvent;
 import org.primefaces.event.FileUploadEvent;
 import org.primefaces.model.DualListModel;
@@ -30,10 +20,15 @@ import org.primefaces.model.StreamedContent;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+
+import br.edu.iffar.fw.authClassShared.dao.AuthUserDAO;
+import br.edu.iffar.fw.authClassShared.models.Permissao;
+import br.edu.iffar.fw.classBag.bo.UsuarioBO;
 import br.edu.iffar.fw.classBag.db.dao.ImagenDAO;
 import br.edu.iffar.fw.classBag.db.dao.UsuariosDAO;
 import br.edu.iffar.fw.classBag.db.model.Imagen;
 import br.edu.iffar.fw.classBag.db.model.Usuario;
+import br.edu.iffar.fw.classBag.excecoes.UsuarioException;
 import br.edu.iffar.fw.classBag.util.BreadCrumb;
 import br.edu.iffar.fw.classBag.util.BreadCrumbControl;
 import br.edu.iffar.fw.classBag.util.MessagesUtil;
@@ -43,6 +38,8 @@ import jakarta.faces.model.SelectItem;
 import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 
 @Named
 @ViewScoped

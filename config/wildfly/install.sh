@@ -132,6 +132,8 @@ function wildfly(){
 	DEBUG useradd -r -g wildfly -d $PATH_INSTALL -s /sbin/nologin wildfly
 
 	DEBUG chown -R wildfly:wildfly $PATH_INSTALL
+    # TODO esse é so pra desenvolvimento
+    DEBUG chmod -R 777 $PATH_INSTALL
 	
     DEBUG mkdir -p /etc/wildfly
 

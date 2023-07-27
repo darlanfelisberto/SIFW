@@ -4,21 +4,12 @@ import static jakarta.ws.rs.core.MediaType.TEXT_HTML;
 
 import java.io.Serializable;
 
-import jakarta.annotation.Resource;
-import jakarta.enterprise.context.RequestScoped;
-import jakarta.inject.Inject;
-import jakarta.ws.rs.FormParam;
-import jakarta.ws.rs.GET;
-import jakarta.ws.rs.POST;
-import jakarta.ws.rs.Path;
-import jakarta.ws.rs.Produces;
-import jakarta.ws.rs.core.MediaType;
-import jakarta.ws.rs.core.Response;
-
 import br.auth.util.ThymeleafUtil;
 import br.edu.iffar.fw.authClassShared.dao.AuthUserDAO;
 import br.edu.iffar.fw.authClassShared.models.AuthUser;
-import br.edu.iffar.fw.authClassShared.models.Usuario;
+import jakarta.annotation.Resource;
+import jakarta.enterprise.context.RequestScoped;
+import jakarta.inject.Inject;
 import jakarta.mail.Address;
 import jakarta.mail.Message;
 import jakarta.mail.MessagingException;
@@ -26,6 +17,13 @@ import jakarta.mail.Session;
 import jakarta.mail.Transport;
 import jakarta.mail.internet.InternetAddress;
 import jakarta.mail.internet.MimeMessage;
+import jakarta.ws.rs.FormParam;
+import jakarta.ws.rs.GET;
+import jakarta.ws.rs.POST;
+import jakarta.ws.rs.Path;
+import jakarta.ws.rs.Produces;
+import jakarta.ws.rs.core.MediaType;
+import jakarta.ws.rs.core.Response;
 
 
 //http://localhost:8080/catraca/auth/catracaAPI/listAllGrupos

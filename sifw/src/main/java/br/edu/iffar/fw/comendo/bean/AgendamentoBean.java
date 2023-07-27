@@ -1,19 +1,16 @@
 package br.edu.iffar.fw.comendo.bean;
 
+import static br.edu.iffar.fw.classBag.db.SessionDataStore.VINCULO_SELECIONDO;
+
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
-import br.edu.iffar.fw.classBag.db.SessionDataStore;
-import br.edu.iffar.fw.classBag.db.model.interfaces.VinculosAtivosUsuarios;
-import br.edu.iffar.fw.comendo.interceptor.SelecionaVinculo;
-import jakarta.enterprise.context.SessionScoped;
-import jakarta.faces.view.ViewScoped;
-import jakarta.interceptor.InvocationContext;
 import org.primefaces.event.SelectEvent;
 
+import br.edu.iffar.fw.classBag.db.SessionDataStore;
 import br.edu.iffar.fw.classBag.db.dao.AgendamentosDAO;
 import br.edu.iffar.fw.classBag.db.dao.ParametrosDAO;
 import br.edu.iffar.fw.classBag.db.dao.RefeicaoDAO;
@@ -21,16 +18,17 @@ import br.edu.iffar.fw.classBag.db.model.Agendamento;
 import br.edu.iffar.fw.classBag.db.model.Parametros;
 import br.edu.iffar.fw.classBag.db.model.Refeicao;
 import br.edu.iffar.fw.classBag.db.model.Usuario;
+import br.edu.iffar.fw.classBag.db.model.interfaces.VinculosAtivosUsuarios;
 import br.edu.iffar.fw.classBag.enun.TypeParam;
 import br.edu.iffar.fw.classBag.util.MessagesUtil;
 import br.edu.iffar.fw.comendo.bean.fragment.VinculoSelecionadoBean;
 import br.edu.iffar.fw.comendo.primefaces.AgendamentosLazyLoad;
 import jakarta.annotation.PostConstruct;
 import jakarta.faces.context.FacesContext;
+import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
 import jakarta.transaction.RollbackException;
-import static br.edu.iffar.fw.classBag.db.SessionDataStore.VINCULO_SELECIONDO;
 @Named
 @ViewScoped
 //@SelecionaVinculo

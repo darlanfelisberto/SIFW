@@ -14,9 +14,6 @@ import jakarta.annotation.PostConstruct;
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.inject.Inject;
 import jakarta.servlet.ServletContext;
-import jakarta.ws.rs.container.ResourceContext;
-import jakarta.ws.rs.core.HttpHeaders;
-import jakarta.ws.rs.core.Request;
 
 @RequestScoped
 public class ThymeleafUtil {
