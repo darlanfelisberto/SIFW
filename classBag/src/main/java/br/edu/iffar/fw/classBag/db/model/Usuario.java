@@ -1,5 +1,6 @@
 package br.edu.iffar.fw.classBag.db.model;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -8,20 +9,27 @@ import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 
+import jakarta.persistence.*;
 import org.primefaces.model.charts.pie.PieChartModel;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
+import br.edu.iffar.fw.authClassShared.models.AuthUser;
 import br.edu.iffar.fw.classBag.enun.TypeCredito;
 import br.edu.iffar.fw.classBag.enun.TypeSituacao;
-import jakarta.persistence.Column;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.OrderBy;
+import br.edu.iffar.fw.classBag.util.JsonDateDeserializer;
+import br.edu.iffar.fw.classBag.util.JsonLocalDateSerializer;
+import br.edu.iffar.fw.classShared.db.Model;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import jakarta.xml.bind.annotation.XmlTransient;
-//
-//@Entity
-//@Table(name="usuarios")
-public class Usuario extends br.edu.iffar.fw.authClassShared.models.Usuario{
 
+@Entity
+@Table(name="usuarios",schema = "public")
+public class Usuario extends br.edu.iffar.fw.authClassShared.models.AUsuario {
+	private static final long serialVersionUID = 22021991L;
+    
 	@OneToMany(mappedBy = "usuario", fetch = FetchType.LAZY)
 	@OrderBy(value = "dtCredito desc")
 	private List<Credito> listCreditos;
@@ -34,7 +42,7 @@ public class Usuario extends br.edu.iffar.fw.authClassShared.models.Usuario{
 		
 	@Column(name = "token_ru")
 	private String tokenRU;
-	
+
 	public String getTokenRU() {
 		return tokenRU;
 	}
@@ -46,7 +54,6 @@ public class Usuario extends br.edu.iffar.fw.authClassShared.models.Usuario{
 	public Usuario() {
 		super();
 	}
-
 	public Matricula getMatriculaAtiva() {
 		return this.listMatricula.get(0);
 	} 
@@ -72,7 +79,7 @@ public class Usuario extends br.edu.iffar.fw.authClassShared.models.Usuario{
 	}
 
 	public String labelIniciais() {
-		String[] nome = this.nome.split(" ");
+		String[] nome = super.getNome().split(" ");
 		StringBuilder iniciais = new StringBuilder();
 		for (String string : nome) {
 			iniciais.append(string.toUpperCase().charAt(0) + ".");
@@ -80,43 +87,6 @@ public class Usuario extends br.edu.iffar.fw.authClassShared.models.Usuario{
 		return iniciais.toString();
 	}
     
-    public void setUsuarioId(UUID usuarioId) {
-		this.usuarioId = usuarioId;
-	}
-
-	public String getNome() {
-		return this.nome;
-	}
-
-	public void setNome(String nome) {
-		StringBuilder s = new StringBuilder();
-		for (String string : nome.split(" ")) {
-			s.append(" " + (string.length() > 2 ? string.substring(0, 1).toUpperCase() + string.substring(1, string.length()).toLowerCase() : string));
-		}
-		// esse trim remove o espaço colocado no for
-		this.nome = s.toString().trim();;
-	}
-
-	public String getCpf() {
-		return cpf;
-	}
-
-	public void setCpf(String cpf) {
-		if(cpf != null) {
-			this.cpf = cpf.replaceAll("[^0-9]", "");
-		} else {
-			this.cpf = cpf;
-		}
-	}
-	
-	public LocalDate getDtnasc() {
-		return dtnasc;
-	}
-
-	public void setDtnasc(LocalDate dtnasc) {
-		this.dtnasc = dtnasc;
-	}
-
 	public void setEventLimit(boolean eventLimit) {
     }
 		  
@@ -143,10 +113,6 @@ public class Usuario extends br.edu.iffar.fw.authClassShared.models.Usuario{
 		return listMatricula;
 	}
 	
-	public boolean isNovo() {
-		return this.novo;
-	}
-
 	public void setListMatricula(List<Matricula> listMatricula) {
 		this.listMatricula = listMatricula;
 	}
@@ -205,9 +171,4 @@ public class Usuario extends br.edu.iffar.fw.authClassShared.models.Usuario{
 	public void setListServidor(List<Servidor> listServidor) {
 		this.listServidor = listServidor;
 	}
-
-	public String getNomeCpf() {
-		return this.cpf + " - " + this.nome;
-	}
-
 }

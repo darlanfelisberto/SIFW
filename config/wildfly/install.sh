@@ -33,11 +33,11 @@ function main() {
                 ;; 
             -w|--wildfly) 
                 shift; 
-                WILDFLY="${1:?$(usage)}" 
+                VERSION_WILDFLY="${1:?$(usage)}" 
                 ;; 
             -j|--jarPostgres) 
                 shift; 
-                JAR_POSTGRES="${1:?$(usage)}" 
+                VERSION_JAR_POSTGRES="${1:?$(usage)}" 
                 ;;
             -c|--clear) 
                 shift; 
@@ -60,13 +60,13 @@ function main() {
 
 function removeInstalacao(){
     DEBUG rm -R $PATH_INSTALL
-    DEBUG rm -R /usr/lib/jvm/jdk17
-    DEBUG rm -R /usr/lib/jvm/jdk-${JDK}
-    DEBUG rm -R wildfly-$WILDFLY.tar.gz
+    DEBUG rm -R /usr/lib/jvm/jdk${JDK_LINK_NAME}
+    DEBUG rm -R /usr/lib/jvm/jdk-${VERSION_JDK}
+    DEBUG rm -R wildfly-$VERSION_WILDFLY.tar.gz
     DEBUG rm -R wildfly.*
     DEBUG rm -R launch.sh 
-    DEBUG rm $JAR_POSTGRES'.jar'
-    DEBUG rm jdk-${JDK}_linux-x64_bin.tar.gz
+    DEBUG rm $VERSION_JAR_POSTGRES'.jar'
+    DEBUG rm jdk-${VERSION_JDK}_linux-x64_bin.tar.gz
     DEBUG rm configure-wildfly.cli
     DEBUG rm /etc/systemd/system/wildfly.service 
     DEBUG rm -R /etc/wildfly
@@ -74,15 +74,15 @@ function removeInstalacao(){
     echo "Limpo."
 }
 
-function installSifw(){
+function installDevL(){
     DEBUG mkdir -p $PATH_INSTALL;
     DEBUG mkdir -p $PATH_INSTALL"/imagens";
-    fileContantes;
-    java;
-    wildfly;
+    fileContantesL;
+    javaL;
+    wildflyL;
 }
 
-function fileContantes(){
+function fileContantesL(){
     # escape / for \/ of path
     DEBUG scapeStrings $PATH_INSTALL INS;	
 
@@ -95,23 +95,35 @@ function fileContantes(){
 	DEBUG cp configuration_linux.properties  $PATH_INSTALL/configuration_linux.properties
 }
 
-function java(){
+function javaL(){
 	DEBUG mkdir -p /usr/lib/jvm
-	DEBUG wget -cv https://download.oracle.com/java/17/archive/jdk-${JDK}_linux-x64_bin.tar.gz
-	DEBUG tar -xvzf jdk-${JDK}_linux-x64_bin.tar.gz -C /usr/lib/jvm
-	DEBUG ln -s /usr/lib/jvm/jdk-${JDK} /usr/lib/jvm/jdk17
+	DEBUG wget -cv https://download.oracle.com/java/${JDK_LINK_NAME}/archive/jdk-${VERSION_JDK}_linux-x64_bin.tar.gz
+	DEBUG tar -xvzf jdk-${VERSION_JDK}_linux-x64_bin.tar.gz -C /usr/lib/jvm
+	DEBUG ln -s /usr/lib/jvm/jdk-${VERSION_JDK} /usr/lib/jvm/jdk${JDK_LINK_NAME}
 
-	# DEBUG update-alternatives --install /usr/bin/java java /usr/lib/jvm/jdk17/bin/java 10
+	# DEBUG update-alternatives --install /usr/bin/java java /usr/lib/jvm/jdk${JDK_LINK_NAME}/bin/java 10
 }
 
-function wildfly(){
-	DEBUG wget -cv https://jdbc.postgresql.org/download/$JAR_POSTGRES.jar
-	DEBUG wget -cv https://github.com/wildfly/wildfly/releases/download/$WILDFLY/wildfly-$WILDFLY.tar.gz;
+function javaW(){
+	DEBUG mkdir -p /usr/lib/jvm
+	DEBUG wget -cv https://download.oracle.com/java/${JDK_LINK_NAME}/archive/jdk-${VERSION_JDK}_windows-x64_bin.zip
+	DEBUG unzip jdk-${VERSION_JDK}_windows-x64_bin.zip -d test
+    DEBUG ln -s /usr/lib/jvm/jdk-${VERSION_JDK} /usr/lib/jvm/jdk${JDK_LINK_NAME}
 
-	DEBUG tar -xvzf "wildfly-$WILDFLY.tar.gz" -C $PATH_INSTALL
+	# DEBUG update-alternatives --install /usr/bin/java java /usr/lib/jvm/jdk${JDK_LINK_NAME}/bin/java 10
+}
+
+function wildflyL(){
+	DEBUG wget -cv https://jdbc.postgresql.org/download/$VERSION_JAR_POSTGRES.jar
+	DEBUG wget -cv https://github.com/wildfly/wildfly/releases/download/$VERSION_WILDFLY/wildfly-$VERSION_WILDFLY.tar.gz;
+
+	DEBUG tar -xvzf "wildfly-$VERSION_WILDFLY.tar.gz" -C $PATH_INSTALL
 
     
-	DEBUG ln -s "$PATH_INSTALL/wildfly-$WILDFLY" "$PATH_INSTALL/wildfly"
+	DEBUG ln -s "$PATH_INSTALL/wildfly-$VERSION_WILDFLY" "$PATH_INSTALL/wildfly"
+
+    DEBUG sed -i    's/#JAVA_HOME.*/JAVA_HOME=\/usr\/lib\/jvm\/jdk'${JDK_LINK_NAME}'/g' $PATH_INSTALL/wildfly/bin/standalone.conf
+
 	DEBUG $PATH_INSTALL/wildfly/bin/add-user.sh -u manager -p manager
     DEBUG echo "Sleep de 10 segundos..."
     DEBUG sleep 1
@@ -119,8 +131,8 @@ function wildfly(){
 	DEBUG echo "aguardando 10 segundos..."
 	DEBUG sleep 10
 	
-    DEBUG sed -i    's/#JAVA_HOME.*/JAVA_HOME=\/usr\/lib\/jvm\/jdk17/g' $PATH_INSTALL/wildfly/bin/standalone.conf
-    DEBUG sed       's/<#JAR_POSTGRES#>/'$JAR_POSTGRES'/g'          _configure-wildfly.cli > configure-wildfly.cli
+    
+    DEBUG sed       's/<#JAR_POSTGRES#>/'$VERSION_JAR_POSTGRES'/g'          _configure-wildfly.cli > configure-wildfly.cli
 	DEBUG sed -i    's/<#EMAIL#>/'$EMAIL'/g'                        configure-wildfly.cli
 	DEBUG sed -i    's/<#SENHA_EMAIL#>/'$SENHA_EMAIL'/g'            configure-wildfly.cli
     DEBUG sed -i    's/<#AUTH_SERVER_URL#>/'$AUTH_SERVER_URL'/g'    configure-wildfly.cli
@@ -197,22 +209,34 @@ function scapeString(){
     OUTPUT=$auth;
 };
 
-WILDFLY="29.0.0.Final";
+function prepareWindowns(){
+    WILDFLY="30.0.1.Final";
+    PATH_INSTALL="/opt/dev";
+    EMAIL="";
+    SENHA_EMAIL="";
+    AUTH_SERVER_URL="http://localhost:8080";
+    JAR_POSTGRES="postgresql-42.6.0";
+    JDK="21.0.2";
+}
+
+
 PATH_INSTALL="/opt/sifw";
 EMAIL="";
 SENHA_EMAIL="";
 AUTH_SERVER_URL="http://localhost:8080";
-JAR_POSTGRES="postgresql-42.6.0";
-JDK="17.0.7";
+VERSION_JAR_POSTGRES="postgresql-42.6.0";
+VERSION_JDK="21.0.2";
+JDK_LINK_NAME="21";
+VERSION_WILDFLY="30.0.1.Final";
 
 DEBUG scapeStrings $AUTH_SERVER_URL AUTH_SERVER_URL
 
-printf ">%s< >%s< >%s< >%s< >%s< >%s< >%s< >%s< \n" $WILDFLY $PATH_INSTALL $EMAIL $SENHA_EMAIL $AUTH_SERVER $JAR_POSTGRES $JDK;
+printf ">%s< >%s< >%s< >%s< >%s< >%s< >%s< >%s< \n" $VERSION_WILDFLY $PATH_INSTALL $EMAIL $SENHA_EMAIL $AUTH_SERVER $VERSION_JAR_POSTGRES $VERSION_JDK;
 
 
 DEBUG main "$@"
 
-installSifw;
+installDevL;
 
 #-i /opt -e darlan@gmail.com -s senha -a localhostr:8080 -w wildfly -j jar
 

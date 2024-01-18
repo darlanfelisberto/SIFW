@@ -12,10 +12,12 @@
 		<class>br.edu.iffar.fw.authClassShared.models.Cliente</class>
 		<class>br.edu.iffar.fw.authClassShared.models.Permissao</class>
 		<class>br.edu.iffar.fw.authClassShared.models.AuthUser</class>
-		
-		<shared-cache-mode>ENABLE_SELECTIVE</shared-cache-mode>
+		<class>br.edu.iffar.fw.authClassShared.models.AuthLogin</class>
+		<class>br.edu.iffar.fw.authClassShared.models.AUsuario</class>
+
+		<!-- shared-cache-mode>ENABLE_SELECTIVE</shared-cache-mode-->
 		<properties>
-			<!-- property name="jakarta.persistence.schema-generation.database.action" value="update"/-->
+			<property name="hibernate.hbm2ddl.auto" value="update" />
 			<!--property name="jakarta.persistence.schema-generation.database.action" value="drop-and-create"/-->
 			<!--property name="hibernate.generate_statistics" value="true"/--> 
 			<property name="hibernate.enable_lazy_load_no_trans" value="true" />

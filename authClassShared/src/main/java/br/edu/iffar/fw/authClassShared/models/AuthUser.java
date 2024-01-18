@@ -5,21 +5,12 @@ import java.util.UUID;
 
 import br.edu.iffar.fw.authClassShared.sec.Pbkdf2Hash;
 import br.edu.iffar.fw.classShared.db.Model;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinTable;
-import jakarta.persistence.ManyToMany;
-import jakarta.persistence.OneToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "auth_user", schema = "auth")
+@Inheritance(strategy = InheritanceType.JOINED)
 public class AuthUser extends  Model<UUID>{
 
 	private static final long serialVersionUID = 1L;
@@ -30,6 +21,7 @@ public class AuthUser extends  Model<UUID>{
     private UUID authUserId;
 
     @NotNull
+    @Column(length = 30)
     private String username;
 
     @NotNull
@@ -51,9 +43,9 @@ public class AuthUser extends  Model<UUID>{
     )
     private Set<Permissao> setPermissao;
 
-    @NotNull
-    @OneToOne(fetch = FetchType.LAZY, mappedBy = "authUser",optional = false)
-    private Usuario usuario;
+//    @NotNull
+//    @OneToOne(fetch = FetchType.LAZY, mappedBy = "authUser",optional = false)
+//    private AUsuario usuario;
 
     public UUID getMMId() {
         return this.authUserId;
@@ -113,14 +105,14 @@ public class AuthUser extends  Model<UUID>{
         this.setPermissao = listPermissao;
     }
 
-    public Usuario getUsuario() {
-        return usuario;
-    }
+//    public AUsuario getUsuario() {
+//        return usuario;
+//    }
 
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
-        this.usuario.setAuthUser(this);
-    }
+//    public void setUsuario(AUsuario usuario) {
+//        this.usuario = usuario;
+//        this.usuario.setAuthUser(this);
+//    }
 
     public boolean isInativo() {
         return inativo;
@@ -136,15 +128,5 @@ public class AuthUser extends  Model<UUID>{
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public static AuthUser  createNew(Usuario usuario,Set<Permissao> permissoes){
-        AuthUser au = new AuthUser();
-        au.setUsuario(usuario);
-        au.setUsername(usuario.getCpf());
-        au.setSetPermissao(permissoes);
-        au.setPassword(usuario.getCpf());
-        au.inativo = false;
-        return au;
     }
 }

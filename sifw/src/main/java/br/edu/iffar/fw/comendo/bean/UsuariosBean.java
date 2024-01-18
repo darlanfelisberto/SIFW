@@ -172,7 +172,7 @@ public class UsuariosBean implements Serializable, BreadCrumbControl{
 	}
 
 	public void novoUsuario() {
-		this.userSel = Usuario.createNew();
+		this.userSel = new Usuario();
 		carregaPermissoesDisponiveis();
 		this.telaDadosUsuario();
 		this.breadCrumb.setAtivo(4);
