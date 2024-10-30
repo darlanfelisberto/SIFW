@@ -110,8 +110,7 @@ public class GrupoRefeicoesBean implements Serializable,BreadCrumbControl{
 	}
 	
 	public void novaRefeicao() {
-		this.refeicao = new Refeicao(true);
-		this.refeicao.setGrupoRefeicoes(this.grupoRefeicoes);
+		this.refeicao = new Refeicao();
 		this.telaEditTipoRefeicao();
 	}
 	
@@ -120,9 +119,10 @@ public class GrupoRefeicoesBean implements Serializable,BreadCrumbControl{
 			this.grupoRefeicoes.setListRefeicao(new ArrayList<Refeicao>());
 		}
 		if(!this.grupoRefeicoes.getListRefeicao().contains(this.refeicao)) {
+			this.refeicao.setGrupoRefeicoes(this.grupoRefeicoes);
 			this.grupoRefeicoes.getListRefeicao().add(this.refeicao);
 		}
-		
+
 		this.telaGrupoRefecoes();
 		this.refeicao = null;
 	}
@@ -133,7 +133,11 @@ public class GrupoRefeicoesBean implements Serializable,BreadCrumbControl{
 	
 	public void salvarGrupoRefeicao() {
 		try {
-			this.grupoRefeicoes = this.grupoRefeicoesDAO.updateT(this.grupoRefeicoes);
+//			if(this.grupoRefeicoes.isNovo()){
+//				this.grupoRefeicoesDAO.persistT(this.grupoRefeicoes);
+//			}else {
+				this.grupoRefeicoes = this.grupoRefeicoesDAO.mergeT(this.grupoRefeicoes);
+//			}
 			this.messages.addSuccess("Grupo de refeições salvo com sucesso.");
 			this.telaBuscaGrupoRefeicoes();
 		} catch (RollbackException e) {

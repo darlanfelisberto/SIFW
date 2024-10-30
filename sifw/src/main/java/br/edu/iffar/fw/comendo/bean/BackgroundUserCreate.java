@@ -12,15 +12,15 @@ import java.util.Map;
 import java.util.Set;
 import java.util.UUID;
 
+import br.edu.iffar.fw.classBag.db.model.Usuario;
 import org.apache.commons.csv.CSVRecord;
 
-import br.edu.iffar.fw.authClassShared.models.AuthUser;
-import br.edu.iffar.fw.authClassShared.models.Permissao;
+import br.com.feliva.authClass.models.AuthUser;
+import br.com.feliva.authClass.models.Permissao;
 import br.edu.iffar.fw.classBag.db.dao.BackgroudDAO;
 import br.edu.iffar.fw.classBag.db.model.Curso;
 import br.edu.iffar.fw.classBag.db.model.Matricula;
 import br.edu.iffar.fw.classBag.db.model.SituacaoMatricula;
-import br.edu.iffar.fw.classBag.db.model.Usuario;
 import br.edu.iffar.fw.classBag.enun.TypeSituacao;
 import jakarta.inject.Inject;
 import jakarta.transaction.RollbackException;
@@ -95,9 +95,9 @@ public class BackgroundUserCreate implements Runnable{
 
 				try {
 					this.backDAO.createUser(usuario, matricula);
-					this.saidaSucess("Usuário " + usuario.getCpf() + " criado com sucesso.");
+					this.saidaSucess("Usuário " + usuario.getPessoa().getCpf() + " criado com sucesso.");
 				} catch (Exception e) {
-					this.saidaErro("Ocorreu um problema com o usuário: " + usuario.getCpf() + "." + e.getMessage());
+					this.saidaErro("Ocorreu um problema com o usuário: " + usuario.getPessoa().getCpf() + "." + e.getMessage());
 					e.printStackTrace();
 				}
 			}
@@ -105,13 +105,13 @@ public class BackgroundUserCreate implements Runnable{
 				LocalDateTime momento = LocalDateTime.now();
 				this.listMatriculaHaInativar.forEach(mat->{
 					try {
-						mat.getUsuario().getAuthUser().setInativo(true);
-						this.backDAO.updateT(mat.getUsuario().getAuthUser());
+						mat.getUsuario().getPessoa().getAuthUser().setInativo(true);
+						this.backDAO.mergeT(mat.getUsuario().getPessoa().getAuthUser());
 						this.backDAO.persistT(new SituacaoMatricula(TypeSituacao.INATIVA, momento, mat));
-						this.saidaInfo("Lançando situação: " + TypeSituacao.INATIVA.getDesc() + " para a matrícula: "+mat.getIdMatricula() + " para o usuário:"+mat.getUsuario().getCpf());
+						this.saidaInfo("Lançando situação: " + TypeSituacao.INATIVA.getDesc() + " para a matrícula: "+mat.getIdMatricula() + " para o usuário:"+mat.getUsuario().getPessoa().getCpf());
 					} catch (RollbackException e) {
 						e.printStackTrace();
-						this.saidaErro("Erro ao Lançar situacão Inativa para o aluno: " + mat.getUsuario().getCpf()+"  --  "+e.getMessage());
+						this.saidaErro("Erro ao Lançar situacão Inativa para o aluno: " + mat.getUsuario().getPessoa().getCpf()+"  --  "+e.getMessage());
 					}
 				});
 				this.saidaSucess("Situacoes salvas com sucesso.");
@@ -124,27 +124,28 @@ public class BackgroundUserCreate implements Runnable{
 		this.saidaInfo("Processamento em background terminado.");
 	}
 
-	public Usuario modifyUser(Usuario u, CSVRecord record,Set roles) {
+	public Usuario modifyUser(Usuario u, CSVRecord record, Set roles) {
 		if(u == null) {
 			u = new Usuario();
-			u.setCpf(record.get(1).trim().replace(".", "").replace("-", ""));
+			u.getPessoa().setCpf(record.get(1).trim().replace(".", "").replace("-", ""));
 			u.setTokenRU(UUID.randomUUID().toString());
 		}else {
-			this.saidaInfo("Usuário "+u.getCpf()+" já existe na base.");
+			this.saidaInfo("Usuário "+u.getPessoa().getCpf()+" já existe na base.");
 		}
 
-		if(u.getAuthUser() == null){
-			AuthUser.createNew(u,roles);
+		if(u.getPessoa().getAuthUser() == null){
+			//TODO
+//			AuthUser.createNew(u,roles);
 		}else{
-			u.getAuthUser().getSetPermissao().addAll(roles);
+			u.getPessoa().getAuthUser().getSetPermissao().addAll(roles);
 		}
 
 		// em algumas planilhas, os campos nomes estao vindo em branco
-		u.setNome(this.getNomePadrao((record.get(3).trim().length() > 0 ? record.get(3) : record.get(4))));
+		u.getPessoa().setNome(this.getNomePadrao((record.get(3).trim().length() > 0 ? record.get(3) : record.get(4))));
 
 		//TODO ver questao do email
-		u.getAuthUser().setEmail(record.get(5).trim().toLowerCase());
-		u.setDtnasc(LocalDate.parse(record.get(9).trim(), DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+		u.getPessoa().getAuthUser().setEmail(record.get(5).trim().toLowerCase());
+		u.getPessoa().setDtnasc(LocalDate.parse(record.get(9).trim(), DateTimeFormatter.ofPattern("dd/MM/yyyy")));
 		return u;
 	}
 

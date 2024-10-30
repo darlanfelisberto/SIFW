@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.edu.iffar.fw.classBag.db.model.*;
 import org.apache.commons.csv.CSVRecord;
 
 import br.edu.iffar.fw.classBag.db.dao.CursosDAO;
@@ -11,10 +12,6 @@ import br.edu.iffar.fw.classBag.db.dao.GrupoRefeicoesDAO;
 import br.edu.iffar.fw.classBag.db.dao.ServidorDAO;
 import br.edu.iffar.fw.classBag.db.dao.TipoVinculoDAO;
 import br.edu.iffar.fw.classBag.db.dao.UsuariosDAO;
-import br.edu.iffar.fw.classBag.db.model.Curso;
-import br.edu.iffar.fw.classBag.db.model.Imagen;
-import br.edu.iffar.fw.classBag.db.model.Servidor;
-import br.edu.iffar.fw.classBag.db.model.TipoVinculo;
 import br.edu.iffar.fw.classBag.db.model.Usuario;
 import br.edu.iffar.fw.classBag.enun.TypeSituacao;
 import br.edu.iffar.fw.classBag.util.BreadCrumb;
@@ -206,7 +203,7 @@ public class ServidorBean implements Serializable, BreadCrumbControl{
 			if(this.servidor.isNovo()) {
 				this.servidorDAO.persistT(this.servidor);
 			}else {
-				this.servidorDAO.updateT(this.servidor);
+				this.servidorDAO.mergeT(this.servidor);
 			}
     		this.messages.addSuccess("Informações do vinculo(servidor) foram salvas com sucesso.");
 			this.telaFiltroBusca();

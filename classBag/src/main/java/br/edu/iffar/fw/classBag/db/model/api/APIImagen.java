@@ -9,8 +9,8 @@ import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.util.UUID;
 
-import br.edu.iffar.fw.classShared.constantes.InitConstantes;
-import br.edu.iffar.fw.classShared.db.Model;
+import br.com.feliva.sharedClass.constantes.InitConstantes;
+import br.com.feliva.sharedClass.db.Model;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -30,7 +30,7 @@ public class APIImagen extends Model<UUID>implements Serializable{
 	public static final String SEMIMAGEN_PNG = "semfoto";
 	public static final String CHECK_PNG = Paths.get("").toAbsolutePath().toString() + File.separator + "imagens" + File.separator + "check" + InitConstantes.IMAGEM_EXTENSAO;
 	public static final String CANCEL_PNG = Paths.get("").toAbsolutePath().toString() + File.separator + "imagens" + File.separator + "cancel" + InitConstantes.IMAGEM_EXTENSAO;
-	
+
 	public static final APIImagen SEMIMAGEN = new APIImagen(SEMIMAGEN_PNG);
 
 	@Id

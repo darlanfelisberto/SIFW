@@ -6,7 +6,7 @@ import java.util.UUID;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-import br.edu.iffar.fw.classShared.db.Model;
+import br.com.feliva.sharedClass.db.Model;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;

@@ -5,9 +5,10 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Objects;
 import java.util.UUID;
 
-import br.edu.iffar.fw.classShared.db.Model;
+import br.com.feliva.sharedClass.db.Model;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -20,6 +21,8 @@ import jakarta.persistence.Table;
 import jakarta.persistence.Transient;
 import jakarta.validation.constraints.NotNull;
 import jakarta.xml.bind.annotation.XmlTransient;
+import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.IdGeneratorType;
 
 @Entity
 @Table(name = "refeicao")
@@ -28,9 +31,9 @@ public class Refeicao extends Model<UUID>{
 	private static final long serialVersionUID = 22021991L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name ="refeicao_id",unique = true,nullable = false)
-	private UUID refeicaoId;	
+	@Column(name ="refeicao_id")
+	//TO-DO refatorar tela de cadastro de grupos e refeições para deixar de exigir a criação de id manualmente
+	private UUID refeicaoId = UUID.randomUUID();
 		
 	@NotNull(message = "Informe o valor da refeição.")
 	private float valor;
@@ -61,18 +64,7 @@ public class Refeicao extends Model<UUID>{
 
 	public Refeicao() {
 	}
-	
-	public Refeicao(UUID id) {
-		this.refeicaoId = id;
-	}
-	
-	public Refeicao(boolean comId) {
-		//para criar id provisorio enquanto não é salvo na dase de dados
-		if(comId) {
-			this.refeicaoId = UUID.randomUUID();
-		}
-	}
-	
+
 	public float getValor() {
 		return valor;
 	}

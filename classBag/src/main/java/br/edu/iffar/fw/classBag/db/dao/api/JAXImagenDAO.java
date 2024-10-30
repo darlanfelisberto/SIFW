@@ -3,7 +3,7 @@ package br.edu.iffar.fw.classBag.db.dao.api;
 import java.util.List;
 
 import br.edu.iffar.fw.classBag.db.model.api.APIImagen;
-import br.edu.iffar.fw.classShared.db.DAO;
+import br.com.feliva.sharedClass.db.DAO;
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.persistence.Query;
 

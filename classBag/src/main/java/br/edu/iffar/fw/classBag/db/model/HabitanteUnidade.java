@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.UUID;
 
 import br.edu.iffar.fw.classBag.db.model.interfaces.TreeNodeSearch;
-import br.edu.iffar.fw.classShared.db.Model;
+import br.com.feliva.sharedClass.db.Model;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -129,7 +129,7 @@ public class HabitanteUnidade extends Model<UUID> implements TreeNodeSearch {
 
 	@Override
 	public boolean search(String termo) {
-		if (this.matricula.getUsuario().getNome().toLowerCase().contains(termo)) {
+		if (this.matricula.getUsuario().getPessoa().getNome().toLowerCase().contains(termo)) {
 			return true;
 		}
 		if (this.matricula.getIdMatricula().toString().contains(termo)) {

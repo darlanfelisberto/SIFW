@@ -8,7 +8,7 @@ import br.edu.iffar.fw.classBag.db.model.Agendamento;
 import br.edu.iffar.fw.classBag.db.model.Credito;
 import br.edu.iffar.fw.classBag.db.model.TipoRefeicao;
 import br.edu.iffar.fw.classBag.db.model.Usuario;
-import br.edu.iffar.fw.classShared.db.DAO;
+import br.com.feliva.sharedClass.db.DAO;
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.persistence.NoResultException;
 import jakarta.persistence.Query;
@@ -59,7 +59,7 @@ public class CreditosDAO extends DAO<Credito> {
 //	}
 	
 	@SuppressWarnings("unchecked")
-	public List<Credito> getCreditosByMesAno(LocalDate mesAno,Usuario user){
+	public List<Credito> getCreditosByMesAno(LocalDate mesAno, Usuario user){
 		Query q = this.em.createQuery("""
 				select c from Credito c
 				inner join fetch c.usuario u

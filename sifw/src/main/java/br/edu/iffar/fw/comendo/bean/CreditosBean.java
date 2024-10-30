@@ -2,10 +2,10 @@ package br.edu.iffar.fw.comendo.bean;
 
 import java.io.Serializable;
 
+import br.edu.iffar.fw.classBag.db.model.Usuario;
 import org.primefaces.model.menu.BaseMenuModel;
 
 import br.edu.iffar.fw.classBag.db.dao.UsuariosDAO;
-import br.edu.iffar.fw.classBag.db.model.Usuario;
 import br.edu.iffar.fw.classBag.util.BreadCrumb;
 import br.edu.iffar.fw.classBag.util.BreadCrumbControl;
 import br.edu.iffar.fw.comendo.bean.fragment.SaldoUserFrament;

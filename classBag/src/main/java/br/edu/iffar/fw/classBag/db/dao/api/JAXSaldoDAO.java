@@ -4,7 +4,7 @@ import java.util.List;
 
 import br.edu.iffar.fw.classBag.db.model.api.APISaldo;
 import br.edu.iffar.fw.classBag.db.model.api.APIUsuario;
-import br.edu.iffar.fw.classShared.db.DAO;
+import br.com.feliva.sharedClass.db.DAO;
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.persistence.NoResultException;
 import jakarta.persistence.Query;

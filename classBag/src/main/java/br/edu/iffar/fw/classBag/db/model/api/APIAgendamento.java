@@ -8,7 +8,7 @@ import java.util.UUID;
 import br.edu.iffar.fw.classBag.db.model.Agendamento;
 import br.edu.iffar.fw.classBag.db.model.TipoCredito;
 import br.edu.iffar.fw.classBag.enun.TypeCredito;
-import br.edu.iffar.fw.classShared.db.Model;
+import br.com.feliva.sharedClass.db.Model;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

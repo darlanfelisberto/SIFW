@@ -4,7 +4,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
-import br.edu.iffar.fw.classShared.db.Model;
+import br.com.feliva.sharedClass.db.Model;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -36,7 +36,7 @@ public class Presenca extends Model<UUID> {
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "realizada_por_id")
-	@NotNull(message = "Informe a matricula do habitante.")
+	@NotNull(message = "Informe quem realizou a chamada.")
 	private Usuario realizadoPor;
 
 	@Column(name = "dt_referencia")
@@ -54,7 +54,7 @@ public class Presenca extends Model<UUID> {
 	
 	public Presenca() {}
 	
-	public Presenca(HabitanteUnidade habitanteUnidade,Usuario realizadoPor,LocalDate dtReferencia) {
+	public Presenca(HabitanteUnidade habitanteUnidade, Usuario realizadoPor, LocalDate dtReferencia) {
 		this.dtRealizada =  LocalDateTime.now();
 		this.realizadoPor = realizadoPor;
 		this.dtReferencia = dtReferencia;

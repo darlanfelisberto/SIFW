@@ -7,7 +7,7 @@ import br.edu.iffar.fw.classBag.enun.TypeCredito;
 import br.edu.iffar.fw.classBag.util.MessagesUtil;
 import br.edu.iffar.fw.classBag.util.ValidacaoPersonalizada;
 import br.edu.iffar.fw.classBag.validation.ValidaCreditoPorTypo;
-import br.edu.iffar.fw.classShared.db.Model;
+import br.com.feliva.sharedClass.db.Model;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

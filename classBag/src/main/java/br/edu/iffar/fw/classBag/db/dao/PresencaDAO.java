@@ -5,7 +5,7 @@ import java.util.List;
 
 import br.edu.iffar.fw.classBag.db.model.Presenca;
 import br.edu.iffar.fw.classBag.db.model.Unidade;
-import br.edu.iffar.fw.classShared.db.DAO;
+import br.com.feliva.sharedClass.db.DAO;
 import jakarta.enterprise.context.RequestScoped;
 
 @RequestScoped

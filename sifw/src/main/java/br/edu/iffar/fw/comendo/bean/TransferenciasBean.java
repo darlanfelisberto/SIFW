@@ -45,7 +45,7 @@ public class TransferenciasBean implements Serializable,BreadCrumbControl{
 			return this.saida.getValor();
 		}
 		
-		public void setUsuarios(Usuario para,Usuario de) {
+		public void setUsuarios(Usuario para, Usuario de) {
 			this.saida.setUsuario(de);
 			this.entrada.setUsuario(para);
 		}
@@ -110,7 +110,7 @@ public class TransferenciasBean implements Serializable,BreadCrumbControl{
 				creditosDAO.persist(this.transSub.saida);
 
 				this.transSub.entrada.setParent(this.transSub.saida);
-				creditosDAO.update(this.transSub.entrada);
+				creditosDAO.merge(this.transSub.entrada);
 
 				this.userTransaction.commit();
 

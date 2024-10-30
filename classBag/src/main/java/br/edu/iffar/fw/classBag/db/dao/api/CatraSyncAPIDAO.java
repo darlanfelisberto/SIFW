@@ -7,8 +7,8 @@ import java.util.List;
 import br.edu.iffar.fw.classBag.db.model.api.APIAgendamento;
 //import br.edu.iffar.fw.classBag.db.model.api.APIServidor;
 import br.edu.iffar.fw.classBag.db.model.api.APIAgendamentosDisponibilizados;
-import br.edu.iffar.fw.classShared.db.DAO;
-import br.edu.iffar.fw.classShared.db.Model;
+import br.com.feliva.sharedClass.db.DAO;
+import br.com.feliva.sharedClass.db.Model;
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.persistence.Query;
 

@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.edu.iffar.fw.classBag.db.model.*;
 import org.apache.commons.csv.CSVRecord;
 //import org.keycloak.representations.idm.RoleRepresentation;
 import org.omnifaces.util.selectitems.SelectItemsBuilder;
@@ -14,12 +15,6 @@ import br.edu.iffar.fw.classBag.db.dao.GrupoRefeicoesDAO;
 import br.edu.iffar.fw.classBag.db.dao.MatriculaDAO;
 import br.edu.iffar.fw.classBag.db.dao.TipoVinculoDAO;
 import br.edu.iffar.fw.classBag.db.dao.UsuariosDAO;
-import br.edu.iffar.fw.classBag.db.model.Curso;
-import br.edu.iffar.fw.classBag.db.model.Imagen;
-import br.edu.iffar.fw.classBag.db.model.Matricula;
-import br.edu.iffar.fw.classBag.db.model.Servidor;
-import br.edu.iffar.fw.classBag.db.model.SituacaoMatricula;
-import br.edu.iffar.fw.classBag.db.model.TipoVinculo;
 import br.edu.iffar.fw.classBag.db.model.Usuario;
 import br.edu.iffar.fw.classBag.enun.TypeSituacao;
 import br.edu.iffar.fw.classBag.util.BreadCrumb;
@@ -199,7 +194,7 @@ public class MatriculaBean implements Serializable, BreadCrumbControl{
     	
     	try {
 			for (Matricula mat : this.user.getListMatricula()) {
-				this.matriculaDAO.updateT(mat);
+				this.matriculaDAO.mergeT(mat);
 			}
     		this.messages.addSuccess("Informações do usuário foram salvas com sucesso.");
 			this.telaFiltroBusca();

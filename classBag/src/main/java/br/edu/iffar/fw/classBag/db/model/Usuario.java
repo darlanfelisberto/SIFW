@@ -2,34 +2,34 @@ package br.edu.iffar.fw.classBag.db.model;
 
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-import java.util.UUID;
+import java.util.*;
 
+import br.com.feliva.authClass.models.Pessoa;
+import br.com.feliva.sharedClass.db.Model;
 import jakarta.persistence.*;
 import org.primefaces.model.charts.pie.PieChartModel;
 
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-
-import br.edu.iffar.fw.authClassShared.models.AuthUser;
 import br.edu.iffar.fw.classBag.enun.TypeCredito;
 import br.edu.iffar.fw.classBag.enun.TypeSituacao;
-import br.edu.iffar.fw.classBag.util.JsonDateDeserializer;
-import br.edu.iffar.fw.classBag.util.JsonLocalDateSerializer;
-import br.edu.iffar.fw.classShared.db.Model;
-import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.NotNull;
 import jakarta.xml.bind.annotation.XmlTransient;
 
 @Entity
 @Table(name="usuarios",schema = "public")
-public class Usuario extends br.edu.iffar.fw.authClassShared.models.AUsuario {
+public class Usuario extends Model<UUID> implements Serializable {
 	private static final long serialVersionUID = 22021991L;
-    
+
+	@Id
+	@Column(name = "usuario_id",insertable = true,updatable = false,unique = true)
+	private UUID usurioId;
+
+	@Column(name = "token_ru")
+	private String tokenRU;
+
+	@JoinColumn(name = "pessoa_id")
+	@OneToOne(fetch = FetchType.LAZY)
+	private Pessoa pessoa;
+
+
 	@OneToMany(mappedBy = "usuario", fetch = FetchType.LAZY)
 	@OrderBy(value = "dtCredito desc")
 	private List<Credito> listCreditos;
@@ -39,9 +39,6 @@ public class Usuario extends br.edu.iffar.fw.authClassShared.models.AUsuario {
 	
 	@OneToMany(mappedBy="usuario",fetch = FetchType.LAZY)
 	private List<Servidor> listServidor;
-		
-	@Column(name = "token_ru")
-	private String tokenRU;
 
 	public String getTokenRU() {
 		return tokenRU;
@@ -79,7 +76,7 @@ public class Usuario extends br.edu.iffar.fw.authClassShared.models.AUsuario {
 	}
 
 	public String labelIniciais() {
-		String[] nome = super.getNome().split(" ");
+		String[] nome = this.pessoa.getNome().split(" ");
 		StringBuilder iniciais = new StringBuilder();
 		for (String string : nome) {
 			iniciais.append(string.toUpperCase().charAt(0) + ".");
@@ -170,5 +167,25 @@ public class Usuario extends br.edu.iffar.fw.authClassShared.models.AUsuario {
 
 	public void setListServidor(List<Servidor> listServidor) {
 		this.listServidor = listServidor;
+	}
+
+	public UUID getUsurioId() {
+		return usurioId;
+	}
+
+	public void setUsurioId(UUID usurioId) {
+		this.usurioId = usurioId;
+	}
+
+	public UUID getMMId() {
+		return this.usurioId;
+	}
+
+	public Pessoa getPessoa() {
+		return pessoa;
+	}
+
+	public void setPessoa(Pessoa pessoa) {
+		this.pessoa = pessoa;
 	}
 }

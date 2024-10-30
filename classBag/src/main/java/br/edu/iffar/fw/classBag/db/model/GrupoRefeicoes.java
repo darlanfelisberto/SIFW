@@ -8,7 +8,7 @@ import java.util.UUID;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
-import br.edu.iffar.fw.classShared.db.Model;
+import br.com.feliva.sharedClass.db.Model;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -33,8 +33,8 @@ public class GrupoRefeicoes  extends Model<UUID>{
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name="grupo_refeicoes_id",unique = true,nullable = false)
+	@GeneratedValue(strategy = GenerationType.UUID)
+	@Column(name="grupo_refeicoes_id",unique = true,nullable = false,insertable = true,updatable = false)
 	private UUID grupoRefeicoesId;
 	
 	@NotNull(message = "Informe a descrição do grupo.")
@@ -42,7 +42,6 @@ public class GrupoRefeicoes  extends Model<UUID>{
 		
 	@NotNull(message = "Informe pelo menos um tipo de refeição.")
 	@OneToMany(mappedBy = "grupoRefeicoes",cascade = {CascadeType.ALL},orphanRemoval = true,fetch = FetchType.LAZY)
-	@Fetch(FetchMode.SUBSELECT)
 	private List<Refeicao> listRefeicao;
 
 	@NotNull(message = "Informe uma sigla para o grupo.")

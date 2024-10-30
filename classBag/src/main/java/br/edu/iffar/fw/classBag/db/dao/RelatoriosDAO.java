@@ -9,8 +9,8 @@ import java.util.Map;
 
 import org.apache.commons.csv.CSVPrinter;
 
-import br.edu.iffar.fw.classShared.db.DAO;
-import br.edu.iffar.fw.classShared.db.Model;
+import br.com.feliva.sharedClass.db.DAO;
+import br.com.feliva.sharedClass.db.Model;
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.inject.Inject;
 

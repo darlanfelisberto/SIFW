@@ -37,10 +37,11 @@
 		<class>br.edu.iffar.fw.classBag.db.model.Unidade</class>
 		<class>br.edu.iffar.fw.classBag.db.model.Usuario</class>
 		
-		<class>br.auth.models.AuthLogin</class>
-		<class>br.auth.models.Cliente</class>
-		<class>br.auth.models.Permissao</class>
-		<class>br.auth.models.AuthUser</class>
+		<class>br.com.feliva.authClass.models.AuthLogin</class>
+		<class>br.com.feliva.authClass.models.Cliente</class>
+		<class>br.com.feliva.authClass.models.Permissao</class>
+		<class>br.com.feliva.authClass.models.AuthUser</class>
+		<class>br.com.feliva.authClass.models.Pessoa</class>
 		
 
 		<!--class>br.edu.iffar.fw.classBag.db.model.api.APIMatricula</class>

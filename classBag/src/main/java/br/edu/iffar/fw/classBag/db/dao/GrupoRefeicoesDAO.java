@@ -4,7 +4,7 @@ import java.util.List;
 
 import br.edu.iffar.fw.classBag.db.model.GrupoRefeicoes;
 import br.edu.iffar.fw.classBag.db.model.Matricula;
-import br.edu.iffar.fw.classShared.db.DAO;
+import br.com.feliva.sharedClass.db.DAO;
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.persistence.NoResultException;
 import jakarta.persistence.Query;
@@ -65,8 +65,9 @@ public class GrupoRefeicoesDAO extends DAO<GrupoRefeicoes> {
 			left join fetch gr.tipoVinculo tv
 			left join fetch gr.listMatricula m
 			left join fetch m.usuario u
+			left join fetch u.pessoa p
 			where gr = :grupo
-			order by u.nome asc
+			order by p.nome asc
 		""");
 		q.setParameter("grupo", grupoRefeicoes);
 		try {

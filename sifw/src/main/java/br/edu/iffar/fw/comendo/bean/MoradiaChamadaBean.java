@@ -11,6 +11,8 @@ import java.util.UUID;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
+import br.edu.iffar.fw.classBag.db.SessionDataStore;
+import br.edu.iffar.fw.classBag.db.model.*;
 import org.primefaces.event.NodeCollapseEvent;
 import org.primefaces.event.NodeExpandEvent;
 import org.primefaces.event.NodeSelectEvent;
@@ -20,11 +22,6 @@ import org.primefaces.model.StreamedContent;
 import br.edu.iffar.fw.classBag.db.dao.MatriculaDAO;
 import br.edu.iffar.fw.classBag.db.dao.PresencaDAO;
 import br.edu.iffar.fw.classBag.db.dao.UnidadeDAO;
-import br.edu.iffar.fw.classBag.db.model.HabitanteUnidade;
-import br.edu.iffar.fw.classBag.db.model.ItemUnidade;
-import br.edu.iffar.fw.classBag.db.model.Matricula;
-import br.edu.iffar.fw.classBag.db.model.Presenca;
-import br.edu.iffar.fw.classBag.db.model.Unidade;
 import br.edu.iffar.fw.classBag.db.model.Usuario;
 import br.edu.iffar.fw.classBag.db.model.interfaces.SwitchTreeNode;
 import br.edu.iffar.fw.classBag.db.model.interfaces.TreeNodeSearch;
@@ -45,7 +42,7 @@ public class MoradiaChamadaBean implements Serializable {
 	@Inject private MessagesUtil messagesUtil;
 	@Inject private UnidadeDAO unidadeDAO;
 	@Inject private MatriculaDAO matriculaDAO;
-	@Inject private HeaderBean headerBean;
+	@Inject private SessionDataStore sessionDataStore;
 	@Inject private PresencaDAO ausenciaDAO;
 	@Inject private RelatoriosPath relatoriosPath;	
 
@@ -69,7 +66,7 @@ public class MoradiaChamadaBean implements Serializable {
 	@PostConstruct
 	public void init() {
 		this.dtReferencia = LocalDate.now();
-		this.userLogado = this.headerBean.getUsuarioLogado();
+		this.userLogado = this.sessionDataStore.getUsuarioLogado();
 		this.root = this.unidadeDAO.getRootNodeUnidade();
 	}
 
@@ -165,7 +162,7 @@ public class MoradiaChamadaBean implements Serializable {
 				this.ausenciaDAO.persistT(this.presenca);
 				this.habitanteUnidade.setAusencia(this.presenca);
 			}else {
-				this.ausenciaDAO.updateT(this.presenca);
+				this.ausenciaDAO.mergeT(this.presenca);
 			}
 			
 			this.messagesUtil.addSuccess("Ausência do aluno(a) foi salva com sucesso.");

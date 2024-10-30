@@ -5,7 +5,7 @@ import java.util.UUID;
 
 import br.edu.iffar.fw.classBag.db.model.interfaces.VinculosAtivosUsuarios;
 import br.edu.iffar.fw.classBag.enun.TypeSituacao;
-import br.edu.iffar.fw.classShared.db.Model;
+import br.com.feliva.sharedClass.db.Model;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;

@@ -142,7 +142,7 @@ public class MoradiaEstudantilBean implements Serializable {
 				this.habitanteUnidadeDAO.persistT(this.habitanteUnidade);
 				this.nodeSelecionado.addHabitanteUnidade(this.habitanteUnidade);
 			} else {
-				this.habitanteUnidadeDAO.updateT(this.habitanteUnidade);
+				this.habitanteUnidadeDAO.mergeT(this.habitanteUnidade);
 			}
 			this.messagesUtil.addSuccess("Habitante da unidade salvo com sucesso.");
 			this.cancelarTudo();
@@ -160,7 +160,7 @@ public class MoradiaEstudantilBean implements Serializable {
 				this.unidadeDAO.persistT(this.nodeOperado);
 				this.nodeSelecionado.addUnidadeChildren(this.nodeOperado);
 			} else {
-				this.unidadeDAO.updateT(this.nodeOperado);
+				this.unidadeDAO.mergeT(this.nodeOperado);
 			}
 			this.messagesUtil.addSuccess("Unidade salva com sucesso.");
 		} catch (RollbackException e) {
@@ -177,7 +177,7 @@ public class MoradiaEstudantilBean implements Serializable {
 				this.itemUndadeDAO.persistT(this.itemUnidade);
 				this.nodeSelecionado.addItemUnidade(this.itemUnidade);
 			} else {
-				this.itemUndadeDAO.updateT(this.itemUnidade);
+				this.itemUndadeDAO.mergeT(this.itemUnidade);
 			}
 			this.messagesUtil.addSuccess("Item da unidade salvo com sucesso.");
 			this.cancelarTudo();
@@ -268,7 +268,7 @@ public class MoradiaEstudantilBean implements Serializable {
 
 	public void atualizarUnidade() {
 		try {
-			this.unidadeDAO.updateT(this.nodeSelecionado);
+			this.unidadeDAO.mergeT(this.nodeSelecionado);
 			this.messagesUtil.addSuccess("Unidade salva com sucesso.");
 		} catch (RollbackException e) {
 			this.messagesUtil.addError(e);
@@ -358,7 +358,7 @@ public class MoradiaEstudantilBean implements Serializable {
 				try {
 					this.nodeOperado.getParrent().getListUnidadeChildren().remove(this.nodeOperado);
 					this.nodeSelecionado.addUnidadeChildren(this.nodeOperado);
-					this.unidadeDAO.updateT(nodeOperado);
+					this.unidadeDAO.mergeT(nodeOperado);
 //					this.root = this.unidadeDAO.getRootNodeUnidade();
 				} catch (RollbackException e) {
 					this.messagesUtil.addError(e);
@@ -369,7 +369,7 @@ public class MoradiaEstudantilBean implements Serializable {
 				try {
 					this.itemUnidade.getUnidade().getListItemUnidade().remove(this.itemUnidade);
 					nodeSelecionado.addItemUnidade(this.itemUnidade);
-					this.itemUndadeDAO.updateT(this.itemUnidade);
+					this.itemUndadeDAO.mergeT(this.itemUnidade);
 //					this.root = this.unidadeDAO.getRootNodeUnidade();
 					this.messagesUtil.addSuccess(String.format("Item: %s, movido de %s para %s.", this.itemUnidade.getDesc(), this.nodeOperado.getDesc(), this.nodeSelecionado.getDesc()));
 					this.clean();
@@ -383,7 +383,7 @@ public class MoradiaEstudantilBean implements Serializable {
 				try {
 					this.habitanteUnidade.getUnidade().getListHabitanteUnidade().remove(this.habitanteUnidade);
 					this.nodeSelecionado.addHabitanteUnidade(this.habitanteUnidade);
-					this.habitanteUnidadeDAO.updateT(this.habitanteUnidade);
+					this.habitanteUnidadeDAO.mergeT(this.habitanteUnidade);
 					// @formatter:off
 					this.messagesUtil.addSuccess(String.format("Item: %s, movido de %s para %s.",
 									this.habitanteUnidade.getMatricula().juntaNomeMatricula(),

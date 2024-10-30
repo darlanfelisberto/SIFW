@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 import org.hibernate.EmptyInterceptor;
+import org.hibernate.Interceptor;
 import org.hibernate.Transaction;
 import org.hibernate.type.Type;
 import org.wildfly.security.http.oidc.OidcPrincipal;
@@ -14,7 +15,7 @@ import br.edu.iffar.fw.classBag.sec.OidcPrincipalContext;
 import jakarta.faces.context.FacesContext;
 import jakarta.servlet.http.HttpServletRequest;
 
-public class HInterceptor extends EmptyInterceptor {
+public class HInterceptor implements Interceptor {
 
 	private static final long serialVersionUID = 22021991L;
 
@@ -24,7 +25,7 @@ public class HInterceptor extends EmptyInterceptor {
 	}
 
 	@Override
-	public boolean onSave(Object entity, Serializable id, Object[] state, String[] propertyNames, Type[] types) {
+	public boolean onSave(Object entity, Object id, Object[] state, String[] propertyNames, Type[] types) {
 
 		String sql = "INSERT INTO public.log (tupla_id, entidade, operacao, usuario_id, dt_log)" + "VALUES('" + id
 				+ "', '" + entity.getClass().getName()
@@ -36,7 +37,7 @@ public class HInterceptor extends EmptyInterceptor {
 	}
 
 	@Override
-	public void onDelete(Object entity, Serializable id, Object[] state, String[] propertyNames, Type[] types) {
+	public void onDelete(Object entity, Object id, Object[] state, String[] propertyNames, Type[] types) {
 		String sql = "INSERT INTO public.log (tupla_id, entidade, operacao, usuario_id, dt_log)" + "VALUES('" + id
 				+ "', '" + entity.getClass().getName()
 				+ "', 'onDelete(delite)', (select u.usuario_id from usuarios u where u.username ='" + this.getUser()
@@ -45,7 +46,7 @@ public class HInterceptor extends EmptyInterceptor {
 	}
 
 	@Override
-	public boolean onFlushDirty(Object entity, Serializable id, Object[] currentState, Object[] previousState,
+	public boolean onFlushDirty(Object entity, Object id, Object[] currentState, Object[] previousState,
 			String[] propertyNames, Type[] types) {
 		String sql = "INSERT INTO public.log (tupla_id, entidade, operacao, usuario_id, dt_log)" + "VALUES('" + id
 				+ "', '" + entity.getClass().getName()

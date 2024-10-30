@@ -1,7 +1,7 @@
 package br.edu.iffar.fw.classBag.db.model;
 
 import br.edu.iffar.fw.classBag.enun.TypeCredito;
-import br.edu.iffar.fw.classShared.db.Model;
+import br.com.feliva.sharedClass.db.Model;
 import jakarta.persistence.Cacheable;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

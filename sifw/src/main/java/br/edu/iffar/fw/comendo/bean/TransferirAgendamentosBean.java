@@ -94,7 +94,7 @@ public class TransferirAgendamentosBean implements Serializable{
 	public void recusarTransferencia() {
 		try {
 			this.altAgendamento.setAceito(false);
-			this.altAgendDAO.updateT(this.altAgendamento);
+			this.altAgendDAO.mergeT(this.altAgendamento);
 			this.messages.addSuccess("Transferência do agendamento foi RECUSADA com sucesso!");
 			this.initListas();
 		} catch (Exception e) {
@@ -127,8 +127,8 @@ public class TransferirAgendamentosBean implements Serializable{
 				this.altAgendamento.setAceito(true);
 //				this.altAgendamento.getAgendamento().setUsuario(this.altAgendamento.getUsuarioDestino());
 				this.altAgendamento.getAgendamento().mudaVinculo(this.vinculoSelecionadoBean.getVinculoSelecionado());
-				this.altAgendDAO.update(this.altAgendamento);
-				this.agendamentosDAO.update(this.altAgendamento.getAgendamento());
+				this.altAgendDAO.merge(this.altAgendamento);
+				this.agendamentosDAO.merge(this.altAgendamento.getAgendamento());
 				this.messages.addSuccess("Tranferência do agendamento foi ACEITA com sucesso!");
 				this.novaAlteracaoAgendamento();
 			this.userTransaction.commit();

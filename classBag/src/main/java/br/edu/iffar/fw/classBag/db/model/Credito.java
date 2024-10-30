@@ -5,7 +5,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.UUID;
 
-import br.edu.iffar.fw.classShared.db.Model;
+import br.com.feliva.sharedClass.db.Model;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -64,7 +64,7 @@ public class Credito extends Model<UUID> implements Serializable {
 	}
 	
 	public Credito(@NotNull LocalDateTime dtCredito, Agendamento agendamento,
-			@Max(99) Float valor, @NotNull Usuario usuario,TipoCredito tipoCredito,LocalDateTime sincronizado) {
+				   @Max(99) Float valor, @NotNull Usuario usuario, TipoCredito tipoCredito, LocalDateTime sincronizado) {
 		super();
 		this.dtCredito = dtCredito;
 		this.valor = valor;

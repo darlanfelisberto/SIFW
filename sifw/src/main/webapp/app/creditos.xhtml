@@ -52,14 +52,11 @@
 						Lista de Usuários
 					</f:facet>
 				
-					<p:column headerText="Nome" sortBy="#{user.nome}">
-						<h:outputText value="#{user.nome}" />
+					<p:column headerText="Nome" sortBy="#{user.pessoa.nome}">
+						<h:outputText value="#{user.pessoa.nome}" />
 					</p:column>
-					<p:column headerText="Cpf" sortBy="#{user.cpf}">
-						<h:outputText value="#{user.cpf}" />
-					</p:column>
-					<p:column headerText="E-mail" sortBy="#{user.email}">
-						<h:outputText value="#{user.email}" />
+					<p:column headerText="Cpf" sortBy="#{user.pessoa.cpf}">
+						<h:outputText value="#{user.pessoa.cpf}" />
 					</p:column>
 					<p:column>
 						<p:commandButton icon="pi pi-arrow-circle-right" title="Selecionar" update="frmMain" action="#{creditoAdminBean.selecionaUser}" styleClass="rounded-button ui-button-info ui-button-flat">
@@ -70,7 +67,7 @@
 			</p:outputPanel>
 			
 			<p:outputPanel rendered="#{creditoAdminBean.rendTelaCredito}">
-				<p:panel header="Adicionar créditos a usúario">
+				<p:panel header="Adicionar créditos a usúário">
 					
 					<div class="formgroup-inline">
     					<div class="field">

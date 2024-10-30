@@ -11,7 +11,7 @@ import br.edu.iffar.fw.classBag.db.dao.CursosDAO;
 import br.edu.iffar.fw.classBag.db.dao.UsuariosDAO;
 import br.edu.iffar.fw.classBag.db.model.Curso;
 import br.edu.iffar.fw.classBag.util.MessagesUtil;
-import br.edu.iffar.fw.classShared.constantes.InitConstantes;
+import br.com.feliva.sharedClass.constantes.InitConstantes;
 import br.edu.iffar.relatorios.RelatoriosPath;
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.inject.Inject;

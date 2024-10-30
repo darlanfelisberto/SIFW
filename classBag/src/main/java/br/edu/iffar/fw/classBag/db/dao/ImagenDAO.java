@@ -7,7 +7,7 @@ import java.io.IOException;
 import br.edu.iffar.fw.classBag.db.SessionDataStore;
 import br.edu.iffar.fw.classBag.db.model.Imagen;
 import br.edu.iffar.fw.classBag.db.model.Usuario;
-import br.edu.iffar.fw.classShared.db.DAO;
+import br.com.feliva.sharedClass.db.DAO;
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.inject.Inject;
 import jakarta.persistence.NoResultException;
@@ -62,7 +62,7 @@ public class ImagenDAO extends DAO<Imagen> {
 	public Imagen substituiImagen(Imagen atual) throws IOException, RollbackException {
 		atual.deleteFileInDisck();
 		atual.salveFileInDisck();
-		return this.update(atual);
+		return this.merge(atual);
 	}
 
 }

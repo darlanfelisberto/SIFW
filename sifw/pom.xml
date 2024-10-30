@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-	<modelVersion>4.0.0</modelVersion>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">	<modelVersion>4.0.0</modelVersion>
 	<groupId>br.edu.iffar.fw</groupId>
 	<artifactId>sifw</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
@@ -9,30 +8,15 @@
 	<name>sifw</name>
 	<description>Insert description for your project here.</description>
 
-	<properties>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<version.wildfly.core>18.0.1.Final</version.wildfly.core>
-
-		<keycloak.version>18.0.1</keycloak.version>
-
-		<version.compiler.plugin>3.8.1</version.compiler.plugin>
-		<version.surefire.plugin>2.22.2</version.surefire.plugin>
-		<version.failsafe.plugin>2.22.2</version.failsafe.plugin>
-		<version.war.plugin>3.3.1</version.war.plugin>
-
-		<maven.compiler.target>17</maven.compiler.target>
-		<maven.compiler.source>17</maven.compiler.source>
-
-        <version.server.bom>27.0.1.Final</version.server.bom>
-        <version.server>27.0.1.Final</version.server>
-        <version.wildfly.maven.plugin>4.0.0.Final</version.wildfly.maven.plugin>
-        
-        <krazo.version>2.0.1</krazo.version>
-	</properties>
+	<parent>
+		<groupId>br.edu.iffar</groupId>
+		<artifactId>SIFW</artifactId>
+		<version>1.0.0-SNAPSHOT</version>
+	</parent>
 
 	<dependencyManagement>
 		<dependencies>
-			<!-- importing the jakartaee8-with-tools BOM adds specs and other useful artifacts as managed dependencies -->
+			<!-- importing the ee-with-tools BOM adds specs and other useful artifacts as managed dependencies -->
 			<dependency>
 				<groupId>org.wildfly.bom</groupId>
 				<artifactId>wildfly-ee-with-tools</artifactId>
@@ -42,6 +26,8 @@
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
+
+
 
 	<dependencies>
 		<!-- start auth-->
@@ -73,17 +59,12 @@
 		<dependency>
 			<groupId>org.wildfly.security</groupId>
 			<artifactId>wildfly-elytron-http-oidc</artifactId>
+			<version>2.6.0.Final</version>
 		</dependency>
 
 		<dependency>
 			<groupId>br.edu.iffar.fw</groupId>
 			<artifactId>classBag</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-		</dependency>
-		
-		<dependency>
-			<groupId>br.edu.iffar.fw</groupId>
-			<artifactId>authClassShared</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 
@@ -256,86 +237,17 @@
 
 		<plugins>
 			<plugin>
-				<groupId>org.wildfly.plugins</groupId>
-				<artifactId>wildfly-maven-plugin</artifactId>
-				<version>${version.wildfly.maven.plugin}</version>
-			</plugin>
-
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-war-plugin</artifactId>
-				<version>3.3.2</version>
-			</plugin>
-			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.8.1</version>
+				<version>${version.compiler.plugin}</version>
+			</plugin>
+			<plugin>
+				<artifactId>maven-war-plugin</artifactId>
+				<version>${war-plugin.version}</version>
+				<configuration>
+					<failOnMissingWebXml>false</failOnMissingWebXml>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>
-	
-	 <repositories>
-        <repository>
-            <id>jboss-public-maven-repository</id>
-            <name>JBoss Public Maven Repository</name>
-            <url>https://repository.jboss.org/nexus/content/groups/public/</url>
-            <releases>
-                <enabled>true</enabled>
-                <updatePolicy>never</updatePolicy>
-            </releases>
-            <snapshots>
-                <enabled>true</enabled>
-                <updatePolicy>never</updatePolicy>
-            </snapshots>
-            <layout>default</layout>
-        </repository>
-        <repository>
-            <id>redhat-ga-maven-repository</id>
-            <name>Red Hat GA Maven Repository</name>
-            <url>https://maven.repository.redhat.com/ga/</url>
-            <releases>
-                <enabled>true</enabled>
-                <updatePolicy>never</updatePolicy>
-            </releases>
-            <snapshots>
-                <enabled>true</enabled>
-                <updatePolicy>never</updatePolicy>
-            </snapshots>
-            <layout>default</layout>
-        </repository>
-<repository>
-                <id>mvnrepository</id>
-                <url>http://repo1.maven.org/maven2</url>
-                <snapshots>
-                    <enabled>true</enabled>
-                </snapshots>
-                <releases>
-                    <enabled>true</enabled>
-                </releases>
-            </repository>
-    </repositories>
-    <pluginRepositories>
-        <pluginRepository>
-            <id>jboss-public-maven-repository</id>
-            <name>JBoss Public Maven Repository</name>
-            <url>https://repository.jboss.org/nexus/content/groups/public/</url>
-            <releases>
-                <enabled>true</enabled>
-            </releases>
-            <snapshots>
-                <enabled>true</enabled>
-            </snapshots>
-        </pluginRepository>
-        <pluginRepository>
-            <id>redhat-ga-maven-repository</id>
-            <name>Red Hat GA Maven Repository</name>
-            <url>https://maven.repository.redhat.com/ga/</url>
-            <releases>
-                <enabled>true</enabled>
-            </releases>
-            <snapshots>
-                <enabled>true</enabled>
-            </snapshots>
-        </pluginRepository>
-    </pluginRepositories>
 </project>

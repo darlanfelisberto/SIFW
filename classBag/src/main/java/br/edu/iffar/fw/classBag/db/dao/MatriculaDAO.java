@@ -4,7 +4,7 @@ import java.util.List;
 
 import br.edu.iffar.fw.classBag.db.model.Matricula;
 import br.edu.iffar.fw.classBag.db.model.Usuario;
-import br.edu.iffar.fw.classShared.db.DAO;
+import br.com.feliva.sharedClass.db.DAO;
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.persistence.NoResultException;
 import jakarta.persistence.NonUniqueResultException;
@@ -22,8 +22,9 @@ public class MatriculaDAO extends DAO<Matricula> {
 		Query q = this.em.createQuery("""
 			from Matricula m 
 				join fetch m.usuario u
-					where unaccent(lower(u.nome)) like unaccent(:nome)
-			order by u.nome asc"""
+				join fetch u.pessoa p
+					where cast(unaccent(lower(p.nome)) as string) like cast(unaccent(:nome) as string )
+			order by p.nome asc"""
 		);
 		q.setParameter("nome", "%" + nome.toLowerCase() + "%");
 		
@@ -36,13 +37,14 @@ public class MatriculaDAO extends DAO<Matricula> {
 		Query q = this.em.createQuery("""
 			from Matricula m 
 			join fetch m.usuario u
+			join fetch u.pessoa p
 			where
-			unaccent(lower(u.nome)) like unaccent(:nome)
+			unaccent(lower(p.nome)) like unaccent(:nome)
 			and  m not in(
 				select hu.matricula from HabitanteUnidade hu
 				where hu.dtSaida is null or hu.dtSaida > current_date
 			)
-			order by u.nome asc
+			order by p.nome asc
 		""");
 		q.setParameter("nome", "%"+nome.toLowerCase() +"%");
 		

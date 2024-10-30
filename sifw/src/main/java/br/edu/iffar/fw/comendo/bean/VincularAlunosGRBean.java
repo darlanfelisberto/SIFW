@@ -85,7 +85,7 @@ public class VincularAlunosGRBean implements Serializable,BreadCrumbControl{
 	
 	public void salvarGrupoRefeicao() {
 		try {
-			this.grupoRefeicoesDAO.updateT(this.grupoRefeicoes);
+			this.grupoRefeicoesDAO.mergeT(this.grupoRefeicoes);
 			this.grupoRefeicoes = this.grupoRefeicoesDAO.findGrupoRefeicoesMatriculaEager(this.grupoRefeicoes);
 			this.messages.addSuccess("Grupo de refeições foi salvo com sucesso.");
 		} catch (RollbackException e) {

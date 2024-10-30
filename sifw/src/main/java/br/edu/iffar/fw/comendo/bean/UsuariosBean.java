@@ -12,6 +12,7 @@ import java.util.UUID;
 
 import javax.imageio.ImageIO;
 
+import br.edu.iffar.fw.classBag.db.model.Usuario;
 import org.primefaces.event.CaptureEvent;
 import org.primefaces.event.FileUploadEvent;
 import org.primefaces.model.DualListModel;
@@ -21,13 +22,12 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
-import br.edu.iffar.fw.authClassShared.dao.AuthUserDAO;
-import br.edu.iffar.fw.authClassShared.models.Permissao;
+import br.com.feliva.authClass.dao.AuthUserDAO;
+import br.com.feliva.authClass.models.Permissao;
 import br.edu.iffar.fw.classBag.bo.UsuarioBO;
 import br.edu.iffar.fw.classBag.db.dao.ImagenDAO;
 import br.edu.iffar.fw.classBag.db.dao.UsuariosDAO;
 import br.edu.iffar.fw.classBag.db.model.Imagen;
-import br.edu.iffar.fw.classBag.db.model.Usuario;
 import br.edu.iffar.fw.classBag.excecoes.UsuarioException;
 import br.edu.iffar.fw.classBag.util.BreadCrumb;
 import br.edu.iffar.fw.classBag.util.BreadCrumbControl;
@@ -159,14 +159,14 @@ public class UsuariosBean implements Serializable, BreadCrumbControl{
 
 	public void carregaDadosUserNecessario() {
 		this.imagen = this.imagenDAO.findByUsuarioIfNullPattern(this.userSel);
-		this.userSel.setAuthUser(this.authUserDAO.findAuthUser(this.userSel));
+		this.userSel.getPessoa().setAuthUser(this.authUserDAO.findByUsername(this.userSel.getPessoa().getAuthUser().getUsername()));
 		carregaPermissoesDisponiveis();
 		this.telaDadosUsuario();
 	}
 
 	private void carregaPermissoesDisponiveis(){
 		this.listModelPermissaoes = new DualListModel<Permissao>();
-		this.listModelPermissaoes.setTarget((this.userSel.getAuthUser().getSetPermissao() != null ? this.userSel.getAuthUser().getSetPermissao().stream().toList():new ArrayList<Permissao>()));
+		this.listModelPermissaoes.setTarget((this.userSel.getPessoa().getAuthUser().getSetPermissao() != null ? this.userSel.getPessoa().getAuthUser().getSetPermissao().stream().toList():new ArrayList<Permissao>()));
 
 		this.listModelPermissaoes.setSource(this.usuarioBO.init(this.userSel).buscaPermissoesDisponiveis());
 	}

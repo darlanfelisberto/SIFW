@@ -49,7 +49,7 @@
 	    					<div class="field col-12 md:col-6">
 	    						<label for="autoNomeCpf">Destino(Nome/CPF):</label>
 	    						<p:autoComplete id="autoNomeCpf" minQueryLength="11" completeMethod="#{transferirAgendamentosBean.buscarUserDestino}"
-	    							value="#{transferirAgendamentosBean.altAgendamento.usuarioDestino}" converter="#{modelConverter}" required="true" 
+	    							value="#{transferirAgendamentosBean.altAgendamento.usuarioDestino}" converter="#{modelConverter}" required="true"
 	    							emptyMessage="Nenhum registro encontrado." requiredMessage="Informe o usuário de Destino." 
 	    							pt:placeholder="Digite 11 letras para pesquisar" var="u" itemLabel="#{u.nomeCpf}" itemValue="#{u}" ></p:autoComplete>
 	    					</div>

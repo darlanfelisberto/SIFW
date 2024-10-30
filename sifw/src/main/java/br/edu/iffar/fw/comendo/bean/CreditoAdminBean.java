@@ -31,7 +31,7 @@ public class CreditoAdminBean  implements Serializable,BreadCrumbControl{
 	private int tipoBusca = 1;
 	private String buscaIsso;
 	
-	private List<Usuario> listUsuario;
+	private List<Usuario> listUsuarios;
 	private Usuario userSelect;
 	
 	private boolean rendTelaFiltro;
@@ -66,7 +66,7 @@ public class CreditoAdminBean  implements Serializable,BreadCrumbControl{
 			this.selecionaUser();
 			this.telaCreditoCpf();
 		}else{
-			this.listUsuario = usuariosDAO.listAllUsersByName(this.buscaIsso);
+			this.listUsuarios = usuariosDAO.listAllUsersByName(this.buscaIsso);
 			this.telaLista();
 		}
 	}
@@ -93,7 +93,7 @@ public class CreditoAdminBean  implements Serializable,BreadCrumbControl{
 		this.rendTelaList = false;
 		this.rendTelaCredito = false;
 		this.breadCrumb.setAtivo(2);
-		this.listUsuario = null;
+		this.listUsuarios = null;
 	}
 
 	public void telaLista() {
@@ -202,7 +202,7 @@ public class CreditoAdminBean  implements Serializable,BreadCrumbControl{
 	}
 
 	public List<Usuario> getListUsuario() {
-		return listUsuario;
+		return listUsuarios;
 	}
 
 	public boolean isRendTelaFiltro() {

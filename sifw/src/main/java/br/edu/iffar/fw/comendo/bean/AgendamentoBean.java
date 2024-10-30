@@ -8,6 +8,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
+import br.edu.iffar.fw.classBag.db.model.Usuario;
 import org.primefaces.event.SelectEvent;
 
 import br.edu.iffar.fw.classBag.db.SessionDataStore;
@@ -17,7 +18,6 @@ import br.edu.iffar.fw.classBag.db.dao.RefeicaoDAO;
 import br.edu.iffar.fw.classBag.db.model.Agendamento;
 import br.edu.iffar.fw.classBag.db.model.Parametros;
 import br.edu.iffar.fw.classBag.db.model.Refeicao;
-import br.edu.iffar.fw.classBag.db.model.Usuario;
 import br.edu.iffar.fw.classBag.db.model.interfaces.VinculosAtivosUsuarios;
 import br.edu.iffar.fw.classBag.enun.TypeParam;
 import br.edu.iffar.fw.classBag.util.MessagesUtil;
@@ -122,7 +122,7 @@ public class AgendamentoBean  implements Serializable{
 		}
 
 		try {
-			this.agendamentosDAO.updateT(this.agendamento);
+			this.agendamentosDAO.mergeT(this.agendamento);
 			this.ageLazyLoad.updateEvent(this.agendamento);
 			this.agendamento = new Agendamento(true);
 			this.messages.addSuccess("Agendamento salvo com sucesso.");

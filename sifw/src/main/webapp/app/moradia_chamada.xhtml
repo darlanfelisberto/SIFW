@@ -136,7 +136,7 @@
 								    	<p:dataTable  value="#{moradiaChamadaBean.nodeSelecionado.listHabitanteUnidade}" var="hab" rendered="#{moradiaChamadaBean.nodeSelecionado != null}"
 							        	emptyMessage="Nenhuma matrícula encontrado." size="small">
 								        	<p:column headerText="Nome">
-								        		<span>#{hab.matricula.usuario.nome} - #{hab.matricula.usuario.cpf}</span>
+								        		<span>#{hab.matricula.usuario.pessoa.nome} - #{hab.matricula.usuario.pessoa.cpf}</span>
 								        	</p:column>
 								        	<p:column width="70px" headerText="Presente">
 								        		<p:commandLink action="#{moradiaChamadaBean.novaAusencia}" update="frmMain:otpAusencia" oncomplete="PF('wDlgAusencia').show()" rendered="#{hab.ausencia == null}" value="??">

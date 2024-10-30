@@ -91,7 +91,7 @@ public class CardapioAdminBean  implements Serializable,BreadCrumbControl{
 		}
 
 		try {
-			this.cardapioDAO.updateT(this.cardapio);
+			this.cardapioDAO.mergeT(this.cardapio);
 			this.mesUtil.addSuccess("Cardápio salvo com sucesso.");
 			this.telaFiltro();
 		} catch (RollbackException e) {

@@ -5,12 +5,12 @@ import java.util.Map;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
-import br.edu.iffar.fw.authClassShared.models.Permissao;
+import br.com.feliva.authClass.models.Permissao;
 import br.edu.iffar.fw.classBag.db.model.Curso;
 import br.edu.iffar.fw.classBag.db.model.Matricula;
 import br.edu.iffar.fw.classBag.db.model.Usuario;
-import br.edu.iffar.fw.classShared.db.DAO;
-import br.edu.iffar.fw.classShared.db.Model;
+import br.com.feliva.sharedClass.db.DAO;
+import br.com.feliva.sharedClass.db.Model;
 import jakarta.enterprise.context.Dependent;
 import jakarta.inject.Inject;
 import jakarta.persistence.EntityManager;
@@ -97,10 +97,10 @@ public class BackgroudDAO  extends DAO<Model<?>> {
 	public void createUser(Usuario usuario, Matricula matricula)
 			throws RollbackException, IllegalStateException, SecurityException, SystemException {
 		try {
-			if(usuario.getAuthUser().isNovo()){
-				this.em.persist(usuario.getAuthUser());
+			if(usuario.getPessoa().getAuthUser().isNovo()){
+				this.em.persist(usuario.getPessoa().getAuthUser());
 			}else {
-				this.em.merge(usuario.getAuthUser());
+				this.em.merge(usuario.getPessoa().getAuthUser());
 			}
 			if(usuario.isNovo()){
 				this.em.persist(usuario);
@@ -114,7 +114,7 @@ public class BackgroudDAO  extends DAO<Model<?>> {
 			}
 		}catch (Exception e) {
 			e.printStackTrace();
-			throw new RuntimeException("Ocorreu um problema com o usuário: " + usuario.getNome() + "." + e.getMessage());
+			throw new RuntimeException("Ocorreu um problema com o usuário: " + usuario.getPessoa().getNome() + "." + e.getMessage());
 		}
 	}
 

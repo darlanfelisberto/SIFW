@@ -4,7 +4,7 @@ import java.time.LocalDateTime;
 import java.util.UUID;
 
 import br.edu.iffar.fw.classBag.db.model.Usuario;
-import br.edu.iffar.fw.classShared.db.Model;
+import br.com.feliva.sharedClass.db.Model;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -41,7 +41,7 @@ public class LogLeitura extends Model<UUID> {
 
 	public LogLeitura() {}
 	
-	public LogLeitura(Usuario lido,Usuario operador, String valorLido) {
+	public LogLeitura(Usuario lido, Usuario operador, String valorLido) {
 		this.dtLeitura = LocalDateTime.now();
 		this.qrcode = valorLido;
 		if(lido != null) {

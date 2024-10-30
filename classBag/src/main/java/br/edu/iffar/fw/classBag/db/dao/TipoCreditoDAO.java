@@ -4,7 +4,7 @@ import java.util.List;
 
 import br.edu.iffar.fw.classBag.db.model.TipoCredito;
 import br.edu.iffar.fw.classBag.enun.TypeCredito;
-import br.edu.iffar.fw.classShared.db.DAO;
+import br.com.feliva.sharedClass.db.DAO;
 import jakarta.enterprise.context.RequestScoped;
 
 @RequestScoped

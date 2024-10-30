@@ -6,7 +6,7 @@ import java.util.UUID;
 
 import org.primefaces.model.TreeNode;
 
-import br.edu.iffar.fw.classShared.db.Model;
+import br.com.feliva.sharedClass.db.Model;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -123,7 +123,7 @@ public class Unidade extends Model<UUID> implements TreeNode<Unidade> {
 
 	public List<HabitanteUnidade> getListHabitanteUnidade() {
 		if(this.listHabitanteUnidade != null){
-			listHabitanteUnidade.sort((h1, h2) -> h1.getMatricula().getUsuario().getNome().compareTo(h2.getMatricula().getUsuario().getNome()));
+			listHabitanteUnidade.sort((h1, h2) -> h1.getMatricula().getUsuario().getPessoa().getNome().compareTo(h2.getMatricula().getUsuario().getPessoa().getNome()));
 		}
 		return listHabitanteUnidade;
 	}

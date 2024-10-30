@@ -2,11 +2,11 @@ package br.edu.iffar.fw.classBag.db.dao;
 
 import java.util.List;
 
+import br.com.feliva.sharedClass.db.DAO;
+import br.edu.iffar.fw.classBag.db.model.Usuario;
 import org.wildfly.security.http.oidc.OidcSecurityContext;
 
 import br.edu.iffar.fw.classBag.db.model.Saldo;
-import br.edu.iffar.fw.classBag.db.model.Usuario;
-import br.edu.iffar.fw.classShared.db.DAO;
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.inject.Inject;
 import jakarta.persistence.NoResultException;
@@ -23,7 +23,12 @@ public class UsuariosDAO extends DAO<Usuario> {
 
 	@SuppressWarnings("unchecked")
 	public List<Usuario> listAllUsers() {
-		List<Usuario> u = this.em.createQuery("from Usuario u order by unaccent(u.nome) asc").getResultList();
+		List<Usuario> u = this.em.createQuery("""
+			select u from Usuario u
+			left join fetch u.pessoa p 
+			order by unaccent(p.nome) asc
+		"""
+		).getResultList();
 		return u;
 	}
 
@@ -31,7 +36,8 @@ public class UsuariosDAO extends DAO<Usuario> {
 		try {
 			return (Usuario) this.em.createQuery("""
   				from Usuario u 
-  				left join fetch u.authUser au
+  				left join fetch u.pessoa p
+				left join fetch p.authUser au
   				where au.username = :username
 			""")
 			.setParameter("username", userName)
@@ -48,7 +54,11 @@ public class UsuariosDAO extends DAO<Usuario> {
 	@SuppressWarnings("unchecked")
 	public List<Usuario> listAllUsersBySubNomeCpf(String query) {
 		String n = "%"+query+"%";
-		return this.em.createQuery("from Usuario u where unaccent(lower(u.nome)) like unaccent(:nome) or u.cpf like :cpf order by unaccent(u.nome) asc")
+		return this.em.createQuery("""
+				select u from Usuario u
+				left join fetch u.pessoa p  
+				where unaccent(lower(p.nome)) like unaccent(:nome) or p.cpf like :cpf order by unaccent(p.nome) asc
+				""")
 				.setParameter("nome", n.toLowerCase())
 				.setParameter("cpf", n)
 				.getResultList();
@@ -56,15 +66,23 @@ public class UsuariosDAO extends DAO<Usuario> {
 	
 	@SuppressWarnings("unchecked")
 	public List<Usuario> listAllUsersByName(String query) {
-		String n = "%"+query+"%";
-		return this.em.createQuery("from Usuario u where unaccent(lower(u.nome)) like unaccent(:nome)  order by unaccent(u.nome) asc")
-				.setParameter("nome", n.toLowerCase())
+		String n = ""+query+"";
+		return this.em.createQuery("""
+				select u from Usuario u
+				left join fetch u.pessoa p
+				where cast(unaccent(lower(p.nome)) as String) like cast(unaccent(:nome) as String)
+				order by cast(unaccent(p.nome) as String) asc
+				""").setParameter("nome", n.toLowerCase())
 				.getResultList();
 	}
 	
 	public Usuario getUsuarioByCPF(String cpf) {
 		try {
-			return (Usuario) this.em.createQuery("from Usuario u where u.cpf = :cpf").setParameter("cpf", cpf.trim()).getSingleResult();
+			return (Usuario) this.em.createQuery("""
+				select u from Usuario u
+				left join fetch u.pessoa p
+				where p.cpf = :cpf"""
+			).setParameter("cpf", cpf.trim()).getSingleResult();
 		} catch (NoResultException e) {
 			System.out.println("Usuario logado, NoResultException.");
 		}
@@ -75,7 +93,8 @@ public class UsuariosDAO extends DAO<Usuario> {
 		try {
 			return (Usuario) this.em.createQuery("""
 					select u from Usuario u 
-					left join fetch u.authUser au
+					left join fetch u.pessoa p
+					left join fetch p.authUser au
 					where au.username = :userName
 					""")
 					.setParameter("userName", userName)
@@ -107,7 +126,8 @@ public class UsuariosDAO extends DAO<Usuario> {
 			
 			return (Usuario) this.em.createQuery("""
 						select u from Usuario u 
-						left join fetch u.authUser au
+						left join fetch u.pessoa p
+						left join fetch p.authUser au
 						where au.username = :userName
 					""")
 					.setParameter("userName", oidcSecurityContext.getIDToken().getPreferredUsername())

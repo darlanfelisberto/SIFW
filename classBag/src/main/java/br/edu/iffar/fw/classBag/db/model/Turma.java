@@ -5,7 +5,7 @@ import java.util.Set;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
-import br.edu.iffar.fw.classShared.db.Model;
+import br.com.feliva.sharedClass.db.Model;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -91,14 +91,14 @@ public class Turma  extends Model<UUID>{
 
 	public Set<Matricula> getListMatriculaTurma() {
 		if(listMatriculaTurma != null) {
-			listMatriculaTurma = listMatriculaTurma.stream().sorted((m1,m2)->m1.getUsuario().getNome().compareTo(m2.getUsuario().getNome())).collect(Collectors.toSet());
+			listMatriculaTurma = listMatriculaTurma.stream().sorted((m1,m2)->m1.getUsuario().getPessoa().getNome().compareTo(m2.getUsuario().getPessoa().getNome())).collect(Collectors.toSet());
 		}
 		return listMatriculaTurma;
 	}
 
 	public void setListMatriculaTurma(Set<Matricula> listMatriculaTurma) {
 		if(listMatriculaTurma != null) {
-			listMatriculaTurma = listMatriculaTurma.stream().sorted((m1,m2)->m1.getUsuario().getNome().compareTo(m2.getUsuario().getNome())).collect(Collectors.toSet());
+			listMatriculaTurma = listMatriculaTurma.stream().sorted((m1,m2)->m1.getUsuario().getPessoa().getNome().compareTo(m2.getUsuario().getPessoa().getNome())).collect(Collectors.toSet());
 		}
 		this.listMatriculaTurma = listMatriculaTurma;
 	}

@@ -5,7 +5,7 @@ import java.util.UUID;
 
 import br.edu.iffar.fw.classBag.db.model.Refeicao;
 import br.edu.iffar.fw.classBag.db.model.TipoRefeicao;
-import br.edu.iffar.fw.classShared.db.Model;
+import br.com.feliva.sharedClass.db.Model;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -62,7 +62,9 @@ public class APIRefeicao2 extends Model<UUID>{
 	}	
 	
 	public Refeicao convertToRefeicao() {
-		return new Refeicao(this.refeicaoId);
+		Refeicao r = new Refeicao();
+		r.setRefeicaoId(this.refeicaoId);
+		return r;
 	}
 
 	public UUID getRefeicaoId() {

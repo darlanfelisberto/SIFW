@@ -9,8 +9,8 @@ import java.util.UUID;
 import br.edu.iffar.fw.classBag.db.model.Agendamento;
 import br.edu.iffar.fw.classBag.db.model.TipoRefeicao;
 import br.edu.iffar.fw.classBag.db.model.Usuario;
-import br.edu.iffar.fw.classShared.db.DAO;
-import br.edu.iffar.fw.classShared.db.Model;
+import br.com.feliva.sharedClass.db.DAO;
+import br.com.feliva.sharedClass.db.Model;
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.persistence.NoResultException;
 import jakarta.persistence.Query;
@@ -55,7 +55,7 @@ public class AgendamentosDAO extends DAO<Agendamento> {
 		return  q.getResultList();
 	}
 	
-	public boolean existeSobreposicaoDeRefeicao(Agendamento age,Usuario usuario) {
+	public boolean existeSobreposicaoDeRefeicao(Agendamento age, Usuario usuario) {
 		Query q = this.em.createQuery("""
 				select 1 from Agendamento a 
 				join a.refeicao r

@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import br.edu.iffar.fw.classBag.db.model.*;
 import org.primefaces.PrimeFaces;
 
 import br.edu.iffar.fw.classBag.db.dao.AgendamentosDAO;
@@ -15,13 +16,6 @@ import br.edu.iffar.fw.classBag.db.dao.RefeicaoDAO;
 import br.edu.iffar.fw.classBag.db.dao.TipoRefeicaoDAO;
 import br.edu.iffar.fw.classBag.db.dao.UsuariosDAO;
 import br.edu.iffar.fw.classBag.db.dao.VinculosAtivosUsuariosDAO;
-import br.edu.iffar.fw.classBag.db.model.Agendamento;
-import br.edu.iffar.fw.classBag.db.model.Credito;
-import br.edu.iffar.fw.classBag.db.model.Imagen;
-import br.edu.iffar.fw.classBag.db.model.Refeicao;
-import br.edu.iffar.fw.classBag.db.model.Saldo;
-import br.edu.iffar.fw.classBag.db.model.TipoCredito;
-import br.edu.iffar.fw.classBag.db.model.TipoRefeicao;
 import br.edu.iffar.fw.classBag.db.model.Usuario;
 import br.edu.iffar.fw.classBag.db.model.interfaces.VinculosAtivosUsuarios;
 import br.edu.iffar.fw.classBag.db.model.log.LogLeitura;
@@ -180,8 +174,8 @@ public class CatracaBean implements Serializable{
 		LocalDateTime data = LocalDateTime.now();
 		this.credito = new Credito(data, this.agendamento, this.agendamento.getRefeicao().getValor(), this.usuario, new TipoCredito(TypeCredito.SAIDA), data);
 		try {
-			this.creditosDAO.updateT(this.credito);
-			this.boaRefeicao = "Foi debitado " + this.credito.getValor() + " de <b>" + this.usuario.getNome() + "</b>. Boa Refeição!";
+			this.creditosDAO.mergeT(this.credito);
+			this.boaRefeicao = "Foi debitado " + this.credito.getValor() + " de <b>" + this.usuario.getPessoa().getNome() + "</b>. Boa Refeição!";
 		} catch (RollbackException e) {
 			messagesUtil.addError(e);
 			this.msgErroSom(ERRO_ADD_CREDITO);

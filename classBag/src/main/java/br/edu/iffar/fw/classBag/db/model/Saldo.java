@@ -2,9 +2,9 @@ package br.edu.iffar.fw.classBag.db.model;
 
 import java.util.UUID;
 
+import br.com.feliva.sharedClass.db.Model;
 import org.hibernate.annotations.Immutable;
 
-import br.edu.iffar.fw.classShared.db.Model;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;

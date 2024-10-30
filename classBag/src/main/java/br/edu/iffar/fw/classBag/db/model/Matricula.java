@@ -8,7 +8,7 @@ import java.util.Set;
 import java.util.UUID;
 
 import br.edu.iffar.fw.classBag.db.model.interfaces.VinculosAtivosUsuarios;
-import br.edu.iffar.fw.classShared.db.Model;
+import br.com.feliva.sharedClass.db.Model;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -119,7 +119,7 @@ public class Matricula extends Model<UUID> implements Serializable,VinculosAtivo
 	}
 	
 	public String juntaNomeMatricula() {
-		return this.usuario.getNome() + " - " + this.idMatricula;
+		return this.usuario.getPessoa().getNome() + " - " + this.idMatricula;
 	}
 
 	public Curso getCurso() {

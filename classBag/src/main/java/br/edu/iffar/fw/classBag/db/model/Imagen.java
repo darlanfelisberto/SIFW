@@ -18,8 +18,8 @@ import javax.imageio.ImageIO;
 import org.primefaces.model.DefaultStreamedContent;
 import org.primefaces.model.StreamedContent;
 
-import br.edu.iffar.fw.classShared.constantes.InitConstantes;
-import br.edu.iffar.fw.classShared.db.Model;
+import br.com.feliva.sharedClass.constantes.InitConstantes;
+import br.com.feliva.sharedClass.db.Model;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -65,7 +65,7 @@ public class Imagen extends Model<UUID>implements Serializable{
 	
 	public Imagen() {}
 	
-	public Imagen(String fileName, Usuario usuario,byte[] image) {
+	public Imagen(String fileName, Usuario usuario, byte[] image) {
 		super();
 		this.image = image;
 		this.fileName = fileName;

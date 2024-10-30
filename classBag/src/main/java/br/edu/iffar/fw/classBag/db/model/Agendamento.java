@@ -12,7 +12,7 @@ import org.primefaces.model.ScheduleEvent;
 
 import br.edu.iffar.fw.classBag.db.model.api.APIAgendamento;
 import br.edu.iffar.fw.classBag.db.model.interfaces.VinculosAtivosUsuarios;
-import br.edu.iffar.fw.classShared.db.Model;
+import br.com.feliva.sharedClass.db.Model;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -223,7 +223,6 @@ public class Agendamento extends Model<UUID> implements ScheduleEvent<Agendament
 		return this;
 	}
 
-	@Override
 	public boolean isEditable() {
 		boolean s = isEditDtAgendamento();
 		return (!s);
