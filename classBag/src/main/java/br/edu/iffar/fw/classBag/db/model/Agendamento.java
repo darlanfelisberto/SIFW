@@ -37,7 +37,7 @@ public class Agendamento extends Model<UUID> implements ScheduleEvent<Agendament
 
 	@Id
 	@Column(name = "agendamento_id", insertable = true, updatable = false, unique = true, nullable = false)
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.UUID)
 	private UUID agendamentoId;
 
 	@NotNull(message = "Imforme a data do agendamento.")
@@ -66,33 +66,25 @@ public class Agendamento extends Model<UUID> implements ScheduleEvent<Agendament
 	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinColumn(name = "credito_id")
 	private Credito credito;
-	
-	@Transient
-	private boolean novo = false;
 
 	@Transient
 	public boolean ehEditavelDtInicial = false;
 
-	public Agendamento() {//contrutor default
-	}
-	
-	public Agendamento(boolean novo) {
-		this.novo = novo;
+	public Agendamento() {
+		super();
 	}
 
 	public Agendamento(LocalDate dtAgendamento, VinculosAtivosUsuarios vinculo) {
+		super();
 		this.setDtAgendamento(dtAgendamento);
-		this.agendamentoId = UUID.randomUUID();
-		this.novo = true;
 		mudaVinculo(vinculo);
 	}
 	
 	public Agendamento(LocalDate dtAgendamento, Matricula mat, Servidor serv) {
+		super();
 		this.setDtAgendamento(dtAgendamento);
 		this.matricula = mat;
 		this.servidor = serv;
-		this.agendamentoId = UUID.randomUUID();
-		this.novo = true;
 	}
 	
 	public void mudaVinculo(VinculosAtivosUsuarios vinculo) throws RuntimeException{
@@ -107,21 +99,6 @@ public class Agendamento extends Model<UUID> implements ScheduleEvent<Agendament
 		}
 	}
 
-//	public Agendamento(LocalDateTime dtInicio, LocalDateTime dtFim, Usuario usuario) {
-//		setStartDate(dtInicio);
-//		setEndDate(dtFim);
-//		this.usuario = usuario;
-//		this.agendamentoId = UUID.randomUUID();
-//		this.novo = true;
-//	}
-	
-//	public Agendamento(LocalDate dtInicio, LocalDate dtFim, Usuario usuario) {
-//		setStartDateD(dtInicio);
-//		setEndDateD(dtFim);
-//		this.usuario = usuario;
-//		this.agendamentoId = UUID.randomUUID();
-//		this.novo = true;
-//	}
 		
 	public Agendamento(UUID agendamentoId, LocalDate dtAgendamento) {
 		super();
@@ -129,7 +106,6 @@ public class Agendamento extends Model<UUID> implements ScheduleEvent<Agendament
 		this.dtAgendamento = dtAgendamento;
 		this.editavel = false;
 		this.agendado = false;
-		this.novo = true;
 	}
 
 	public Credito getCredito() {
@@ -215,7 +191,7 @@ public class Agendamento extends Model<UUID> implements ScheduleEvent<Agendament
 
 	@Override
 	public String getStyleClass() {
-		return "testecalss" ;//this.refeicao.getTipoRefeicao().getStyleClass();
+		return "" ;//this.refeicao.getTipoRefeicao().getStyleClass();
 	}
 
 	@Override
@@ -232,7 +208,7 @@ public class Agendamento extends Model<UUID> implements ScheduleEvent<Agendament
 	public boolean isEditDtAgendamento() {
 		LocalDateTime agora = Agendamento.now();
 		
-		if(novo) {
+		if(isNovo()) {
 			return false;
 		}
 
@@ -384,7 +360,7 @@ public class Agendamento extends Model<UUID> implements ScheduleEvent<Agendament
 	public String mensagemAlteracaoDtAgendamento() {
 		return 	getRefeicao().getTipoRefeicao().getDescricao() + ": "
 				+ "Não é permitido "
-				+ (novo ? "cadastro" : "alteração")
+				+ (isNovo() ? "cadastro" : "alteração")
 				+ ", pois agora(" + LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd/MM HH:mm")) + ") é maior que "
 				+ this.diaHoraLimiteParaAlteracaoDtAgendamento().format(DateTimeFormatter.ofPattern("dd/MM HH:mm")) 
 				+ "(data/hora mínima para o agendamento para " + this.dtAgendamento.format(DateTimeFormatter.ofPattern("dd/MM")) + ").";
@@ -398,14 +374,6 @@ public class Agendamento extends Model<UUID> implements ScheduleEvent<Agendament
 		return this.getCredito() == null && !this.isEditDtAgendamento();
 	}
 
-	public boolean isNovo() {
-		return novo;
-	}
-
-	public void setNovo(boolean novo) {
-		this.novo = novo;
-	}
-	
 	public static LocalDateTime now() {
 		//centraliza, pra realizar testes
     	return LocalDateTime.now();//.plusDays(1);
@@ -424,27 +392,11 @@ public class Agendamento extends Model<UUID> implements ScheduleEvent<Agendament
 		clone.setRefeicao(this.refeicao);
 		return clone;
 	}
-	
-	public void updateFromApiAgendamento(APIAgendamento apiAgendamento) {
-//		TODO rearrumar issoaqui depois
-//		this.setRefeicao(apiAgendamento.getRefeicao().convertToRefeicao());
-//		this.setUsuario(apiAgendamento.getUsuario().converteForUsuario());
-//		this.setCredito(apiAgendamento.getCredito().converteForCredito(this.getUsuario(), this));
-	}
 
-	//removida a funcionalidade
-//	public boolean isRendDisponizarAgendamento() {
-//		//@formatter:off
-//		LocalDateTime now = LocalDateTime.now();
-//		return (!this.novo && this.credito == null 
-//				&& now.isAfter(this.diaHoraLimiteParaAlteracaoDtAgendamento()) 
-//				&& now.isBefore(this.refeicao.botaHoraInicio(this.getStartDate())));
-//	}
-	
 	public boolean isAindaPodeTranferir() {
 		//@formatter:off
 		LocalDateTime now = LocalDateTime.now();
-		return (!this.novo && this.credito == null 
+		return (!this.isNovo() && this.credito == null
 				&& now.isAfter(this.diaHoraLimiteParaAlteracaoDtAgendamento()) 
 				&& now.isBefore(this.refeicao.botaHoraFim(this.dtAgendamento)));
 	}

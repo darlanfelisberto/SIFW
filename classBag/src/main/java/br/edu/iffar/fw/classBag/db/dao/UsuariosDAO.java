@@ -56,8 +56,8 @@ public class UsuariosDAO extends DAO<Usuario> {
 		String n = "%"+query+"%";
 		return this.em.createQuery("""
 				select u from Usuario u
-				left join fetch u.pessoa p  
-				where unaccent(lower(p.nome)) like unaccent(:nome) or p.cpf like :cpf order by unaccent(p.nome) asc
+				left join fetch u.pessoa p 
+				where cast(unaccent(p.nome) as String) ilike cast(unaccent(:nome) as String) or p.cpf ilike :cpf order by unaccent(p.nome) asc
 				""")
 				.setParameter("nome", n.toLowerCase())
 				.setParameter("cpf", n)

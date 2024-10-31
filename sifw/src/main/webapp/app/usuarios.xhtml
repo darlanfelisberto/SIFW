@@ -69,10 +69,10 @@
 			
 				<p:dataTable value="#{usuariosBean.listUsuarios}" var="user" rendered="#{usuariosBean.rendResultadoBusca}">
 					<p:column headerText="Nome">
-						<span>#{user.nome}</span>
+						<span>#{user.pessoa.nome}</span>
 					</p:column>
 					<p:column headerText="CPF">
-						<span>#{user.cpf}</span>
+						<span>#{user.pessoa.cpf}</span>
 					</p:column>
 					<p:column >
 						<p:commandButton icon="pi pi-arrow-circle-right" action="#{usuariosBean.selecionaUsuario}" update="frmMain"
@@ -90,15 +90,15 @@
 					 		<div class="ui-fluid formgrid grid">
 					 			<div class="field col-12 md:col-6">
 					 				<label for="iptName">Nome:</label>
-					 				<p:inputText id="iptName" value="#{usuariosBean.userSel.nome}"></p:inputText>
+					 				<p:inputText id="iptName" value="#{usuariosBean.userSel.pessoa.nome}"></p:inputText>
 					 			</div>
 					 			<div class="field col-12 md:col-6">
 					 				<label for="iptCpf">CPF:</label>
-					 				<p:inputText id="iptCpf" value="#{usuariosBean.userSel.cpf}"/>
+					 				<p:inputText id="iptCpf" value="#{usuariosBean.userSel.pessoa.cpf}"/>
 					 			</div>			 			
 					 			<div class="field col-12 md:col-6">
 					 				<label for="iptDtNac">Data de Nascimento:</label>
-					 				 <p:datePicker id="iptDtNac" value="#{usuariosBean.userSel.dtnasc}" pattern="dd/MM/yyyy"  mask="true" monthNavigator="true" yearNavigator="true"/>
+					 				 <p:datePicker id="iptDtNac" value="#{usuariosBean.userSel.pessoa.dtnasc}" pattern="dd/MM/yyyy"  mask="true" monthNavigator="true" yearNavigator="true"/>
 					 			</div>			 			
 					 		</div>
 					 	</p:tab>
@@ -184,11 +184,11 @@
 							<div class="ui-fluid formgrid grid">
 								<div class="field col-12 md:col-6">
 									<label>Username:</label>
-									<p:inputText value="#{usuariosBean.userSel.authUser.username}" disabled="#{!usuariosBean.userSel.authUser.novo}"/>
+									<p:inputText value="#{usuariosBean.userSel.pessoa.authUser.username}" disabled="#{!usuariosBean.userSel.pessoa.authUser.novo}"/>
 								</div>
 								<div class="field col-12 md:col-6">
 									<label class="w-full">Inativo:</label>
-									<p:toggleSwitch value="#{usuariosBean.userSel.authUser.inativo}" />
+									<p:toggleSwitch value="#{usuariosBean.userSel.pessoa.authUser.inativo}" />
 								</div>
 								<div class="field col-12 md:col-6">
 									<label><abbr title="">Senha:</abbr> </label>
@@ -200,7 +200,7 @@
 								</div>
 								<div class="field col-12 md:col-6">
 									<label for="iptEmail">E-mail:</label>
-									<p:inputText id="iptEmail" value="#{usuariosBean.userSel.authUser.email}" autocomplete="off"/>
+									<p:inputText id="iptEmail" value="#{usuariosBean.userSel.pessoa.authUser.email}" autocomplete="off"/>
 								</div>
 							</div>
 							<h4>Permissões de acesso</h4>

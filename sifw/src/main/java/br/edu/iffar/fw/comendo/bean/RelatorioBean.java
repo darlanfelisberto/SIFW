@@ -12,10 +12,7 @@ import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVPrinter;
@@ -107,7 +104,7 @@ public class RelatorioBean implements Serializable{
             barDataSetJanta.setBackgroundColor(tipoRefeicao.getBackgroundColor());
 
             List<Number> days = new ArrayList<Number>();
-            barDataSetJanta.setData(days);
+            barDataSetJanta.setData(Collections.singletonList(days));
             for (Object[] a : agendamentosDAO.getAgendamentoEmDataPeriodo(this.dtInicio, this.dtFim,tipoRefeicao)) {
             	days.add(((Number)a[1]).intValue());
             	if(datas) {

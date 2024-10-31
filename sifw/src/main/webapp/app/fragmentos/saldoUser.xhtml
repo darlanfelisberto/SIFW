@@ -45,10 +45,10 @@
 										<f:convertNumber type="currency" />
 									</h:outputText>.
 									<p:outputPanel  rendered="#{cred.tipoCredito.transSaida}">
-										Para  #{cred.parent.usuario.nome}.
+										Para  #{cred.parent.usuario.pessoa.nome}.
 									</p:outputPanel>
 									<p:outputPanel  rendered="#{cred.tipoCredito.transEntrada}">
-										De #{cred.parent.usuario.nome}.
+										De #{cred.parent.usuario.pessoa.nome}.
 									</p:outputPanel>
 								</span>
 								<span>

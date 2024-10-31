@@ -60,7 +60,6 @@ public class AgendamentoBean  implements Serializable{
 			return;
 		}
 
-		System.out.println("agenda");
 		this.parametro = this.parametrosDAO.findParametroByTypeParam(TypeParam.AGENDAMENTO_FUTURO_DIAS);
 
 		this.user = this.sessionDataStore.getUsuarioLogado();
@@ -79,12 +78,6 @@ public class AgendamentoBean  implements Serializable{
      
     public void onDateSelect(SelectEvent<LocalDateTime> selectEvent) {
     	LocalDate today = Agendamento.now().toLocalDate();
-
-//		if(selectEvent.getObject().toLocalDate().getDayOfWeek().equals(DayOfWeek.SATURDAY) ||
-//				selectEvent.getObject().toLocalDate().getDayOfWeek().equals(DayOfWeek.SUNDAY)) {
-//			this.messages.addError("Não é possível realizar agendamentos para sábado e domingo!");
-//			return;
-//		}
 
     	if(today.compareTo(selectEvent.getObject().toLocalDate())>0) {
     		this.messages.addError("Data passada não pode ser editada.");
@@ -124,7 +117,7 @@ public class AgendamentoBean  implements Serializable{
 		try {
 			this.agendamentosDAO.mergeT(this.agendamento);
 			this.ageLazyLoad.updateEvent(this.agendamento);
-			this.agendamento = new Agendamento(true);
+			this.agendamento = new Agendamento();
 			this.messages.addSuccess("Agendamento salvo com sucesso.");
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -137,7 +130,7 @@ public class AgendamentoBean  implements Serializable{
     		if(this.agendamento.isPermitdoRemover()) {
     			this.ageLazyLoad.deleteEvent(this.agendamento);
             	this.agendamentosDAO.removeT(this.agendamento);
-            	this.agendamento = new Agendamento(true);
+            	this.agendamento = new Agendamento();
             	this.messages.addSuccess("Agendamento removido com sucesso.");
     		}else {
     			this.messages.addError("Não é possivel removel este agendamento pois ele já foi usado.");

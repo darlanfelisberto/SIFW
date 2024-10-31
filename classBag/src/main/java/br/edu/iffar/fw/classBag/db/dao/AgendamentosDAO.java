@@ -56,21 +56,28 @@ public class AgendamentosDAO extends DAO<Agendamento> {
 	}
 	
 	public boolean existeSobreposicaoDeRefeicao(Agendamento age, Usuario usuario) {
-		Query q = this.em.createQuery("""
+		String hql = """
 				select 1 from Agendamento a 
 				join a.refeicao r
 				left join a.matricula m
 				left join a.servidor s
 				where (s.usuario = :usuario or m.usuario = :usuario) 
-				and a != :agendamento
 				and r.tipoRefeicao = :tipo
 				and a.dtAgendamento = :dtAgendamento
-		""");
+		""";
+		if(!age.isNovo()){
+			hql = hql + "and a != :agendamento";
+		}
+
+		Query q = this.em.createQuery(hql);
 
 		q.setParameter("dtAgendamento", age.getDtAgendamento())
 		.setParameter("tipo", age.getRefeicao().getTipoRefeicao())
-		.setParameter("usuario", usuario)
-		.setParameter("agendamento", age);
+		.setParameter("usuario", usuario);
+
+		if(!age.isNovo()) {
+			q.setParameter("agendamento", age);
+		}
 
 		return !q.getResultList().isEmpty();
 	}

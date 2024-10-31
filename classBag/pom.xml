@@ -13,20 +13,9 @@
 		<groupId>br.edu.iffar</groupId>
 		<artifactId>SIFW</artifactId>
 		<version>1.0.0-SNAPSHOT</version>
+		<relativePath>../pom.xml</relativePath>
 	</parent>
 
-	<dependencyManagement>
-		<dependencies>
-			<!-- importing the ee-with-tools BOM adds specs and other useful artifacts as managed dependencies -->
-			<dependency>
-				<groupId>org.wildfly.bom</groupId>
-				<artifactId>wildfly-ee-with-tools</artifactId>
-				<version>${version.server.bom}</version>
-				<type>pom</type>
-				<scope>import</scope>
-			</dependency>
-		</dependencies>
-	</dependencyManagement>
 
 	<build>
 		<resources>
@@ -77,14 +66,12 @@
 		<dependency>
 		    <groupId>io.undertow</groupId>
 		    <artifactId>undertow-core</artifactId>
-		    <version>2.3.18.Final</version>
 		    <scope>provided</scope>
 		</dependency>
 
 		<dependency>
 		    <groupId>io.undertow</groupId>
 		    <artifactId>undertow-servlet</artifactId>
-		    <version>2.3.18.Final</version>
 		    <scope>provided</scope>
 		</dependency>
 
@@ -103,27 +90,23 @@
 		<dependency>
 		    <groupId>org.primefaces</groupId>
 		    <artifactId>primefaces</artifactId>
-		    <version>12.0.0</version>
-		    <classifier>jakarta</classifier>
+			<version>${primefaces.version}</version>
+			<classifier>jakarta</classifier>
 		</dependency>
 
 		<dependency>
 			<groupId>io.nayuki</groupId>
 			<artifactId>qrcodegen</artifactId>
-			<version>1.8.0</version>
+			<scope>provided</scope>
 		</dependency>
 
-		<dependency>
-			<groupId>org.webjars</groupId>
-			<artifactId>font-awesome</artifactId>
-			<version>5.12.0</version>
-		</dependency>
 
 		<dependency>
-		    <groupId>commons-fileupload</groupId>
-		    <artifactId>commons-fileupload</artifactId>
-		    <version>1.4</version>
+			<groupId>commons-fileupload</groupId>
+			<artifactId>commons-fileupload</artifactId>
+			<scope>provided</scope>
 		</dependency>
+
 
 		<dependency>
 			<groupId>com.googlecode.owasp-java-html-sanitizer</groupId>
@@ -174,7 +157,6 @@
 		<dependency>
 			<groupId>org.omnifaces</groupId>
 			<artifactId>omnifaces</artifactId>
-			<version>4.0</version>
 			<scope>provided</scope>
 		</dependency>
 
