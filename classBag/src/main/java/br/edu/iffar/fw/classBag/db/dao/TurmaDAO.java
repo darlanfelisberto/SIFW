@@ -50,9 +50,10 @@ public class TurmaDAO extends DAO<Turma> {
 						select m from Turma t
 						left join t.listMatriculaTurma m
 						left join fetch m.usuario u
+						left join fetch u.pessoa p
 						where t = :turma
-								and m is not null
-						order by u.nome asc
+						and m is not null
+						order by p.nome asc
 				""")
 				.setParameter("turma", turma)
 				.getResultList();
@@ -63,6 +64,7 @@ public class TurmaDAO extends DAO<Turma> {
 				select t from Turma t
 				left join fetch t.listMatriculaTurma lt
 				left join fetch lt.usuario u
+				left join fetch u.pessoa p
 				where t = :turma
 				""")
 				.setParameter("turma", turma)

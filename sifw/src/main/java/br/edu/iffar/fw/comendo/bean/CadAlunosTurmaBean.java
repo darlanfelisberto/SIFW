@@ -78,6 +78,8 @@ public class CadAlunosTurmaBean implements Serializable, BreadCrumbControl {
 		this.rendListaAluno = true;
 		this.rendCopiaTela = false;
 		this.breadCrumb.setAtivo(2);
+		this.matricula = null;
+		this.rendAddAluno = false;
 	}
 	public void telaCopiaTurma() {
 		this.rendBuscaTurma = false;
@@ -97,10 +99,10 @@ public class CadAlunosTurmaBean implements Serializable, BreadCrumbControl {
 	
 	public void addAlunoTurma() {
 		this.turma.addMatricula(this.matricula);
-		this.turma.setDescricao("ss");
 		try {
 			this.turmaDAO.mergeT(this.turma);
-			this.messagesUtil.addSuccess("Aluno adicionado naTurma salva com sucesso");
+			this.messagesUtil.addSuccess("Aluno adicionado na Turma com sucesso.");
+			this.telaListaALuno();
 		} catch (RollbackException e) {
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,"Um erro ocorreu.",""));
 			this.messagesUtil.addError(e);			

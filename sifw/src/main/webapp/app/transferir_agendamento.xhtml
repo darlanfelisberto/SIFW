@@ -51,7 +51,7 @@
 	    						<p:autoComplete id="autoNomeCpf" minQueryLength="11" completeMethod="#{transferirAgendamentosBean.buscarUserDestino}"
 	    							value="#{transferirAgendamentosBean.altAgendamento.usuarioDestino}" converter="#{modelConverter}" required="true"
 	    							emptyMessage="Nenhum registro encontrado." requiredMessage="Informe o usuário de Destino." 
-	    							pt:placeholder="Digite 11 letras para pesquisar" var="u" itemLabel="#{u.nomeCpf}" itemValue="#{u}" ></p:autoComplete>
+	    							pt:placeholder="Digite 11 letras para pesquisar" var="u" itemLabel="#{u.pessoa.nomeCpf}" itemValue="#{u}" ></p:autoComplete>
 	    					</div>
 						</div>
 						
@@ -76,10 +76,10 @@
 					<f:facet name="header">Agendamentos Recebidos/Enviados</f:facet>
 					
 					<p:column headerText="Origem">
-						#{aa.usuarioOrigem.nome}
+						#{aa.usuarioOrigem.pessoa.nome}
 					</p:column>
 					<p:column headerText="Destino">
-						#{aa.usuarioDestino.nome}
+						#{aa.usuarioDestino.pessoa.nome}
 					</p:column>
 					<p:column headerText="Realizada" styleClass="esconde">
 						<h:outputText value="#{aa.dtTranferencia}" >
@@ -126,7 +126,7 @@
 						</div>
 						<div class="field col-12 md:col-12">
 							<label>Usuário de Origem:</label>
-							<span><b>#{transferirAgendamentosBean.altAgendamento.usuarioOrigem.nome}</b></span>
+							<span><b>#{transferirAgendamentosBean.altAgendamento.usuarioOrigem.pessoa.nome}</b></span>
 						</div>
 						<div class="field col-12 md:col-12">
 						</div>

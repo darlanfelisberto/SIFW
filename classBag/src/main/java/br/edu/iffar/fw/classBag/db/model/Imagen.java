@@ -191,7 +191,7 @@ public class Imagen extends Model<UUID>implements Serializable{
 			}
 			return this.image;
 		} catch (IOException e) {
-			e.printStackTrace();
+			System.out.println(e.toString());
 		}
 		return SEM_IMAGE_BYTE;
 	}

@@ -79,7 +79,7 @@
 					<div style="display: flex;">
 						<p:dataTable value="#{cadAlunosTurmaBean.turma.listMatriculaTurma}" var="mat" styleClass="table_width_unset">  
 							<p:column headerText="Nome">
-								#{mat.usuario.nome}
+								#{mat.usuario.pessoa.nome}
 							</p:column>
 							<p:column headerText="Matricula">
 								#{mat.idMatricula}
@@ -101,7 +101,7 @@
 								<p:autoComplete value="#{cadAlunosTurmaBean.matricula}" completeMethod="#{cadAlunosTurmaBean.buscaMatriculaNome}" var="mat"
 									pt:placeholder="Nome"
 									itemValue="#{mat}" itemLabel="#{mat.juntaNomeMatricula()}" minQueryLength="3" converter="#{modelConverter}"></p:autoComplete>
-								<p:commandButton value="Add" icon="pi pi-plus" actionListener="#{cadAlunosTurmaBean.addAlunoTurma}" update="otpListaAluno">
+								<p:commandButton value="Add" icon="pi pi-plus" actionListener="#{cadAlunosTurmaBean.addAlunoTurma}" update="otpListaAluno divAddAluno">
 									<p:confirm type="popup" header="Confime" message="Você tem certeza?" icon="pi pi-question"></p:confirm>
 								</p:commandButton>
 								<p:commandButton value="Cancelar" icon="pi pi-times" styleClass="ui-button-secondary" onclick="document.getElementById('frmMain:cmbAddAluno').click()"></p:commandButton>
@@ -140,7 +140,7 @@
 						<p:tab title="Alunos">
 							<p:dataTable value="#{cadAlunosTurmaBean.novaTurma.listMatriculaTurma}" var="mat">
 								<p:column headerText="Nome">
-									#{mat.usuario.nome}
+									#{mat.usuario.pessoa.nome}
 								</p:column>
 								<p:column headerText="Matricula">
 									#{mat.idMatricula}

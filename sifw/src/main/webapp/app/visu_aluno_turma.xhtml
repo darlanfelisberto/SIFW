@@ -81,10 +81,10 @@
 						#{m.idMatricula}
 					</p:column>
 					<p:column headerText="CPF" style="width:15%">
-						#{m.usuario.cpf}
+						#{m.usuario.pessoa.cpf}
 					</p:column>
 					<p:column headerText="Nome">
-						#{m.usuario.nome}
+						#{m.usuario.pessoa.nome}
 					</p:column>
 					<p:column headerText="Visu." style="width:15%">
 						<p:commandButton icon="pi pi-arrow-circle-right" actionListener="#{visuUsuariosTurmaBean.selecionaMatricula(index)}"
@@ -109,10 +109,10 @@
 			 						<b>Matricula:</b> #{visuUsuariosTurmaBean.matricula.idMatricula}  
 			 					</div>
 			 					<div class="field col-12 md:col-12">
-			 						<b>Nome:</b> #{visuUsuariosTurmaBean.matricula.usuario.nome}
+			 						<b>Nome:</b> #{visuUsuariosTurmaBean.matricula.usuario.pessoa.nome}
 			 					</div>
 			 					<div class=" field col-12 md:col-12">
-			 						<b>CPF:</b> #{visuUsuariosTurmaBean.matricula.usuario.cpf}
+			 						<b>CPF:</b> #{visuUsuariosTurmaBean.matricula.usuario.pessoa.cpf}
 			 					</div>
 			 				</div>			 				
 			 			</div>

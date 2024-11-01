@@ -62,10 +62,10 @@
 			
 				<p:dataTable value="#{matriculaBean.listUsuarios}" var="user">
 					<p:column headerText="Nome">
-						<span>#{user.nome}</span>
+						<span>#{user.pessoa.nome}</span>
 					</p:column>
 					<p:column headerText="CPF">
-						<span>#{user.cpf}</span>
+						<span>#{user.pessoa.cpf}</span>
 					</p:column>
 					<p:column >
 						<p:commandButton icon="pi pi-arrow-circle-right" action="#{matriculaBean.selecionaUsuario}" update="frmMain"
@@ -82,13 +82,13 @@
 						<div class="ui-g-12 ui-md-6 ui-lg-6">
 						    <div class="">
 						    	<label>Nome:</label>
-						    	<h:outputText value="#{matriculaBean.user.nome}" id="optNome" />
+						    	<h:outputText value="#{matriculaBean.user.pessoa.nome}" id="optNome" />
 						    </div>
 						</div>
 						<div class="ui-g-12 ui-md-6 ui-lg-3">
 						    <div class="">
 						    	<label>CPF: </label>
-						    	<h:outputText value="#{matriculaBean.user.cpf}" id="otpCpf" />
+						    	<h:outputText value="#{matriculaBean.user.pessoa.cpf}" id="otpCpf" />
 						    </div>
 						</div>
 					</div>
