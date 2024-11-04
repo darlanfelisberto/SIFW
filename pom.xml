@@ -20,8 +20,8 @@
         <version.microprofile.bom>34.0.0.Final</version.microprofile.bom>
         <version.wildfly.core>26.0.1.Final</version.wildfly.core>
 
-        <version.compiler.plugin>3.10.1</version.compiler.plugin>
-        <war-plugin.version>3.3.2</war-plugin.version>
+        <version.compiler.plugin>3.13.0</version.compiler.plugin>
+        <war-plugin.version>3.4.0</war-plugin.version>
         <wildfly-plugin.version>4.1.0.Final</wildfly-plugin.version>
         <jasper.version>6.18.1</jasper.version>
 
@@ -38,8 +38,8 @@
 
 
     <modules>
-        <module>sifw</module>
         <module>classBag</module>
+        <module>sifw</module>
     </modules>
 <!-- mvn flyway:migrate -->
     <dependencyManagement>
