@@ -47,7 +47,7 @@ public class UsuarioBO {
             throw new SenhaException("Senhas diferentes.");
         }
 
-//        this.user.getAuthUser().setPassword(senha);
+        this.user.getPessoa().getAuthUser().setPassword(senha);
         return this;
     }
 
@@ -64,7 +64,7 @@ public class UsuarioBO {
     }
 
     public void salvarAuth() throws RollbackException {
-//        this.authUserDAO.merge(this.user.getgetAuthUser());
+        this.authUserDAO.merge(this.user.getPessoa().getAuthUser());
     }
 
     public List<Permissao> buscaPermissoesDisponiveis(){

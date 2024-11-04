@@ -29,19 +29,19 @@
 			 		<div class="ui-fluid formgrid grid">
 			 			<div class="field col-12 md:col-6">
 			 				<label for="iptName">Nome:</label>
-			 				<p:inputText id="iptName" value="#{perfilBean.usuario.nome}" disabled="true" styleClass="w-full"></p:inputText>
+			 				<p:inputText id="iptName" value="#{perfilBean.usuario.pessoa.nome}" disabled="true" styleClass="w-full"></p:inputText>
 			 			</div>
 			 			<div class="field col-12 md:col-6">
 			 				<label for="iptUsername">Username:</label>
-			 				<p:inputText id="iptUsername" value="TODO" disabled="true" styleClass="w-full"/>
+			 				<p:inputText id="iptUsername" value="#{perfilBean.usuario.pessoa.authUser.username}" disabled="true" styleClass="w-full"/>
 			 			</div>
 			 			<div class="field col-12 md:col-6">
 			 				<label for="iptCpf">CPF:</label>
-			 				<p:inputText id="iptCpf" value="#{perfilBean.usuario.cpf}" disabled="true" styleClass="w-full"/>
+			 				<p:inputText id="iptCpf" value="#{perfilBean.usuario.pessoa.cpf}" disabled="true" styleClass="w-full"/>
 			 			</div>			 			
 			 			<div class="field col-12 md:col-6">
 			 				<label for="iptDtNac">Data de Nascimento:</label>
-			 				 <p:datePicker id="iptDtNac" value="#{perfilBean.usuario.dtnasc}" pattern="dd/MM/yyyy"  mask="true" monthNavigator="true" yearNavigator="true" disabled="true" styleClass="w-full"/>
+			 				 <p:datePicker id="iptDtNac" value="#{perfilBean.usuario.pessoa.dtnasc}" pattern="dd/MM/yyyy"  mask="true" monthNavigator="true" yearNavigator="true" disabled="true" styleClass="w-full"/>
 			 			</div>
 
 			 		</div>
@@ -107,11 +107,11 @@
 					 <div class="ui-fluid formgrid grid" >
 						 <div class="field col-12 md:col-6">
 							 <p:outputLabel value="Username:"/>
-							 <p:inputText value="#{perfilBean.usuario.authUser.username}" disabled="true"/>
+							 <p:inputText value="#{perfilBean.usuario.pessoa.authUser.username}" disabled="true"/>
 						 </div>
 						 <div class="field col-12 md:col-6">
 							 <p:outputLabel value="E-mail:" />
-							 <p:inputText value="#{perfilBean.usuario.authUser.email}" disabled="true"/>
+							 <p:inputText value="#{perfilBean.usuario.pessoa.authUser.email}" disabled="true"/>
 						 </div>
 					 </div>
 					 <p:fieldset legend="Senha">
