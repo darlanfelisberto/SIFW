@@ -1,10 +1,10 @@
 package br.edu.iffar.fw.classBag.bo;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 import br.com.feliva.authClass.dao.AuthUserDAO;
 import br.com.feliva.authClass.dao.PermissaoDAO;
+import br.com.feliva.authClass.dao.PessoaDAO;
 import br.com.feliva.authClass.models.Permissao;
 import br.edu.iffar.fw.classBag.db.dao.UsuariosDAO;
 import br.edu.iffar.fw.classBag.db.model.Usuario;
@@ -24,6 +24,7 @@ public class UsuarioBO {
     @Inject private PermissaoDAO permissaoDAO;
     @Inject private UsuariosDAO usuariosDAO;
     @Inject private AuthUserDAO authUserDAO;
+    @Inject private PessoaDAO pessoaDAO;
 
     private Usuario user;
 
@@ -68,20 +69,17 @@ public class UsuarioBO {
     }
 
     public List<Permissao> buscaPermissoesDisponiveis(){
-        if(this.hasRoleBean.isHasIffarAdmin()){
-            List<Permissao> l = this.permissaoDAO.listAll();
-//            if(this.user.getAuthUser().getSetPermissao() != null){
+        List<Permissao> l = this.permissaoDAO.listAll();
+        if(!this.hasRoleBean.isHasIffarAdmin()){
+            if(this.user.getPessoa().getAuthUser().getSetPermissao() != null){
                 //remove permisoes que o usuario ja tem da lista de opções
-//                l.removeAll(this.user.getAuthUser().getSetPermissao().stream().toList());
-//                return l;
-//            }else{
-//                return l;
-//            }
-
+                l.removeAll(this.user.getPessoa().getAuthUser().getSetPermissao().stream().toList());
+                return l;
+            }else{
+                return l;
+            }
         }
-        //permissoes que o usuario que esta logado no momento possui, são as que ele pode mudar nos demais usuarios
-//        return (this.user.getAuthUser().getSetPermissao() != null ? this.user.getAuthUser().getSetPermissao().stream().toList():new ArrayList<Permissao>());
-        return null;
+        return l;
     }
 
     public UsuarioBO setPermissao( List<Permissao> permissaoList){
@@ -89,25 +87,32 @@ public class UsuarioBO {
            throw new UsuarioException("Selecione ao menos uma permissão para o usuário.");
         }
 
-//        this.user.getAuthUser().getSetPermissao().clear();
-//        this.user.getAuthUser().getSetPermissao().addAll(permissaoList);
+        if(this.user.getPessoa().getAuthUser().getSetPermissao() != null){
+            this.user.getPessoa().getAuthUser().getSetPermissao().clear();
+            this.user.getPessoa().getAuthUser().getSetPermissao().addAll(permissaoList);
+        }else{
+            Set<Permissao> permissaos = new HashSet<Permissao>();
+            permissaos.addAll(permissaoList);
+            this.user.getPessoa().getAuthUser().setSetPermissao(permissaos);
+        }
+
         return this;
     }
 
     public void salvarUser() throws RollbackException,UsuarioException {
         if(this.user.isNovo()) {
-//            if(this.usuariosDAO.findByUserName(this.user.getAuthUser().getUsername()) != null) {
-//                throw new UsuarioException("Username já existe!");
-//            }
+            if(this.usuariosDAO.findByUserName(this.user.getPessoa().getAuthUser().getUsername()) != null) {
+                throw new UsuarioException("Username já existe!");
+            }
 
-//            if(this.usuariosDAO.getUsuarioByCPF(this.user.getAuthUser().getPessoa().getCpf()) != null) {
-//                throw new UsuarioException("CPF já existe!");
-//            }
-//            this.authUserDAO.persist(this.user.getAuthUser());
-//            this.usuariosDAO.persist(this.user);
+            if(this.usuariosDAO.getUsuarioByCPF(this.user.getPessoa().getCpf()) != null) {
+                throw new UsuarioException("CPF já existe!");
+            }
+            this.pessoaDAO.persist(this.user.getPessoa());
+            this.usuariosDAO.persist(this.user);
         }else{
-//            this.authUserDAO.merge(this.user.getAuthUser());
-//            this.usuariosDAO.merge(this.user);
+            this.pessoaDAO.merge(this.user.getPessoa());
+            this.usuariosDAO.merge(this.user);
         }
     }
 

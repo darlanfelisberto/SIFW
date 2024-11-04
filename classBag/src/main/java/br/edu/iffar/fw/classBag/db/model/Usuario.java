@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.*;
 
+import br.com.feliva.authClass.models.AuthUser;
 import br.com.feliva.authClass.models.Pessoa;
 import br.com.feliva.sharedClass.db.Model;
 import jakarta.persistence.*;
@@ -20,6 +21,7 @@ public class Usuario extends Model<UUID> implements Serializable {
 
 	@Id
 	@Column(name = "usuario_id",insertable = true,updatable = false,unique = true)
+	@GeneratedValue(strategy = GenerationType.UUID)
 	private UUID usurioId;
 
 	@Column(name = "token_ru")
@@ -28,7 +30,6 @@ public class Usuario extends Model<UUID> implements Serializable {
 	@JoinColumn(name = "pessoa_id")
 	@OneToOne(fetch = FetchType.LAZY)
 	private Pessoa pessoa;
-
 
 	@OneToMany(mappedBy = "usuario", fetch = FetchType.LAZY)
 	@OrderBy(value = "dtCredito desc")
@@ -187,5 +188,11 @@ public class Usuario extends Model<UUID> implements Serializable {
 
 	public void setPessoa(Pessoa pessoa) {
 		this.pessoa = pessoa;
+	}
+
+	public static Usuario createUsuario(AuthUser authUser){
+		Usuario u = new Usuario();
+		u.setPessoa(authUser.getPessoa());
+		return u;
 	}
 }
