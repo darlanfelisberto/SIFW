@@ -27,8 +27,7 @@ public class LogLeitura extends Model<UUID> {
 	
 	@Column(name = "dt_leitura")
 	private LocalDateTime dtLeitura;
-	
-//	mappeamento foi removido por questao de desempenho, no insert
+
 //	@ManyToOne(fetch = FetchType.LAZY)
 //	@JoinColumn(name = "usuario_lido_id")
 	@Column(name = "usuario_lido_id")

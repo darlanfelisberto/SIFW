@@ -42,14 +42,9 @@ public class FaceletsAuthorizeTagHandler extends TagHandler {
 				this.nextHandler.apply(faceletContext, parent);
 			}else {
 				boolean autorizado = oidcPrincipal.getOidcSecurityContext().getToken().getRealmAccessClaim().getRoles().stream()
-						.filter((per)->{
-							return Arrays.stream(this.role.getValue().replace(" ", "").split(","))
-									.filter(rol-> rol.equals(per))
-									.findAny()
-									.isPresent();
-						})
-						.findAny()
-						.isPresent();
+						.anyMatch((per)->{
+							return Arrays.asList(this.role.getValue().replace(" ", "").split(",")).contains(per);
+						});
 				if(autorizado) {
 					this.nextHandler.apply(faceletContext, parent);
 				}

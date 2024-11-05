@@ -45,15 +45,7 @@ public class HeaderBean implements Serializable {
 	
 	public String logoff() {
 		try {
-//			String redirect = request.getContextPath();
-//			ServletContextImpl sss = (ServletContextImpl) request.getServletContext();
-//			SessionManager ss =  sss.getDeployment().getSessionManager();
-//			System.out.println(ss.getActiveSessions().size());
 			request.logout();
-	
-//			response.sendRedirect((redirect.isEmpty()?"/":redirect));
-			//FacesContext.getCurrentInstance().responseComplete();
-			
 			return "/app/index.xhtml?faces-redirect=true";
 		} catch (Exception  e) {
 			e.printStackTrace();
