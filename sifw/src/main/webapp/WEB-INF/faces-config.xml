@@ -7,7 +7,7 @@
 >
  
 	<application>
-		<message-bundle>br.edu.iffar.fw.comendo.MensagensPersonalizadas</message-bundle>
+		<message-bundle>br.edu.iffar.fw.ru.MensagensPersonalizadas</message-bundle>
 		
 		<locale-config>
 	    	<default-locale>pt_br</default-locale>

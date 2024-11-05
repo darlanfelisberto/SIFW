@@ -3,6 +3,6 @@
        xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/beans_3_0.xsd" bean-discovery-mode="all" version="3.0">
 
     <!-- interceptors>
-        <class>br.edu.iffar.fw.comendo.interceptor.SelecionaVinculoInterceptor</class>
+        <class>br.edu.iffar.fw.ru.interceptor.SelecionaVinculoInterceptor</class>
     </interceptors-->
 </beans>
