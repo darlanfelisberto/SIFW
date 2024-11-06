@@ -23,7 +23,7 @@
         <version.compiler.plugin>3.13.0</version.compiler.plugin>
         <war-plugin.version>3.4.0</war-plugin.version>
         <wildfly-plugin.version>4.1.0.Final</wildfly-plugin.version>
-        <jasper.version>6.18.1</jasper.version>
+        <jasper.version>6.21.3</jasper.version>
 
         <primefaces.version>14.0.6</primefaces.version>
 

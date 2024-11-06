@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 6.18.1.final using JasperReports Library version 6.18.1-9d75d1969e774d4f179fb3be8401e98a0e6d1611  -->
+<!-- Created with Jaspersoft Studio version 6.21.3.final using JasperReports Library version 6.21.3-4a3078d20785ebe464f18037d738d12fc98c13cf  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="agendamentos_frustrados" pageWidth="595" pageHeight="842" whenNoDataType="NoDataSection" columnWidth="535" leftMargin="30" rightMargin="30" topMargin="30" bottomMargin="30" uuid="4f8869ca-3fda-4673-97ca-0dcd2775b7df">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
-	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="DataAdapter.xml"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="DataAdapter.jrdax"/>
+	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w1" value="267"/>
+	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w2" value="728"/>
 	<parameter name="dataInicio" class="java.util.Date"/>
 	<parameter name="dataFim" class="java.util.Date"/>
 	<parameter name="header" class="java.lang.String"/>
@@ -14,7 +16,7 @@
 	</parameter>
 	<parameter name="filtros" class="java.lang.String"/>
 	<queryString>
-		<![CDATA[select cast(a.dt_agendamento as date) as dt_agendamento,u.nome ,tr.descricao, gr.sigla,coalesce(c2.nome,tvS.descricao) as curso from agendamentos a
+		<![CDATA[select cast(a.dt_agendamento as date) as dt_agendamento,p.nome ,tr.descricao, gr.sigla,coalesce(c2.nome,tvS.descricao) as curso from agendamentos a
 join refeicao r ON r.refeicao_id =a.refeicao_id
 join tipo_refeicao tr on tr.tipo_refeicao_id =r.tipo_refeicao_id
 join grupo_refeicoes gr on gr.grupo_refeicoes_id = r.grupo_refeicoes_id 
@@ -24,11 +26,12 @@ left join servidor s on s.servidor_id  = a.servidor_id
 left join tipo_vinculo tvS on tvS.tipo_vinculo_id = s.tipo_vinculo_id
 left join tipo_vinculo tvM on tvM.tipo_vinculo_id = m.tipo_vinculo_id
 left join usuarios u on u.usuario_id = s.usuario_id or u.usuario_id = m.usuario_id 
+left join auth.pessoas p on u.pessoa_id = p.pessoa_id
 where a.credito_id is null
 and a.dt_agendamento between $P{dataInicio} and $P{dataFim}
 $P!{where_adicional}
 $P!{where_tipo_refeicao}
-order by a.dt_agendamento,tr.descricao,5,u.nome]]>
+order by a.dt_agendamento,tr.descricao,5,p.nome]]>
 	</queryString>
 	<field name="dt_agendamento" class="java.sql.Date">
 		<property name="com.jaspersoft.studio.field.name" value="dt_agendamento"/>
@@ -38,7 +41,7 @@ order by a.dt_agendamento,tr.descricao,5,u.nome]]>
 	<field name="nome" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.name" value="nome"/>
 		<property name="com.jaspersoft.studio.field.label" value="nome"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="usuarios"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="pessoas"/>
 	</field>
 	<field name="descricao" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.name" value="descricao"/>

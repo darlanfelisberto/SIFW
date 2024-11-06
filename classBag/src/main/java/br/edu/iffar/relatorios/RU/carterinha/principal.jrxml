@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 6.18.1.final using JasperReports Library version 6.18.1-9d75d1969e774d4f179fb3be8401e98a0e6d1611  -->
+<!-- Created with Jaspersoft Studio version 6.21.3.final using JasperReports Library version 6.21.3-4a3078d20785ebe464f18037d738d12fc98c13cf  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="principal" columnCount="3" pageWidth="595" pageHeight="842" columnWidth="191" leftMargin="10" rightMargin="10" topMargin="10" bottomMargin="10" uuid="9b2b84f2-ac23-48df-8672-e86d794e7d72">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
-	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="DataAdapter.xml"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="DataAdapter.jrdax"/>
 	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w1" value="274"/>
 	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w2" value="718"/>
 	<parameter name="PATH" class="java.lang.String">
@@ -19,6 +19,7 @@
 	</parameter>
 	<queryString>
 		<![CDATA[select  u.* ,foo.matricula_id, s.servidor_id from usuarios u
+inner join auth.pessoas p on p.pessoa_id = u.pessoa_id 
 left outer  join (
 	select m2.matricula_id, m2.usuario_id, m2.curso_id from  matricula m2
 	inner join situacao_matricula sm2 on sm2.matricula_id = m2.matricula_id 
@@ -30,26 +31,11 @@ left outer  join (
 left join cursos c on c.curso_id = foo.curso_id 
 left outer join servidor s on s.usuario_id = u.usuario_id and s.situacao='ATIVA'
 $P!{WHERE}
-order by c.nome,u.nome]]>
+order by c.nome,p.nome]]>
 	</queryString>
 	<field name="usuario_id" class="java.util.UUID">
 		<property name="com.jaspersoft.studio.field.name" value="usuario_id"/>
 		<property name="com.jaspersoft.studio.field.label" value="usuario_id"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="usuarios"/>
-	</field>
-	<field name="cpf" class="java.lang.String">
-		<property name="com.jaspersoft.studio.field.name" value="cpf"/>
-		<property name="com.jaspersoft.studio.field.label" value="cpf"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="usuarios"/>
-	</field>
-	<field name="dt_nasc" class="java.sql.Date">
-		<property name="com.jaspersoft.studio.field.name" value="dt_nasc"/>
-		<property name="com.jaspersoft.studio.field.label" value="dt_nasc"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="usuarios"/>
-	</field>
-	<field name="nome" class="java.lang.String">
-		<property name="com.jaspersoft.studio.field.name" value="nome"/>
-		<property name="com.jaspersoft.studio.field.label" value="nome"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="usuarios"/>
 	</field>
 	<field name="token_ru" class="java.lang.String">
@@ -57,9 +43,14 @@ order by c.nome,u.nome]]>
 		<property name="com.jaspersoft.studio.field.label" value="token_ru"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="usuarios"/>
 	</field>
-	<field name="auth_user_id" class="java.util.UUID">
-		<property name="com.jaspersoft.studio.field.name" value="auth_user_id"/>
-		<property name="com.jaspersoft.studio.field.label" value="auth_user_id"/>
+	<field name="pessoa_id" class="java.util.UUID">
+		<property name="com.jaspersoft.studio.field.name" value="pessoa_id"/>
+		<property name="com.jaspersoft.studio.field.label" value="pessoa_id"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="usuarios"/>
+	</field>
+	<field name="tenantid" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="tenantid"/>
+		<property name="com.jaspersoft.studio.field.label" value="tenantid"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="usuarios"/>
 	</field>
 	<field name="matricula_id" class="java.util.UUID">

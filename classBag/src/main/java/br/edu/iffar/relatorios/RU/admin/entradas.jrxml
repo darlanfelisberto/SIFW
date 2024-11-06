@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 6.18.1.final using JasperReports Library version 6.18.1-9d75d1969e774d4f179fb3be8401e98a0e6d1611  -->
+<!-- Created with Jaspersoft Studio version 6.21.3.final using JasperReports Library version 6.21.3-4a3078d20785ebe464f18037d738d12fc98c13cf  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="entradas" pageWidth="595" pageHeight="842" whenNoDataType="AllSectionsNoDetail" columnWidth="535" leftMargin="30" rightMargin="30" topMargin="20" bottomMargin="20" uuid="64b8fe0b-814d-417c-a9a5-d5232d13f779">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
-	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="DataAdapter.xml"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="DataAdapter.jrdax"/>
 	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w1" value="233"/>
 	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w2" value="761"/>
 	<parameter name="dataInicio" class="java.sql.Date"/>
@@ -16,7 +16,7 @@
 	</parameter>
 	<parameter name="filtros" class="java.lang.String"/>
 	<queryString language="SQL">
-		<![CDATA[select  u.nome,c.valor, c.dt_credito,tr.descricao ,gr.sigla as grupo,
+		<![CDATA[select  p.nome,c.valor, c.dt_credito,tr.descricao ,gr.sigla as grupo,
 case 
 	when m.matricula_id is not null then cur.nome
 	when s.servidor_id is not null then 'Servidor, '||tvS.descricao  
@@ -24,6 +24,7 @@ case
 end as vinculos
 from creditos c
 inner join usuarios u ON c.usuario_id  = u.usuario_id 
+inner join auth.pessoas p on p.pessoa_id = u.pessoa_id 
 inner join agendamentos a on a.credito_id =c.credito_id 
 inner join refeicao r on r.refeicao_id = a.refeicao_id 
 inner join tipo_refeicao tr on tr.tipo_refeicao_id  = r.tipo_refeicao_id 
@@ -38,12 +39,12 @@ where c.tipo_credito_id ='SAIDA'
 and c.dt_credito::date between   $P{dataInicio}  and  $P{dataFim} 
 $P!{where_adicional}
 $P!{where_tipo_refeicao}
-order by c.dt_credito, u.nome,tr.descricao]]>
+order by c.dt_credito, p.nome,tr.descricao]]>
 	</queryString>
 	<field name="nome" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.name" value="nome"/>
 		<property name="com.jaspersoft.studio.field.label" value="nome"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="usuarios"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="pessoas"/>
 	</field>
 	<field name="valor" class="java.math.BigDecimal">
 		<property name="com.jaspersoft.studio.field.name" value="valor"/>

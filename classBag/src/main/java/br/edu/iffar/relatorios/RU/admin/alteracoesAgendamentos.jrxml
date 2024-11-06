@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 6.18.1.final using JasperReports Library version 6.18.1-9d75d1969e774d4f179fb3be8401e98a0e6d1611  -->
+<!-- Created with Jaspersoft Studio version 6.21.3.final using JasperReports Library version 6.21.3-4a3078d20785ebe464f18037d738d12fc98c13cf  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="alteracoesAgendamentos" pageWidth="595" pageHeight="842" whenNoDataType="NoDataSection" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="fbf9627d-ecf8-4bab-b7e6-5d5983a09550">
-	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="DataAdapter.xml"/>
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="DataAdapter.jrdax"/>
 	<parameter name="dataInicio" class="java.sql.Date"/>
 	<parameter name="dataFim" class="java.sql.Date"/>
 	<parameter name="header" class="java.lang.String"/>
@@ -14,16 +14,18 @@
 	</parameter>
 	<queryString>
 		<![CDATA[select aa.dt_transferencia
-,ori.nome as origem
-,dest.nome as destino
-,dest.cpf 
+,por.nome as origem
+,pde.nome as destino
+,pde.cpf 
 ,tr.descricao 
 ,gr.descricao as grupo
 ,aa.aceito 
 ,aa.dt_aceite 
 from alteracoes_agendamentos aa 
-inner join usuarios ori on ori.usuario_id = usuario_origem_id 
-inner join usuarios dest on dest.usuario_id = usuario_destino_id 
+inner join usuarios uor on uor.usuario_id = aa.usuario_origem_id
+inner join auth.pessoas por on por.pessoa_id = uor.pessoa_id
+inner join usuarios ude on ude.usuario_id = aa.usuario_destino_id
+inner join auth.pessoas pde on pde.pessoa_id = ude.pessoa_id
 inner join agendamentos a on a.agendamento_id = aa.agendamento_id 
 inner join refeicao r on r.refeicao_id = a.refeicao_id 
 inner join tipo_refeicao tr on tr.tipo_refeicao_id = r.tipo_refeicao_id 
@@ -35,7 +37,8 @@ left join tipo_vinculo tvM on tvM.tipo_vinculo_id = m.tipo_vinculo_id
 where aa.dt_transferencia between cast($P{dataInicio} as date) and cast($P{dataFim} as date)
 $P!{where_tipo_refeicao}
 $P!{where_adicional}
-order by 1,4,3]]>
+order by 1,4,3
+]]>
 	</queryString>
 	<field name="dt_transferencia" class="java.sql.Timestamp">
 		<property name="com.jaspersoft.studio.field.name" value="dt_transferencia"/>
@@ -45,17 +48,17 @@ order by 1,4,3]]>
 	<field name="origem" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.name" value="origem"/>
 		<property name="com.jaspersoft.studio.field.label" value="origem"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="usuarios"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="pessoas"/>
 	</field>
 	<field name="destino" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.name" value="destino"/>
 		<property name="com.jaspersoft.studio.field.label" value="destino"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="usuarios"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="pessoas"/>
 	</field>
 	<field name="cpf" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.name" value="cpf"/>
 		<property name="com.jaspersoft.studio.field.label" value="cpf"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="usuarios"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="pessoas"/>
 	</field>
 	<field name="descricao" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.name" value="descricao"/>

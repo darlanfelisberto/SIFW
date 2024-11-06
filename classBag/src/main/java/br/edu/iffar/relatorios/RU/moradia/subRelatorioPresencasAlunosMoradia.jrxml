@@ -1,37 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 6.16.0.final using JasperReports Library version 6.16.0-48579d909b7943b64690c65c71e07e0b80981928  -->
+<!-- Created with Jaspersoft Studio version 6.21.3.final using JasperReports Library version 6.21.3-4a3078d20785ebe464f18037d738d12fc98c13cf  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="subRelatorioPresencasAlunosMoradia" pageWidth="500" pageHeight="842" columnWidth="500" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="bb5f37de-d727-4df8-af58-e2b502ca02a4">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
-	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="base"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="DataAdapter.jrdax"/>
 	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w1" value="227"/>
 	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w2" value="764"/>
 	<parameter name="unidade_id" class="java.lang.String"/>
 	<parameter name="data_referencia" class="java.util.Date"/>
 	<queryString language="SQL">
-		<![CDATA[select u.nome, u2.nome as realisou_user, p.justificativa, p.dt_realizada,
+		<![CDATA[select pMora.nome, pReal.nome as realisou_user, p.justificativa, p.dt_realizada,
 case when p.presente then 'Sim'
 	when not p.presente  then 'Não'
 	else '-' end as presente
  from  moradia_estudantil.habitante_unidade hu  
 inner join matricula m on hu.matricula_id = m.matricula_id 
-inner join usuarios u on u.usuario_id = m.usuario_id 
+inner join usuarios uMora on uMora.usuario_id = m.usuario_id 
+inner join auth.pessoas pMora on pMora.pessoa_id = uMora.pessoa_id 
 left join moradia_estudantil.presenca p on p.habitante_unidade_id =hu.habitante_unidade_id and p.dt_referencia = cast($P{data_referencia} as date)
-left join usuarios u2 on u2.usuario_id = p.realizada_por_id 
+left join usuarios uReal on ureal.usuario_id = p.realizada_por_id 
+left join auth.pessoas pReal on pReal.pessoa_id  = ureal.pessoa_id 
 where 
 hu.unidade_id = cast($P{unidade_id} as uuid)
  and
 (hu.dt_saida is null or hu.dt_saida >= current_date)
-order by u.nome]]>
+order by pMora.nome]]>
 	</queryString>
 	<field name="nome" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.name" value="nome"/>
 		<property name="com.jaspersoft.studio.field.label" value="nome"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="usuarios"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="pessoas"/>
 	</field>
 	<field name="realisou_user" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.name" value="realisou_user"/>
 		<property name="com.jaspersoft.studio.field.label" value="realisou_user"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="usuarios"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="pessoas"/>
 	</field>
 	<field name="justificativa" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.name" value="justificativa"/>

@@ -11,7 +11,7 @@
 
 	<parent>
 		<groupId>br.edu.iffar</groupId>
-		<artifactId>SIFW</artifactId>
+		<artifactId>sifw-parent</artifactId>
 		<version>1.0.0-SNAPSHOT</version>
 		<relativePath>../pom.xml</relativePath>
 	</parent>
