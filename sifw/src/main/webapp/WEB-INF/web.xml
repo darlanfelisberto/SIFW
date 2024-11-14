@@ -31,7 +31,7 @@
 		<!--param-value>0</param-value--> <!-- producao colacar -1 -->
 		<param-value>0</param-value>
 	</context-param>
-	
+
 	<context-param>
 	    <param-name>com.sun.faces.defaultResourceMaxAge</param-name>
 	    <param-value>604800000</param-value> <!-- 30 days -->  
@@ -102,10 +102,6 @@
 		<param-name>jakarta.faces.FACELETS_LIBRARIES</param-name>
 		<param-value>/WEB-INF/secTag.taglib.xml</param-value>
 	</context-param>
-
-	<welcome-file-list>
-		<welcome-file>/app/index.xhtml</welcome-file>
-	</welcome-file-list>
 	
 	<!-- ==========================CACHE==============================================================-->	
 
@@ -158,6 +154,11 @@
 	<login-config>
         <auth-method>OIDC</auth-method>
     </login-config>
+
+	<context-param>
+		<param-name>primefaces.UPLOADER</param-name>
+		<param-value>native</param-value>
+	</context-param>
 
 
 	<!-- _______________ROLES_____________________ -->

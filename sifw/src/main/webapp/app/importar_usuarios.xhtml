@@ -14,18 +14,8 @@
 	</ui:define>
 
 	<ui:define name="main">
-		<script type="text/javascript">
-			function oi(event,th){
-	
-				if(th.value == 2){
-					PF('dialogUpFile').show();
-				}else{
-					PF('dialogUpFile').hide();
-				}
-			}
-		</script>
 
-		<h:form id="frmMain">
+		<h:form id="frmMain" enctype="multipart/form-data">
 			<p:growl showDetail="true" showSummary="true">
 				<p:autoUpdate></p:autoUpdate>
 			</p:growl>
@@ -33,130 +23,97 @@
 			<p:breadCrumb model="#{importarUsuariosBean.breadCrumb.model}"  id="breadcrumb">
 				<p:autoUpdate />
 			</p:breadCrumb>	
-			
+
 			<p:outputPanel>
-				<p:panel header="Busca de usuários" rendered="#{importarUsuariosBean.rendBusca}">
+				<p:panel header="Busca de usuários" rendered="#{importarUsuariosBean.rendSeleciona}">
 					<div class="ui-fluid formgrid grid">
-						<div class="field col-12 md:col-12">
-							<p:selectOneRadio value="#{importarUsuariosBean.tipoBusca}" 
-								onchange="oi(event,this)" immediate="true">
-								<f:selectItems value="#{importarUsuariosBean.listSelectIten}"/>
-								<p:ajax  update="otpFiltros"/>
-							</p:selectOneRadio>
+						<div class="field col-6 md:col-6">
+							<label>Importar usuários:</label>
 						</div>
-					</div>
-					<p:outputPanel id="otpFiltros">
-						<p:outputPanel rendered="#{importarUsuariosBean.tipoBusca == 3}">
-							<div class="ui-fluid formgrid grid">
-								<div class="field col-12 md:col-4">
-									<label>Curso:</label>
-									<p:selectOneMenu value="#{gerarQRCodeBean.curso}" converter="#{modelConverter}" required="false">
-										<f:selectItem />
-										<f:selectItems value="#{gerarQRCodeBean.listaCursos}" var="c" itemValue="#{c}" itemLabel="#{c.nome} - #{c.tipoVinculo.descricao}"></f:selectItems>
-									</p:selectOneMenu>
-								
-								</div>
-							</div>
-							<div class="ui-fluid formgrid grid">
-								<div class="field col-12 md:col-4">
-									<p:commandButton value="Download de todas as carteirinhas" icon="pi pi-download"  ajax="false" onclick="PrimeFaces.monitorDownload(start, stop);" disabled="true">
-										<p:fileDownload value="#{gerarQRCodeBean.allQRCode}"></p:fileDownload>
-									</p:commandButton>
-								</div>
-							</div>
-						</p:outputPanel>
-					</p:outputPanel>
-				</p:panel>
-			</p:outputPanel>
-			
-			
-			
-			
-			<p:outputPanel rendered="#{importarUsuariosBean.rendCreateUsers}">
-				<p:panel header="Importando Usuarios a partir de um CSV">
-					<div class="ui-fluid formgrid grid">
-						<div class="field col-12 md:col-12">
-							<label>Curso:</label>
-							<p:selectOneMenu value="#{importarUsuariosBean.curso}" converter="#{modelConverter}">
-								<f:selectItem />
-								<f:selectItems value="#{importarUsuariosBean.listCurso}" var="c" itemLabel="#{c.nome} - #{c.tipoVinculo.descricao}" itemValue="#{c}"></f:selectItems>
+						<div class="field col-6 md:col-6">
+							<p:selectOneMenu value="#{importarUsuariosBean.tipoimportacao}" converter="omnifaces.SelectItemsConverter">
+								<f:selectItems value="#{importarUsuariosBean.listSelectIten}" var ="l" />
+								<p:ajax event="change" listener="#{importarUsuariosBean.eventChange}"  update="frmMain otpEnviaCSV"/>
 							</p:selectOneMenu>
 						</div>
-						<div class="field col-12 md:col-3">
-							<h:outputLabel value="Possui Roles:" />
-							<p:selectBooleanCheckbox value="#{importarUsuariosBean.possuiRole}">
-								<p:ajax update="selectColunaRole"></p:ajax>
-							</p:selectBooleanCheckbox>
-						</div>
-						<div class="field col-12 md:col-3">
-							<h:outputLabel value="Coluna das Roles:(0->X)"/>
-							<p:inputNumber id="selectColunaRole" value="#{importarUsuariosBean.colunaRole}" disabled="#{!importarUsuariosBean.possuiRole}"/>
-						</div>
-
-						<div class="field col-12 md:col-3">
-							<h:outputLabel value="Linha do primeiro registro:(0 -> X)" for=""/>
-							<p:inputNumber value="#{importarUsuariosBean.firstRecrd}"/>
-						</div>
-						<div class="field col-12 md:col-3">
-							<h:outputLabel value="Inativar usuários ausentes:"/>
-							<p:selectBooleanCheckbox value="#{importarUsuariosBean.inativarMatriculasAusentes}"/>
-						</div>
-						
-						<div class="field col-12 md:col-5">
-							<h:outputLabel value="Nome do Arquivo:" for="optFileName"/>
-							<h:outputText value="#{importarUsuariosBean.file.fileName}" id="optFileName"/>
-						</div>
-
-						<div class="field col-12 md:col-3">
-							<h:outputLabel value="Total de registros:" for="optTotalRecord"/>
-							<h:outputText value="#{importarUsuariosBean.sizeListRecord}" id="optTotalRecord"/>
-						</div>
 					</div>
-					<p:commandButton action="#{importarUsuariosBean.initCreateUsers()}" value="Iniciar"></p:commandButton>
-
-					<p>(0 -> X) primeira linha ou coluna do csv começa em 0, mas os dados começão em X</p>
-					<p:fragment >
-						<p:outputPanel id="itaSaida">
-							<h:outputText value="#{importarUsuariosBean.saidaTextoImportUser}" escape="false" style="    font-family: 'Courier New', monospace !important;"/>
-						</p:outputPanel>
-						<p:poll interval="2" update="frmMain:itaSaida" />
-					</p:fragment>
-						
 				</p:panel>
 			</p:outputPanel>
+
+			<p:outputPanel rendered="#{importarUsuariosBean.rendConfigTypeCSV}">
+
+				<p:commandButton action="#{importarUsuariosBean.telaConfigTipoImportacao}" label="ds"></p:commandButton>
+
+				<p:dataTable >
+					<f:facet name="header">
+						<div class="flex justify-content-between flex-wrap">
+							<div>Arquivos enviados</div>
+							<div>
+								<p:commandButton type="button" value="Add" icon="pi pi-plus"  onclick="PF('dlgFile').show()"></p:commandButton>
+							</div>
+						</div>
+					</f:facet>
+				</p:dataTable>
+			</p:outputPanel>
+
+			<p:dialog header="Header" widgetVar="dlgFile"  showEffect="fade" modal="true" closeOnEscape="true">
+				<p:outputPanel >
+					<p:panel header="Importando Usuarios a partir de um CSV">
+						<div class="ui-fluid formgrid grid">
+							<div class="field col-12 md:col-12">
+								<p:fileUpload auto="true" skinSimple="true" mode="simple" listener="#{importarUsuariosBean.upload}" label="Arquivo" displayFilename="true">
+									<p:validateFile allowTypes="/(\.|\/)(csv)$/" />
+								</p:fileUpload>
+
+							</div>
+							<div class="field col-12 md:col-12">
+								<label>Curso:</label>
+
+							</div>
+							<div class="field col-12 md:col-3">
+								<h:outputLabel value="Possui Roles:" />
+								<p:selectBooleanCheckbox value="#{importarUsuariosBean.possuiRole}">
+									<p:ajax update="selectColunaRole"></p:ajax>
+								</p:selectBooleanCheckbox>
+							</div>
+							<div class="field col-12 md:col-3">
+								<h:outputLabel value="Coluna das Roles:(0->X)"/>
+								<p:inputNumber id="selectColunaRole" value="#{importarUsuariosBean.colunaRole}" disabled="#{!importarUsuariosBean.possuiRole}"/>
+							</div>
+
+							<div class="field col-12 md:col-3">
+								<h:outputLabel value="Linha do primeiro registro:(0 -> X)" />
+								<p:inputNumber value="#{importarUsuariosBean.firstRecrd}"/>
+							</div>
+							<div class="field col-12 md:col-3">
+								<h:outputLabel value="Inativar usuários ausentes:"/>
+								<p:selectBooleanCheckbox value="#{importarUsuariosBean.inativarMatriculasAusentes}"/>
+							</div>
+
+							<div class="field col-12 md:col-5">
+								<h:outputLabel value="Nome do Arquivo:" for="optFileName"/>
+								<h:outputText value="#{importarUsuariosBean.file.fileName}" id="optFileName"/>
+							</div>
+
+							<div class="field col-12 md:col-3">
+								<h:outputLabel value="Total de registros:" for="optTotalRecord"/>
+								<h:outputText value="#{importarUsuariosBean.sizeListRecord}" id="optTotalRecord"/>
+							</div>
+						</div>
+						<p:commandButton actionListener="#{importarUsuariosBean.initCreateUsers()}" value="Iniciar" ></p:commandButton>
+
+						<p>(0 -> X) primeira linha ou coluna do csv começa em 0, mas os dados começão em X</p>
+						<p:fragment  rendered="false">
+							<p:outputPanel id="itaSaida">
+								<h:outputText value="#{importarUsuariosBean.saidaTextoImportUser}" escape="false" style="    font-family: 'Courier New', monospace !important;"/>
+							</p:outputPanel>
+							<p:poll interval="2" update="frmMain:itaSaida" />
+						</p:fragment>
+
+					</p:panel>
+				</p:outputPanel>
+			</p:dialog>
 		</h:form>
-		
-		<p:dialog widgetVar="dialogUpFile" header="Selecione um arquivo CSV" showEffect="fade" modal="true" style="min-width: 500px;">
-			<p:panel>
-				 <h:form enctype="multipart/form-data">
-				 	<div class="ui-fluid formgrid grid">
-				 		<div class="field col-12 md:col-3">
-							<h:outputLabel value="Codificação arquivo:" />
-							<p:selectOneMenu value="#{importarUsuariosBean.codificacaoArquivo}">
-								<f:selectItems value="#{importarUsuariosBean.listCodificacaoArquivo}"></f:selectItems>
-							</p:selectOneMenu>
-						</div>
-						<div class="field col-12 md:col-3">
-							<h:outputLabel value="Delimitador colunas:" />
-							<p:selectOneMenu value="#{importarUsuariosBean.delimitadorColuna}">
-								<f:selectItems value="#{importarUsuariosBean.listDelimitatadorColuna}"></f:selectItems>
-							</p:selectOneMenu>
-						</div>
-						<div class="field col-12 md:col-3">
-							<h:outputLabel value="Delimitador texto:" />
-							<p:selectOneMenu value="#{importarUsuariosBean.delimitadorTexto}">
-								<f:selectItems value="#{importarUsuariosBean.listDelimitadorTexto}"></f:selectItems>
-							</p:selectOneMenu>
-						</div>					
-					</div>
-				 
-			        <!-- p:fileUpload listener="#{importarUsuariosBean.handleFileUpload}" label="Escolha" sizeLimit="1000000" fileLimit="1" update="frmMain" oncomplete="PF('dialogUpFile').hide();" auto="true"/-->
-			        <p:fileUpload value="#{importarUsuariosBean.file}" mode="simple" skinSimple="true"></p:fileUpload>
-			        
-			        <p:commandButton value="Enviar" ajax="false" action="#{importarUsuariosBean.upload}" styleClass="mt-3  d-block" onclick="PrimeFaces.monitorDownload(start, stop);"/>
-			        
-			    </h:form>
-			</p:panel>
-		</p:dialog>
+
 	</ui:define>
 </ui:composition>

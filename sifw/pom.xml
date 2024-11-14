@@ -19,6 +19,12 @@
 	<dependencies>
 
 		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
 			<groupId>io.undertow</groupId>
 			<artifactId>undertow-core</artifactId>
 			<scope>provided</scope>
@@ -39,7 +45,6 @@
 		<dependency>
 			<groupId>br.edu.iffar.fw</groupId>
 			<artifactId>classBag</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 
 		<dependency>
@@ -56,14 +61,14 @@
 		</dependency>
 
 		<dependency>
-			<groupId>io.nayuki</groupId>
-			<artifactId>qrcodegen</artifactId>
+			<groupId>org.glassfish</groupId>
+			<artifactId>jakarta.faces</artifactId>
 			<scope>provided</scope>
 		</dependency>
 
 		<dependency>
-		    <groupId>commons-fileupload</groupId>
-		    <artifactId>commons-fileupload</artifactId>
+			<groupId>io.nayuki</groupId>
+			<artifactId>qrcodegen</artifactId>
 			<scope>provided</scope>
 		</dependency>
 

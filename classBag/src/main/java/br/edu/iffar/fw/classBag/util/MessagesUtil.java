@@ -36,7 +36,12 @@ public class MessagesUtil {
 		System.out.println("user:"+this.usuariosDAO.getUsernameLogado()+"|"+summary);
 		fc.addMessage("", new FacesMessage(FacesMessage.SEVERITY_ERROR, summary, ""));
 	}
-	
+
+	public void addWarn(String summary) {
+		System.out.println("user:"+this.usuariosDAO.getUsernameLogado()+"|"+summary);
+		fc.addMessage("", new FacesMessage(FacesMessage.SEVERITY_WARN, summary,""));
+	}
+
 	public void addWarn(String summary,String details) {
 		System.out.println("user:"+this.usuariosDAO.getUsernameLogado()+"|"+summary+"|"+details);
 		fc.addMessage("", new FacesMessage(FacesMessage.SEVERITY_WARN, summary, details));

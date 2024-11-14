@@ -80,6 +80,13 @@
                 <version>${primefaces.version}</version>
                 <classifier>jakarta</classifier>
             </dependency>
+
+            <dependency>
+                <groupId>org.glassfish</groupId>
+                <artifactId>jakarta.faces</artifactId>
+                <version>4.0.7</version>
+            </dependency>
+
             <dependency>
                 <groupId>io.nayuki</groupId>
                 <artifactId>qrcodegen</artifactId>
@@ -94,6 +101,17 @@
                 <groupId>org.omnifaces</groupId>
                 <artifactId>omnifaces</artifactId>
                 <version>4.5.1</version>
+            </dependency>
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>1.18.34</version>
+            </dependency>
+
+            <dependency>
+                <groupId>br.edu.iffar.fw</groupId>
+                <artifactId>classBag</artifactId>
+                <version>0.0.1-SNAPSHOT</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

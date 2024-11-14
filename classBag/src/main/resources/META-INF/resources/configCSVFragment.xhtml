@@ -1,0 +1,154 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+				xmlns:h="jakarta.faces.html"
+				xmlns:f="jakarta.faces.core"
+				xmlns:faces="jakarta.faces"
+				xmlns:ui="jakarta.faces.facelets"
+				xmlns:p="http://primefaces.org/ui" template="/public/_template.xhtml">
+
+	<ui:define name="title">Importar Usuários</ui:define>
+	<ui:define name="main">
+		<h:form id="frm">
+			<p:growl id="growMsg"></p:growl>
+
+			<p:outputPanel >
+				<p:panel header="Grupo para processamento" rendered="#{!userCSVFragmentBean.rendNovoGrupoProcessamento}">
+					<p:dataTable value="#{userCSVFragmentBean.configs.listGrupoProcessamentos}" var="grupo">
+						<p:column>
+
+						</p:column>
+					</p:dataTable>
+					<p:commandButton actionListener="#{userCSVFragmentBean.criarNovoGrupoProcessamento}" update="frm" value="Novo grupo de proc.">
+
+					</p:commandButton>
+				</p:panel>
+			</p:outputPanel>
+
+			<p:outputPanel >
+				<p:panel header="Grupo de arquivos de usuários" rendered="#{userCSVFragmentBean.rendNovoGrupoProcessamento}">
+					<div class="ui-fluid formgrid grid">
+						<div class="field col-12 md:col-12">
+							<p:fieldset legend="Arquivos CSV" toggleable="true" collapsed="true">
+								<div class="ui-fluid formgrid grid">
+									<div class="field col-12 md:col-3">
+										<h:outputLabel value="Codificação arquivo:" />
+										<p:selectOneMenu value="#{userCSVFragmentBean.grupoProcessamento.codificacaoArquivo}">
+											<f:selectItems value="#{userCSVFragmentBean.listCodificacaoArquivo}"/>
+										</p:selectOneMenu>
+									</div>
+									<div class="field col-12 md:col-3">
+										<h:outputLabel value="Delimitador colunas:" />
+										<p:selectOneMenu value="#{userCSVFragmentBean.grupoProcessamento.delimitadorColuna}">
+											<f:selectItems value="#{userCSVFragmentBean.listDelimitatadorColuna}"/>
+										</p:selectOneMenu>
+									</div>
+									<div class="field col-12 md:col-3">
+										<h:outputLabel value="Delimitador texto:" />
+										<p:selectOneMenu value="#{userCSVFragmentBean.grupoProcessamento.delimitadorTexto}">
+											<f:selectItems value="#{userCSVFragmentBean.listDelimitadorTexto}"/>
+										</p:selectOneMenu>
+									</div>
+									<div class="field col-12 md:col-3">
+										<p:fileUpload listener="#{userCSVFragmentBean.handleFilesUpload}" mode="simple" skinSimple="true" multiple="true" auto="true" label="Add"
+													  process="@this" update="frm:growMsg,frm:dtbListFile">
+											<p:validateFile sizeLimit="100000" fileLimit="10" allowTypes="/(\.|\/)(csv)$/" />
+										</p:fileUpload>
+									</div>
+									<div class="field col-12 md:col-12">
+										<p:dataTable id="dtbListFile" value="#{userCSVFragmentBean.grupoProcessamento.listFile}" var="file">
+											<p:column headerText="Nome">
+												#{file.fileName}
+											</p:column>
+											<p:column headerText="size(KB)">
+												#{file.size/1024}
+											</p:column>
+
+										</p:dataTable>
+									</div>
+								</div>
+							</p:fieldset>
+						</div>
+						<div class="field col-12 md:col-12">
+							<p:fieldset id="fdsCurso" legend="Curso" toggleable="true" collapsed="true">
+								<div class="ui-fluid formgrid grid">
+									<div class="field col-12 md:col-3">
+										<label>Informar
+											<abbr title="Caso tenha informado o curso dos alunos em uma coluna do csv, marque. Se não informe no combo um cursos para todos os csvs deste grupo.">
+												Coluna
+											</abbr>
+											Curso:
+										</label>
+										<p:selectBooleanCheckbox  value="#{userCSVFragmentBean.grupoProcessamento.usarColunaCurso}" >
+											<p:ajax  update="fdsCurso" />
+										</p:selectBooleanCheckbox >
+									</div>
+									<div class="field col-12 md:col-6" faces:rendered="#{!userCSVFragmentBean.grupoProcessamento.usarColunaCurso}">
+										<label>Curso:</label>
+										<p:selectOneMenu value="#{userCSVFragmentBean.grupoProcessamento.curso}" converter="omnifaces.SelectItemsConverter">
+											<f:selectItem />
+											<f:selectItems value="#{userCSVFragmentBean.listCursos}" var="c" itemLabel="#{c.nome} - #{c.tipoVinculo.descricao}" itemValue="#{c}"/>
+										</p:selectOneMenu>
+									</div>
+									<div class="field col-12 md:col-3" faces:rendered="#{userCSVFragmentBean.grupoProcessamento.usarColunaCurso}">
+										<label>Coluna idCurso:</label>
+										<p:inputNumber value="#{userCSVFragmentBean.grupoProcessamento.colunaCurso}" >
+										</p:inputNumber>
+									</div>
+								</div>
+							</p:fieldset>
+						</div>
+						<div class="field col-12 md:col-12">
+							<p:fieldset legend="Permissão" id="fdsPermissao" toggleable="true" collapsed="true">
+								<div class="ui-fluid formgrid grid">
+									<div class="field col-12 md:col-3">
+										<h:outputLabel value="Possui Roles:" />
+										<p:selectBooleanCheckbox value="#{userCSVFragmentBean.grupoProcessamento.usarColunaPermissao}" >
+											<p:ajax update="fdsPermissao"/>
+										</p:selectBooleanCheckbox>
+									</div>
+									<div class="field col-12 md:col-3" faces:rendered="#{userCSVFragmentBean.grupoProcessamento.usarColunaPermissao}">
+										<h:outputLabel value="Coluna das Roles:"/>
+										<p:inputNumber value="#{userCSVFragmentBean.grupoProcessamento.colunaPermissao}"/>
+									</div>
+									<div class="field col-12 md:col-3" faces:rendered="#{!userCSVFragmentBean.grupoProcessamento.usarColunaPermissao}">
+										<p:pickList value="${userCSVFragmentBean.dualListPermissoa}" converter="#{modelConverter}" var="permissao" itemLabel="#{permissao.nome}" itemValue="#{permissao}">
+
+										</p:pickList>
+									</div>
+								</div>
+								<p>
+									Coluna de permisssões ex: IFFAR_RU,IFFAR_MORADIA,....
+								</p>
+							</p:fieldset>
+						</div>
+
+						<div class="field col-12 md:col-12">
+							<p:fieldset legend="Usuários" toggleable="true" collapsed="true">
+								<div class="ui-fluid formgrid grid">
+									<div class="field col-12 md:col-3">
+										<h:outputLabel value="Linha do primeiro registro:" />
+										<p:inputNumber value="#{userCSVFragmentBean.grupoProcessamento.primeiroRegistro}"/>
+									</div>
+									<div class="field col-12 md:col-3">
+										<label><abbr title="Usuários que estejam presentes nesta planilha serão inativados, se marcado.">Inativar usuários ausentes</abbr>:</label>>
+										<p:selectBooleanCheckbox value="#{userCSVFragmentBean.grupoProcessamento.inativarMatriculasAusentes}"/>
+									</div>
+								</div>
+							</p:fieldset>
+						</div>
+
+					</div>
+					<p:commandButton action="#{userCSVFragmentBean.enviar}" value="ok" />
+
+					<div class="flex flex-column">
+						<p>A primeira linha ou coluna  mais a esquerda é a 0</p>
+						<div class="flex flex-column" style="font-family: monospace;">
+							<span>0|1|2|3</span>
+							<span>1|-|-|-</span>
+							<span>2|-|-|-</span>
+						</div>
+					</div>
+				</p:panel>
+			</p:outputPanel>
+		</h:form>
+	</ui:define>
+</ui:composition>

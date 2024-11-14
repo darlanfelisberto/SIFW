@@ -4,12 +4,22 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import br.edu.iffar.fw.classBag.interfaces.ImportarUsuarios;
+import br.edu.iffar.fw.classBag.interfaces.ImportarUsuariosImpl;
+import jakarta.faces.event.AjaxBehaviorEvent;
+import jakarta.faces.event.ValueChangeEvent;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
+import org.jfree.data.io.CSV;
 import org.omnifaces.util.selectitems.SelectItemsBuilder;
+import org.primefaces.component.fileupload.FileUpload;
+import org.primefaces.component.log.Log;
+import org.primefaces.event.FileUploadEvent;
 import org.primefaces.model.file.UploadedFile;
 
 import br.edu.iffar.fw.classBag.db.dao.CursosDAO;
@@ -37,7 +47,7 @@ public class ImportarUsuariosBean implements Serializable, BreadCrumbControl {
 	@Inject private MessagesUtil messages;
 
 	@Resource private ManagedExecutorService mes;
-	@Inject private Instance<BackgroundUserCreate> insbuc;
+	@Inject private Instance<ImportarUsuariosImpl> insbuc;
 	@Inject private CursosDAO cursosDAO;
 	@Inject private HasRoleBean hasRoleBean;
 
@@ -48,13 +58,15 @@ public class ImportarUsuariosBean implements Serializable, BreadCrumbControl {
 	private List<CSVRecord> listRescord;
 	private List<Curso> listCurso;
 
-	private boolean rendBusca;
-	private boolean rendCreateUsers;
+	private boolean rendSeleciona;
+	private boolean rendRunImpotacao;
+	private boolean rendConfigTypeCSV;
+
 	private int colunaRole;
 	private boolean possuiRole = false;
 	private boolean inativarMatriculasAusentes = false;
 	private int tipoBusca = 3;
-	private Curso curso;
+
 	private BreadCrumb breadCrumb;
 
 	private char delimitadorColuna;
@@ -63,17 +75,24 @@ public class ImportarUsuariosBean implements Serializable, BreadCrumbControl {
 
 	private int firstRecrd = 1;
 
+
 	private List<SelectItem> listSelectIten = new ArrayList<SelectItem>();
+	private Class tipoImportacaoSelecionada;
+
+	private ImportarUsuariosImpl importarUsuarios;
+
 
 	@PostConstruct
 	private void init() {
-		if(hasRoleBean.isHasIffarAdmin()) {
-			this.listSelectIten.add(new SelectItem(2, "Importar Usuários"));
-			this.listSelectIten.add(new SelectItem(3, "Gerar Carterinhas"));
-		}
+
+		this.listCurso = this.cursosDAO.listAllCursos();
+
+		this.listSelectIten.add(new SelectItem(null,""));
+		this.listSelectIten.add(new SelectItem(CSVImportUsuarios.class,CSVImportUsuarios.class.getCanonicalName()));
 
 		this.createBreadCrumb();
-		this.telaFiltroBusca();
+		this.telaSelecionaTipoImportacao();
+
 	}
 
 	public void createBreadCrumb() {
@@ -85,15 +104,34 @@ public class ImportarUsuariosBean implements Serializable, BreadCrumbControl {
 			;
 	}
 
-	public void telaFiltroBusca() {
-		this.rendBusca = true;
-		this.rendCreateUsers = false;
+	public void eventChange(AjaxBehaviorEvent event) {
+		System.out.println(event);
+
+		if(this.tipoImportacaoSelecionada == null) {
+			this.messages.addError("Selecione um tipo de importação de usuários");
+			return;
+		}
+
+        this.importarUsuarios = insbuc.select((Class<? extends ImportarUsuariosImpl>) this.tipoImportacaoSelecionada).get();
+
+//		this.importarUsuarios.initConfigs();
+//		iui.setDados(this.saidaTextoImportUser,this.curso,(this.possuiRole?this.colunaRole:-1),this.inativarMatriculasAusentes,this.firstRecrd);
+//		mes.execute(iui);
+	}
+
+	public void telaSelecionaTipoImportacao() {
+		this.rendSeleciona = true;
+		this.rendConfigTypeCSV = false;
 		this.breadCrumb.setAtivo(1);
 	}
 
+	public void telaConfigTipoImportacao() {
+		this.importarUsuarios.initConfigs();
+	}
+
 	public void telaShowDataFile() {
-		this.rendBusca = false;
-		this.rendCreateUsers = true;
+		this.rendSeleciona = false;
+		this.rendConfigTypeCSV = false;
 		this.breadCrumb.setAtivo(2);
 	}
 
@@ -105,28 +143,35 @@ public class ImportarUsuariosBean implements Serializable, BreadCrumbControl {
         this.file = file;
     }
 
-    public void upload() {
-    	try {
-	    	this.parcer = CSVFormat.DEFAULT
-	    			.withDelimiter(this.delimitadorColuna)
-	    			.withQuote(delimitadorTexto)
-	    			.parse(new InputStreamReader(this.file.getInputStream(),this.codificacaoArquivo));
+	public void handleFileUpload(FileUploadEvent event) {
+		UploadedFile file = event.getFile();
+		//application code
+	}
 
-	        this.listRescord = this.parcer.getRecords();
-	        this.listCurso = this.cursosDAO.listAllCursos();
-	        this.telaShowDataFile();
-    	} catch (IOException e) {
-    		messages.addSuccess("Erro de parse no arquivo");
-			e.printStackTrace();
-			this.telaFiltroBusca();
-		}
+    public void upload(FileUploadEvent event) {
+
+		UploadedFile upload = (UploadedFile) event.getFile();
+//    	try {
+//	    	this.parcer = CSVFormat.DEFAULT
+//	    			.withDelimiter(this.delimitadorColuna)
+//	    			.withQuote(delimitadorTexto)
+//	    			.parse(new InputStreamReader(upload.getInputStream(),this.codificacaoArquivo));
+//
+//	        this.fileImport.listRescord = this.parcer.getRecords();
+//			this.fileImport.nomeArquivo = upload.getFileName();
+//			this.listFileImport.add(this.fileImport);
+//			this.fileImport = new FileImport();
+//			messages.addSuccess("Arquivo enviado.");
+//    	} catch (IOException e) {
+//    		messages.addSuccess("Erro de parse no arquivo");
+//			e.printStackTrace();
+//		}
     }
 
 	public void initCreateUsers() {
 
-		BackgroundUserCreate buc =  insbuc.get();
-		buc.setDados(this.listRescord,this.saidaTextoImportUser,this.curso,(this.possuiRole?this.colunaRole:-1),this.inativarMatriculasAusentes,this.firstRecrd);
-		mes.execute(buc);
+
+
 		System.out.println("continuou");
     }
 
@@ -150,12 +195,12 @@ public class ImportarUsuariosBean implements Serializable, BreadCrumbControl {
 		this.tipoBusca = tipoBusca;
 	}
 
-	public boolean isRendBusca() {
-		return rendBusca;
+	public boolean isRendSeleciona() {
+		return this.rendSeleciona;
 	}
-
-	public boolean isRendCreateUsers() {
-		return rendCreateUsers;
+//
+	public boolean isRendConfigTypeCSV() {
+		return (this.tipoImportacaoSelecionada != null && this.tipoImportacaoSelecionada.equals(CSVImportUsuarios.class));
 	}
 
 	public String getSaidaTextoImportUser() {
@@ -174,15 +219,6 @@ public class ImportarUsuariosBean implements Serializable, BreadCrumbControl {
 
 	public void setListCurso(List<Curso> listCurso) {
 		this.listCurso = listCurso;
-	}
-
-	@NotNull(message = "Seleciona um curso.")
-	public Curso getCurso() {
-		return curso;
-	}
-
-	public void setCurso(Curso curso) {
-		this.curso = curso;
 	}
 
 	public int getColunaRole() {
@@ -248,6 +284,19 @@ public class ImportarUsuariosBean implements Serializable, BreadCrumbControl {
 
 	public void setFirstRecrd(int firstRecrd) {
 		this.firstRecrd = firstRecrd;
+	}
+
+
+	public Class getTipoimportacao() {
+		return this.tipoImportacaoSelecionada;
+	}
+
+	public void setTipoimportacao(Class tipoimportacao) {
+		this.tipoImportacaoSelecionada = tipoimportacao;
+	}
+
+	public boolean isRendRunImpotacao() {
+		return rendRunImpotacao;
 	}
 
 
