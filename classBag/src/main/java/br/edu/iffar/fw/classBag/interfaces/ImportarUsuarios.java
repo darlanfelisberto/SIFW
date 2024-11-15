@@ -8,10 +8,8 @@ import java.util.List;
 
 public interface ImportarUsuarios {
 
-    public void setDados(StringBuffer saida, Curso curso, Integer coluna, boolean inativarMatriculaAusente, int firstRecord);
     public void setDados(Configs configs);
     public void initConfigs();
-
     public void onConfig(SelectEvent<Configs> event);
 
     default public String getNomePadrao(String nome) {

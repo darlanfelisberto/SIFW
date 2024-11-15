@@ -35,9 +35,6 @@ public class CSVImportUsuarios extends ImportarUsuariosImpl{
 	private Map<String,Permissao> listAllPermissaos;
 	protected List<CSVRecord> listRescord;
 
-	public void setDados(List<CSVRecord> listRescord, StringBuffer saida, Curso curso, Integer coluna, boolean inativarMatriculaAusente, int firstRecord) {
-	}
-
 	public void run() {}
 //		try {
 //			this.listAllPermissaos = this.backDAO.listAllPermissaos();
@@ -170,17 +167,10 @@ public class CSVImportUsuarios extends ImportarUsuariosImpl{
 		this.config = (ConfigsCSVImpl) event.getObject();
 	}
 
-	@Override
-	public void setDados(StringBuffer saida, Curso curso, Integer coluna, boolean inativarMatriculaAusente, int firstRecord) {
-
-	}
-
-	@Override
 	public void setDados(Configs configs) {
 		this.config = (ConfigsCSVImpl) configs;
 	}
 
-	@Override
 	public void initConfigs() {
 		this.config =  new ConfigsCSVImpl();
 
@@ -194,6 +184,5 @@ public class CSVImportUsuarios extends ImportarUsuariosImpl{
 				.build();
 		FacesContext.getCurrentInstance().getExternalContext().getFlash().put("config", this.config);
 		PrimeFaces.current().dialog().openDynamic("/configCSVFragment", options, null);
-
 	}
 }
