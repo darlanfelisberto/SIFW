@@ -13,8 +13,20 @@
 			<p:outputPanel >
 				<p:panel header="Grupo para processamento" rendered="#{!userCSVFragmentBean.rendNovoGrupoProcessamento}">
 					<p:dataTable value="#{userCSVFragmentBean.configs.listGrupoProcessamentos}" var="grupo">
-						<p:column>
-
+						<p:column headerText="Del. coluna" style="width: 50px">
+							#{grupo.delimitadorColuna}
+						</p:column>
+						<p:column headerText="Del. texto" style="width: 50px">
+							#{grupo.delimitadorTexto}
+						</p:column>
+						<p:column headerText="Prim. Registro" style="width: 65px">
+							#{grupo.primeiroRegistro}
+						</p:column>
+						<p:column headerText="Inativar matriculas ausentes" style="width: 87px">
+							#{grupo.inativarMatriculasAusentes}
+						</p:column>
+						<p:column headerText="toString">
+							#{grupo.toString()}
 						</p:column>
 					</p:dataTable>
 					<p:commandButton actionListener="#{userCSVFragmentBean.criarNovoGrupoProcessamento}" update="frm" value="Novo grupo de proc.">
@@ -137,7 +149,8 @@
 						</div>
 
 					</div>
-					<p:commandButton action="#{userCSVFragmentBean.enviar}" value="ok" />
+					<p:commandButton actionListener="#{userCSVFragmentBean.enviar}" value="ok" update="frm"/>
+					<p:commandButton actionListener="#{userCSVFragmentBean.voltarImportarUsuario}" value="terminar e voltar" update="frm"/>
 
 					<div class="flex flex-column">
 						<p>A primeira linha ou coluna  mais a esquerda é a 0</p>

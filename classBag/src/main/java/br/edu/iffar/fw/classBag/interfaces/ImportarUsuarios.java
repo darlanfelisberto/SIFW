@@ -2,6 +2,7 @@ package br.edu.iffar.fw.classBag.interfaces;
 
 import br.edu.iffar.fw.classBag.db.model.Curso;
 import org.apache.commons.csv.CSVRecord;
+import org.primefaces.event.SelectEvent;
 
 import java.util.List;
 
@@ -10,6 +11,8 @@ public interface ImportarUsuarios {
     public void setDados(StringBuffer saida, Curso curso, Integer coluna, boolean inativarMatriculaAusente, int firstRecord);
     public void setDados(Configs configs);
     public void initConfigs();
+
+    public void onConfig(SelectEvent<Configs> event);
 
     default public String getNomePadrao(String nome) {
         String[] nn = nome.toLowerCase().trim().split(" ");

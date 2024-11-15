@@ -23,7 +23,10 @@ import br.edu.iffar.fw.classBag.db.model.Matricula;
 import br.edu.iffar.fw.classBag.db.model.SituacaoMatricula;
 import br.edu.iffar.fw.classBag.enun.TypeSituacao;
 import org.primefaces.PrimeFaces;
+import org.primefaces.event.FileUploadEvent;
+import org.primefaces.event.SelectEvent;
 import org.primefaces.model.DialogFrameworkOptions;
+import org.primefaces.model.file.UploadedFile;
 
 public class CSVImportUsuarios extends ImportarUsuariosImpl{
 
@@ -142,6 +145,30 @@ public class CSVImportUsuarios extends ImportarUsuariosImpl{
 //		return m;
 //	}
 
+	public void upload(FileUploadEvent event) {
+
+		UploadedFile upload = (UploadedFile) event.getFile();
+//    	try {
+//	    	this.parcer = CSVFormat.DEFAULT
+//	    			.withDelimiter(this.delimitadorColuna)
+//	    			.withQuote(delimitadorTexto)
+//	    			.parse(new InputStreamReader(upload.getInputStream(),this.codificacaoArquivo));
+//
+//	        this.fileImport.listRescord = this.parcer.getRecords();
+//			this.fileImport.nomeArquivo = upload.getFileName();
+//			this.listFileImport.add(this.fileImport);
+//			this.fileImport = new FileImport();
+//			messages.addSuccess("Arquivo enviado.");
+//    	} catch (IOException e) {
+//    		messages.addSuccess("Erro de parse no arquivo");
+//			e.printStackTrace();
+//		}
+	}
+
+
+	public void onConfig(SelectEvent<Configs> event) {
+		this.config = (ConfigsCSVImpl) event.getObject();
+	}
 
 	@Override
 	public void setDados(StringBuffer saida, Curso curso, Integer coluna, boolean inativarMatriculaAusente, int firstRecord) {
@@ -159,6 +186,7 @@ public class CSVImportUsuarios extends ImportarUsuariosImpl{
 
 		DialogFrameworkOptions options = DialogFrameworkOptions.builder()
 				.modal(true)
+				.closable(false)
 				.contentHeight("100%")
 				.contentWidth("100%")
 				.width("95%")

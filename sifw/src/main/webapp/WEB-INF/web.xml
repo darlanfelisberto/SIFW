@@ -209,6 +209,16 @@
 			<transport-guarantee>CONFIDENTIAL</transport-guarantee>
 		</user-data-constraint-->
 	</security-constraint>
+
+	<security-constraint>
+		<web-resource-collection>
+			<web-resource-name>/app/header.xhtml</web-resource-name>
+			<url-pattern>/app/header.xhtml</url-pattern>
+		</web-resource-collection>
+		<auth-constraint>
+			<role-name>*</role-name>
+		</auth-constraint>
+	</security-constraint>
 	
 	
 	<security-constraint>

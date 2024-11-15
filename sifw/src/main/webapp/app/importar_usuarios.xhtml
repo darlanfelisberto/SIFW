@@ -42,77 +42,18 @@
 
 			<p:outputPanel rendered="#{importarUsuariosBean.rendConfigTypeCSV}">
 
-				<p:commandButton action="#{importarUsuariosBean.telaConfigTipoImportacao}" label="ds"></p:commandButton>
+				<p:commandButton action="#{importarUsuariosBean.telaConfigTipoImportacao}" label="ds">
+					<p:ajax event="dialogReturn" listener="#{importarUsuariosBean.importarUsuarios.onConfig}"/>
+				</p:commandButton>
 
-				<p:dataTable >
-					<f:facet name="header">
-						<div class="flex justify-content-between flex-wrap">
-							<div>Arquivos enviados</div>
-							<div>
-								<p:commandButton type="button" value="Add" icon="pi pi-plus"  onclick="PF('dlgFile').show()"></p:commandButton>
-							</div>
-						</div>
-					</f:facet>
-				</p:dataTable>
 			</p:outputPanel>
 
-			<p:dialog header="Header" widgetVar="dlgFile"  showEffect="fade" modal="true" closeOnEscape="true">
-				<p:outputPanel >
-					<p:panel header="Importando Usuarios a partir de um CSV">
-						<div class="ui-fluid formgrid grid">
-							<div class="field col-12 md:col-12">
-								<p:fileUpload auto="true" skinSimple="true" mode="simple" listener="#{importarUsuariosBean.upload}" label="Arquivo" displayFilename="true">
-									<p:validateFile allowTypes="/(\.|\/)(csv)$/" />
-								</p:fileUpload>
-
-							</div>
-							<div class="field col-12 md:col-12">
-								<label>Curso:</label>
-
-							</div>
-							<div class="field col-12 md:col-3">
-								<h:outputLabel value="Possui Roles:" />
-								<p:selectBooleanCheckbox value="#{importarUsuariosBean.possuiRole}">
-									<p:ajax update="selectColunaRole"></p:ajax>
-								</p:selectBooleanCheckbox>
-							</div>
-							<div class="field col-12 md:col-3">
-								<h:outputLabel value="Coluna das Roles:(0->X)"/>
-								<p:inputNumber id="selectColunaRole" value="#{importarUsuariosBean.colunaRole}" disabled="#{!importarUsuariosBean.possuiRole}"/>
-							</div>
-
-							<div class="field col-12 md:col-3">
-								<h:outputLabel value="Linha do primeiro registro:(0 -> X)" />
-								<p:inputNumber value="#{importarUsuariosBean.firstRecrd}"/>
-							</div>
-							<div class="field col-12 md:col-3">
-								<h:outputLabel value="Inativar usuários ausentes:"/>
-								<p:selectBooleanCheckbox value="#{importarUsuariosBean.inativarMatriculasAusentes}"/>
-							</div>
-
-							<div class="field col-12 md:col-5">
-								<h:outputLabel value="Nome do Arquivo:" for="optFileName"/>
-								<h:outputText value="#{importarUsuariosBean.file.fileName}" id="optFileName"/>
-							</div>
-
-							<div class="field col-12 md:col-3">
-								<h:outputLabel value="Total de registros:" for="optTotalRecord"/>
-								<h:outputText value="#{importarUsuariosBean.sizeListRecord}" id="optTotalRecord"/>
-							</div>
-						</div>
-						<p:commandButton actionListener="#{importarUsuariosBean.initCreateUsers()}" value="Iniciar" ></p:commandButton>
-
-						<p>(0 -> X) primeira linha ou coluna do csv começa em 0, mas os dados começão em X</p>
-						<p:fragment  rendered="false">
-							<p:outputPanel id="itaSaida">
-								<h:outputText value="#{importarUsuariosBean.saidaTextoImportUser}" escape="false" style="    font-family: 'Courier New', monospace !important;"/>
-							</p:outputPanel>
-							<p:poll interval="2" update="frmMain:itaSaida" />
-						</p:fragment>
-
-					</p:panel>
+			<p:fragment  rendered="false">
+				<p:outputPanel id="itaSaida">
+					<h:outputText value="#{importarUsuariosBean.saidaTextoImportUser}" escape="false" style="    font-family: 'Courier New', monospace !important;"/>
 				</p:outputPanel>
-			</p:dialog>
+				<p:poll interval="2" update="frmMain:itaSaida" />
+			</p:fragment>
 		</h:form>
 
 	</ui:define>

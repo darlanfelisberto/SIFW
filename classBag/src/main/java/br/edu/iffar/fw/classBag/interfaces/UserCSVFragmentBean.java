@@ -14,6 +14,7 @@ import jakarta.inject.Named;
 import lombok.Getter;
 import lombok.Setter;
 import org.omnifaces.util.selectitems.SelectItemsBuilder;
+import org.primefaces.PrimeFaces;
 import org.primefaces.event.FileUploadEvent;
 import org.primefaces.event.FilesUploadEvent;
 import org.primefaces.model.DualListModel;
@@ -58,7 +59,6 @@ public class UserCSVFragmentBean implements Serializable {
 
         this.listCursos = this.cursosDAO.listAllCursos();
         this.listPermissao = this.permissaoDAO.listAll();
-        this.novoGrupoArquivos();
     }
 
     public void novoGrupoArquivos(){
@@ -73,15 +73,22 @@ public class UserCSVFragmentBean implements Serializable {
         this.rendNovoGrupoProcessamento = true;
     }
 
+    public void voltarImportarUsuario(){
+        if(this.grupoProcessamento != null){
+            this.enviar();
+        }
+        PrimeFaces.current().dialog().closeDynamic(this.configs);
+    }
+
 
     public void enviar(){
         if(!this.grupoProcessamento.usarColunaPermissao) {
             this.grupoProcessamento.setListPermissoes(this.dualListPermissoa.getTarget());
         }
         this.configs.getListGrupoProcessamentos().add(this.grupoProcessamento);
-        this.grupoProcessamento = new GrupoProcessamento();
         this.messagesUtil.addSuccess("Grupo para processamento enviado com sucesso!");
-        this.rendNovoGrupoProcessamento = true;
+        this.rendNovoGrupoProcessamento = false;
+        this.grupoProcessamento = null;
     }
 
     public void handleFileUpload(FileUploadEvent event) {

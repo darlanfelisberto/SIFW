@@ -9,12 +9,16 @@ import lombok.Setter;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
+import java.util.UUID;
 
 
 @Getter
 @Setter
 @NoArgsConstructor
 public class GrupoProcessamento implements Serializable {
+
+    UUID id = UUID.randomUUID();
 
     Boolean inativarMatriculasAusentes = false;
     Integer primeiroRegistro = 1;
@@ -33,4 +37,35 @@ public class GrupoProcessamento implements Serializable {
     List<FileInMemory> listFile = new ArrayList<>();
     List<Permissao> listPermissoes = new ArrayList<>();
 
+    public String toString(){
+        StringBuffer sb = new StringBuffer();
+        sb.append("Files[");
+        listFile.forEach(f -> sb.append(f.fileName).append(","));
+        sb.append("]");
+        if(usarColunaCurso){
+            sb.append(", Curso[coluna:"+this.colunaCurso+"]");
+        }else{
+            sb.append(", Curso["+this.curso.getNome()+"]");
+        }
+        sb.append(", Permissoes[");
+        if(usarColunaPermissao){
+            sb.append("coluna:"+this.colunaPermissao);
+        }else {
+            this.listPermissoes.forEach(permissao -> sb.append(permissao.getNome()).append(","));
+        }
+        sb.append("]");
+        return sb.toString();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof GrupoProcessamento that)) return false;
+        return Objects.equals(id, that.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(id);
+    }
 }
