@@ -18,13 +18,9 @@ public abstract class ImportarUsuariosImpl implements ImportarUsuarios,Runnable{
     @Inject
     protected BackgroudDAO backDAO;
 
-    protected StringBuffer saidaTextoImportUser;
+    protected StringBuffer saidaTextoProcessamento;
     protected int line;
-
-    protected LocalDateTime momento = LocalDateTime.now();
-
-    protected HashMap<String, Permissao> cacheRoles = new HashMap<>();
-
+    protected LocalDateTime momento;
     protected List<Matricula> listMatriculaHaInativar;
 
 
@@ -44,21 +40,28 @@ public abstract class ImportarUsuariosImpl implements ImportarUsuarios,Runnable{
         this.saidaSucess("Situacoes salvas com sucesso.");
     }
 
+    public String getSaida(){
+        return this.saidaTextoProcessamento.toString();
+    }
+
     public void saidaErro(String msg) {
         String m = String.format("error  [line:%d] %s <br/>",this.line, msg);
-        this.saidaTextoImportUser.append(m);
+        this.saidaTextoProcessamento.append(m);
     }
 
     public void saidaSucess(String msg) {
         String m = String.format("sucess [line:%d] %s <br/>",this.line, msg);
-        this.saidaTextoImportUser.append(m);
+        this.saidaTextoProcessamento.append(m);
     }
 
     public void saidaInfo(String msg) {
         String m = String.format("info   [line:%d] %s <br/>",this.line, msg);
-        this.saidaTextoImportUser.append(m);
+        this.saidaTextoProcessamento.append(m);
     }
 
     @Override
-    abstract public void run();
+    public void run(){
+        this.saidaTextoProcessamento = new StringBuffer();
+        this.saidaInfo("Iniciando Processamento");
+    };
 }

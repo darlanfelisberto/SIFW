@@ -12,6 +12,8 @@ public interface ImportarUsuarios {
     public void initConfigs();
     public void onConfig(SelectEvent<Configs> event);
 
+    public String getSaida();
+
     default public String getNomePadrao(String nome) {
         String[] nn = nome.toLowerCase().trim().split(" ");
         StringBuilder s = new StringBuilder();

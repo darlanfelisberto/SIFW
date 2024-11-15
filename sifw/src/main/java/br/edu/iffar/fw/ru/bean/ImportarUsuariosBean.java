@@ -18,10 +18,12 @@ import jakarta.faces.model.SelectItem;
 import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
+import lombok.Getter;
 
 
 @Named
 @ViewScoped
+@Getter
 public class ImportarUsuariosBean implements Serializable, BreadCrumbControl {
 
 	private static final long serialVersionUID = 22021991L;
@@ -33,12 +35,10 @@ public class ImportarUsuariosBean implements Serializable, BreadCrumbControl {
 	@Inject private CursosDAO cursosDAO;
 	@Inject private HasRoleBean hasRoleBean;
 
-	private StringBuffer saidaTextoImportUser = new StringBuffer();
-
-
 	private boolean rendSeleciona;
 	private boolean rendRunImpotacao;
 	private boolean rendConfigTypeCSV;
+	private boolean rendLog;
 
 
 	private BreadCrumb breadCrumb;
@@ -81,6 +81,13 @@ public class ImportarUsuariosBean implements Serializable, BreadCrumbControl {
 //		mes.execute(iui);
 	}
 
+	public void startThread(){
+		this.rendLog = true;
+		this.messages.addSuccess("Processamento iniciado.");
+		mes.execute(this.importarUsuarios);
+
+	}
+
 	public void telaSelecionaTipoImportacao() {
 		this.rendSeleciona = true;
 		this.rendConfigTypeCSV = false;
@@ -97,33 +104,12 @@ public class ImportarUsuariosBean implements Serializable, BreadCrumbControl {
 		this.breadCrumb.setAtivo(2);
 	}
 
-
-	public ImportarUsuariosImpl getImportarUsuarios() {
-		return importarUsuarios;
-	}
-
-	public boolean isRendRunImpotacao() {
-		return rendRunImpotacao;
-	}
-
-	public boolean isRendSeleciona() {
-		return rendSeleciona;
-	}
-
-	public List<SelectItem> getListSelectIten() {
-		return listSelectIten;
-	}
-
 	public void initCreateUsers() {
 
 		System.out.println("continuou");
     }
 	public boolean isRendConfigTypeCSV() {
 		return (this.tipoImportacaoSelecionada != null && this.tipoImportacaoSelecionada.equals(CSVImportUsuarios.class));
-	}
-
-	public String getSaidaTextoImportUser() {
-		return this.saidaTextoImportUser.toString();
 	}
 
 	@Override

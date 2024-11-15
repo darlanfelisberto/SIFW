@@ -41,19 +41,21 @@
 			</p:outputPanel>
 
 			<p:outputPanel rendered="#{importarUsuariosBean.rendConfigTypeCSV}">
-
-				<p:commandButton action="#{importarUsuariosBean.telaConfigTipoImportacao}" label="ds">
+				<p:commandButton action="#{importarUsuariosBean.telaConfigTipoImportacao}" value="Config">
 					<p:ajax event="dialogReturn" listener="#{importarUsuariosBean.importarUsuarios.onConfig}"/>
 				</p:commandButton>
-
+				<p:commandButton action="#{importarUsuariosBean.startThread}" value="Thread run" update="frmMain:otpLog">
+				</p:commandButton>
 			</p:outputPanel>
 
-			<p:fragment  rendered="false">
-				<p:outputPanel id="itaSaida">
-					<h:outputText value="#{importarUsuariosBean.saidaTextoImportUser}" escape="false" style="    font-family: 'Courier New', monospace !important;"/>
-				</p:outputPanel>
-				<p:poll interval="2" update="frmMain:itaSaida" />
-			</p:fragment>
+			<p:outputPanel id="otpLog">
+				<p:fragment  rendered="#{importarUsuariosBean.rendLog}">
+					<p:outputPanel id="itaSaida">
+						<h:outputText value="#{importarUsuariosBean.importarUsuarios.saida}" escape="false" style="    font-family: 'Courier New', monospace !important;"/>
+					</p:outputPanel>
+					<p:poll interval="2" update="frmMain:itaSaida" />
+				</p:fragment>
+			</p:outputPanel>
 		</h:form>
 
 	</ui:define>

@@ -35,7 +35,8 @@ public class CSVImportUsuarios extends ImportarUsuariosImpl{
 	private Map<String,Permissao> listAllPermissaos;
 	protected List<CSVRecord> listRescord;
 
-	public void run() {}
+	public void run() {
+		super.run();
 //		try {
 //			this.listAllPermissaos = this.backDAO.listAllPermissaos();
 //			this.saidaInfo("processamento em background iniciando....");
@@ -140,7 +141,7 @@ public class CSVImportUsuarios extends ImportarUsuariosImpl{
 //		m.setTipoVinculo(this.curso.getTipoVinculo());
 //		m.setCurso(this.curso);
 //		return m;
-//	}
+	}
 
 	public void upload(FileUploadEvent event) {
 
