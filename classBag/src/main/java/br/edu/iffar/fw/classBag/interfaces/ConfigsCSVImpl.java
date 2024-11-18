@@ -12,8 +12,4 @@ public class ConfigsCSVImpl implements Configs{
 
     private List<GrupoProcessamento> listGrupoProcessamentos = new ArrayList<>();
 
-
-    public void enviarForm(){
-
-    }
 }

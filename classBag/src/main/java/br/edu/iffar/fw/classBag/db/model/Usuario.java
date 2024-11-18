@@ -190,9 +190,10 @@ public class Usuario extends Model<UUID> implements Serializable {
 		this.pessoa = pessoa;
 	}
 
-	public static Usuario createUsuario(AuthUser authUser){
+	public static Usuario createUsuario(Pessoa pessoa){
 		Usuario u = new Usuario();
-		u.setPessoa(authUser.getPessoa());
+		u.setTokenRU(UUID.randomUUID().toString());
+		u.setPessoa(pessoa);
 		return u;
 	}
 }

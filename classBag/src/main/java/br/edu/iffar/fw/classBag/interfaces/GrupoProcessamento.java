@@ -7,10 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
-import java.util.UUID;
+import java.util.*;
 
 
 @Getter
@@ -20,11 +17,12 @@ public class GrupoProcessamento implements Serializable {
 
     UUID id = UUID.randomUUID();
 
+    //tipo arquivo, servidor aluno
     Boolean inativarMatriculasAusentes = false;
     Integer primeiroRegistro = 1;
 
     Boolean usarColunaPermissao = true;
-    Integer colunaPermissao = 8;
+    Integer colunaPermissao = 6;
 
     boolean usarColunaCurso = true;
     Integer colunaCurso = 7;
@@ -36,6 +34,17 @@ public class GrupoProcessamento implements Serializable {
 
     List<FileInMemory> listFile = new ArrayList<>();
     List<Permissao> listPermissoes = new ArrayList<>();
+
+    public Set<Permissao> toSetPermissoes() {
+        Set<Permissao> setPermissoes = new HashSet<>();
+        setPermissoes.addAll(listPermissoes);
+        return setPermissoes;
+    }
+
+    public boolean isServidor(){
+        return false;
+    }
+
 
     public String toString(){
         StringBuffer sb = new StringBuffer();

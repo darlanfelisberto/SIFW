@@ -1,6 +1,7 @@
 package br.edu.iffar.fw.classBag.db.model;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -9,6 +10,7 @@ import java.util.UUID;
 
 import br.edu.iffar.fw.classBag.db.model.interfaces.VinculosAtivosUsuarios;
 import br.com.feliva.sharedClass.db.Model;
+import br.edu.iffar.fw.classBag.enun.TypeSituacao;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -143,6 +145,17 @@ public class Matricula extends Model<UUID> implements Serializable,VinculosAtivo
 	
 	public String getLabel() {
 		return "Aluno, " + this.tipoVinculo.getDescricao() + " - " + this.getIdMatricula();
+	}
+
+	public static Matricula createMatricula(Usuario usuario,Curso curso) {
+		Matricula m = new Matricula();
+		m.setUsuario(usuario);
+		usuario.addMatricula(m);
+		m.setCurso(curso);
+		//TO-DO TODO renmover tipo vinculo da matricula
+		m.setTipoVinculo(curso.getTipoVinculo());
+		m.addSituacaoMatricula(new SituacaoMatricula(TypeSituacao.ATIVA, LocalDateTime.now(),m));
+		return m;
 	}
 
 }

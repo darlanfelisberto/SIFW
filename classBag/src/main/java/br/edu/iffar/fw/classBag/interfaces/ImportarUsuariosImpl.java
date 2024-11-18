@@ -8,24 +8,29 @@ import br.edu.iffar.fw.classBag.db.model.SituacaoMatricula;
 import br.edu.iffar.fw.classBag.enun.TypeSituacao;
 import jakarta.inject.Inject;
 import jakarta.transaction.RollbackException;
+import org.apache.commons.csv.CSVRecord;
 
 import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public abstract class ImportarUsuariosImpl implements ImportarUsuarios,Runnable{
 
     @Inject
     protected BackgroudDAO backDAO;
 
-    protected StringBuffer saidaTextoProcessamento;
+    protected StringBuffer saidaTextoProcessamento = new StringBuffer();
     protected int line;
     protected LocalDateTime momento;
     protected List<Matricula> listMatriculaHaInativar;
+    protected List<CSVRecord> listRescord;
 
 
     protected void inativaMatriculasAusentes(){
-        LocalDateTime momento = LocalDateTime.now();
+        if(this.listMatriculaHaInativar == null || this.listMatriculaHaInativar.isEmpty()){
+            return;
+        }
         this.listMatriculaHaInativar.forEach(mat->{
             try {
                 mat.getUsuario().getPessoa().getAuthUser().setInativo(true);
@@ -33,11 +38,10 @@ public abstract class ImportarUsuariosImpl implements ImportarUsuarios,Runnable{
                 this.backDAO.persistT(new SituacaoMatricula(TypeSituacao.INATIVA, momento, mat));
                 this.saidaInfo("Lançando situação: " + TypeSituacao.INATIVA.getDesc() + " para a matrícula: "+mat.getIdMatricula() + " para o usuário:"+mat.getUsuario().getPessoa().getCpf());
             } catch (RollbackException e) {
-                e.printStackTrace();
-                this.saidaErro("Erro ao Lançar situacão Inativa para o aluno: " + mat.getUsuario().getPessoa().getCpf()+"  --  "+e.getMessage());
+                this.saidaErro("Inativação de usuário: [matricula:" +mat.getIdMatricula()+", cpf:"+ mat.getUsuario().getPessoa().getCpf()+"]");
+                this.saidaErro( e.getMessage());
             }
         });
-        this.saidaSucess("Situacoes salvas com sucesso.");
     }
 
     public String getSaida(){
@@ -59,9 +63,22 @@ public abstract class ImportarUsuariosImpl implements ImportarUsuarios,Runnable{
         this.saidaTextoProcessamento.append(m);
     }
 
+    public  abstract void execute();
+
     @Override
     public void run(){
-        this.saidaTextoProcessamento = new StringBuffer();
-        this.saidaInfo("Iniciando Processamento");
+        try {
+//            this.listCurso = this.backDAO.getCursosDAO().listAllCursos();
+
+
+            this.saidaTextoProcessamento = new StringBuffer();
+            this.saidaInfo("Iniciando Processamento");
+            this.momento =  LocalDateTime.now();
+            this.execute();
+            this.inativaMatriculasAusentes();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
     };
 }

@@ -13,6 +13,10 @@ public interface ImportarUsuarios {
     public void onConfig(SelectEvent<Configs> event);
 
     public String getSaida();
+    
+    default public String cpf11(String cpf){
+        return "0".repeat(11 - cpf.length()) + cpf;
+    } 
 
     default public String getNomePadrao(String nome) {
         String[] nn = nome.toLowerCase().trim().split(" ");

@@ -13,6 +13,7 @@ import java.util.UUID;
 import javax.imageio.ImageIO;
 
 import br.com.feliva.authClass.models.AuthUser;
+import br.com.feliva.authClass.models.Pessoa;
 import br.edu.iffar.fw.classBag.db.model.Usuario;
 import org.primefaces.event.CaptureEvent;
 import org.primefaces.event.FileUploadEvent;
@@ -173,7 +174,7 @@ public class UsuariosBean implements Serializable, BreadCrumbControl{
 	}
 
 	public void novoUsuario() {
-		this.userSel = Usuario.createUsuario(AuthUser.createNew());
+		this.userSel = Usuario.createUsuario(Pessoa.createNew());
 		carregaPermissoesDisponiveis();
 		this.telaDadosUsuario();
 		this.breadCrumb.setAtivo(4);

@@ -75,10 +75,6 @@ public class ImportarUsuariosBean implements Serializable, BreadCrumbControl {
 		}
 
         this.importarUsuarios = insbuc.select((Class<? extends ImportarUsuariosImpl>) this.tipoImportacaoSelecionada).get();
-
-//		this.importarUsuarios.initConfigs();
-//		iui.setDados(this.saidaTextoImportUser,this.curso,(this.possuiRole?this.colunaRole:-1),this.inativarMatriculasAusentes,this.firstRecrd);
-//		mes.execute(iui);
 	}
 
 	public void startThread(){
@@ -116,7 +112,6 @@ public class ImportarUsuariosBean implements Serializable, BreadCrumbControl {
 	public BreadCrumb getBreadCrumb() {
 		return this.breadCrumb;
 	}
-
 
 	public Class getTipoimportacao() {
 		return this.tipoImportacaoSelecionada;
