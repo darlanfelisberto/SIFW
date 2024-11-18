@@ -41,11 +41,17 @@
 			</p:outputPanel>
 
 			<p:outputPanel rendered="#{importarUsuariosBean.rendConfigTypeCSV}">
-				<p:commandButton action="#{importarUsuariosBean.telaConfigTipoImportacao}" value="Config">
-					<p:ajax event="dialogReturn" listener="#{importarUsuariosBean.importarUsuarios.onConfig}"/>
-				</p:commandButton>
-				<p:commandButton action="#{importarUsuariosBean.startThread}" value="Thread run" update="frmMain:otpLog">
-				</p:commandButton>
+				<div class="flex mt-3">
+					<div class="mr-3">
+						<p:commandButton action="#{importarUsuariosBean.telaConfigTipoImportacao}" value="Config">
+							<p:ajax event="dialogReturn" listener="#{importarUsuariosBean.importarUsuarios.onConfig}"/>
+						</p:commandButton>
+					</div>
+					<div class="mr-3">
+						<p:commandButton action="#{importarUsuariosBean.startThread}" value="Thread run" update="frmMain:otpLog">
+						</p:commandButton>
+					</div>
+				</div>
 			</p:outputPanel>
 
 			<p:outputPanel id="otpLog">

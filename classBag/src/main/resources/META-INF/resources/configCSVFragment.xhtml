@@ -29,9 +29,16 @@
 							#{grupo.toString()}
 						</p:column>
 					</p:dataTable>
-					<p:commandButton actionListener="#{userCSVFragmentBean.criarNovoGrupoProcessamento}" update="frm" value="Novo grupo de proc.">
-
-					</p:commandButton>
+					<div class="flex mt-3">
+						<div class="mr-3">
+							<p:commandButton actionListener="#{userCSVFragmentBean.criarNovoGrupoProcessamento}" update="frm" value="Novo grupo de proc.">
+							</p:commandButton>
+						</div>
+						<div class="mr-3">
+							<p:commandButton actionListener="#{userCSVFragmentBean.voltarImportarUsuario}" update="frm" value="Fechar/Voltar">
+							</p:commandButton>
+						</div>
+					</div>
 				</p:panel>
 			</p:outputPanel>
 
