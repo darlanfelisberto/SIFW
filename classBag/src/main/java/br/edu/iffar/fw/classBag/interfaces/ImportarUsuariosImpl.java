@@ -6,6 +6,7 @@ import br.edu.iffar.fw.classBag.db.model.Curso;
 import br.edu.iffar.fw.classBag.db.model.Matricula;
 import br.edu.iffar.fw.classBag.db.model.SituacaoMatricula;
 import br.edu.iffar.fw.classBag.enun.TypeSituacao;
+import br.edu.iffar.fw.classBag.util.MessagesUtil;
 import jakarta.inject.Inject;
 import jakarta.transaction.RollbackException;
 import org.apache.commons.csv.CSVRecord;
@@ -63,13 +64,14 @@ public abstract class ImportarUsuariosImpl implements ImportarUsuarios,Runnable{
         this.saidaTextoProcessamento.append(m);
     }
 
-    public  abstract void execute();
+    public abstract void execute();
+    public abstract void isOk() throws ConfigException;
 
     @Override
     public void run(){
         try {
-//            this.listCurso = this.backDAO.getCursosDAO().listAllCursos();
 
+            this.isOk();
 
             this.saidaTextoProcessamento = new StringBuffer();
             this.saidaInfo("Iniciando Processamento");
@@ -78,6 +80,8 @@ public abstract class ImportarUsuariosImpl implements ImportarUsuarios,Runnable{
             this.inativaMatriculasAusentes();
         }catch (Exception e){
             e.printStackTrace();
+        }catch (ConfigException e){
+            this.saidaErro(e.getMessage());
         }
 
     };

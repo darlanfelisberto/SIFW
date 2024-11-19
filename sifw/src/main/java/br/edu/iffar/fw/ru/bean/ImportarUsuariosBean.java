@@ -3,6 +3,8 @@ package br.edu.iffar.fw.ru.bean;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+
+import br.edu.iffar.fw.classBag.interfaces.ConfigException;
 import br.edu.iffar.fw.classBag.interfaces.ImportarUsuariosImpl;
 import jakarta.faces.event.AjaxBehaviorEvent;
 import br.edu.iffar.fw.classBag.db.dao.CursosDAO;
@@ -62,9 +64,8 @@ public class ImportarUsuariosBean implements Serializable, BreadCrumbControl {
 	public void createBreadCrumb() {
 		this.breadCrumb = new BreadCrumb()
 			.inicializa()
-				.addItem("Busca de usuário", "#{importarUsuariosBean.telaFiltroBusca()}", "frmMain", BreadCrumb.RAIZ)// 1
-				.addItem("Importar usuários", "#{importarUsuariosBean.telaShowDataFile()}", "frmMain", 1)// 2
-				.addItem("Dados do usuário", "#{importarUsuariosBean.telaDadosUsuario()}", "frmMain", 1);// 3
+				.addItem("Importar usuários", BreadCrumb.RAIZ)// 2
+
 			;
 	}
 
@@ -78,10 +79,15 @@ public class ImportarUsuariosBean implements Serializable, BreadCrumbControl {
 	}
 
 	public void startThread(){
-		this.rendLog = true;
-		this.messages.addSuccess("Processamento iniciado.");
+        try {
+            this.importarUsuarios.isOk();
+        } catch (ConfigException e) {
+            this.messages.addError(e.getMessage());
+			return;
+        }
+        this.rendLog = true;
 		mes.execute(this.importarUsuarios);
-
+		this.messages.addSuccess("Processamento iniciado.");
 	}
 
 	public void telaSelecionaTipoImportacao() {

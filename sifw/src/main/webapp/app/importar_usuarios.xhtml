@@ -16,6 +16,11 @@
 	<ui:define name="main">
 
 		<h:form id="frmMain" enctype="multipart/form-data">
+
+			<p:confirmPopup global="true">
+				<p:commandButton value="Não" type="button" styleClass="ui-confirm-popup-no ui-button-flat"/>
+				<p:commandButton value="Sim" type="button" styleClass="ui-confirm-popup-yes" />
+			</p:confirmPopup>
 			<p:growl showDetail="true" showSummary="true">
 				<p:autoUpdate></p:autoUpdate>
 			</p:growl>
@@ -25,7 +30,7 @@
 			</p:breadCrumb>	
 
 			<p:outputPanel>
-				<p:panel header="Busca de usuários" rendered="#{importarUsuariosBean.rendSeleciona}">
+				<p:panel header="Tipo de Importação" rendered="#{importarUsuariosBean.rendSeleciona}">
 					<div class="ui-fluid formgrid grid">
 						<div class="field col-6 md:col-6">
 							<label>Importar usuários:</label>
@@ -37,22 +42,24 @@
 							</p:selectOneMenu>
 						</div>
 					</div>
+					<p:outputPanel rendered="#{importarUsuariosBean.rendConfigTypeCSV}">
+						<div class="flex mt-3">
+							<div class="mr-3">
+								<p:commandButton action="#{importarUsuariosBean.telaConfigTipoImportacao}" value="Config">
+									<p:ajax event="dialogReturn" listener="#{importarUsuariosBean.importarUsuarios.onConfig}"/>
+								</p:commandButton>
+							</div>
+							<div class="mr-3">
+								<p:commandButton action="#{importarUsuariosBean.startThread}" value="Thread run" update="frmMain:otpLog">
+									<p:confirm type="popup" header="Confirmação" message="Tem certeza que quer continuar?" icon="pi pi-exclamation-triangle"/>
+								</p:commandButton>
+							</div>
+						</div>
+					</p:outputPanel>
 				</p:panel>
 			</p:outputPanel>
 
-			<p:outputPanel rendered="#{importarUsuariosBean.rendConfigTypeCSV}">
-				<div class="flex mt-3">
-					<div class="mr-3">
-						<p:commandButton action="#{importarUsuariosBean.telaConfigTipoImportacao}" value="Config">
-							<p:ajax event="dialogReturn" listener="#{importarUsuariosBean.importarUsuarios.onConfig}"/>
-						</p:commandButton>
-					</div>
-					<div class="mr-3">
-						<p:commandButton action="#{importarUsuariosBean.startThread}" value="Thread run" update="frmMain:otpLog">
-						</p:commandButton>
-					</div>
-				</div>
-			</p:outputPanel>
+
 
 			<p:outputPanel id="otpLog">
 				<p:fragment  rendered="#{importarUsuariosBean.rendLog}">

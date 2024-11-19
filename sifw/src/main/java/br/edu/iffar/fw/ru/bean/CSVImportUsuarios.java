@@ -170,6 +170,15 @@ public class CSVImportUsuarios extends ImportarUsuariosImpl{
 		this.config = (ConfigsCSVImpl) event.getObject();
 	}
 
+	public void isOk()throws ConfigException{
+		if(this.config == null){
+			throw new ConfigException("Faça as configurações antes de iniciar.");
+		}
+		if(this.config.getListGrupoProcessamentos() == null ||this.config.getListGrupoProcessamentos().isEmpty()){
+			throw new ConfigException("Não existe grupos de processamento.");
+		}
+	}
+
 	public void setDados(Configs configs) {
 		this.config = (ConfigsCSVImpl) configs;
 	}
