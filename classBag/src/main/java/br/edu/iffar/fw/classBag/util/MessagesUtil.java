@@ -17,8 +17,6 @@ public class MessagesUtil {
 	
 	private FacesContext fc = FacesContext.getCurrentInstance();
 	
-	@Inject private UsuariosDAO usuariosDAO;	
-	
 	public MessagesUtil() {}
 	
 	public void addSuccess(String summary,String details) {
@@ -34,17 +32,14 @@ public class MessagesUtil {
 	}
 	
 	public void addError(String summary) {
-		System.out.println("user:"+this.usuariosDAO.getUsernameLogado()+"|"+summary);
 		fc.addMessage("", new FacesMessage(FacesMessage.SEVERITY_ERROR, summary, ""));
 	}
 
 	public void addWarn(String summary) {
-		System.out.println("user:"+this.usuariosDAO.getUsernameLogado()+"|"+summary);
 		fc.addMessage("", new FacesMessage(FacesMessage.SEVERITY_WARN, summary,""));
 	}
 
 	public void addWarn(String summary,String details) {
-		System.out.println("user:"+this.usuariosDAO.getUsernameLogado()+"|"+summary+"|"+details);
 		fc.addMessage("", new FacesMessage(FacesMessage.SEVERITY_WARN, summary, details));
 	}
 	
@@ -52,7 +47,6 @@ public class MessagesUtil {
 		if(e.getCause() instanceof ConstraintViolationException) {
 			ConstraintViolationException c = (ConstraintViolationException) e.getCause();
 			c.getConstraintViolations().forEach(violation->{
-				System.out.println("user:"+this.usuariosDAO.getUsernameLogado()+"|"+violation.getMessage());
 				fc.addMessage("", new FacesMessage(FacesMessage.SEVERITY_ERROR, violation.getMessage(), ""));
 			});		
 		}
@@ -60,7 +54,6 @@ public class MessagesUtil {
 	
 	public void addError(Set<ConstraintViolation<Object>> violacoes) {
 		violacoes.forEach(cv->{
-			System.out.println("user:"+this.usuariosDAO.getUsernameLogado()+"|"+cv.getMessage());
 			fc.addMessage("", new FacesMessage(FacesMessage.SEVERITY_ERROR, cv.getMessage(), ""));
 		});
 	}
