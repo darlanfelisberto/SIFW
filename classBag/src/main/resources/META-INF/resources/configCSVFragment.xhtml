@@ -97,7 +97,7 @@
 											Curso:
 										</label>
 										<p:selectBooleanCheckbox  value="#{userCSVFragmentBean.grupoProcessamento.usarColunaCurso}" >
-											<p:ajax  update="fdsCurso" />
+											<p:ajax  update="fdsCurso frm:fdsUsuarios" />
 										</p:selectBooleanCheckbox >
 									</div>
 									<div class="field col-12 md:col-6" faces:rendered="#{!userCSVFragmentBean.grupoProcessamento.usarColunaCurso}">
@@ -141,15 +141,15 @@
 						</div>
 
 						<div class="field col-12 md:col-12">
-							<p:fieldset legend="Usuários" toggleable="true" collapsed="true">
+							<p:fieldset legend="Usuários" toggleable="true" id="fdsUsuarios">
 								<div class="ui-fluid formgrid grid">
 									<div class="field col-12 md:col-3">
 										<h:outputLabel value="Linha do primeiro registro:" />
 										<p:inputNumber value="#{userCSVFragmentBean.grupoProcessamento.primeiroRegistro}"/>
 									</div>
 									<div class="field col-12 md:col-3">
-										<label><abbr title="Usuários que estejam presentes nesta planilha serão inativados, se marcado.">Inativar usuários ausentes</abbr>:</label>>
-										<p:selectBooleanCheckbox value="#{userCSVFragmentBean.grupoProcessamento.inativarMatriculasAusentes}"/>
+										<label><abbr title="Inativa usuários não presentes na planilha, quando é informado um curso para o grupo.">Inativar usuários ausentes</abbr>:</label>>
+										<p:selectBooleanCheckbox value="#{userCSVFragmentBean.grupoProcessamento.inativarMatriculasAusentes}" disabled="#{userCSVFragmentBean.grupoProcessamento.usarColunaCurso}"/>
 									</div>
 								</div>
 							</p:fieldset>

@@ -11,8 +11,11 @@ import jakarta.faces.model.SelectItem;
 import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
+import jakarta.transaction.RollbackException;
+import jakarta.validation.ConstraintViolation;
 import lombok.Getter;
 import lombok.Setter;
+import org.omnifaces.util.Validators;
 import org.omnifaces.util.selectitems.SelectItemsBuilder;
 import org.primefaces.PrimeFaces;
 import org.primefaces.event.FileUploadEvent;
@@ -23,6 +26,7 @@ import org.primefaces.model.file.UploadedFile;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 @Named
 @ViewScoped
@@ -82,6 +86,12 @@ public class UserCSVFragmentBean implements Serializable {
 
 
     public void enviar(){
+        Set<ConstraintViolation<Object>> violations = Validators.getBeanValidator().validate(this.grupoProcessamento);
+        if(!violations.isEmpty()){
+            this.messagesUtil.addError(violations);
+            return;
+        }
+
         if(!this.grupoProcessamento.usarColunaPermissao) {
             this.grupoProcessamento.setListPermissoes(this.dualListPermissoa.getTarget());
         }

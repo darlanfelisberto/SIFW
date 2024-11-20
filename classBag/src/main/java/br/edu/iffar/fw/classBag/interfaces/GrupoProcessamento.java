@@ -2,6 +2,8 @@ package br.edu.iffar.fw.classBag.interfaces;
 
 import br.com.feliva.authClass.models.Permissao;
 import br.edu.iffar.fw.classBag.db.model.Curso;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -32,6 +34,8 @@ public class GrupoProcessamento implements Serializable {
     Character delimitadorTexto = '"';
     String codificacaoArquivo = "UTF-8";
 
+    @NotNull(message = "Informe pelo menos um arquivo.")
+    @NotEmpty(message = "Informe pelo menos um arquivo.")
     List<FileInMemory> listFile = new ArrayList<>();
     List<Permissao> listPermissoes = new ArrayList<>();
 

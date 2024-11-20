@@ -3,6 +3,7 @@ package br.edu.iffar.fw.classBag.util;
 import java.util.Set;
 
 import br.edu.iffar.fw.classBag.db.dao.UsuariosDAO;
+import br.edu.iffar.fw.classBag.interfaces.GrupoProcessamento;
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.faces.application.FacesMessage;
 import jakarta.faces.context.FacesContext;
@@ -63,5 +64,4 @@ public class MessagesUtil {
 			fc.addMessage("", new FacesMessage(FacesMessage.SEVERITY_ERROR, cv.getMessage(), ""));
 		});
 	}
-
 }
