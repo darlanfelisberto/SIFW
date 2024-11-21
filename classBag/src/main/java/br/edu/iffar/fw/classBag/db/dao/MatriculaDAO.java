@@ -74,6 +74,7 @@ public class MatriculaDAO extends DAO<Matricula> {
 		
 		this.em.createQuery("""
 				select m from Matricula m
+				left join fetch m.curso c
 				left join fetch m.listSituacaoMatricula sm
 				where m.usuario = :usuario
 				order by m.idMatricula, sm.situacao

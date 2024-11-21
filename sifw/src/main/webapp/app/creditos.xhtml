@@ -2,7 +2,8 @@
 	xmlns:h="jakarta.faces.html"
 	xmlns:f="jakarta.faces.core"
 	xmlns:ui="jakarta.faces.facelets"
-	xmlns:p="http://primefaces.org/ui" template="/public/_template.xhtml">
+	xmlns:c="jakarta.tags.core"
+	xmlns:p="primefaces" template="/public/_template.xhtml">
 
 
 	<ui:define name="header">
@@ -18,7 +19,7 @@
 			<p:breadCrumb model="#{creditoAdminBean.breadCrumb.model}"  id="bread">
 			</p:breadCrumb>			
 			<p:growl showSummary="true">
-				<p:autoUpdate></p:autoUpdate>
+				<p:autoUpdate/>
 			</p:growl>	
 			<p:outputPanel id="optBuscaUsuarios" rendered="#{creditoAdminBean.rendTelaFiltro}">
 				<p:panel header="Busca de Usuário">	
@@ -35,13 +36,13 @@
 							<p:outputPanel id="otpInputBusca" >
 								<p:inputMask label="CPF" mask="999.999.999-99" value="#{creditoAdminBean.buscaIsso}" rendered="#{creditoAdminBean.tipoBusca == 1}" required="true"/>
 								<p:inputText label="Nome" id="iptNome" value="#{creditoAdminBean.buscaIsso}" rendered="#{creditoAdminBean.tipoBusca == 2}" required="true" >
-									<f:validateLength minimum="5" for="iptNome" ></f:validateLength>
+									<f:validateLength minimum="5" for="iptNome" />
 								</p:inputText>
 							</p:outputPanel>
 						</div>
 					</div>
 					<div class="field flex-inline-space">
-						<p:commandButton value="Buscar" actionListener="#{creditoAdminBean.buscar()}" update="frmMain" icon="pi pi-search" styleClass="ui-button-info"></p:commandButton>
+						<p:commandButton value="Buscar" actionListener="#{creditoAdminBean.buscar()}" update="frmMain" icon="pi pi-search" styleClass="ui-button-info"/>
 					</div>
 				</p:panel>
 			</p:outputPanel>

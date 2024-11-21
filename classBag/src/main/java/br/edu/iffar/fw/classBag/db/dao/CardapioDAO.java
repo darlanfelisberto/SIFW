@@ -24,7 +24,25 @@ public class CardapioDAO extends DAO<Cardapio> {
 		
 		return this.em.createQuery(hql).setParameter("data", data).getResultList();
 	}
-	
+
+	public Cardapio findCardapioByData(LocalDate data){
+		String hql = """
+						select c from Cardapio c
+						where :data between c.dtInicio and c.dtFim
+						order by c.dtInicio
+					""";
+		Cardapio c = null;
+		try {
+			c = (Cardapio) this.em.createQuery(hql).setParameter("data", data).setMaxResults(1).getSingleResult();
+		}catch (NoResultException e){
+
+		}catch (Exception e){
+			e.printStackTrace();
+		}
+
+		return c;
+	}
+
 	public List<Cardapio> findLastCardapio(){
 		String hql = "from Cardapio c order by c.dtInicio desc";
 		
