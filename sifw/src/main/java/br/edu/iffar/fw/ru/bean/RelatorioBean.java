@@ -102,8 +102,8 @@ public class RelatorioBean implements Serializable{
 			barData.addDataset(barDataset);
 		});
 
-		this.agendamentosDAO.getDiasPeriodo(this.dtInicio,this.dtFim).forEach(localDate -> {
-			labels.add(localDate.toString());
+		this.agendamentosDAO.getDiasPeriodo(this.dtInicio,this.dtFim).forEach(dia -> {
+			labels.add(dia);
 		});
 
 		barData.setLabels(labels);

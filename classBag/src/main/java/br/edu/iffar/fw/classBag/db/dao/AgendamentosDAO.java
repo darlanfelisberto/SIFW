@@ -38,10 +38,10 @@ public class AgendamentosDAO extends DAO<Agendamento> {
 		return null;
 	}
 
-	public List<LocalDate> getDiasPeriodo(LocalDate dtInicial,LocalDate dtFim) {
+	public List<String> getDiasPeriodo(LocalDate dtInicial,LocalDate dtFim) {
 		Query q = this.em.createNativeQuery("""
-				 	select generate_series(cast(:dtInicial as date) , cast(:dtFim as date)  , '1 day')
-				""",LocalDate.class)
+				 	select TO_CHAR(dia, 'dd/mm/yyyy') from generate_series(cast(:dtInicial as date) , cast(:dtFim as date)  , '1 day') dia
+				""",String.class)
 				.setParameter("dtInicial", dtInicial)
 				.setParameter("dtFim", dtFim);
 
