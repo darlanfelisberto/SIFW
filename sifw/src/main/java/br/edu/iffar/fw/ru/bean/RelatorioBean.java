@@ -22,6 +22,8 @@ import org.primefaces.model.charts.ChartData;
 import org.primefaces.model.charts.bar.BarChartDataSet;
 import org.primefaces.model.charts.bar.BarChartModel;
 
+import software.xdev.chartjs.model.charts.BarChart;
+
 import br.edu.iffar.fw.classBag.db.dao.AgendamentosDAO;
 import br.edu.iffar.fw.classBag.db.dao.GrupoRefeicoesDAO;
 import br.edu.iffar.fw.classBag.db.dao.RelatoriosDAO;
@@ -36,6 +38,9 @@ import jakarta.annotation.PostConstruct;
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
+import software.xdev.chartjs.model.data.BarData;
+import software.xdev.chartjs.model.dataset.BarDataset;
+import software.xdev.chartjs.model.options.elements.Bar;
 
 
 @Named
@@ -85,42 +90,26 @@ public class RelatorioBean implements Serializable{
 			return;
 		}
 	}
-	
-    public BarChartModel getBarModel() {
 
+	public String getBarChart() {
+		BarData barData =  new BarData();
+		Set<String> labels = new HashSet<>();
+		this.tipoRefeicaoDAO.listAll().forEach(tipoRefeicao -> {
+			BarDataset barDataset = new BarDataset();
+			barDataset.addBackgroundColor(tipoRefeicao.getBackgroundColor());
+			barDataset.setLabel(tipoRefeicao.getDescricao());
+			barDataset.setData(agendamentosDAO.getAgendamentoEmDataPeriodo(this.dtInicio, this.dtFim,tipoRefeicao));
+			barData.addDataset(barDataset);
+		});
 
-		DateTimeFormatter sdf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-    	BarChartModel barModel = new BarChartModel();
-        ChartData data = new ChartData();
+		this.agendamentosDAO.getDiasPeriodo(this.dtInicio,this.dtFim).forEach(localDate -> {
+			labels.add(localDate.toString());
+		});
 
-        List<String> labels = new ArrayList<String>();
-        
-        List<TipoRefeicao> tipo = this.tipoRefeicaoDAO.listAll();
+		barData.setLabels(labels);
 
-        boolean datas = true;
-        for (TipoRefeicao tipoRefeicao : tipo) {
-        	BarChartDataSet barDataSetJanta = new BarChartDataSet();
-            barDataSetJanta.setLabel(tipoRefeicao.getDescricao());
-            barDataSetJanta.setBackgroundColor(tipoRefeicao.getBackgroundColor());
-
-            List<Number> days = new ArrayList<Number>();
-            barDataSetJanta.setData(Collections.singletonList(days));
-            for (Object[] a : agendamentosDAO.getAgendamentoEmDataPeriodo(this.dtInicio, this.dtFim,tipoRefeicao)) {
-            	days.add(((Number)a[1]).intValue());
-            	if(datas) {
-            		labels.add(sdf.format(((Instant)a[0]).atOffset(ZoneOffset.UTC)));
-            	}
-     		}
-            datas = false;
-            data.addChartDataSet(barDataSetJanta);
-		}
-          
-        data.setLabels(labels);
-        
-        barModel.setData(data);
-        
-		return barModel;
-    }
+		return new BarChart().setData(barData).toJson();
+	}
 
 	private Map<String, Object> getMap(){		
 		Map<String, Object> map = new HashMap<String, Object>();

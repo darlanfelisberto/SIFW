@@ -39,7 +39,7 @@
 						    	<p:commandButton value="Aplicar" actionListener="#{relatorioBean.novoPediodo}" update="frmMain:message frmMain:otpGrafico"></p:commandButton>
 						    </div>
 						</div>
-					    <p:barChart model="#{relatorioBean.barModel}" style="width: 100%; height: 500px;"/>
+					    <p:chart value="#{relatorioBean.barChart}" style="width: 100%; height: 500px;"/>
 					</div>	
 				</p:panel>
 			</p:outputPanel>

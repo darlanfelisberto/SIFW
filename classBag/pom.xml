@@ -74,6 +74,11 @@
 		</dependency>
 
 		<dependency>
+			<groupId>software.xdev</groupId>
+			<artifactId>chartjs-java-model</artifactId>
+		</dependency>
+
+		<dependency>
 		    <groupId>io.undertow</groupId>
 		    <artifactId>undertow-core</artifactId>
 		    <scope>provided</scope>

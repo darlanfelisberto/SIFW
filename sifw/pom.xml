@@ -182,6 +182,12 @@
             <artifactId>jakarta.faces-api</artifactId>
             <scope>provided</scope>
         </dependency>
+
+		<!-- graficos primeaces-->
+		<dependency>
+			<groupId>software.xdev</groupId>
+			<artifactId>chartjs-java-model</artifactId>
+		</dependency>
         
         <!-- https://mvnrepository.com/artifact/jakarta.enterprise.concurrent/jakarta.enterprise.concurrent-api -->
 		<dependency>

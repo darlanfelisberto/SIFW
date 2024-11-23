@@ -3,6 +3,7 @@ package br.edu.iffar.fw.classBag.db.dao;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -14,6 +15,7 @@ import br.com.feliva.sharedClass.db.Model;
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.persistence.NoResultException;
 import jakarta.persistence.Query;
+import org.hibernate.annotations.Type;
 
 @SuppressWarnings("unchecked")
 @RequestScoped
@@ -36,18 +38,27 @@ public class AgendamentosDAO extends DAO<Agendamento> {
 		return null;
 	}
 
-		
-	public List<Object[]> getAgendamentoEmDataPeriodo(LocalDate dtInicial,LocalDate dtFim,TipoRefeicao tf) {
-
+	public List<LocalDate> getDiasPeriodo(LocalDate dtInicial,LocalDate dtFim) {
 		Query q = this.em.createNativeQuery("""
-				select dia,	coalesce(
+				 	select generate_series(cast(:dtInicial as date) , cast(:dtFim as date)  , '1 day')
+				""",LocalDate.class)
+				.setParameter("dtInicial", dtInicial)
+				.setParameter("dtFim", dtFim);
+
+		return  q.getResultList();
+	}
+
+	public List<Number> getAgendamentoEmDataPeriodo(LocalDate dtInicial,LocalDate dtFim,TipoRefeicao tf) {
+		Query q = this.em.createNativeQuery("""
+				select coalesce(
 						(select count(a.agendamento_id)  from agendamentos a
 						left join refeicao r on r.refeicao_id =a.refeicao_id 
 						where (a.dt_agendamento = foo.dia) and r.tipo_refeicao_id = :tipoRefeicao group by r.tipo_refeicao_id)
 					,0) as total
 				from(
 				 	select generate_series(cast(:dtInicial as date) , cast(:dtFim as date)  , '1 day') as dia
-				 ) as foo """)
+				 ) as foo """,Integer.class)
+
 		.setParameter("dtInicial", dtInicial)
 		.setParameter("dtFim", dtFim)
 		.setParameter("tipoRefeicao", tf.getMMId());
