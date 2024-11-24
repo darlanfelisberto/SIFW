@@ -30,8 +30,9 @@
 
 
         <flyway.version>10.21.0</flyway.version>
+        <migrateTo></migrateTo>
         <postgres.driver.version>42.7.1</postgres.driver.version>
-        <database.url>jdbc:postgresql://localhost:5432/base</database.url>
+        <database.url>jdbc:postgresql://localhost:5432/sifw</database.url>
         <database.user>postgres</database.user>
         <database.password>postgres</database.password>
     </properties>
@@ -144,6 +145,12 @@
                     <url>${database.url}</url>
                     <user>${database.user}</user>
                     <password>${database.password}</password>
+                    <detectEncoding>true</detectEncoding>
+                    <target>${migrateTo}</target>
+                    <schemas>flyway</schemas>
+                    <table>flyway_sifw</table>
+                    <baselineVersion>0.0.1.000</baselineVersion>
+                    <baselineDescription>Base Migration</baselineDescription>
                 </configuration>
                 <dependencies>
                     <dependency>
