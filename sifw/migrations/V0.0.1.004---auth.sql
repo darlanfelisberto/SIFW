@@ -1,5 +1,5 @@
 
-ALTER TABLE public.usuarios ADD pessoa_id uuid NOT NULL;
+ALTER TABLE public.usuarios ADD pessoa_id uuid;
 
 DROP VIEW public.api_saldo;
 
@@ -39,12 +39,18 @@ FROM (((((public.usuarios u
   WHERE ((sm.situacao)::text = 'ATIVA'::text)
   ORDER BY p.nome;
 
+update public.usuarios u set pessoa_id = p.pessoa_id
+from public.usuarios uu
+left join auth.auth_user au on au.username = uu.username
+left join auth.pessoas p on p.auth_user_id = au.auth_user_id
+where uu.usuario_id = u.usuario_id;
 
 ALTER TABLE public.usuarios DROP COLUMN cpf;
 ALTER TABLE public.usuarios DROP COLUMN dt_nasc;
 ALTER TABLE public.usuarios DROP COLUMN email;
 ALTER TABLE public.usuarios DROP COLUMN nome;
 
+ALTER TABLE public.usuarios ALTER COLUMN pessoa_id SET NOT NULL;
 
 ALTER TABLE ONLY public.usuarios
     ADD CONSTRAINT usuarios_pessoas_fk FOREIGN KEY (pessoa_id) REFERENCES auth.pessoas(pessoa_id);

@@ -34,11 +34,12 @@ public class RelatoriosPath {
 	public static final String JASPER_AGENDAMENTOS_FRUSTRADOS = "RU/admin/agendamentos_frustrados.jasper";
 	public static final String JASPER_TRANSFERENCIA_AGENDAMENTO = "RU/admin/alteracoesAgendamentos.jasper";
 	
-	public static final String JASPER_CHAMADA_MORADIA = "RU/moradia/relatorioPresencasAlunosMoradia.jasper";	
-	
+	public static final String JASPER_CHAMADA_MORADIA = "RU/moradia/relatorioPresencasAlunosMoradia.jasper";
+
+	public static final String PATH_JAR_JASPER = "br/edu/iffar/relatorios/" ;
 	static public final String PATH_JAR_JASPER_SUB_HEADER ="br/edu/iffar/relatorios/header.jasper";
 	static public final String PATH_JAR_JASPER_SUB_HEADER_SMALL ="br/edu/iffar/relatorios/header_small.jasper";
-	public static final String PATH_JAR_JASPER_SUB_MY_QRCODE = "br/edu/iffar/relatorios/" + JASPER_SUB_MY_QRCODE;
+	public static final String PATH_JAR_JASPER_SUB_MY_QRCODE = PATH_JAR_JASPER + JASPER_SUB_MY_QRCODE;
 		
 	@Inject private Connection connection;
 	

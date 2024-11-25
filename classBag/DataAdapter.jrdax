@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<jdbcDataAdapter class="net.sf.jasperreports.data.jdbc.JdbcDataAdapterImpl">
+  <name>base_jasper_adapter</name>
+  <classpath>F:\feliva\sharedClass\install\postgresql-42.6.0.jar</classpath>
+  <driver>org.postgresql.Driver</driver>
+  <username>postgres</username>
+  <password>postgres</password>
+  <url>jdbc:postgresql://localhost:5432/sifw</url>
+  <database></database>
+  <savePassword>true</savePassword>
+  <serverAddress></serverAddress>
+</jdbcDataAdapter>

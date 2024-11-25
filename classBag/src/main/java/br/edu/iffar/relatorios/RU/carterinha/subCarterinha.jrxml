@@ -50,14 +50,14 @@ order by c.nome,p.nome]]>
 		<property name="com.jaspersoft.studio.field.label" value="token_ru"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="usuarios"/>
 	</field>
+	<field name="username" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="username"/>
+		<property name="com.jaspersoft.studio.field.label" value="username"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="usuarios"/>
+	</field>
 	<field name="pessoa_id" class="java.util.UUID">
 		<property name="com.jaspersoft.studio.field.name" value="pessoa_id"/>
 		<property name="com.jaspersoft.studio.field.label" value="pessoa_id"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="usuarios"/>
-	</field>
-	<field name="tenantid" class="java.lang.String">
-		<property name="com.jaspersoft.studio.field.name" value="tenantid"/>
-		<property name="com.jaspersoft.studio.field.label" value="tenantid"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="usuarios"/>
 	</field>
 	<field name="nome" class="java.lang.String">
