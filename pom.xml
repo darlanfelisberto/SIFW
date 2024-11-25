@@ -31,6 +31,7 @@
 
         <flyway.version>10.21.0</flyway.version>
         <migrateTo></migrateTo>
+        <baselineVersion>0.0.1.000</baselineVersion>
         <postgres.driver.version>42.7.1</postgres.driver.version>
         <database.url>jdbc:postgresql://localhost:5432/sifw</database.url>
         <database.user>postgres</database.user>
@@ -149,7 +150,7 @@
                     <target>${migrateTo}</target>
                     <schemas>flyway</schemas>
                     <table>flyway_sifw</table>
-                    <baselineVersion>0.0.1.000</baselineVersion>
+                    <baselineVersion>${baselineVersion}</baselineVersion>
                     <baselineDescription>Base Migration</baselineDescription>
                 </configuration>
                 <dependencies>
