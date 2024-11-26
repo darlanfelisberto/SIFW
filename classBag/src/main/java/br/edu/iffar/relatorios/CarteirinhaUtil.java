@@ -33,7 +33,7 @@ public class CarteirinhaUtil {
 		
 		Map<String, Object> map = new HashMap<String, Object>();
 //		map.put("SUB_MY_QRCODE", RelatoriosPath.PATH_JAR_JASPER_SUB_MY_QRCODE);
-		map.put("WHERE", " where u.usuario_id = '" + u.getMMId().toString() + "' ");
+		map.put("WHERE", " and u.usuario_id = '" + u.getMMId().toString() + "' ");
 		map.put("PATH", InitConstantes.IMAGEM_PATH);
 		map.put("EXTENSAO", InitConstantes.IMAGEM_EXTENSAO);
 		try {

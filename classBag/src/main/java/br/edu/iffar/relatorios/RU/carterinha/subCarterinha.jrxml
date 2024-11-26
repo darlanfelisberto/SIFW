@@ -26,18 +26,11 @@ coalesce( i.file_name,'semfoto') AS file_name
 from usuarios u
 inner join auth.pessoas p on p.pessoa_id = u.pessoa_id 
 inner join auth.auth_user au on au.auth_user_id = p.auth_user_id 
-left outer  join (
-	select m2.matricula_id, m2.usuario_id, m2.curso_id from  matricula m2
-	inner join situacao_matricula sm2 on sm2.matricula_id = m2.matricula_id 
-	inner join (
-		select max(momento) as momento,sm.matricula_id from situacao_matricula sm
-		group by sm.matricula_id 
-	) as ff on ff.matricula_id = sm2.matricula_id and sm2.momento = ff.momento and sm2.situacao ='ATIVA'
-) as foo on foo.usuario_id = u.usuario_id
+left join matricula m on m.usuario_id = u.usuario_id
 left join cursos c on c.curso_id = foo.curso_id 
-left outer join servidor s on s.usuario_id = u.usuario_id and s.situacao='ATIVA'
+left outer join servidor s on s.usuario_id = u.usuario_id 
 left join imagen i ON i.usuario_id = u.usuario_id 
-$P!{WHERE}
+ $P!{WHERE} 
 order by c.nome,p.nome]]>
 	</queryString>
 	<field name="usuario_id" class="java.util.UUID">
@@ -48,11 +41,6 @@ order by c.nome,p.nome]]>
 	<field name="token_ru" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.name" value="token_ru"/>
 		<property name="com.jaspersoft.studio.field.label" value="token_ru"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="usuarios"/>
-	</field>
-	<field name="username" class="java.lang.String">
-		<property name="com.jaspersoft.studio.field.name" value="username"/>
-		<property name="com.jaspersoft.studio.field.label" value="username"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="usuarios"/>
 	</field>
 	<field name="pessoa_id" class="java.util.UUID">

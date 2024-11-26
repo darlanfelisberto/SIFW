@@ -1,4 +1,7 @@
 
+
+INSERT INTO public.usuarios (usuario_id, token_ru, pessoa_id) VALUES('ac2bb741-d969-48a4-895f-41e61efb2666'::uuid, '059329d5-0fc2-4440-b3f5-77068262895e', (select p.pessoa_id from auth.pessoas p where p.cpf = '02365495028'));
+
 INSERT INTO public.parametros VALUES ('AGENDAMENTO_FUTURO_DIAS', '7');
 
 INSERT INTO public.tipo_credito VALUES ('marker-saida', 'SAIDA', -1, 'Saída', '#dd0000');

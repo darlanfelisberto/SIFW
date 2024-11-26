@@ -28,14 +28,14 @@ public class ConnectProducer implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 
-	@PersistenceUnit(name = "baseUnit")
+	@PersistenceUnit(name = "sifwUnit")
 	private static EntityManagerFactory emBU;
 
 	@PersistenceContext // (unitName = "baseUnit")
     @Produces
 	private static EntityManager em;
 	
-	@Resource(mappedName = "java:jboss/datasources/baseDS") // same JNDI used by Hibernate Persistence Unit
+	@Resource(mappedName = "java:jboss/datasources/sifwDS") // same JNDI used by Hibernate Persistence Unit
 	private static DataSource dss;
 	
 
@@ -54,7 +54,7 @@ public class ConnectProducer implements Serializable {
 		if(dss == null) {   
 	        try {
 	            Context ctx = new InitialContext();
-	            dss = (DataSource) ctx.lookup("java:jboss/datasources/baseDS");
+	            dss = (DataSource) ctx.lookup("java:jboss/datasources/sifwDS");
 	        }catch (NamingException e) {
 	            e.printStackTrace();
 	        }

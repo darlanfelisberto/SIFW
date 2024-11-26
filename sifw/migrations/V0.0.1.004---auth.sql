@@ -49,6 +49,7 @@ ALTER TABLE public.usuarios DROP COLUMN cpf;
 ALTER TABLE public.usuarios DROP COLUMN dt_nasc;
 ALTER TABLE public.usuarios DROP COLUMN email;
 ALTER TABLE public.usuarios DROP COLUMN nome;
+ALTER TABLE public.usuarios DROP COLUMN username;
 
 ALTER TABLE public.usuarios ALTER COLUMN pessoa_id SET NOT NULL;
 

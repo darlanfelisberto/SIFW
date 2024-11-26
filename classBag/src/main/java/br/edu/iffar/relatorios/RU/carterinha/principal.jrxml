@@ -18,7 +18,7 @@
 		<defaultValueExpression><![CDATA["br/edu/iffar/relatorios/RU/carterinha/subCarterinha.jasper"]]></defaultValueExpression>
 	</parameter>
 	<queryString>
-		<![CDATA[select  u.* ,foo.matricula_id, s.servidor_id from usuarios u
+		<![CDATA[select  u.*,p.nome ,foo.matricula_id, s.servidor_id from usuarios u
 inner join auth.pessoas p on p.pessoa_id = u.pessoa_id 
 left outer  join (
 	select m2.matricula_id, m2.usuario_id, m2.curso_id from  matricula m2
@@ -29,9 +29,10 @@ left outer  join (
 	) as ff on ff.matricula_id = sm2.matricula_id and sm2.momento = ff.momento and sm2.situacao ='ATIVA'
 ) as foo on foo.usuario_id = u.usuario_id
 left join cursos c on c.curso_id = foo.curso_id 
-left outer join servidor s on s.usuario_id = u.usuario_id and s.situacao='ATIVA'
-$P!{WHERE}
-order by c.nome,p.nome]]>
+left outer join servidor s on s.usuario_id = u.usuario_id and s.situacao='ATIVA' 
+where (s.servidor_id is not null or foo.matricula_id is not null)
+$P!{WHERE} 
+ order by c.nome,p.nome]]>
 	</queryString>
 	<field name="usuario_id" class="java.util.UUID">
 		<property name="com.jaspersoft.studio.field.name" value="usuario_id"/>
@@ -43,15 +44,15 @@ order by c.nome,p.nome]]>
 		<property name="com.jaspersoft.studio.field.label" value="token_ru"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="usuarios"/>
 	</field>
-	<field name="username" class="java.lang.String">
-		<property name="com.jaspersoft.studio.field.name" value="username"/>
-		<property name="com.jaspersoft.studio.field.label" value="username"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="usuarios"/>
-	</field>
 	<field name="pessoa_id" class="java.util.UUID">
 		<property name="com.jaspersoft.studio.field.name" value="pessoa_id"/>
 		<property name="com.jaspersoft.studio.field.label" value="pessoa_id"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="usuarios"/>
+	</field>
+	<field name="nome" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="nome"/>
+		<property name="com.jaspersoft.studio.field.label" value="nome"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="pessoas"/>
 	</field>
 	<field name="matricula_id" class="java.util.UUID">
 		<property name="com.jaspersoft.studio.field.name" value="matricula_id"/>
@@ -77,9 +78,9 @@ order by c.nome,p.nome]]>
 				</reportElement>
 				<subreportParameter name="WHERE">
 					<subreportParameterExpression><![CDATA[" where "+
-($F{matricula_id} != null?"foo.matricula_id =  cast('"+$F{matricula_id} + "' as uuid)":"")+
-(AND($F{matricula_id} != null , $F{servidor_id} != null)?" or s.servidor_id =  cast('"+$F{servidor_id} + "' as uuid) ":"")+
-(AND($F{matricula_id} == null , $F{servidor_id} != null)?" s.servidor_id =  cast('"+$F{servidor_id} + "' as uuid) ":"")]]></subreportParameterExpression>
+(($F{matricula_id} != null)?" m.matricula_id =  cast('"+$F{matricula_id} + "' as uuid)":"")+
+(AND($F{matricula_id} == null , $F{servidor_id} != null)?" s.servidor_id =  cast('"+$F{servidor_id} + "' as uuid) ":"")+
+(AND($F{matricula_id} != null , $F{servidor_id} != null)?" or s.servidor_id =  cast('"+$F{servidor_id} + "' as uuid) ":"")]]></subreportParameterExpression>
 				</subreportParameter>
 				<subreportParameter name="PATH">
 					<subreportParameterExpression><![CDATA[$P{PATH}]]></subreportParameterExpression>
