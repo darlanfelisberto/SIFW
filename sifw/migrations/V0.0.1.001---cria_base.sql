@@ -263,14 +263,14 @@ CREATE TABLE public.refeicao (
 -- Name: COLUMN refeicao.bloquear; Type: COMMENT; Schema: public; Owner: -
 --
 
-COMMENT ON COLUMN public.refeicao.bloquear IS 'tem em horas, para bloquear o cadastro e remoção de agendamentos';
+COMMENT ON COLUMN public.refeicao.bloquear IS 'tem em horas, para bloquear o cadastro e remoÃ§Ã£o de agendamentos';
 
 
 --
 -- Name: COLUMN refeicao.termino; Type: COMMENT; Schema: public; Owner: -
 --
 
-COMMENT ON COLUMN public.refeicao.termino IS 'tempo em minitos, para o termino do servimento das refeições';
+COMMENT ON COLUMN public.refeicao.termino IS 'tempo em minitos, para o termino do servimento das refeiÃ§Ãµes';
 
 
 --
