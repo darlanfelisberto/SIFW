@@ -2,6 +2,27 @@
 ALTER TABLE public.usuarios ADD pessoa_id uuid;
 
 DROP VIEW public.api_saldo;
+DROP VIEW public.api_usuarios;
+
+update public.usuarios u set pessoa_id = p.pessoa_id
+from public.usuarios uu
+left join auth.auth_user au on au.username = uu.username
+left join auth.pessoas p on p.auth_user_id = au.auth_user_id
+where uu.usuario_id = u.usuario_id;
+
+ALTER TABLE public.usuarios DROP COLUMN cpf;
+ALTER TABLE public.usuarios DROP COLUMN dt_nasc;
+ALTER TABLE public.usuarios DROP COLUMN email;
+ALTER TABLE public.usuarios DROP COLUMN nome;
+ALTER TABLE public.usuarios DROP COLUMN username;
+
+ALTER TABLE public.usuarios ALTER COLUMN pessoa_id SET NOT NULL;
+
+INSERT INTO public.usuarios (usuario_id, token_ru, pessoa_id) VALUES('ac2bb741-d969-48a4-895f-41e61efb2666'::uuid, '059329d5-0fc2-4440-b3f5-77068262895e', (select p.pessoa_id from auth.pessoas p where p.cpf = '02365495028'));
+
+ALTER TABLE ONLY public.usuarios
+    ADD CONSTRAINT usuarios_pessoas_fk FOREIGN KEY (pessoa_id) REFERENCES auth.pessoas(pessoa_id);
+
 
 CREATE VIEW public.api_saldo AS
 SELECT usuario_id,
@@ -17,7 +38,7 @@ FROM ( SELECT u.usuario_id,
            LEFT JOIN auth.auth_user au ON ((au.auth_user_id = p.auth_user_id)))
        GROUP BY u.usuario_id, au.username) foo;
 
-DROP VIEW public.api_usuarios;
+
 
 CREATE VIEW public.api_usuarios AS
 SELECT DISTINCT u.usuario_id,
@@ -38,20 +59,3 @@ FROM (((((public.usuarios u
     JOIN public.situacao_matricula sm ON (((sm.matricula_id = m.matricula_id) AND ((sm.momento)::timestamp with time zone = foo.momento))))
   WHERE ((sm.situacao)::text = 'ATIVA'::text)
   ORDER BY p.nome;
-
-update public.usuarios u set pessoa_id = p.pessoa_id
-from public.usuarios uu
-left join auth.auth_user au on au.username = uu.username
-left join auth.pessoas p on p.auth_user_id = au.auth_user_id
-where uu.usuario_id = u.usuario_id;
-
-ALTER TABLE public.usuarios DROP COLUMN cpf;
-ALTER TABLE public.usuarios DROP COLUMN dt_nasc;
-ALTER TABLE public.usuarios DROP COLUMN email;
-ALTER TABLE public.usuarios DROP COLUMN nome;
-ALTER TABLE public.usuarios DROP COLUMN username;
-
-ALTER TABLE public.usuarios ALTER COLUMN pessoa_id SET NOT NULL;
-
-ALTER TABLE ONLY public.usuarios
-    ADD CONSTRAINT usuarios_pessoas_fk FOREIGN KEY (pessoa_id) REFERENCES auth.pessoas(pessoa_id);
