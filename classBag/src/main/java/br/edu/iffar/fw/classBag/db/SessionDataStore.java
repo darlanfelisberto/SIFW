@@ -5,7 +5,7 @@ import java.util.HashMap;
 
 import br.edu.iffar.fw.classBag.db.dao.UsuariosDAO;
 import br.edu.iffar.fw.classBag.db.model.Usuario;
-import br.edu.iffar.fw.classBag.db.model.interfaces.VinculosAtivosUsuarios;
+import br.edu.iffar.fw.classBag.interfaces.VinculosAtivosUsuarios;
 import jakarta.enterprise.context.SessionScoped;
 import jakarta.inject.Inject;
 

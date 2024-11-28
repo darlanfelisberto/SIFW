@@ -230,26 +230,7 @@
 			<role-name>IFFAR_RU</role-name>
 		</auth-constraint>
 	</security-constraint>
-	
-	<security-constraint>
-		<web-resource-collection>
-			<web-resource-name>/app/agendamentos_disponibilizados.xhtml</web-resource-name>
-			<url-pattern>/app/agendamentos_disponibilizados.xhtml</url-pattern>
-		</web-resource-collection>
-		<auth-constraint>
-			<role-name>IFFAR_ADMIN__</role-name>
-		</auth-constraint>
-	</security-constraint>
-	
-	<security-constraint>
-		<web-resource-collection>
-			<web-resource-name>/app/agendamento_admin.xhtml</web-resource-name>
-			<url-pattern>/app/agendamento_admin.xhtml</url-pattern>
-		</web-resource-collection>
-		<auth-constraint>
-			<role-name>IFFAR_ADMIN__im</role-name>
-		</auth-constraint>
-	</security-constraint>
+
 	
 	<security-constraint>
 		<web-resource-collection>
@@ -454,7 +435,7 @@
 			<role-name>IFFAR_MORADIA</role-name>
 		</auth-constraint>
 	</security-constraint>
-		
+
 
 	<security-constraint>
 		<web-resource-collection>
@@ -463,7 +444,7 @@
 		</web-resource-collection>
 		<auth-constraint>
 			<role-name>*</role-name>
-		</auth-constraint>		
+		</auth-constraint>
 	</security-constraint>
 
 	<context-param>

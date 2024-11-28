@@ -1,9 +1,12 @@
-package br.edu.iffar.fw.classBag.interfaces;
+package br.edu.iffar.fw.classBag.bean;
 
 import br.com.feliva.authClass.dao.PermissaoDAO;
 import br.com.feliva.authClass.models.Permissao;
 import br.edu.iffar.fw.classBag.db.dao.CursosDAO;
 import br.edu.iffar.fw.classBag.db.model.Curso;
+import br.edu.iffar.fw.classBag.impl.ConfigsCSVImpl;
+import br.edu.iffar.fw.classBag.impl.FileInMemory;
+import br.edu.iffar.fw.classBag.impl.GrupoProcessamento;
 import br.edu.iffar.fw.classBag.util.MessagesUtil;
 import jakarta.annotation.PostConstruct;
 import jakarta.faces.context.FacesContext;
@@ -11,7 +14,6 @@ import jakarta.faces.model.SelectItem;
 import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
-import jakarta.transaction.RollbackException;
 import jakarta.validation.ConstraintViolation;
 import lombok.Getter;
 import lombok.Setter;
@@ -92,7 +94,7 @@ public class UserCSVFragmentBean implements Serializable {
             return;
         }
 
-        if(!this.grupoProcessamento.usarColunaPermissao) {
+        if(!this.grupoProcessamento.getUsarColunaPermissao()) {
             this.grupoProcessamento.setListPermissoes(this.dualListPermissoa.getTarget());
         }
         this.configs.getListGrupoProcessamentos().add(this.grupoProcessamento);

@@ -1,20 +1,17 @@
-package br.edu.iffar.fw.classBag.interfaces;
+package br.edu.iffar.fw.classBag.impl;
 
-import br.com.feliva.authClass.models.Permissao;
 import br.edu.iffar.fw.classBag.db.dao.BackgroudDAO;
-import br.edu.iffar.fw.classBag.db.model.Curso;
 import br.edu.iffar.fw.classBag.db.model.Matricula;
 import br.edu.iffar.fw.classBag.db.model.SituacaoMatricula;
 import br.edu.iffar.fw.classBag.enun.TypeSituacao;
-import br.edu.iffar.fw.classBag.util.MessagesUtil;
+import br.edu.iffar.fw.classBag.excecoes.ConfigException;
+import br.edu.iffar.fw.classBag.interfaces.ImportarUsuarios;
 import jakarta.inject.Inject;
 import jakarta.transaction.RollbackException;
 import org.apache.commons.csv.CSVRecord;
 
 import java.time.LocalDateTime;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public abstract class ImportarUsuariosImpl implements ImportarUsuarios,Runnable{
 

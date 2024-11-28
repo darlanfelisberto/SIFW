@@ -5,8 +5,8 @@ import java.util.List;
 
 import br.edu.iffar.fw.classBag.db.model.Matricula;
 import br.edu.iffar.fw.classBag.db.model.Usuario;
-import br.edu.iffar.fw.classBag.db.model.interfaces.VinculosAtivosUsuarios;
 import br.edu.iffar.fw.classBag.enun.TypeSituacao;
+import br.edu.iffar.fw.classBag.interfaces.VinculosAtivosUsuarios;
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.inject.Inject;
 

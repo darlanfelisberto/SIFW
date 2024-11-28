@@ -1,4 +1,4 @@
-package br.edu.iffar.fw.classBag.db.model.interfaces;
+package br.edu.iffar.fw.classBag.interfaces;
 
 import java.util.List;
 

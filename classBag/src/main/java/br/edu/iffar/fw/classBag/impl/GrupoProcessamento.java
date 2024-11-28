@@ -1,4 +1,4 @@
-package br.edu.iffar.fw.classBag.interfaces;
+package br.edu.iffar.fw.classBag.impl;
 
 import br.com.feliva.authClass.models.Permissao;
 import br.edu.iffar.fw.classBag.db.model.Curso;

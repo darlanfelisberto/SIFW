@@ -13,6 +13,11 @@ import br.edu.iffar.fw.classBag.db.model.Matricula;
 import br.edu.iffar.fw.classBag.db.model.SituacaoMatricula;
 import br.edu.iffar.fw.classBag.db.model.Usuario;
 import br.edu.iffar.fw.classBag.enun.TypeSituacao;
+import br.edu.iffar.fw.classBag.excecoes.ConfigException;
+import br.edu.iffar.fw.classBag.impl.ConfigsCSVImpl;
+import br.edu.iffar.fw.classBag.impl.FileInMemory;
+import br.edu.iffar.fw.classBag.impl.GrupoProcessamento;
+import br.edu.iffar.fw.classBag.impl.ImportarUsuariosImpl;
 import br.edu.iffar.fw.classBag.interfaces.*;
 import jakarta.faces.context.FacesContext;
 import jakarta.inject.Inject;
@@ -24,7 +29,7 @@ import org.primefaces.PrimeFaces;
 import org.primefaces.event.SelectEvent;
 import org.primefaces.model.DialogFrameworkOptions;
 
-public class CSVImportUsuarios extends ImportarUsuariosImpl{
+public class CSVImportUsuarios extends ImportarUsuariosImpl {
 
 	private ConfigsCSVImpl config;
 
@@ -38,7 +43,7 @@ public class CSVImportUsuarios extends ImportarUsuariosImpl{
 	@Inject
 	CursosDAO cursosDAO;
 
-	public void processaAluno(GrupoProcessamento grupo,CSVRecord record) throws Exception {
+	public void processaAluno(GrupoProcessamento grupo, CSVRecord record) throws Exception {
 		String cpf = this.cpf11(record.get(COLUNA_CPF).replace(".", "").replace("-", ""));
 		Integer idMatricula = Integer.parseInt(record.get(COLUNA_MATRICULA));
 
@@ -170,7 +175,7 @@ public class CSVImportUsuarios extends ImportarUsuariosImpl{
 		this.config = (ConfigsCSVImpl) event.getObject();
 	}
 
-	public void isOk()throws ConfigException{
+	public void isOk()throws ConfigException {
 		if(this.config == null){
 			throw new ConfigException("Faça as configurações antes de iniciar.");
 		}

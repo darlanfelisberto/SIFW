@@ -18,7 +18,7 @@ import br.edu.iffar.fw.classBag.db.dao.RefeicaoDAO;
 import br.edu.iffar.fw.classBag.db.model.Agendamento;
 import br.edu.iffar.fw.classBag.db.model.Parametros;
 import br.edu.iffar.fw.classBag.db.model.Refeicao;
-import br.edu.iffar.fw.classBag.db.model.interfaces.VinculosAtivosUsuarios;
+import br.edu.iffar.fw.classBag.interfaces.VinculosAtivosUsuarios;
 import br.edu.iffar.fw.classBag.enun.TypeParam;
 import br.edu.iffar.fw.classBag.util.MessagesUtil;
 import br.edu.iffar.fw.ru.bean.fragment.VinculoSelecionadoBean;

@@ -8,9 +8,9 @@ import java.util.UUID;
 import br.edu.iffar.fw.classBag.db.model.Refeicao;
 import br.edu.iffar.fw.classBag.db.model.TipoRefeicao;
 import br.edu.iffar.fw.classBag.db.model.api.APIRefeicao2;
-import br.edu.iffar.fw.classBag.db.model.interfaces.VinculosAtivosUsuarios;
 import br.com.feliva.sharedClass.db.DAO;
 import br.com.feliva.sharedClass.db.Model;
+import br.edu.iffar.fw.classBag.interfaces.VinculosAtivosUsuarios;
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.persistence.NoResultException;
 import jakarta.persistence.NonUniqueResultException;
@@ -96,54 +96,6 @@ public class RefeicaoDAO extends DAO<Refeicao> {
 
 	}
 
-//	@SuppressWarnings({ "unchecked", "deprecation", "serial","rawtypes" })
-//	public List<APIRefeicao> listAllAPIRefeicao(){
-//		
-//		Session s = this.em.unwrap(Session.class);
-//		
-//		
-//		
-//		String sql = """
-//				select
-//				u.*,
-//				r.*,
-//				tr.*,
-//				g.descricao as descricao_grupo
-//				 from refeicao r 
-//				 inner join tipo_refeicao tr on r.tipo_refeicao_id=tr.tipo_refeicao_id 
-//				 inner join grupo_refeicoes g on r.grupo_refeicoes_id=g.grupo_refeicoes_id 
-//				 left outer join tipo_vinculo tv on g.tipo_vinculo_id=tv.tipo_vinculo_id 
-//				 left outer join matricula_grupo mg  on g.grupo_refeicoes_id=mg.grupo_refeicoes_id 
-//				 left outer join matricula m  on mg.matricula_id=m.matricula_id 
-//				 left outer join servidor s on ( s.tipo_vinculo_id=tv.tipo_vinculo_id ) 
-//				 left outer join matricula m2  on ( m2.tipo_vinculo_id=tv.tipo_vinculo_id )  
-//				 inner join usuarios u on u.usuario_id = coalesce(coalesce(m2.usuario_id,m.usuario_id),s.usuario_id)
-//				 order by u.usuario_id,r.valor
-//
-//				""";
-//		
-//		return (List<APIRefeicao>) s.createNativeQuery(sql)
-//				.addEntity("refeicao", APIRefeicao.class)
-//				.addJoin("u", "refeicao.usuario")
-//				.addJoin("tr", "refeicao.tipoRefeicao")
-//				.setResultTransformer(new ResultTransformer() {
-//					
-//					@Override
-//					public Object transformTuple(Object[] tuple, String[] aliases) {
-//						return tuple[0];
-//					}
-//					
-//					@Override
-//					public List transformList(List collection) {
-//						return collection;
-//					}
-//				})
-//				.list();
-//		
-////		Query q = this.em.createNativeQuery(sql,APIRefeicao.class);
-////		return (List<APIRefeicao>) q.getResultList();
-//	}
-	
 	public List<APIRefeicao2> listAllRefeicoes2(){
 		Query q = this.em.createQuery("""
 					from APIUsuarioRefeicao ur

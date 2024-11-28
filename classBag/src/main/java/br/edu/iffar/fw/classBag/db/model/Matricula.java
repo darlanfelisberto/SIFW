@@ -8,9 +8,9 @@ import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 
-import br.edu.iffar.fw.classBag.db.model.interfaces.VinculosAtivosUsuarios;
 import br.com.feliva.sharedClass.db.Model;
 import br.edu.iffar.fw.classBag.enun.TypeSituacao;
+import br.edu.iffar.fw.classBag.interfaces.VinculosAtivosUsuarios;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -29,7 +29,7 @@ import jakarta.xml.bind.annotation.XmlTransient;
 
 @Entity
 @Table(name = "matricula")
-public class Matricula extends Model<UUID> implements Serializable,VinculosAtivosUsuarios{
+public class Matricula extends Model<UUID> implements Serializable, VinculosAtivosUsuarios {
 
 	private static final long serialVersionUID = 22021991L;
 

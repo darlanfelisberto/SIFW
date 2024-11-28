@@ -1,4 +1,4 @@
-package br.edu.iffar.fw.classBag.interfaces;
+package br.edu.iffar.fw.classBag.impl;
 
 import lombok.*;
 

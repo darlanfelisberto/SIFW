@@ -31,9 +31,7 @@
 			<resource>
 				<directory>src/main/resources</directory>
 				<includes>
-					<include>**/*.xml</include>
-					<include>**/*.properties</include>
-					<include>**/*.xhtml</include>
+					<include>**</include>
 				</includes>
 			</resource>
 		</resources>

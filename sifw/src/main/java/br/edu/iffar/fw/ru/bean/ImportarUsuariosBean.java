@@ -4,8 +4,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.edu.iffar.fw.classBag.interfaces.ConfigException;
-import br.edu.iffar.fw.classBag.interfaces.ImportarUsuariosImpl;
+import br.edu.iffar.fw.classBag.excecoes.ConfigException;
+import br.edu.iffar.fw.classBag.impl.ImportarUsuariosImpl;
 import jakarta.faces.event.AjaxBehaviorEvent;
 import br.edu.iffar.fw.classBag.db.dao.CursosDAO;
 import br.edu.iffar.fw.classBag.sec.HasRoleBean;

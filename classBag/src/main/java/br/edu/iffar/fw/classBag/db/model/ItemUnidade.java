@@ -1,10 +1,9 @@
 package br.edu.iffar.fw.classBag.db.model;
-// Generated 27 de dez. de 2021 11:43:54 by Hibernate Tools 5.5.7.Final
 
 import java.util.UUID;
 
-import br.edu.iffar.fw.classBag.db.model.interfaces.TreeNodeSearch;
 import br.com.feliva.sharedClass.db.Model;
+import br.edu.iffar.fw.classBag.interfaces.TreeNodeSearch;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;

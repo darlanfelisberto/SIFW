@@ -8,7 +8,7 @@ import java.util.List;
 
 import br.edu.iffar.fw.classBag.db.SessionDataStore;
 import br.edu.iffar.fw.classBag.db.dao.VinculosAtivosUsuariosDAO;
-import br.edu.iffar.fw.classBag.db.model.interfaces.VinculosAtivosUsuarios;
+import br.edu.iffar.fw.classBag.interfaces.VinculosAtivosUsuarios;
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.faces.context.FacesContext;
 import jakarta.inject.Inject;

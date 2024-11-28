@@ -6,12 +6,10 @@ import java.time.format.DateTimeFormatter;
 import java.util.Map;
 import java.util.UUID;
 
+import br.edu.iffar.fw.classBag.interfaces.VinculosAtivosUsuarios;
 import org.primefaces.model.ScheduleDisplayMode;
-//import org.primefaces.model.ScheduleDisplayMode;
 import org.primefaces.model.ScheduleEvent;
 
-import br.edu.iffar.fw.classBag.db.model.api.APIAgendamento;
-import br.edu.iffar.fw.classBag.db.model.interfaces.VinculosAtivosUsuarios;
 import br.com.feliva.sharedClass.db.Model;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;

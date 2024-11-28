@@ -17,7 +17,7 @@ import br.edu.iffar.fw.classBag.db.dao.TipoRefeicaoDAO;
 import br.edu.iffar.fw.classBag.db.dao.UsuariosDAO;
 import br.edu.iffar.fw.classBag.db.dao.VinculosAtivosUsuariosDAO;
 import br.edu.iffar.fw.classBag.db.model.Usuario;
-import br.edu.iffar.fw.classBag.db.model.interfaces.VinculosAtivosUsuarios;
+import br.edu.iffar.fw.classBag.interfaces.VinculosAtivosUsuarios;
 import br.edu.iffar.fw.classBag.db.model.log.LogLeitura;
 import br.edu.iffar.fw.classBag.enun.TypeCredito;
 import br.edu.iffar.fw.classBag.util.MessagesUtil;

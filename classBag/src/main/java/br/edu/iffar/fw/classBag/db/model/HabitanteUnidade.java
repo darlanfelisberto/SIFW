@@ -5,8 +5,8 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.UUID;
 
-import br.edu.iffar.fw.classBag.db.model.interfaces.TreeNodeSearch;
 import br.com.feliva.sharedClass.db.Model;
+import br.edu.iffar.fw.classBag.interfaces.TreeNodeSearch;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
