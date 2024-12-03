@@ -59,10 +59,10 @@ public class ImagenDAO extends DAO<Imagen> {
 	private static final long serialVersionUID = 22021991L;
 
 	@Transactional(value = TxType.REQUIRES_NEW)
-	public Imagen substituiImagen(Imagen atual) throws IOException, RollbackException {
+	public void substituiImagen(Imagen atual) throws IOException, RollbackException {
 		atual.deleteFileInDisck();
 		atual.salveFileInDisck();
-		return this.merge(atual);
+		this.mergeT(atual);
 	}
 
 }

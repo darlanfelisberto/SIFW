@@ -136,7 +136,7 @@ public class GrupoRefeicoesBean implements Serializable,BreadCrumbControl{
 //			if(this.grupoRefeicoes.isNovo()){
 //				this.grupoRefeicoesDAO.persistT(this.grupoRefeicoes);
 //			}else {
-				this.grupoRefeicoes = this.grupoRefeicoesDAO.mergeT(this.grupoRefeicoes);
+				this.grupoRefeicoesDAO.mergeT(this.grupoRefeicoes);
 //			}
 			this.messages.addSuccess("Grupo de refeições salvo com sucesso.");
 			this.telaBuscaGrupoRefeicoes();

@@ -68,7 +68,7 @@ public class PerfilBean implements Serializable {
 			return;
 		}
 		try {
-			this.imagen = this.imagenDAO.substituiImagen(this.imagen);
+			this.imagenDAO.substituiImagen(this.imagen);
 			this.messagesUtil.addSuccess("Imagem salva com sucesso.");
 		} catch (IOException|RollbackException e) {
 			this.messagesUtil.addError("A imagem nao pode ser salva.");
