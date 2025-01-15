@@ -259,7 +259,7 @@ public class RelatorioBean implements Serializable{
 		StringBuilder whereAdicional = new StringBuilder(" ");
 		StringBuilder whereTipoRefeicao = new StringBuilder(" ");
 		StringBuilder filtros = new StringBuilder("Filtros: ");
-		
+		// TODO usar Prepared statement
 		if(this.tipoRefeicao!= null) {
 			whereTipoRefeicao.append(" "+aliasTipoRefeicao + ".tipo_refeicao_id = '" + this.tipoRefeicao.getMMId() + "' ");
 			filtros.append("Tipo Refeicao("+this.tipoRefeicao.getDescricao()+");");
