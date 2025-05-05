@@ -1,0 +1,66 @@
+embed-server --server-config=standalone.xml --std-out=echo
+
+set WILDFLY_EMAIL_=${WILDFLY_EMAIL}
+set WILDFLY_EMAIL_PASSWD_=${WILDFLY_EMAIL_PASSWD}
+set DB_USER_=${DB_USER}
+set DB_PASSWD_=${DB_PASSWD}
+set AUTH_SERVER_URL_=${AUTH_SERVER_URL}
+
+#configuração soteria
+#/subsystem=undertow/application-security-domain=other:write-attribute(name=integrated-jaspi, value=false)
+
+#configuração e-mail
+/subsystem=mail/mail-session=default/server=smtp/:write-attribute(name=username,value=$WILDFLY_EMAIL_)
+/subsystem=mail/mail-session=default/server=smtp/:write-attribute(name=password,value=$WILDFLY_EMAIL_PASSWD_)
+/subsystem=mail/mail-session=default/server=smtp/:write-attribute(name=tls,value=true)
+/socket-binding-group=standard-sockets/remote-destination-outbound-socket-binding=mail-smtp/:write-attribute(name=host,value=smtp.gmail.com)
+/socket-binding-group=standard-sockets/remote-destination-outbound-socket-binding=mail-smtp/:write-attribute(name=port,value=587)
+
+#configuração drive postgres
+module add --name=org.postgresql.jdbc --resources=${VERSION_JAR_POSTGRES}.jar  --dependencies=javax.api,javax.transaction.api
+/subsystem=datasources/jdbc-driver=postgresql:add(driver-name="postgresql", driver-module-name="org.postgresql.jdbc", driver-class-name="org.postgresql.Driver", driver-xa-datasource-class-name="org.postgresql.xa.PGXADataSource")
+
+#configuração datasource
+
+/subsystem=datasources/data-source=baseDS:add(driver-name=postgresql,jndi-name="java:jboss/datasources/sifwDS",connection-url="jdbc:postgresql://localhost:5432/sifw",user-name=$DB_USER_, password=$DB_PASSWD_)
+/subsystem=datasources/data-source=authDS:add(driver-name=postgresql,jndi-name="java:jboss/datasources/authDS",connection-url="jdbc:postgresql://localhost:5432/sifw",user-name=$DB_USER_, password=$DB_PASSWD_)
+/subsystem=datasources/data-source=sessionDS:add(driver-name=postgresql,jndi-name="java:jboss/datasources/sessionDS",connection-url="jdbc:postgresql://localhost:5432/session",user-name=$DB_USER_, password=$DB_PASSWD_)
+
+#configuração numero de conexoes do datasource
+/subsystem=datasources/data-source=baseDS:write-attribute(name=min-pool-size,value=3)
+/subsystem=datasources/data-source=baseDS:write-attribute(name=max-pool-size,value=50)
+
+/subsystem=datasources/data-source=authDS:write-attribute(name=min-pool-size,value=3)
+/subsystem=datasources/data-source=authDS:write-attribute(name=max-pool-size,value=50)
+
+/subsystem=datasources/data-source=sessionDS:write-attribute(name=min-pool-size,value=3)
+/subsystem=datasources/data-source=sessionDS:write-attribute(name=max-pool-size,value=50)
+
+#desativa http2, exception não padronizada na especificação
+/subsystem=undertow/server=default-server/https-listener=https:write-attribute(name=enable-http2,value=false)
+/subsystem=undertow/server=default-server/http-listener=default:write-attribute(name=enable-http2,value=false)
+
+#oidc config
+
+/subsystem=elytron-oidc-client/secure-deployment="sifw.war"/:add( \
+    realm="feliva", \
+    resource="sifw", \
+    auth-server-url=$AUTH_SERVER_URL_, \
+    ssl-required=EXTERNAL)
+
+
+/subsystem=elytron-oidc-client/secure-deployment=sifw.war/credential=secret:add(secret=3fd70ff4-fe2b-47b6-a8a3-cd1cf281a937)
+
+
+#configuração infinispan , replicação de sessao, usado com o perfil standalone-ha.xml
+# use ./standalone.sh --server-config=standalone-ha.xml
+#/subsystem=infinispan/cache-container=web/invalidation-cache=http-db:add()
+#/subsystem=infinispan/cache-container=web:write-attribute(name=default-cache,value=http-db)
+#/subsystem=infinispan/cache-container=web/invalidation-cache=http-db/store=none:remove(){allow-resource-service-restart=true}
+#/subsystem=infinispan/cache-container=web/invalidation-cache=http-db/store=jdbc:add(data-source=sessionDS,dialect=POSTGRES,passivation=false,purge=false,shared=true)
+#/subsystem=infinispan/cache-container=web/invalidation-cache=http-db/store=jdbc/table=string:write-attribute(name=data-column.type, value=BYTEA)
+#/subsystem=distributable-web/infinispan-session-management=database-cache:add(cache-container=web, cache=http-db, granularity=SESSION)
+#/subsystem=distributable-web:write-attribute(name=default-session-management, value=database-cache)
+#/subsystem=distributable-web/infinispan-session-management=default:remove
+
+stop-embedded-server
