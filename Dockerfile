@@ -9,5 +9,6 @@ COPY docker_conf/ /tmp/docker_conf
 
 RUN apt-get update
 RUN cd /tmp/docker_conf/ && \
-     ./install.sh -o l
+     ./install.sh -o l && \
+    rm -R /tmp/docker_conf
 
