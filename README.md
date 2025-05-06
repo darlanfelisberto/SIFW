@@ -1,9 +1,12 @@
 # RU - Projeto de um Restaurante Universitário
 
-Build Docker
-```
-sudo docker build -t sifw-ru --no-cache --progress=plain .
-```
+[//]: # (Build Docker)
+
+[//]: # (```)
+
+[//]: # (sudo docker build -t sifw-ru --no-cache --progress=plain .)
+
+[//]: # (```)
 
 
 [Informações para instalação - slide 28](https://drive.google.com/drive/folders/1oaIk2lZmDlEwG7vIA7KYb-syKHvL2-Oc)
