@@ -29,16 +29,16 @@ cd /tmp/sifw/git/sharedClass
 
 cd /tmp/sifw/git/authService
 /tmp/sifw/apache-maven-3.9.9/bin/mvn clean install
-/tmp/sifw/apache-maven-3.9.9/bin/mvn flyway:baseline                                                                                                     #cria base de dados
-/tmp/sifw/apache-maven-3.9.9/bin/mvn flyway:migrate                                                                                                      #cria base de dados
+/tmp/sifw/apache-maven-3.9.9/bin/mvn flyway:baseline -DdbIP="${DB_IP}" -DdbUser="${DB_USER}" -DdbPassword="${DB_PASSWD}"
+/tmp/sifw/apache-maven-3.9.9/bin/mvn flyway:migrate -DdbIP="${DB_IP}" -DdbUser="${DB_USER}" -DdbPassword="${DB_PASSWD}"
 cp ./auth/target/auth.war $PATH_INSTALL/wildfly-$VERSION_WILDFLY/standalone/deployments                                    #copia o war para o diretorio de execução do AS
 
 
 #é copiado pelo build do docker
 cd /tmp/sifw/git/SIFW
 /tmp/sifw/apache-maven-3.9.9/bin/mvn clean install
-/tmp/sifw/apache-maven-3.9.9/bin/mvn flyway:baseline
-/tmp/sifw/apache-maven-3.9.9/bin/mvn flyway:migrate
+/tmp/sifw/apache-maven-3.9.9/bin/mvn flyway:baseline -DdbIP="${DB_IP}" -DdbUser="${DB_USER}" -DdbPassword="${DB_PASSWD}"
+/tmp/sifw/apache-maven-3.9.9/bin/mvn flyway:migrate -DdbIP="${DB_IP}" -DdbUser="${DB_USER}" -DdbPassword="${DB_PASSWD}"
 cp ./sifw/target/sifw.war $PATH_INSTALL/wildfly-$VERSION_WILDFLY/standalone/deployments                                    #copia o war para o diretorio de execução do AS
 
 
