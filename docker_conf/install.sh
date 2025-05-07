@@ -6,7 +6,7 @@
 ### acresente o -c para limpar o diretorio de instalacao
 ###
 
-source config.properties
+source ../sifw/src/main/resources/config_sifw.properties
 
 _DEBUG="on"
 WIN=l;
@@ -103,8 +103,11 @@ function java(){
    	downloadJava jdk-${VERSION_JDK}_linux-x64_bin.tar.gz 
 	  DEBUG tar -xvzf jdk-${VERSION_JDK}_linux-x64_bin.tar.gz -C $PATH_INSTALL
     DEBUG mv $PATH_INSTALL/jdk-${VERSION_JDK} $PATH_INSTALL/jdk${JDK_LINK_NAME}
-    DEBUG export JAVA_HOME=$PATH_INSTALL/jdk${JDK_LINK_NAME}
+    export JAVA_HOME=$PATH_INSTALL/jdk${JDK_LINK_NAME}
+    export PATH=$JAVA_HOME/bin:$PATH
   fi
+
+  sleep 10;
 }
 
 function downloadJava(){
@@ -224,13 +227,6 @@ function scapeStrings(){
   OUTPUT=$auth;
 };
 
-function prepareWindowns(){
-    ## PATH_INSTALL é usado para os comando e navergar pelas pastas
-    echo 'instalacao em windowns'
-    PATH_INSTALL="F:/feliva/install";
-    PWD=$(pwd -W);
-}
-
 if command -v curl >&2; then
   echo Curl ok
 else
@@ -248,13 +244,6 @@ PWD=$(pwd)
 
 DEBUG main "$@"
 
-if [ "$WIN" = w ]; then
-    prepareWindowns
-    echo 'win';
-else
-    echo 'linux';
-fi
-
 #escape caracter / 
 DEBUG scapeStrings $AUTH_SERVER_URL AUTH_SERVER_URL
 
@@ -262,5 +251,4 @@ printf ">%s< >%s< >%s< >%s< >%s< >%s< >%s< >%s< \n" $VERSION_WILDFLY $PATH_INSTA
 
 installDev;
 
-#-i /opt -e darlan@gmail.com -s senha -a localhostr:8080 -w wildfly -j jar
 
