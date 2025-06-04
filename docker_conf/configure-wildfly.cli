@@ -3,6 +3,7 @@ embed-server --server-config=standalone.xml --std-out=echo
 set WILDFLY_EMAIL_=${WILDFLY_EMAIL}
 set WILDFLY_EMAIL_PASSWD_=${WILDFLY_EMAIL_PASSWD}
 set DB_USER_=${DB_USER}
+set DB_IP_=${DB_IP}
 set DB_PASSWD_=${DB_PASSWD}
 set AUTH_SERVER_URL_=${AUTH_SERVER_URL}
 
@@ -22,9 +23,9 @@ module add --name=org.postgresql.jdbc --resources=${VERSION_JAR_POSTGRES}.jar  -
 
 #configuração datasource
 
-/subsystem=datasources/data-source=baseDS:add(driver-name=postgresql,jndi-name="java:jboss/datasources/sifwDS",connection-url="jdbc:postgresql://localhost:5432/sifw",user-name=$DB_USER_, password=$DB_PASSWD_)
-/subsystem=datasources/data-source=authDS:add(driver-name=postgresql,jndi-name="java:jboss/datasources/authDS",connection-url="jdbc:postgresql://localhost:5432/sifw",user-name=$DB_USER_, password=$DB_PASSWD_)
-/subsystem=datasources/data-source=sessionDS:add(driver-name=postgresql,jndi-name="java:jboss/datasources/sessionDS",connection-url="jdbc:postgresql://localhost:5432/session",user-name=$DB_USER_, password=$DB_PASSWD_)
+/subsystem=datasources/data-source=baseDS:add(driver-name=postgresql,jndi-name="java:jboss/datasources/sifwDS",connection-url=jdbc:postgresql://$DB_IP_:5432/sifw,user-name=$DB_USER_, password=$DB_PASSWD_)
+/subsystem=datasources/data-source=authDS:add(driver-name=postgresql,jndi-name="java:jboss/datasources/authDS",connection-url=jdbc:postgresql://$DB_IP_:5432/sifw,user-name=$DB_USER_, password=$DB_PASSWD_)
+/subsystem=datasources/data-source=sessionDS:add(driver-name=postgresql,jndi-name="java:jboss/datasources/sessionDS",connection-url=jdbc:postgresql://$DB_IP_:5432/session,user-name=$DB_USER_, password=$DB_PASSWD_)
 
 #configuração numero de conexoes do datasource
 /subsystem=datasources/data-source=baseDS:write-attribute(name=min-pool-size,value=3)
