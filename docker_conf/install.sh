@@ -103,8 +103,9 @@ function java(){
    	downloadJava jdk-${VERSION_JDK}_linux-x64_bin.tar.gz 
 	  DEBUG tar -xvzf jdk-${VERSION_JDK}_linux-x64_bin.tar.gz -C $PATH_INSTALL
     DEBUG mv $PATH_INSTALL/jdk-${VERSION_JDK} $PATH_INSTALL/jdk${JDK_LINK_NAME}
-    export JAVA_HOME=$PATH_INSTALL/jdk${JDK_LINK_NAME}
-    export PATH=$JAVA_HOME/bin:$PATH
+    update-alternatives --install /usr/bin/java java /opt/sifw/jdk21/bin/java 10
+    echo export "JAVA_HOME=$PATH_INSTALL/jdk${JDK_LINK_NAME}" > /etc/environment
+    echo export "PATH=${JAVA_HOME}/bin:${PATH}" >> /etc/environment
   fi
 
   sleep 10;
@@ -142,6 +143,7 @@ function wildfly(){
 	downloadWildfly wildfly-$VERSION_WILDFLY.tar.gz
 
 	DEBUG tar -xvzf "wildfly-$VERSION_WILDFLY.tar.gz" -C $PATH_INSTALL
+	DEBUG ln -s $ROOT_PATH_WILDFLY /opt/sifw/wildfly
 
   DEBUG scapeStrings $PATH_INSTALL INS;
 
@@ -153,7 +155,7 @@ function wildfly(){
   echo "Configurando Wildfly."
   if [ "$WIN" = l ]; then
     sed -i '1i JBOSS_JAVA_SIZING=" -XX:+UseZGC -XX:+ZGenerational -Xms256m -Xmx8096m -XX:MetaspaceSize=256M -XX:MaxMetaspaceSize=512m "'   $ROOT_PATH_WILDFLY/bin/standalone.conf
-    $ROOT_PATH_WILDFLY/bin/jboss-cli.sh --file=configure-wildfly.cli --properties=config.properties
+    $ROOT_PATH_WILDFLY/bin/jboss-cli.sh --file=configure-wildfly.cli --properties=../sifw/src/main/resources/config_sifw.properties
 
     inicializarComSys;
 
