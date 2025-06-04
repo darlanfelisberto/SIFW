@@ -157,6 +157,8 @@ function wildfly(){
     sed -i '1i JBOSS_JAVA_SIZING=" -XX:+UseZGC -XX:+ZGenerational -Xms256m -Xmx8096m -XX:MetaspaceSize=256M -XX:MaxMetaspaceSize=512m "'   $ROOT_PATH_WILDFLY/bin/standalone.conf
     $ROOT_PATH_WILDFLY/bin/jboss-cli.sh --file=configure-wildfly.cli --properties=../sifw/src/main/resources/config_sifw.properties
 
+    chmod -R 777 /opt/sifw/wildfly-36.0.0.Final/
+
     inicializarComSys;
 
     echo "Pronto tudo instalado."

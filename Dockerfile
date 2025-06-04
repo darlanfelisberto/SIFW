@@ -15,7 +15,7 @@ RUN cd /tmp/sifw/git/SIFW/docker_conf && \
      ./install.sh -o l && \
      ./build_deploy.sh
 
-CMD /opt/sifw/wildfly/bin/standalone.sh
+#CMD /opt/sifw/wildfly/bin/standalone.sh
 
 EXPOSE 8080
 EXPOSE 9990

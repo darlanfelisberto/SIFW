@@ -43,8 +43,8 @@ cp ./sifw/target/sifw.war $PATH_INSTALL/wildfly-$VERSION_WILDFLY/standalone/depl
 
 
 #remoção de lixo
-rm -R /tmp/sifw
-rm -R /root/.m2/
+#rm -R /tmp/sifw
+#rm -R /root/.m2/
 
 
 

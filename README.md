@@ -1,12 +1,13 @@
 # RU - Projeto de um Restaurante Universitário
 
-[//]: # (Build Docker)
+# Build Docker
+O build do sistema e configuração é feito dentro do container
 
-[//]: # (```)
+```
 
-[//]: # (sudo docker build -t sifw-ru --no-cache --progress=plain .)
+sudo docker build -t sifw-ru --no-cache --progress=plain .
 
-[//]: # (```)
+```
 
 
 [Informações para instalação - slide 28](https://drive.google.com/drive/folders/1oaIk2lZmDlEwG7vIA7KYb-syKHvL2-Oc)
