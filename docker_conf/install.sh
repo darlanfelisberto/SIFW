@@ -145,21 +145,20 @@ function wildfly(){
 	DEBUG tar -xvzf "wildfly-$VERSION_WILDFLY.tar.gz" -C $PATH_INSTALL
 	DEBUG ln -s $ROOT_PATH_WILDFLY /opt/sifw/wildfly
 
+	chmod -R 777 /opt/sifw/wildfly-36.0.0.Final/
+
   DEBUG scapeStrings $PATH_INSTALL INS;
 
 	DEBUG $ROOT_PATH_WILDFLY/bin/add-user.sh -u manager -p manager
 
   DEBUG scapeStrings $PWD PWD_SCA ;
 
-
   echo "Configurando Wildfly."
   if [ "$WIN" = l ]; then
     sed -i '1i JBOSS_JAVA_SIZING=" -XX:+UseZGC -XX:+ZGenerational -Xms256m -Xmx8096m -XX:MetaspaceSize=256M -XX:MaxMetaspaceSize=512m "'   $ROOT_PATH_WILDFLY/bin/standalone.conf
     $ROOT_PATH_WILDFLY/bin/jboss-cli.sh --file=configure-wildfly.cli --properties=../sifw/src/main/resources/config_sifw.properties
 
-    chmod -R 777 /opt/sifw/wildfly-36.0.0.Final/
-
-    inicializarComSys;
+#    inicializarComSys;
 
     echo "Pronto tudo instalado."
     echo "Para instalar como servico, utilize os aquivos launch.sh wildfly.conf e wildfly.service"
