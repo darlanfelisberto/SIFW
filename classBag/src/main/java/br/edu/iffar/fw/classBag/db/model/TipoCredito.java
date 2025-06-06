@@ -1,7 +1,7 @@
 package br.edu.iffar.fw.classBag.db.model;
 
-import br.edu.iffar.fw.classBag.enun.TypeCredito;
 import br.com.feliva.sharedClass.db.Model;
+import br.edu.iffar.fw.classBag.enun.TypeCredito;
 import jakarta.persistence.Cacheable;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -14,7 +14,7 @@ import jakarta.xml.bind.annotation.XmlTransient;
 @Entity
 @Table(name = "tipo_credito")
 @Cacheable
-public class TipoCredito extends Model<TypeCredito>{
+public class TipoCredito extends Model {
 
 	private static final long serialVersionUID = 22021991L;
 

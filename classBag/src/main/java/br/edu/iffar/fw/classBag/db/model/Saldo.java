@@ -30,7 +30,7 @@ SELECT COALESCE(sum(c.valor * etc.mult::numeric), 0::numeric) AS saldo, u2.usuar
 */
 @Immutable
 @Table(name = "saldo")
-public class Saldo extends Model<UUID> {
+public class Saldo extends Model {
 
 	private static final long serialVersionUID = 1L;
 

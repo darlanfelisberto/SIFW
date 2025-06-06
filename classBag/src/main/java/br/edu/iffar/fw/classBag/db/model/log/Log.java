@@ -12,7 +12,7 @@ import jakarta.persistence.Table;
 
 @Table(name = "log")
 @Entity
-public class Log extends Model<UUID> implements Serializable{
+public class Log extends Model implements Serializable{
 
 	private static final long serialVersionUID = 22021991L;
 

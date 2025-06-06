@@ -18,7 +18,7 @@ public class APIUsuarioDAO extends APIDAO<APIUsuario>{
 	 * Este metodo necessita estar dentro de uma transação para funcionar.
 	 * 
 	 * Ele é usado na sincronização de usuarios, onde a transação é gerenciado por
-	 * outro dao, usando o metodo da super classe joinTransaction.
+	 * outro DAO2, usando o metodo da super classe joinTransaction.
 	 * 
 	 * @return int registos alterados
 	 */

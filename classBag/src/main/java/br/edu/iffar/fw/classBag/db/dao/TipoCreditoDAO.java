@@ -2,9 +2,9 @@ package br.edu.iffar.fw.classBag.db.dao;
 
 import java.util.List;
 
+import br.com.feliva.sharedClass.db.DAO;
 import br.edu.iffar.fw.classBag.db.model.TipoCredito;
 import br.edu.iffar.fw.classBag.enun.TypeCredito;
-import br.com.feliva.sharedClass.db.DAO;
 import jakarta.enterprise.context.RequestScoped;
 
 @RequestScoped

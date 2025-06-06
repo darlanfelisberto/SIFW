@@ -2,8 +2,8 @@ package br.edu.iffar.fw.classBag.db.dao;
 
 import java.util.List;
 
-import br.edu.iffar.fw.classBag.db.model.TipoVinculo;
 import br.com.feliva.sharedClass.db.DAO;
+import br.edu.iffar.fw.classBag.db.model.TipoVinculo;
 import jakarta.enterprise.context.RequestScoped;
 
 @SuppressWarnings("unchecked")

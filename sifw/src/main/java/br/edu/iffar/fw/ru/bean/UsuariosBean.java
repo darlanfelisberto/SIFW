@@ -76,7 +76,7 @@ public class UsuariosBean implements Serializable, BreadCrumbControl{
 	private String busca = "";
 	private Usuario userSel;
 	private Imagen imagen;
-	private DualListModel<Permissao> listModelPermissaoes;
+	private DualListModel listModelPermissaoes;
 
 	private List<Permissao> roles;
 	private final List<SelectItem> listSelectIten = new ArrayList<SelectItem>();
@@ -167,7 +167,7 @@ public class UsuariosBean implements Serializable, BreadCrumbControl{
 	}
 
 	private void carregaPermissoesDisponiveis(){
-		this.listModelPermissaoes = new DualListModel<Permissao>();
+		this.listModelPermissaoes = new DualListModel();
 		this.listModelPermissaoes.setTarget((this.userSel.getPessoa().getAuthUser().getSetPermissao() != null ? this.userSel.getPessoa().getAuthUser().getSetPermissao().stream().toList():new ArrayList<Permissao>()));
 
 		this.listModelPermissaoes.setSource(this.usuarioBO.init(this.userSel).buscaPermissoesDisponiveis());
@@ -347,7 +347,7 @@ public class UsuariosBean implements Serializable, BreadCrumbControl{
 		return listModelPermissaoes;
 	}
 
-	public void setListModelPermissaoes(DualListModel<Permissao> listModelPermissaoes) {
+	public void setListModelPermissaoes(DualListModel listModelPermissaoes) {
 		this.listModelPermissaoes = listModelPermissaoes;
 	}
 

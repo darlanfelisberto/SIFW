@@ -23,7 +23,7 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name="cursos")
 @NamedQuery(name="Curso.findAll", query="SELECT c FROM Curso c")
-public class Curso extends Model<UUID> implements Serializable {
+public class Curso extends Model implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id

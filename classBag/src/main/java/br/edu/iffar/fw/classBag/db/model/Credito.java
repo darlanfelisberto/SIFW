@@ -20,7 +20,7 @@ import jakarta.validation.constraints.NotNull;
 
 @Entity
 @Table(name="creditos")
-public class Credito extends Model<UUID> implements Serializable {
+public class Credito extends Model implements Serializable {
 	
 	private static final long serialVersionUID = 22021991L;
 	

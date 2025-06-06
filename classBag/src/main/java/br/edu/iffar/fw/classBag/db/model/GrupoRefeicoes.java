@@ -5,10 +5,8 @@ import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
-
 import br.com.feliva.sharedClass.db.Model;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -28,7 +26,7 @@ import jakarta.xml.bind.annotation.XmlTransient;
 
 @Entity
 @Table(name = "grupo_refeicoes")
-public class GrupoRefeicoes  extends Model<UUID>{
+public class GrupoRefeicoes  extends Model {
 
 	private static final long serialVersionUID = 1L;
 

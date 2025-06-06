@@ -7,29 +7,27 @@ import java.util.stream.Collectors;
 import br.com.feliva.authClass.dao.PermissaoDAO;
 import br.com.feliva.authClass.models.Permissao;
 import br.com.feliva.authClass.models.Pessoa;
+import br.com.feliva.sharedClass.db.DAO;
+import br.com.feliva.sharedClass.db.Model;
 import br.edu.iffar.fw.classBag.db.model.Curso;
 import br.edu.iffar.fw.classBag.db.model.Matricula;
 import br.edu.iffar.fw.classBag.db.model.Usuario;
-import br.com.feliva.sharedClass.db.DAO;
-import br.com.feliva.sharedClass.db.Model;
 import jakarta.annotation.PostConstruct;
 import jakarta.enterprise.context.Dependent;
 import jakarta.inject.Inject;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.NoResultException;
 import jakarta.persistence.Query;
-import jakarta.transaction.RollbackException;
-import jakarta.transaction.SystemException;
 import jakarta.transaction.Transactional;
 import lombok.Getter;
 
 /**
- * Este dao é injetado em threds que execuca em background, por isso nao tem contexto e nao funciona outros escopos,
- * por isso que ela possuimetodos copiados de outros daos.
+ * Este DAO2 é injetado em threds que execuca em background, por isso nao tem contexto e nao funciona outros escopos,
+ * por isso que ela possuimetodos copiados de outros DAO2s.
  */
 @Dependent
 @Getter
-public class BackgroudDAO  extends DAO<Model<?>> {
+public class BackgroudDAO  extends DAO<Model> {
 	
 	@Inject private EntityManager em;
 

@@ -20,7 +20,7 @@ import jakarta.validation.constraints.Size;
 
 @Entity
 @Table(name = "presenca", schema = "moradia_estudantil")
-public class Presenca extends Model<UUID> {
+public class Presenca extends Model {
 
 	private static final long serialVersionUID = 1L;
 

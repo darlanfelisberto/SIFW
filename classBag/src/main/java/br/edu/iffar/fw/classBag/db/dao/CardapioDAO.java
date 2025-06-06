@@ -3,8 +3,8 @@ package br.edu.iffar.fw.classBag.db.dao;
 import java.time.LocalDate;
 import java.util.List;
 
-import br.edu.iffar.fw.classBag.db.model.Cardapio;
 import br.com.feliva.sharedClass.db.DAO;
+import br.edu.iffar.fw.classBag.db.model.Cardapio;
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.persistence.NoResultException;
 

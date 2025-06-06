@@ -24,7 +24,7 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name="cidades")
 @NamedQuery(name="Cidade.findAll", query="SELECT c FROM Cidade c")
-public class Cidade extends Model<Integer>  implements Serializable {
+public class Cidade extends Model implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id

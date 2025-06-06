@@ -3,8 +3,8 @@ package br.edu.iffar.fw.classBag.db.model;
 import java.io.Serializable;
 import java.util.UUID;
 
-import br.edu.iffar.fw.classBag.enun.TypeSituacao;
 import br.com.feliva.sharedClass.db.Model;
+import br.edu.iffar.fw.classBag.enun.TypeSituacao;
 import br.edu.iffar.fw.classBag.interfaces.VinculosAtivosUsuarios;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -21,7 +21,7 @@ import jakarta.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "servidor")
-public class Servidor extends Model<UUID> implements Serializable, VinculosAtivosUsuarios {
+public class Servidor extends Model implements Serializable, VinculosAtivosUsuarios {
 
 	private static final long serialVersionUID = 22021991L;
 

@@ -6,11 +6,11 @@ import java.time.format.DateTimeFormatter;
 import java.util.Map;
 import java.util.UUID;
 
+import br.com.feliva.sharedClass.db.Model;
 import br.edu.iffar.fw.classBag.interfaces.VinculosAtivosUsuarios;
 import org.primefaces.model.ScheduleDisplayMode;
 import org.primefaces.model.ScheduleEvent;
 
-import br.com.feliva.sharedClass.db.Model;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -29,7 +29,7 @@ import jakarta.xml.bind.annotation.XmlTransient;
 
 @Entity
 @Table(name = "agendamentos")
-public class Agendamento extends Model<UUID> implements ScheduleEvent<Agendamento> {
+public class Agendamento extends Model implements ScheduleEvent<Agendamento> {
 	
 	private static final long serialVersionUID = 22021991L;
 

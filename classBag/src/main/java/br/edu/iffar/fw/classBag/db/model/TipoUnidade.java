@@ -14,7 +14,7 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name = "tipo_unidade", schema = "moradia_estudantil")
 @Cacheable
-public class TipoUnidade extends Model<UUID> {
+public class TipoUnidade extends Model {
 
 	private static final long serialVersionUID = 1L;
 

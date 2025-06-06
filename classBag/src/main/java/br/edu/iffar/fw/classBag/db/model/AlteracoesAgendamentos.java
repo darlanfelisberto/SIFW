@@ -18,7 +18,7 @@ import jakarta.xml.bind.annotation.XmlTransient;
 
 @Entity
 @Table(name = "alteracoes_agendamentos")
-public class AlteracoesAgendamentos extends Model<UUID> {
+public class AlteracoesAgendamentos extends Model {
 
 	private static final long serialVersionUID = 22021991L;
 

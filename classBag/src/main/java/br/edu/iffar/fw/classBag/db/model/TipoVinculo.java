@@ -13,7 +13,7 @@ import jakarta.xml.bind.annotation.XmlTransient;
 @Entity
 @Table(name="tipo_vinculo")
 @Cacheable
-public class TipoVinculo extends Model<UUID>{
+public class TipoVinculo extends Model {
 	
 	public static final int TIPO_MATRICULA_INTEGRADO 		= 10;
 	public static final int TIPO_MATRICULA_SUBSEQUENTE 		= 20;

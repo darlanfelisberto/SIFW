@@ -3,9 +3,9 @@ package br.edu.iffar.fw.classBag.db.dao;
 import java.time.LocalDate;
 import java.util.List;
 
+import br.com.feliva.sharedClass.db.DAO;
 import br.edu.iffar.fw.classBag.db.model.Presenca;
 import br.edu.iffar.fw.classBag.db.model.Unidade;
-import br.com.feliva.sharedClass.db.DAO;
 import jakarta.enterprise.context.RequestScoped;
 
 @RequestScoped

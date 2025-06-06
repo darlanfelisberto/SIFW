@@ -1,13 +1,9 @@
 package br.edu.iffar.fw.classBag.db.dao;
 
-import static br.edu.iffar.fw.classBag.db.SessionDataStore.IMAGEN_USUARIO_LOGADO;
-
-import java.io.IOException;
-
+import br.com.feliva.sharedClass.db.DAO;
 import br.edu.iffar.fw.classBag.db.SessionDataStore;
 import br.edu.iffar.fw.classBag.db.model.Imagen;
 import br.edu.iffar.fw.classBag.db.model.Usuario;
-import br.com.feliva.sharedClass.db.DAO;
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.inject.Inject;
 import jakarta.persistence.NoResultException;
@@ -15,6 +11,10 @@ import jakarta.persistence.Query;
 import jakarta.transaction.RollbackException;
 import jakarta.transaction.Transactional;
 import jakarta.transaction.Transactional.TxType;
+
+import java.io.IOException;
+
+import static br.edu.iffar.fw.classBag.db.SessionDataStore.IMAGEN_USUARIO_LOGADO;
 
 @RequestScoped
 public class ImagenDAO extends DAO<Imagen> {

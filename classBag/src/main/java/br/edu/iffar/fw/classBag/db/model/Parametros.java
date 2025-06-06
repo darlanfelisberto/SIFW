@@ -1,7 +1,7 @@
 package br.edu.iffar.fw.classBag.db.model;
 
-import br.edu.iffar.fw.classBag.enun.TypeParam;
 import br.com.feliva.sharedClass.db.Model;
+import br.edu.iffar.fw.classBag.enun.TypeParam;
 import jakarta.persistence.Cacheable;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -15,7 +15,7 @@ import jakarta.validation.constraints.NotNull;
 @Entity
 @Table(name = "parametros")
 @Cacheable
-public class Parametros extends Model<TypeParam> {
+public class Parametros extends Model {
 	
 	private static final long serialVersionUID = 22021991L;
 

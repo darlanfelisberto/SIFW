@@ -3,19 +3,17 @@ package br.edu.iffar.fw.classBag.db.dao;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
+import br.com.feliva.sharedClass.db.DAO;
+import br.com.feliva.sharedClass.db.Model;
 import br.edu.iffar.fw.classBag.db.model.Agendamento;
 import br.edu.iffar.fw.classBag.db.model.TipoRefeicao;
 import br.edu.iffar.fw.classBag.db.model.Usuario;
-import br.com.feliva.sharedClass.db.DAO;
-import br.com.feliva.sharedClass.db.Model;
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.persistence.NoResultException;
 import jakarta.persistence.Query;
-import org.hibernate.annotations.Type;
 
 @SuppressWarnings("unchecked")
 @RequestScoped
@@ -118,7 +116,7 @@ public class AgendamentosDAO extends DAO<Agendamento> {
     	return null;
     }
 	
-	public List<Agendamento> findAgendamentoEmPeriodo(Model vinculo,LocalDateTime inicio,LocalDateTime fim) {
+	public List<Agendamento> findAgendamentoEmPeriodo(Model vinculo, LocalDateTime inicio, LocalDateTime fim) {
     	Query q = this.em.createQuery("""
     		select a from Agendamento a
     		left join fetch a.credito lc 

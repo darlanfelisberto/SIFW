@@ -18,7 +18,7 @@ import jakarta.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "cardapio")
-public class Cardapio extends Model<UUID>implements Serializable{
+public class Cardapio extends Model implements Serializable{
 	
 	public enum DiasDaSemana{
 		SEGUNDA("Segunda"),

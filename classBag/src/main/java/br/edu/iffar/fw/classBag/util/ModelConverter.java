@@ -4,10 +4,10 @@ import java.lang.reflect.ParameterizedType;
 import java.util.HashMap;
 
 import br.com.feliva.authClass.models.Permissao;
+import br.com.feliva.sharedClass.db.Model;
 import br.edu.iffar.fw.classBag.db.dao.ConverterModelDAO;
 import br.edu.iffar.fw.classBag.db.model.*;
 import br.edu.iffar.fw.classBag.db.model.Usuario;
-import br.com.feliva.sharedClass.db.Model;
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.faces.component.UIComponent;
 import jakarta.faces.context.FacesContext;
@@ -89,8 +89,8 @@ public class ModelConverter implements Converter<Model> {
 		return null;
 	}
 
-	@Override 
-	public String getAsString(FacesContext context, UIComponent component,Model value) {
+	@Override
+	public String getAsString(FacesContext context, UIComponent component, Model value) {
 		if(value == null) {
 			return null;
 		}

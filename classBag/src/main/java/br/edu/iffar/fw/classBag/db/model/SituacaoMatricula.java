@@ -4,8 +4,8 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
-import br.edu.iffar.fw.classBag.enun.TypeSituacao;
 import br.com.feliva.sharedClass.db.Model;
+import br.edu.iffar.fw.classBag.enun.TypeSituacao;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -22,7 +22,7 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name="situacao_matricula")
 @NamedQuery(name="SituacaoMatricula.findAll", query="SELECT s FROM SituacaoMatricula s")
-public class SituacaoMatricula extends Model<UUID> implements Serializable {
+public class SituacaoMatricula extends Model implements Serializable {
 	private static final long serialVersionUID = 22021991L;
 
 	@Id

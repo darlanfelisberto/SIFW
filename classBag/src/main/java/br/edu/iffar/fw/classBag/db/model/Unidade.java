@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+import br.com.feliva.sharedClass.db.Model;
 import org.primefaces.model.TreeNode;
 
-import br.com.feliva.sharedClass.db.Model;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -24,7 +24,7 @@ import jakarta.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "unidade", schema = "moradia_estudantil")
-public class Unidade extends Model<UUID> implements TreeNode<Unidade> {
+public class Unidade extends Model implements TreeNode<Unidade> {
 
 	private static final long serialVersionUID = 1L;
 

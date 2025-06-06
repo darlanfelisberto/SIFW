@@ -17,7 +17,7 @@ import jakarta.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "item_unidade", schema = "moradia_estudantil")
-public class ItemUnidade extends Model<UUID> implements TreeNodeSearch {
+public class ItemUnidade extends Model implements TreeNodeSearch {
 
 	private static final long serialVersionUID = 1L;
 

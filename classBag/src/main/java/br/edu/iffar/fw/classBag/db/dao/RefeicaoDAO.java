@@ -5,10 +5,10 @@ import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 
-import br.edu.iffar.fw.classBag.db.model.Refeicao;
-import br.edu.iffar.fw.classBag.db.model.TipoRefeicao;
 import br.com.feliva.sharedClass.db.DAO;
 import br.com.feliva.sharedClass.db.Model;
+import br.edu.iffar.fw.classBag.db.model.Refeicao;
+import br.edu.iffar.fw.classBag.db.model.TipoRefeicao;
 import br.edu.iffar.fw.classBag.interfaces.VinculosAtivosUsuarios;
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.persistence.NoResultException;

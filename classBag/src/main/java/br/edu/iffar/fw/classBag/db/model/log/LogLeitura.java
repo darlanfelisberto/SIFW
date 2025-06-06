@@ -3,8 +3,8 @@ package br.edu.iffar.fw.classBag.db.model.log;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
-import br.edu.iffar.fw.classBag.db.model.Usuario;
 import br.com.feliva.sharedClass.db.Model;
+import br.edu.iffar.fw.classBag.db.model.Usuario;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -14,7 +14,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "leituras",schema = "log")
-public class LogLeitura extends Model<UUID> {
+public class LogLeitura extends Model {
 
 	private static final long serialVersionUID = 1L;
 

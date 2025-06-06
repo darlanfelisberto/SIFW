@@ -3,11 +3,11 @@ package br.edu.iffar.fw.classBag.db.model;
 import java.io.Serializable;
 import java.util.UUID;
 
+import br.com.feliva.sharedClass.db.Model;
 import br.edu.iffar.fw.classBag.enun.TypeCredito;
 import br.edu.iffar.fw.classBag.util.MessagesUtil;
 import br.edu.iffar.fw.classBag.util.ValidacaoPersonalizada;
 import br.edu.iffar.fw.classBag.validation.ValidaCreditoPorTypo;
-import br.com.feliva.sharedClass.db.Model;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -22,7 +22,7 @@ import jakarta.validation.constraints.NotNull;
 @Entity
 @Table(name = "altenacoes_creditos")
 @ValidaCreditoPorTypo(typeCreditoPara = "getTypeCreditoPara",realizadoPorCredito = "getRealizadoPorCredito" )
-public class AltenacoesCreditos extends Model<UUID> implements Serializable,ValidacaoPersonalizada {
+public class AltenacoesCreditos extends Model implements Serializable,ValidacaoPersonalizada {
 
 	private static final long serialVersionUID = 22021991L;
 

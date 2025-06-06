@@ -22,7 +22,7 @@ import jakarta.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "turma")
-public class Turma  extends Model<UUID>{
+public class Turma  extends Model {
 
 	private static final long serialVersionUID = 1L;
 

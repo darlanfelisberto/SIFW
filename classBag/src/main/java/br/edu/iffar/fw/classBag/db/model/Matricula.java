@@ -29,7 +29,7 @@ import jakarta.xml.bind.annotation.XmlTransient;
 
 @Entity
 @Table(name = "matricula")
-public class Matricula extends Model<UUID> implements Serializable, VinculosAtivosUsuarios {
+public class Matricula extends Model implements Serializable, VinculosAtivosUsuarios {
 
 	private static final long serialVersionUID = 22021991L;
 

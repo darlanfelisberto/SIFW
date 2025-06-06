@@ -1,10 +1,8 @@
 package br.edu.iffar.fw.classBag.db.model;
 
 import java.io.Serializable;
-import java.time.LocalDate;
 import java.util.*;
 
-import br.com.feliva.authClass.models.AuthUser;
 import br.com.feliva.authClass.models.Pessoa;
 import br.com.feliva.sharedClass.db.Model;
 import jakarta.persistence.*;
@@ -16,7 +14,7 @@ import jakarta.xml.bind.annotation.XmlTransient;
 
 @Entity
 @Table(name="usuarios",schema = "public")
-public class Usuario extends Model<UUID> implements Serializable {
+public class Usuario extends Model implements Serializable {
 	private static final long serialVersionUID = 22021991L;
 
 	@Id

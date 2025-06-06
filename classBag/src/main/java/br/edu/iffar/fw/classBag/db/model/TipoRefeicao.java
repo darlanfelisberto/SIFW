@@ -9,7 +9,7 @@ import java.util.UUID;
 @Entity
 @Table(name = "tipo_refeicao")
 @Cacheable
-public class TipoRefeicao extends Model<UUID>{
+public class TipoRefeicao extends Model {
 
 	private static final long serialVersionUID = 22021991L;
 

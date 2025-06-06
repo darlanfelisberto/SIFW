@@ -5,13 +5,13 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.feliva.sharedClass.db.Model;
 import org.primefaces.model.LazyScheduleModel;
 import org.primefaces.model.ScheduleEvent;
 import org.primefaces.model.ScheduleModel;
 
 import br.edu.iffar.fw.classBag.db.dao.AgendamentosDAO;
 import br.edu.iffar.fw.classBag.db.model.Agendamento;
-import br.com.feliva.sharedClass.db.Model;
 import br.edu.iffar.fw.ru.bean.fragment.VinculoSelecionadoBean;
 import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Inject;

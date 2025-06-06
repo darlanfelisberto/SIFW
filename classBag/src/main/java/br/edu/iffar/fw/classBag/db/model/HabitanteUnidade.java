@@ -23,7 +23,7 @@ import jakarta.xml.bind.annotation.XmlTransient;
 
 @Entity
 @Table(name = "habitante_unidade", schema = "moradia_estudantil")
-public class HabitanteUnidade extends Model<UUID> implements TreeNodeSearch {
+public class HabitanteUnidade extends Model implements TreeNodeSearch {
 
 	private static final long serialVersionUID = 1L;
 

@@ -1,6 +1,14 @@
 package br.edu.iffar.fw.classBag.db.model;
 
-import java.awt.Graphics2D;
+import br.com.feliva.sharedClass.constantes.InitConstantes;
+import br.com.feliva.sharedClass.db.Model;
+import jakarta.persistence.*;
+import jakarta.xml.bind.annotation.XmlTransient;
+import org.primefaces.model.DefaultStreamedContent;
+import org.primefaces.model.StreamedContent;
+
+import javax.imageio.ImageIO;
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -13,28 +21,9 @@ import java.nio.file.StandardOpenOption;
 import java.util.Base64;
 import java.util.UUID;
 
-import javax.imageio.ImageIO;
-
-import org.primefaces.model.DefaultStreamedContent;
-import org.primefaces.model.StreamedContent;
-
-import br.com.feliva.sharedClass.constantes.InitConstantes;
-import br.com.feliva.sharedClass.db.Model;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToOne;
-import jakarta.persistence.Table;
-import jakarta.persistence.Transient;
-import jakarta.xml.bind.annotation.XmlTransient;
-
 @Entity
 @Table(name = "imagen")
-public class Imagen extends Model<UUID>implements Serializable{
+public class Imagen extends Model implements Serializable{
 
 	private static final long serialVersionUID = 22021991L;
 	

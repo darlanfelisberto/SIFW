@@ -7,15 +7,15 @@ import java.sql.ResultSet;
 import java.time.LocalDate;
 import java.util.Map;
 
-import org.apache.commons.csv.CSVPrinter;
-
 import br.com.feliva.sharedClass.db.DAO;
 import br.com.feliva.sharedClass.db.Model;
+import org.apache.commons.csv.CSVPrinter;
+
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.inject.Inject;
 
 @RequestScoped
-public class RelatoriosDAO extends DAO<Model<?>>{
+public class RelatoriosDAO extends DAO<Model> {
 
 	
 	private static final long serialVersionUID = 22021991L;

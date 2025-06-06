@@ -12,7 +12,7 @@ public class APIDAO<T> extends Factory{
 	}
 
 	/**
-	 * use joinTransaction para unir os daos em uma unica transação
+	 * use joinTransaction para unir os DAO2s em uma unica transação
 	 * 
 	 * @param EntityManager em
 	 */
