@@ -7,7 +7,6 @@ import java.util.UUID;
 
 import br.edu.iffar.fw.classBag.db.model.Refeicao;
 import br.edu.iffar.fw.classBag.db.model.TipoRefeicao;
-import br.edu.iffar.fw.classBag.db.model.api.APIRefeicao2;
 import br.com.feliva.sharedClass.db.DAO;
 import br.com.feliva.sharedClass.db.Model;
 import br.edu.iffar.fw.classBag.interfaces.VinculosAtivosUsuarios;
@@ -96,14 +95,4 @@ public class RefeicaoDAO extends DAO<Refeicao> {
 
 	}
 
-	public List<APIRefeicao2> listAllRefeicoes2(){
-		Query q = this.em.createQuery("""
-					from APIUsuarioRefeicao ur
-					join fetch ur.refeicao r
-					join fetch r.tipoRefeicao tr
-					join fetch ur.usuario u
-				""");
-		
-		return q.getResultList();
-	}
 }
