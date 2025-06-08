@@ -35,14 +35,15 @@ public class VinculoSelecionadoBean implements Serializable {
 		}
 
 		this.lisVinculosAtivosUsuarios = this.getListVinculosAtivosUsuario();
-		if(this.lisVinculosAtivosUsuarios.size() == 1) {
-			this.sessionDataStore.putData(VINCULO_SELECIONDO, this.lisVinculosAtivosUsuarios.get(0));
-			return false;
-		}
 
 		if(this.lisVinculosAtivosUsuarios == null || this.lisVinculosAtivosUsuarios.size() > 1) {
 			//throw new RuntimeException("Usuário não possui vinculo como aluno ou servidor.");
 			return true;
+		}
+
+		if(this.lisVinculosAtivosUsuarios.size() == 1) {
+			this.sessionDataStore.putData(VINCULO_SELECIONDO, this.lisVinculosAtivosUsuarios.get(0));
+			return false;
 		}
 
 		return false;
