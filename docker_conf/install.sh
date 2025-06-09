@@ -88,6 +88,7 @@ function installDev(){
     echo "Instalando"
     DEBUG mkdir -p $PATH_INSTALL;
     DEBUG mkdir -p $PATH_INSTALL"/imagens";
+    DEBUG chmod -R 777 $PATH_INSTALL
     java;
     wildfly;
 }

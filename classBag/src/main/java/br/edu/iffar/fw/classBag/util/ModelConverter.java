@@ -22,6 +22,7 @@ import jakarta.inject.Named;
 public class ModelConverter implements Converter<Model> {
 	
 	private static HashMap<Integer, String> classes;
+	//TODO migra para usar CDI
 	static{
 		classes = new HashMap<Integer, String>();
 		
@@ -76,8 +77,6 @@ public class ModelConverter implements Converter<Model> {
 			Model m = (Model) cmd.findBd(entity, (Class)entity.getMethod("getMMId").getAnnotatedReturnType().getType(),name[1]);
 
 			return m;
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

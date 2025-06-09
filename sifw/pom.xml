@@ -215,6 +215,7 @@
 				<directory>src/main/resources</directory>
 				<includes>
 					<include>**</include>
+					<include>**/*.properties</include>
 				</includes>
 			</resource>
 		</resources>
