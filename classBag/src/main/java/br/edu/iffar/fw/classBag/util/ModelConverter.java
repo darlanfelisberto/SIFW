@@ -63,23 +63,18 @@ public class ModelConverter implements Converter<Model> {
 	
 	@Override 
 	public Model getAsObject(FacesContext context, UIComponent component, String value) {
-		
-		
+
 		if(value != null && !value.contains(Model.SEPARATIOR_KEY)) {
 			return null;
 		}
 		
 		try {
-//			long antes = ZonedDateTime.now().toInstant().toEpochMilli();
 			String[]name = value.split(Model.SEPARATIOR_KEY);
 
 			Class<?> entity = Class.forName(classes.get(Integer.parseInt(name[0])));
-			Class generic =  (Class) ((ParameterizedType)entity.getGenericSuperclass()).getActualTypeArguments()[0];
-						
-			Model m = (Model) cmd.findBd(entity,generic, name[1]);
-			
-//			long depois = ZonedDateTime.now().toInstant().toEpochMilli();
-//			System.out.println("tempo de converção: " + (depois-antes) +" milisegundos");
+
+			Model m = (Model) cmd.findBd(entity, (Class)entity.getMethod("getMMId").getAnnotatedReturnType().getType(),name[1]);
+
 			return m;
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
