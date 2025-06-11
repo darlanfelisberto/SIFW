@@ -3,7 +3,7 @@ package br.edu.iffar.fw.classBag.validation;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
-import br.edu.iffar.fw.classBag.db.model.AltenacoesCreditos;
+import br.edu.iffar.fw.classBag.db.model.AlteracoesCreditos;
 import br.edu.iffar.fw.classBag.db.model.Credito;
 import br.edu.iffar.fw.classBag.enun.TypeCredito;
 import jakarta.validation.ConstraintValidator;
@@ -20,13 +20,13 @@ public class ValidaCreditoPorTypoValidator implements ConstraintValidator<Valida
     }
 
     public boolean isValid(Object value, ConstraintValidatorContext context) {
-    	
+
     	try {
-    		Method getType = AltenacoesCreditos.class.getMethod(typeCreditoPara,null);
-    		Method getCredito = AltenacoesCreditos.class.getMethod(realizadoPorCredito,null);
+    		Method getType = AlteracoesCreditos.class.getMethod(typeCreditoPara,null);
+    		Method getCredito = AlteracoesCreditos.class.getMethod(realizadoPorCredito,null);
 			TypeCredito tc = (TypeCredito) getType.invoke(value);
 			Credito c = (Credito) getCredito.invoke(value);
-			
+
 			if(tc.equals(TypeCredito.TRANS_SAIDA) && c == null) {
 				return false;
 			}
@@ -47,7 +47,7 @@ public class ValidaCreditoPorTypoValidator implements ConstraintValidator<Valida
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-    	
+
     	return false;
     }
 }

@@ -151,18 +151,5 @@ public class UsuariosDAO extends DAO<Usuario> {
 		Query q =  this.em.createNativeQuery(sql);
 		return q.executeUpdate();
 	}
-	
-	public Saldo findSaldo(Usuario u) {
-		try {
-			return (Saldo)this.em.createNativeQuery("""
-					select c.usuario_id, sum(c.valor *tc.fator) as saldo from creditos c
-					inner join tipo_credito tc ON c.tipo_credito_id = tc.tipo_credito_id
-					where c.usuario_id = :user
-					group by c.usuario_id
-			""" ,Saldo.class).setParameter("user", u.getMMId()).getSingleResult();
-		} catch (NoResultException e) {
-			System.out.println("Usuario logado, NoResultException.");
-			return new Saldo();
-		}
-	}
+
 }

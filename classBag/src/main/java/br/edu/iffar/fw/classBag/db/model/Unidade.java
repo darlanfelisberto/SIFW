@@ -21,6 +21,8 @@ import jakarta.persistence.Table;
 import jakarta.persistence.Transient;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
+import org.primefaces.model.TreeNodeChildren;
+import org.primefaces.model.TreeNodeList;
 
 @Entity
 @Table(name = "unidade", schema = "moradia_estudantil")
@@ -42,7 +44,7 @@ public class Unidade extends Model implements TreeNode<Unidade> {
 
 	@OneToMany(fetch = FetchType.LAZY)
 	@JoinColumn(name = "parent_id", referencedColumnName = "unidade_id")
-	private List<Unidade> listUnidadeChildren = new ArrayList<Unidade>();
+	private List<Unidade> listUnidadeChildren;
 
 	@OneToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "parent_id", referencedColumnName = "unidade_id")
@@ -87,13 +89,13 @@ public class Unidade extends Model implements TreeNode<Unidade> {
 		this.seq = seq;
 	}
 
-	public List<Unidade> getListUnidadeChildren() {
-		return listUnidadeChildren;
-	}
-
-	public void setListUnidadeChildren(List<Unidade> listUnidadeChildren) {
-		this.listUnidadeChildren = listUnidadeChildren;
-	}
+//	public List<Unidade> getListUnidadeChildren() {
+//		return listUnidadeChildren;
+//	}
+//
+//	public void setListUnidadeChildren(List<Unidade> listUnidadeChildren) {
+//		this.listUnidadeChildren = listUnidadeChildren;
+//	}
 
 	public Unidade getParrent() {
 		return parrent;
@@ -206,11 +208,11 @@ public class Unidade extends Model implements TreeNode<Unidade> {
 	}
 
 	@Override
-	public List<TreeNode<Unidade>> getChildren() {
-		listUnidadeChildren.sort((o1, o2) -> o1.getDesc().compareTo(
-				o2.getDesc()));
+	public TreeNodeChildren<Unidade> getChildren() {
+		this.listUnidadeChildren.sort((o1, o2) -> o1.getData().getDesc().compareTo(
+				o2.getData().getDesc()));
 
-		return (List<TreeNode<Unidade>>) (List<?>) this.listUnidadeChildren;
+		return (TreeNodeChildren) this.listUnidadeChildren;
 	}
 
 	@Override

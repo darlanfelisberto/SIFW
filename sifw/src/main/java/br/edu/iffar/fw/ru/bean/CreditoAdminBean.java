@@ -1,15 +1,18 @@
 package br.edu.iffar.fw.ru.bean;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.List;
 
+import br.edu.iffar.fw.classBag.bo.CreditosBO;
 import br.edu.iffar.fw.classBag.db.dao.AltenacoesCreditosDAO;
 import br.edu.iffar.fw.classBag.db.dao.UsuariosDAO;
-import br.edu.iffar.fw.classBag.db.model.AltenacoesCreditos;
+import br.edu.iffar.fw.classBag.db.model.AlteracoesCreditos;
 import br.edu.iffar.fw.classBag.db.model.Credito;
 import br.edu.iffar.fw.classBag.db.model.TipoCredito;
 import br.edu.iffar.fw.classBag.db.model.Usuario;
 import br.edu.iffar.fw.classBag.enun.TypeCredito;
+import br.edu.iffar.fw.classBag.excecoes.CreditoException;
 import br.edu.iffar.fw.classBag.util.BreadCrumb;
 import br.edu.iffar.fw.classBag.util.BreadCrumbControl;
 import br.edu.iffar.fw.classBag.util.MessagesUtil;
@@ -18,6 +21,7 @@ import jakarta.annotation.PostConstruct;
 import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
+import jakarta.persistence.NoResultException;
 import jakarta.transaction.RollbackException;
 
 @Named
@@ -40,12 +44,12 @@ public class CreditoAdminBean  implements Serializable,BreadCrumbControl{
 	
 	@Inject private UsuariosDAO usuariosDAO;
 	@Inject private SaldoUserFrament saldoUserF;
-	@Inject private AltenacoesCreditosDAO transfDAO;
 	@Inject private MessagesUtil mesUtil;
+	@Inject private CreditosBO creditosBO;
 	
 	private boolean rendBuscaCpf = true;
 	
-	private Credito newCred; 
+	private BigDecimal valorCredito;
 
 	@PostConstruct
 	public void init() {
@@ -108,7 +112,7 @@ public class CreditoAdminBean  implements Serializable,BreadCrumbControl{
 		this.rendTelaCredito = true;
 		this.breadCrumb.setAtivo(4);
 		
-		this.newCred = new Credito(new TipoCredito(TypeCredito.ENTRADA));//TypeCredito.ENTRADA_INTERNA
+//		this.newCred = new Credito(new TipoCredito(TypeCredito.ENTRADA));//TypeCredito.ENTRADA_INTERNA
 	}
 
 	public void telaCreditoCpf(){
@@ -117,58 +121,32 @@ public class CreditoAdminBean  implements Serializable,BreadCrumbControl{
 	}
 	
 	public void addCreditoDinheiro() {
-		AltenacoesCreditos altenacoesCreditos = new AltenacoesCreditos();
-		altenacoesCreditos.setRealizadoPor(this.usuariosDAO.getUsuarioLogado());
-		altenacoesCreditos.setCreditoPara(newCred);
-		altenacoesCreditos.setPara(this.userSelect);
-		
 		try {
-			this.transfDAO.persistT(altenacoesCreditos);
+			this.creditosBO.valor(this.valorCredito)
+					.para(this.userSelect)
+					.usuarioLogado(this.usuariosDAO.getUsuarioLogado())
+					.entrada()
+					.saveAltenacoesCreditos();
 			this.selecionaUser();
-			mesUtil.addSuccess("Os créditos foram adicionados.");
-		}catch (RollbackException e) {
-			mesUtil.addError(e);
-			mesUtil.addError("Lamento, mas não consegui adicionar os créditos nesse instante, tente novamente mais tarde.");
-		} 
-		catch (Exception e) {
-			mesUtil.addError("Lamento, mas não consegui adicionar os créditos nesse instante, tente novamente mais tarde.");
-		}
-	}
+		} catch (CreditoException e) {
+            throw new RuntimeException(e);
+        } catch (NoResultException e) {
+            throw new RuntimeException(e);
+        }
+    }
 	
 	public void retiradaTotal(boolean total) {
 
-		if(!(this.saldoUserF.getSaldo().getSaldo() > 0)) {
-			mesUtil.addError("Saldo deve ser maior que zero.");
-			return;
-		}
-		if(!total  && (this.saldoUserF.getSaldo().getSaldo() < this.newCred.getValor().floatValue())) {
-			mesUtil.addError("Saldo insufíciente para retirada.");
-			return;
-		}
-		
-		this.newCred.setTipoCredito(new TipoCredito(TypeCredito.RETIRADA));
-		
-		if(total) {
-			this.newCred.setValor(this.saldoUserF.getSaldo().getSaldo());
-		}
-		
-		AltenacoesCreditos altenacoesCreditos = new AltenacoesCreditos();
-		altenacoesCreditos.setRealizadoPor(this.usuariosDAO.getUsuarioLogado());
-		altenacoesCreditos.setCreditoPara(newCred);
-		altenacoesCreditos.setPara(this.userSelect);
 		
 		try {
-			this.transfDAO.persistT(altenacoesCreditos);
+			this.creditosBO.valor(this.valorCredito)
+					.para(this.userSelect)
+					.usuarioLogado(this.usuariosDAO.getUsuarioLogado())
+					.retirada(total)
+					.saveAltenacoesCreditos();
 			this.selecionaUser();
-			mesUtil.addSuccess("Os créditos foram retirados com sucesso.");
-		}catch (RollbackException e) {	
-			mesUtil.addError(e);
-			mesUtil.addError("Lamento, mas não consegui adicionar os créditos nesse instante, tente novamente mais tarde.");
-			e.printStackTrace();
-		} 
-		catch (Exception e) {
-			mesUtil.addError("Lamento, mas não consegui adicionar os créditos nesse instante, tente novamente mais tarde.");
-			e.printStackTrace();
+		}catch (CreditoException e) {
+			mesUtil.addError(e.getMessage());
 		}
 	}
 	
@@ -229,7 +207,11 @@ public class CreditoAdminBean  implements Serializable,BreadCrumbControl{
 		return saldoUserF;
 	}
 
-	public Credito getNewCred() {
-		return newCred;
-	}	
+	public BigDecimal getValorCredito() {
+		return valorCredito;
+	}
+
+	public void setValorCredito(BigDecimal valorCredito) {
+		this.valorCredito = valorCredito;
+	}
 }

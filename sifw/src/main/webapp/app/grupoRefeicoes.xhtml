@@ -119,7 +119,16 @@
 			 								<p:commandButton icon="pi pi-pencil" action="#{grupoRefeicoesBean.telaEditTipoRefeicao}" update="frmMain:otpTipoRefeicao frmMain:otpGrupoRefeicoe" process="@this" styleClass="rounded-button ui-button-info ui-button-flat">
 			 									<f:setPropertyActionListener value="#{tr}" target="#{grupoRefeicoesBean.refeicao}"></f:setPropertyActionListener>
 			 								</p:commandButton>
-			 								<p:commandButton icon="pi pi-trash" action="#{grupoRefeicoesBean.deleteRefeicao}" update="frmMain:otpGrupoRefeicoe" process="@this" styleClass="rounded-button ui-button-danger ui-button-flat">				 									
+			 								<p:commandButton icon="pi pi-trash" action="#{grupoRefeicoesBean.deleteRefeicao}" update="frmMain:otpGrupoRefeicoe" process="@this" styleClass="rounded-button ui-button-danger ui-button-flat">
+												<p:confirm type="popup" header="Confirmation"
+														   message="Do you want to delete this record?"
+														   icon="pi pi-info-circle"
+														   yesButtonLabel="Delete Me!"
+														   yesButtonClass="bg-red-600 text-white"
+														   yesButtonIcon="pi pi-trash"
+														   noButtonLabel="Keep this!"
+														   noButtonClass="bg-green-600 text-white"
+														   noButtonIcon="pi pi-heart"/>
 			 									<f:setPropertyActionListener value="#{tr}" target="#{grupoRefeicoesBean.refeicao}"></f:setPropertyActionListener>
 			 								</p:commandButton>
 			 							</p:column>				 						
@@ -168,7 +177,7 @@
 							</div>
 							<div class="field col-12 md:col-6">
 								<label>Valor(R$):</label>
-								<p:inputNumber id="input2" value="#{grupoRefeicoesBean.refeicao.valor}" decimalSeparator="," thousandSeparator="." />
+								<p:inputNumber id="input2" value="#{grupoRefeicoesBean.refeicao.valor}"  decimalPlaces="2" />
 							</div>							
 							<div class="field col-12 md:col-6">
 								<label>Início em dias uteis:</label>
@@ -194,7 +203,11 @@
 	 				</p:panel>				
 				</p:outputPanel>
  			</p:outputPanel>
-			
+
+			<p:confirmPopup global="true">
+				<p:commandButton value="No" type="button" styleClass="ui-confirm-popup-no ui-button-flat" icon="pi pi-times"/>
+				<p:commandButton value="Yes" type="button" styleClass="ui-confirm-popup-yes" icon="pi pi-check"/>
+			</p:confirmPopup>
 		</h:form>
 		
 	</ui:define>

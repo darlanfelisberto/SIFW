@@ -1,5 +1,6 @@
 package br.edu.iffar.fw.classBag.db.model;
 
+import java.math.BigDecimal;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -31,7 +32,7 @@ public class Refeicao extends Model {
 	private UUID refeicaoId = UUID.randomUUID();
 		
 	@NotNull(message = "Informe o valor da refeição.")
-	private float valor;
+	private BigDecimal valor;
 	
 	@NotNull(message = "Informe a hora de inicio em dias de semana.")
 	@Column(name ="hora_inicio_util")
@@ -60,11 +61,11 @@ public class Refeicao extends Model {
 	public Refeicao() {
 	}
 
-	public float getValor() {
+	public BigDecimal getValor() {
 		return valor;
 	}
 
-	public void setValor(float valor) {
+	public void setValor(BigDecimal valor) {
 		this.valor = valor;
 	}
 

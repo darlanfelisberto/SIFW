@@ -1,6 +1,7 @@
 package br.edu.iffar.fw.ru.bean;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.List;
 
 import br.edu.iffar.fw.classBag.db.dao.CreditosDAO;
@@ -36,13 +37,13 @@ public class TransferenciasBean implements Serializable,BreadCrumbControl{
 //			this.entrada.setParent(this.saida);//é feito no salvamento
 		}
 						
-		public void setValor(Float f) {
+		public void setValor(BigDecimal f) {
 			this.saida.setValor(f);
 			this.entrada.setValor(f);
 		}
 		
 		public Float getValor() {
-			return this.saida.getValor();
+			return this.saida.getValor().floatValue();
 		}
 		
 		public void setUsuarios(Usuario para, Usuario de) {
@@ -83,7 +84,7 @@ public class TransferenciasBean implements Serializable,BreadCrumbControl{
 			messages.addError("Informe um valor para a transferência maior que 0.");
 			retu = false;
 		}
-		if(this.saldo.getSaldo() < getValor()) {
+		if(this.saldo.getSaldo().floatValue() < getValor()) {
 			messages.addError("Saldo insuficiente.");
 			retu = false;
 		}
@@ -131,7 +132,7 @@ public class TransferenciasBean implements Serializable,BreadCrumbControl{
 	
 	public void cancelar() {
 		this.user = this.usuariosDAO.getUsuarioLogado();
-		this.saldo = this.usuariosDAO.findSaldo(user);
+		this.saldo = this.creditosDAO.findSaldo(user);
 		this.transSub = new TransferenciaSubControl();		
 	}
 
@@ -144,7 +145,7 @@ public class TransferenciasBean implements Serializable,BreadCrumbControl{
 		return this.transSub.getPara();
 	}
 	
-	public void setValor(Float f) {
+	public void setValor(BigDecimal f) {
 		this.transSub.setValor(f);
 	}
 	

@@ -123,7 +123,7 @@ public class CatracaBean implements Serializable{
 		
 		this.imagen = this.imagenDAO.findByUsuarioIfNullPattern(this.usuario);
 				
-		this.saldo =  this.usuariosDAO.findSaldo(this.usuario);
+		this.saldo =  this.creditosDAO.findSaldo(this.usuario);
 		this.agendamento = this.agendamentosDAO.findByUserAndDateAndTipoRefeicao(usuario, this.dtReferencia, this.tipoRefeicao);
 		
 		this.credito = (this.agendamento != null && this.agendamento.getCredito() != null ? this.agendamento.getCredito() : null);// this.creditosDAO.existeSaidaCreditoParaHoje(this.usuario,this.tipoRefeicao);
@@ -166,7 +166,7 @@ public class CatracaBean implements Serializable{
 	}
 
 	public void creditar() {
-		if(saldo.getSaldo() <= this.agendamento.getRefeicao().getValor()) {
+		if(saldo.getSaldo().compareTo(this.agendamento.getRefeicao().getValor()) >= 0) {
 			this.msgErroSom("Usuário não possui créditos suficiente!");
 			return;
 		}

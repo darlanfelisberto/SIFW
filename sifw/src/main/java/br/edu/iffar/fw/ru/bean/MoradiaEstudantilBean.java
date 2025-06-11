@@ -30,6 +30,7 @@ import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
 import jakarta.transaction.RollbackException;
+import org.primefaces.model.TreeNode;
 
 /**
  * @author darlan
@@ -103,9 +104,9 @@ public class MoradiaEstudantilBean implements Serializable {
 			);
 		}
 
-		if(!u.getListUnidadeChildren().isEmpty()) {
-			for (Unidade uni : u.getListUnidadeChildren()) {
-				pesquisaFilter(stn, uni, result, nome);
+		if(!u.getChildren().isEmpty()) {
+			for (TreeNode<Unidade> uni : u.getChildren()) {
+				pesquisaFilter(stn, uni.getData(), result, nome);
 			}
 		}
 	}
@@ -356,7 +357,7 @@ public class MoradiaEstudantilBean implements Serializable {
 			switch (this.operacao) {
 			case 1:// move uma unidade pra outra unidade
 				try {
-					this.nodeOperado.getParrent().getListUnidadeChildren().remove(this.nodeOperado);
+					this.nodeOperado.getParrent().getChildren().remove(this.nodeOperado);
 					this.nodeSelecionado.addUnidadeChildren(this.nodeOperado);
 					this.unidadeDAO.mergeT(nodeOperado);
 //					this.root = this.unidadeDAO.getRootNodeUnidade();

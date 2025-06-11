@@ -6,7 +6,7 @@ import java.util.*;
 import br.com.feliva.authClass.models.Pessoa;
 import br.com.feliva.sharedClass.db.Model;
 import jakarta.persistence.*;
-import org.primefaces.model.charts.pie.PieChartModel;
+//import org.primefaces.model.charts.pie.PieChartModel;
 
 import br.edu.iffar.fw.classBag.enun.TypeCredito;
 import br.edu.iffar.fw.classBag.enun.TypeSituacao;
@@ -84,25 +84,6 @@ public class Usuario extends Model implements Serializable {
 	}
     
 	public void setEventLimit(boolean eventLimit) {
-    }
-		  
-    public static PieChartModel getPieChartCredito(List<Credito> lc) {
-    	
-    	Set<TipoCredito> tiposCreditos = new HashSet<TipoCredito>();
-    	
-    	Float []sum = new Float[TypeCredito.values().length];
-    	Arrays.fill(sum, 0f);
-    	
-    	if(lc != null) {
-    		lc.forEach(c-> {
-    			tiposCreditos.add(c.getTipoCredito());
-    			c.getTipoCredito().getTipoCreditoId().sumType(c, sum);
-    		});
-//    		tiposCreditos.remove(new TipoCredito(TypeCredito.TRANS_ENTRADA));
-    		return TypeCredito.getPieChartModel(sum,tiposCreditos);
-    	}else {
-    		return null;
-    	}
     }
 
 	public List<Matricula> getListMatricula() {

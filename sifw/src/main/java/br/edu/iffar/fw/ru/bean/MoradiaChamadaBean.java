@@ -32,6 +32,7 @@ import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
 import jakarta.transaction.RollbackException;
+import org.primefaces.model.TreeNode;
 
 @Named
 @ViewScoped
@@ -91,9 +92,9 @@ public class MoradiaChamadaBean implements Serializable {
 			);
 		}
 
-		if(!u.getListUnidadeChildren().isEmpty()) {
-			for (Unidade uni : u.getListUnidadeChildren()) {
-				pesquisaFilter(stn, uni, result, nome);
+		if(!u.getChildren().isEmpty()) {
+			for (TreeNode<Unidade> uni : u.getChildren()) {
+				pesquisaFilter(stn, uni.getData(), result, nome);
 			}
 		}
 	}

@@ -73,7 +73,7 @@
 					<div class="formgroup-inline">
     					<div class="field">
 							<label>Valor:</label>
-							<p:inputNumber id="inpValor" label="Valor" value="#{creditoAdminBean.newCred.valor}" required="true" symbol="R$ " decimalSeparator="," thousandSeparator="." />
+							<p:inputNumber id="inpValor" label="Valor" value="#{creditoAdminBean.valorCredito}" required="true" symbol="R$ " decimalSeparator="," thousandSeparator="." />
 						</div>
 						<div class="field">
 							<p:commandButton id="btnCredDinheiro" value="Crédito em Dinheiro" actionListener="#{creditoAdminBean.addCreditoDinheiro}" update="frmMain" styleClass="ui-button-success" icon="pi pi-check">

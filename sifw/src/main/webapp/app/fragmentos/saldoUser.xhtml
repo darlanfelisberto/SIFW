@@ -42,7 +42,7 @@
 								<span >
 									#{cred.tipoCredito.descricao} de 
 									<h:outputText value="#{cred.valor}"  >
-										<f:convertNumber type="currency" />
+										<f:convertNumber type="currency" pattern="¤ ###,###,##0.00; ¤ -###,###,##0.00"/>
 									</h:outputText>.
 									<p:outputPanel  rendered="#{cred.tipoCredito.transSaida}">
 										Para  #{cred.parent.usuario.pessoa.nome}.
@@ -63,16 +63,14 @@
 						    </f:facet>
 					        
 					        <f:facet name="marker">
-						        <span class="marker p-shadow-2" style="background-color:${cred.tipoCredito.cor}">
+						        <span class="marker p-shadow-2" style="background-color:rgb(${cred.tipoCredito.cor})">
 						            <i class="pi pi-#{cred.tipoCredito.tipoCreditoId.icon}"/>
 						        </span>
 						    </f:facet>
 						</p:chronoline>	
 					</div>
 					<div class="col-12 md:col-6 lg:col-6">
-					    <p:outputPanel>
-					    	<p:pieChart model="#{fragmento.pieModel}" style="width: 100%; height: 350px;"/>
-					    </p:outputPanel>
+						<p:chart value="#{fragmento.pieModel}" style="width: 100%; height: 350px;"/>
 				    </div>
 				</div>
 			
@@ -106,7 +104,7 @@
 				    	</div>
 				    	<div class="col-12 md:col-6 lg:col-6">
 						    <p:outputPanel>
-						    	<p:pieChart model="#{fragmento.pieModel}" style="width: 100%; height: 350px;"/>
+<!--						    	<p:pieChart model="#{fragmento.pieModel}" style="width: 100%; height: 350px;"/>-->
 						    </p:outputPanel>
 					    </div>
 				    </div>

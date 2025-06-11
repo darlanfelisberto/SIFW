@@ -1,85 +1,59 @@
 package br.edu.iffar.fw.classBag.enun;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
-
-import org.primefaces.model.charts.ChartData;
-import org.primefaces.model.charts.pie.PieChartDataSet;
-import org.primefaces.model.charts.pie.PieChartModel;
+//
+//import org.primefaces.model.charts.ChartData;
+//import org.primefaces.model.charts.pie.PieChartDataSet;
+//import org.primefaces.model.charts.pie.PieChartModel;
 
 import br.edu.iffar.fw.classBag.db.model.Credito;
 import br.edu.iffar.fw.classBag.db.model.TipoCredito;
+import br.edu.iffar.fw.classBag.excecoes.CreditoException;
+import br.edu.iffar.fw.classBag.impl.EntradaCredito;
+import br.edu.iffar.fw.classBag.impl.SaidaCredito;
+import br.edu.iffar.fw.classBag.interfaces.OperacaoCredito;
 
 public enum TypeCredito {
-	ENTRADA			(TypeCredito.E,"money-bill"),
-	SAIDA			(TypeCredito.S,"shopping-cart"),
-	RETIRADA		(TypeCredito.R,"exclamation-triangle"),
-	TRANS_SAIDA		(TypeCredito.TS,"send"),
-	TRANS_ENTRADA	(TypeCredito.TE,"money-bill");
-	
-	private int index;
+	ENTRADA			(0,new EntradaCredito(),"money-bill"),
+	SAIDA			(1,new SaidaCredito(),"shopping-cart"),
+	TRANS_SAIDA		(2,new SaidaCredito(),"send"),
+	TRANS_ENTRADA	(3,new EntradaCredito(),"money-bill"),
+	RETIRADA		(4,new SaidaCredito(),"exclamation-triangle");
+
+    private int index;
 	private String icon;
-	
-	public static final int E = 0;
-	public static final int S = 1;
-	public static final int R = 4;
-	
-	public static final int TS = 2;
-	public static final int TE = 3;
+	private OperacaoCredito operacao;
 
-
-	private TypeCredito(int index,String icon) {
+	private TypeCredito(int index,OperacaoCredito operacao,String icon) {
 		this.index = index;
 		this.icon = icon;
+		this.operacao = operacao;
 	}
 
-	public void sumType(Credito c,Float[] sum) {
-		sum[index]+= c.getValor();
+	public void sumType(BigDecimal[] sum,Credito c) {
+		sum[this.index] = sum[this.index].add(c.getValor());
 	}
-	
-	public int getIndex() {
-		return this.index;
-	}
-		
-	
-	public TipoCredito createIntance() {
+
+    public TipoCredito createIntance() {
 		return new TipoCredito(this);
 	}
-	
+
+	public void inicializaTipoCredito(Credito credito) {
+		if(credito.getValor() == null) {
+			throw new CreditoException("Informe o valor do credito antes de iniciar a operação.");
+		}
+		credito.setTipoCredito(new TipoCredito(this));
+		this.operacao.ajuste(credito);
+	}
+
+	public int getIndex() {
+		return index;
+	}
 
 	public String getIcon() {
 		return icon;
 	}
-
-	public static PieChartModel getPieChartModel(Float[] sum,Set<TipoCredito> listTipoCredito) {
-//		float total = Arrays.asList(sum).stream().reduce(0f,Float::sum);
-    	
-    	PieChartModel pieModel = new PieChartModel();
-        ChartData data = new ChartData();
-        
-        PieChartDataSet dataSet = new PieChartDataSet();
-        List<Number> values = new ArrayList<>();
-        List<String> bgColors = new ArrayList<>();
-        List<String> labels = new ArrayList<>();
-        
-        listTipoCredito.forEach(tc ->{
-        	values.add(sum[tc.getTipoCreditoId().getIndex()]);
-        	bgColors.add(tc.getCor());
-        	labels.add(tc.getDescricao());
-        });
-        
-        dataSet.setData(values);
-        dataSet.setBackgroundColor(bgColors);
-        
-        data.addChartDataSet(dataSet);
-        data.setLabels(labels);
-        
-        pieModel.setData(data);
-        
-        return pieModel;
-			
-	}
-	
-	
 }

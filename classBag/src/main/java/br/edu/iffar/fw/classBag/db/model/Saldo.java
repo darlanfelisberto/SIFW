@@ -1,5 +1,6 @@
 package br.edu.iffar.fw.classBag.db.model;
 
+import java.math.BigDecimal;
 import java.util.UUID;
 
 import br.com.feliva.sharedClass.db.Model;
@@ -35,12 +36,9 @@ public class Saldo extends Model {
 	private static final long serialVersionUID = 1L;
 
 	@Column(name = "saldo")
-	private float saldo;
+	private BigDecimal saldo;
 	
 	@Id
-//	@OneToOne(fetch = FetchType.LAZY)
-//	@JoinColumn(name="usuario_id",referencedColumnName = "usuario_id",nullable = false,insertable = false,updatable = false)
-//	private Usuario usuario;//= UUID.randomUUID();
 	@Column(name = "usuario_id")
 	private UUID usuarioId;
 
@@ -49,11 +47,7 @@ public class Saldo extends Model {
 		return this.usuarioId;
 	}
 
-	public float getSaldo() {
+	public BigDecimal getSaldo() {
 		return saldo;
 	}
-
-	public void setSaldo(float saldo) {
-		this.saldo = saldo;
-	}	
 }

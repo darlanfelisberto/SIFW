@@ -5,10 +5,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import br.com.feliva.sharedClass.db.DAO;
-import br.edu.iffar.fw.classBag.db.model.Agendamento;
-import br.edu.iffar.fw.classBag.db.model.Credito;
-import br.edu.iffar.fw.classBag.db.model.TipoRefeicao;
-import br.edu.iffar.fw.classBag.db.model.Usuario;
+import br.edu.iffar.fw.classBag.db.model.*;
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.persistence.NoResultException;
 import jakarta.persistence.Query;
@@ -120,5 +117,18 @@ public class CreditosDAO extends DAO<Credito> {
 		q.setParameter("agendamento", a);
 		
 		return q.getResultList();
+	}
+
+	public Saldo findSaldo(Usuario u) {
+		try {
+			return (Saldo)this.em.createNativeQuery("""
+					select c.usuario_id, sum(c.valor) as saldo from creditos c
+					inner join tipo_credito tc ON c.tipo_credito_id = tc.tipo_credito_id
+					where c.usuario_id = :user
+					group by c.usuario_id
+			""" ,Saldo.class).setParameter("user", u.getMMId()).getSingleResult();
+		} catch (NoResultException e) {
+			return new Saldo();
+		}
 	}
 }

@@ -30,9 +30,7 @@ public class TipoCredito extends Model {
 	private String cor;
 	
 	private String descricao;
-	
-	private int fator;
-	
+
 	public TipoCredito() {
 	}
 	
@@ -45,22 +43,12 @@ public class TipoCredito extends Model {
 		return this.tipoCreditoId;
 	}
 
-	
-	
 	public String getStyleClass() {
 		return styleClass;
 	}
 
 	public void setStyleClass(String styleClass) {
 		this.styleClass = styleClass;
-	}
-
-	public int getFator() {
-		return fator;
-	}
-
-	public void setFator(int fator) {
-		this.fator = fator;
 	}
 
 	public TypeCredito getTipoCreditoId() {

@@ -1,6 +1,7 @@
 package br.edu.iffar.fw.classBag.db.model;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.UUID;
@@ -42,7 +43,7 @@ public class Credito extends Model implements Serializable {
 	
 	@Max(value = 200)
 	@NotNull
-	private Float valor;
+	private BigDecimal valor;
 
 	@NotNull
 	@ManyToOne
@@ -64,7 +65,7 @@ public class Credito extends Model implements Serializable {
 	}
 	
 	public Credito(@NotNull LocalDateTime dtCredito, Agendamento agendamento,
-				   @Max(99) Float valor, @NotNull Usuario usuario, TipoCredito tipoCredito, LocalDateTime sincronizado) {
+				   @Max(99) BigDecimal valor, @NotNull Usuario usuario, TipoCredito tipoCredito, LocalDateTime sincronizado) {
 		super();
 		this.dtCredito = dtCredito;
 		this.valor = valor;
@@ -100,11 +101,11 @@ public class Credito extends Model implements Serializable {
 		this.tipoCredito = tipoCredito;
 	}
 	
-	public Float getValor() {
+	public BigDecimal getValor() {
 		return valor;
 	}
 
-	public void setValor(Float valor) {
+	public void setValor(BigDecimal valor) {
 		this.valor = valor;
 	}
 
@@ -152,6 +153,5 @@ public class Credito extends Model implements Serializable {
 	public void setParent(Credito parent) {
 		this.parent = parent;
 	}
-	
-	
+
 }
