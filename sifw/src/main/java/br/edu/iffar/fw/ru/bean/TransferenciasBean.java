@@ -42,8 +42,8 @@ public class TransferenciasBean implements Serializable,BreadCrumbControl{
 			this.entrada.setValor(f);
 		}
 		
-		public Float getValor() {
-			return this.saida.getValor().floatValue();
+		public BigDecimal getValor() {
+			return this.saida.getValor();
 		}
 		
 		public void setUsuarios(Usuario para, Usuario de) {
@@ -80,22 +80,22 @@ public class TransferenciasBean implements Serializable,BreadCrumbControl{
 	
 	public boolean validadete() {
 		boolean retu = true;
-		if(this.transSub.getValor() <= 0f) {
-			messages.addError("Informe um valor para a transferência maior que 0.");
-			retu = false;
-		}
-		if(this.saldo.getSaldo().floatValue() < getValor()) {
-			messages.addError("Saldo insuficiente.");
-			retu = false;
-		}
-		if(this.transSub.getPara() == null) {
-			messages.addError("Informe para quem você vai realizar a transferência.");
-			retu = false;
-		}
-		if(this.user.equals(this.transSub.getPara())) {
-			messages.addError("Você não pode transferir valores para você mesmo.");
-			retu = false;
-		}
+//		if(this.transSub.getValor() <= 0f) {
+//			messages.addError("Informe um valor para a transferência maior que 0.");
+//			retu = false;
+//		}
+//		if(this.saldo.getSaldo().floatValue() < getValor()) {
+//			messages.addError("Saldo insuficiente.");
+//			retu = false;
+//		}
+//		if(this.transSub.getPara() == null) {
+//			messages.addError("Informe para quem você vai realizar a transferência.");
+//			retu = false;
+//		}
+//		if(this.user.equals(this.transSub.getPara())) {
+//			messages.addError("Você não pode transferir valores para você mesmo.");
+//			retu = false;
+//		}
 		
 		return retu;
 	}
@@ -150,7 +150,7 @@ public class TransferenciasBean implements Serializable,BreadCrumbControl{
 	}
 	
 	@NotNull(message = "Informe um valor.")
-	public Float getValor() {
+	public BigDecimal getValor() {
 		return this.transSub.getValor();
 	}
 	

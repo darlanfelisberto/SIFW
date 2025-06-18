@@ -6,7 +6,8 @@ import java.time.LocalDate;
 import java.time.format.TextStyle;
 import java.util.*;
 
-import br.edu.iffar.fw.classBag.bo.CreditosBO;
+
+import br.edu.iffar.fw.classBag.bo.CreditosDepositoBO;
 import br.edu.iffar.fw.classBag.db.model.*;
 import br.edu.iffar.fw.classBag.enun.TypeCredito;
 //import org.primefaces.model.charts.pie.PieChartModel;
@@ -108,7 +109,7 @@ public class SaldoUserFrament implements Serializable {
 
         this.listCreditos = creditosDAO.getCreditosByMesAno(data, this.user);
 
-        this.pieModel = CreditosBO.chartPie(this.listCreditos);
+        this.pieModel = CreditosDepositoBO.chartPie(this.listCreditos);
 
     }
 
