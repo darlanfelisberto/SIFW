@@ -14,6 +14,7 @@ import br.edu.iffar.fw.classBag.db.model.TipoCredito;
 import br.edu.iffar.fw.classBag.db.model.Usuario;
 import br.edu.iffar.fw.classBag.enun.TypeCredito;
 import br.edu.iffar.fw.classBag.excecoes.CreditoException;
+import br.edu.iffar.fw.classBag.interfaces.credito.OperacoesCredito;
 import br.edu.iffar.fw.classBag.interfaces.credito.impl.Deposito;
 import br.edu.iffar.fw.classBag.interfaces.credito.impl.Retirada;
 import br.edu.iffar.fw.classBag.util.BreadCrumb;
@@ -143,11 +144,12 @@ public class CreditoAdminBean  implements Serializable,BreadCrumbControl{
 
 		try {
 			this.creditosBO.saveOperacaoCredito(
-                    new Retirada()
+                    (OperacoesCredito) new Retirada(total)
                             .saldo(this.saldoUserF.getSaldo().getSaldo())
-                            .retirada(total,this.valorCredito)
+                            .valor(this.valorCredito)
                             .para(this.userSelect)
                             .realizadoPor(this.sessionDataStore.getUsuarioLogado())
+							.builder()
             );
 			this.selecionaUser();
 		}catch (CreditoException e) {

@@ -6,12 +6,14 @@ import br.edu.iffar.fw.classBag.interfaces.credito.impl.Deposito;
 
 import java.math.BigDecimal;
 
-public interface OperacoesCredito {
+public interface OperacoesCredito<T> {
 
-    public OperacoesCredito valor(BigDecimal valor);
-    public OperacoesCredito saldo(BigDecimal saldo);
-    public OperacoesCredito para(Usuario para);
-    public OperacoesCredito realizadoPor(Usuario usuario);
+    public T valor(BigDecimal valor);
+    public T saldo(BigDecimal saldo);
+    public T para(Usuario para);
+    public T realizadoPor(Usuario usuario);
 
     public AlteracoesCreditos getAltenacoesCreditos();
+
+    public T builder();
 }

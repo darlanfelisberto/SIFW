@@ -30,7 +30,7 @@
 						<p:panel header="Saldo">
 							<h:panelGrid columns="2">
 								<label>Saldo: </label>
-								<h:outputText value="#{transferenciasBean.saldoUser.saldo}">
+								<h:outputText value="#{transferenciasBean.saldo}">
 									<f:convertNumber type="currency" />
 								</h:outputText>	
 							</h:panelGrid>
@@ -42,7 +42,7 @@
 							<div class="formgrid grid">
 								<div class="field col-12 md:col-12 full">
 									<h:outputLabel value="Destino:(Nome/CPF)" for="aucPara" title="Usuário que deve receber os creditos"  />
-									<p:autoComplete id="aucPara" value="#{transferenciasBean.para}" completeMethod="#{transferenciasBean.getListUsers}" forceSelection="true"
+									<p:autoComplete id="aucPara" value="#{transferenciasBean.paraUseuario}" completeMethod="#{transferenciasBean.getListUsers}" forceSelection="true"
 										pt:placeholder="Digite 11 letras para pesquisar" minQueryLength="11" converter="#{modelConverter}" emptyMessage="Nome/CPF não foi encontrado." 
 										var="u" itemLabel="#{u.pessoa.nomeCpf}" itemValue="#{u}" >
 										<p:ajax update="btnTransferir"></p:ajax>

@@ -4,12 +4,15 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.List;
 
+import br.edu.iffar.fw.classBag.bo.CreditosDepositoBO;
+import br.edu.iffar.fw.classBag.db.SessionDataStore;
 import br.edu.iffar.fw.classBag.db.dao.CreditosDAO;
 import br.edu.iffar.fw.classBag.db.dao.UsuariosDAO;
 import br.edu.iffar.fw.classBag.db.model.Credito;
 import br.edu.iffar.fw.classBag.db.model.Saldo;
 import br.edu.iffar.fw.classBag.db.model.Usuario;
 import br.edu.iffar.fw.classBag.enun.TypeCredito;
+import br.edu.iffar.fw.classBag.interfaces.credito.impl.Transferencia;
 import br.edu.iffar.fw.classBag.util.BreadCrumb;
 import br.edu.iffar.fw.classBag.util.BreadCrumbControl;
 import br.edu.iffar.fw.classBag.util.MessagesUtil;
@@ -25,50 +28,25 @@ import jakarta.validation.constraints.NotNull;
 @ViewScoped
 public class TransferenciasBean implements Serializable,BreadCrumbControl{
 	
-	public class TransferenciaSubControl {
-		
-		public Credito saida;
-		public Credito entrada;
-		
-		public TransferenciaSubControl() {
-			this.saida = new Credito(TypeCredito.TRANS_SAIDA.createIntance());
-			this.entrada = new  Credito(TypeCredito.TRANS_ENTRADA.createIntance());
-			this.saida.setParent(this.entrada);
-//			this.entrada.setParent(this.saida);//é feito no salvamento
-		}
-						
-		public void setValor(BigDecimal f) {
-			this.saida.setValor(f);
-			this.entrada.setValor(f);
-		}
-		
-		public BigDecimal getValor() {
-			return this.saida.getValor();
-		}
-		
-		public void setUsuarios(Usuario para, Usuario de) {
-			this.saida.setUsuario(de);
-			this.entrada.setUsuario(para);
-		}
-		public Usuario getPara() {
-			return this.entrada.getUsuario();
-		}
-	}
 
 	private static final long serialVersionUID = 22021991L;
-		
-//	@Inject private UsuarioInfoBean usuarioInfo;
+
+	@Inject private SessionDataStore  sessionDataStore;
 	@Inject private UsuariosDAO usuariosDAO;
 	@Inject private MessagesUtil messages; 
 	@Inject private CreditosDAO creditosDAO;
-	@Inject private UserTransaction userTransaction;
+	@Inject private CreditosDepositoBO  creditosDepositoBO;
 	
 	private BreadCrumb breadCrumb;
 	private List<Usuario> listUsers;
-	private TransferenciaSubControl transSub;
-//	private Float saldoUser; 
-	private Usuario user;
+
+	@NotNull(message = "Informe o usuário de Destino.")
+	private Usuario paraUseuario;
+
 	private Saldo saldo;
+
+	@NotNull(message = "Informe um valor.")
+	private BigDecimal valor;
 
 
 	@PostConstruct
@@ -77,81 +55,45 @@ public class TransferenciasBean implements Serializable,BreadCrumbControl{
 		this.breadCrumb.setAtivo(1);
 		this.cancelar();
 	}
-	
-	public boolean validadete() {
-		boolean retu = true;
-//		if(this.transSub.getValor() <= 0f) {
-//			messages.addError("Informe um valor para a transferência maior que 0.");
-//			retu = false;
-//		}
-//		if(this.saldo.getSaldo().floatValue() < getValor()) {
-//			messages.addError("Saldo insuficiente.");
-//			retu = false;
-//		}
-//		if(this.transSub.getPara() == null) {
-//			messages.addError("Informe para quem você vai realizar a transferência.");
-//			retu = false;
-//		}
-//		if(this.user.equals(this.transSub.getPara())) {
-//			messages.addError("Você não pode transferir valores para você mesmo.");
-//			retu = false;
-//		}
-		
-		return retu;
-	}
-	
+
 	public void transferir() {
-		if(this.validadete()) {
-			try {
-				this.userTransaction.begin();
+		try {
+			Transferencia trans = new Transferencia()
+					.valor(this.valor)
+					.saldo(this.saldo.getSaldo())
+					.para(this.paraUseuario)
+					.realizadoPor(this.sessionDataStore.getUsuarioLogado())
+					.builder();
 
-				creditosDAO.persist(this.transSub.entrada);
+			this.creditosDepositoBO.saveOperacaoCredito(trans);
 
-				this.transSub.saida.setParent(this.transSub.entrada);
-				creditosDAO.persist(this.transSub.saida);
-
-				this.transSub.entrada.setParent(this.transSub.saida);
-				creditosDAO.merge(this.transSub.entrada);
-
-				this.userTransaction.commit();
-
-				messages.addSuccess("Transfêrncia realizada com sucesso.");
-				this.cancelar();
-			} catch (Exception e) {
-				e.printStackTrace();
-				messages.addError("Não consegui realizar a transferência, se o problema persistir contate o administrado do sistema.");
-				try {
-					this.userTransaction.rollback();
-				}
-				catch (IllegalStateException | SecurityException | SystemException e1) {
-					e1.printStackTrace();
-				}
-			}
+			messages.addSuccess("Transfêrncia realizada com sucesso.");
+			this.cancelar();
+		} catch (Exception e) {
+			e.printStackTrace();
+			messages.addError("Não consegui realizar a transferência, se o problema persistir contate o administrado do sistema.");
 		}
 	}
 	
 	public void cancelar() {
-		this.user = this.usuariosDAO.getUsuarioLogado();
-		this.saldo = this.creditosDAO.findSaldo(user);
-		this.transSub = new TransferenciaSubControl();		
+		this.paraUseuario = null;
+		this.saldo = this.creditosDAO.findSaldo(this.sessionDataStore.getUsuarioLogado());
 	}
 
-	public void setPara(Usuario para) {
-		this.transSub.setUsuarios(para,this.user);
+	public Usuario getParaUseuario() {
+		return this.paraUseuario;
+	}
+
+	public void setParaUseuario(Usuario paraUseuario) {
+		this.paraUseuario = paraUseuario;
 	}
 	
-	@NotNull(message = "Informe o usuário de Destino.")
-	public Usuario getPara() {
-		return this.transSub.getPara();
+	public void setValor(BigDecimal valor) {
+		this.valor = valor;
 	}
-	
-	public void setValor(BigDecimal f) {
-		this.transSub.setValor(f);
-	}
-	
-	@NotNull(message = "Informe um valor.")
+
 	public BigDecimal getValor() {
-		return this.transSub.getValor();
+		return this.valor;
 	}
 	
 	public List<Usuario> getListUsers(String nome){
@@ -162,23 +104,10 @@ public class TransferenciasBean implements Serializable,BreadCrumbControl{
 		return this.listUsers;
 	}
 
-	public TransferenciaSubControl getTransSub() {
-		return transSub;
+	public BigDecimal getSaldo() {
+		return this.saldo.getSaldo();
 	}
 
-	public Usuario getUser() {
-		return user;
-	}
-
-	public void setUser(Usuario user) {
-		this.user = user;
-	}
-
-	public Saldo getSaldoUser() {
-		return this.saldo;
-	}
-
-	@Override
 	public void createBreadCrumb() {
 		this.breadCrumb = new BreadCrumb()
 				.inicializa()
@@ -186,7 +115,6 @@ public class TransferenciasBean implements Serializable,BreadCrumbControl{
 				;
 		}
 
-	@Override
 	public BreadCrumb getBreadCrumb() {
 		return breadCrumb;
 	}

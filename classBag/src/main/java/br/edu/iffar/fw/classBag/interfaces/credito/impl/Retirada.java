@@ -9,39 +9,28 @@ import br.edu.iffar.fw.classBag.interfaces.credito.OperacoesCredito;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
-public class Retirada implements OperacoesCredito {
+public class Retirada implements OperacoesCredito<Retirada> {
 
     Credito credito = new Credito(new TipoCredito(TypeCredito.RETIRADA));
     AlteracoesCreditos altenacoesCreditos = new AlteracoesCreditos();
     BigDecimal saldo;
+    BigDecimal valor;
+    private boolean total;
 
-    public Retirada retirada(boolean total,BigDecimal valor) throws CreditoException {
 
-        this.valor(valor);
+    public Retirada() {
+    }
 
-        if(saldo == null) {
-            throw new CreditoException("Informe o saldo do usuário.");
-        }
+    public Retirada(boolean total) {
+        this.total = total;
+    }
 
-        if(!(saldo.compareTo(BigDecimal.ZERO) > 0)) {
-            throw new CreditoException("Saldo deve ser maior que zero.");
-        }
-
-        if(total) {
-            credito.setValor(saldo.negate());
-        }else {
-            //retirada parcial
-            if ((saldo.add(this.credito.getValor())).compareTo(BigDecimal.ZERO) <= 0) {
-                throw new CreditoException("Saldo insufíciente para retirada.");
-            }
-        }
-
+    public Retirada valor(BigDecimal valor) {
+        this.valor = valor;
         return this;
     }
-    public OperacoesCredito valor(BigDecimal valor) {
+    public void setValor(){
         this.credito.setValor(valor.negate());
-        this.credito.setDtCredito(LocalDateTime.now());
-        return this;
     }
 
     @Override
@@ -50,18 +39,42 @@ public class Retirada implements OperacoesCredito {
         return this;
     }
 
-    public OperacoesCredito para(Usuario para) {
+    public Retirada para(Usuario para) {
         this.credito.setUsuario(para);
         this.altenacoesCreditos.setParaCredito(credito);
         return this;
     }
 
-    public OperacoesCredito realizadoPor(Usuario usuarioLogado) {
+    public Retirada realizadoPor(Usuario usuarioLogado) {
         this.altenacoesCreditos.setUsuarioLogado(usuarioLogado);
         return this;
     }
 
     public AlteracoesCreditos getAltenacoesCreditos() {
         return altenacoesCreditos;
+    }
+
+    @Override
+    public Retirada builder() {
+        if(this.valor.compareTo(BigDecimal.ZERO) > 0) {
+            throw new CreditoException("Informe um valor para a transferência maior que 0.");
+        }
+
+        if(!(saldo.compareTo(BigDecimal.ZERO) > 0)) {
+            throw new CreditoException("Saldo deve ser maior que zero.");
+        }
+
+        if(total) {
+            valor(saldo);
+        }else {
+            //retirada parcial
+            if (saldo.subtract(this.valor).compareTo(BigDecimal.ZERO) < 0) {
+                throw new CreditoException("Saldo insufíciente para retirada.");
+            }
+        }
+
+        this.setValor();
+
+        return this;
     }
 }

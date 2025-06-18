@@ -8,11 +8,14 @@ import br.edu.iffar.fw.classBag.excecoes.CreditoException;
 import br.edu.iffar.fw.classBag.interfaces.credito.OperacoesCredito;
 import br.edu.iffar.fw.classBag.interfaces.credito.impl.Deposito;
 import br.edu.iffar.fw.classBag.interfaces.credito.impl.Retirada;
+import br.edu.iffar.fw.classBag.interfaces.credito.impl.Transferencia;
 import br.edu.iffar.fw.classBag.util.MessagesUtil;
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.inject.Inject;
 import jakarta.transaction.RollbackException;
+import jakarta.transaction.SystemException;
 import jakarta.transaction.Transactional;
+import jakarta.transaction.UserTransaction;
 import software.xdev.chartjs.model.charts.PieChart;
 import software.xdev.chartjs.model.color.RGBAColor;
 import software.xdev.chartjs.model.data.PieData;
@@ -23,15 +26,15 @@ import java.time.LocalDateTime;
 import java.util.*;
 
 @RequestScoped
-@Transactional
 public class CreditosDepositoBO {
 
     @Inject private AltenacoesCreditosDAO altenacoesCreditosDAO;
     @Inject private CreditosDAO creditosDAO;
     @Inject private MessagesUtil mesUtil;
+	@Inject private UserTransaction userTransaction;
 
 
-    public void saveOperacaoCredito(OperacoesCredito operacoesCredito) throws CreditoException {
+    public void saveOperacaoCredito(OperacoesCredito<?> operacoesCredito) throws CreditoException {
         try {
             this.altenacoesCreditosDAO.persistT(operacoesCredito.getAltenacoesCreditos());
             mesUtil.addSuccess("Os créditos foram salvos com sucesso.");
@@ -40,6 +43,33 @@ public class CreditosDepositoBO {
             e.printStackTrace();
             throw new CreditoException("Lamento, mas não consegui adicionar os créditos nesse instante, tente novamente mais tarde.");
         }catch (Exception e) {
+            e.printStackTrace();
+            throw new CreditoException("Lamento, mas não consegui adicionar os créditos nesse instante, tente novamente mais tarde.");
+        }
+    }
+
+    public void saveOperacaoCredito(Transferencia trans) throws CreditoException, SystemException {
+        try {
+            this.userTransaction.begin();
+
+				creditosDAO.persist(trans.getEntrada());
+//
+				creditosDAO.persist(trans.getSaida());
+                trans.getEntrada().setParent(trans.getSaida());
+                creditosDAO.merge(trans.getEntrada());
+//
+//				this.transSub.entrada.setParent(this.transSub.saida);
+//				creditosDAO.merge(this.transSub.entrada);
+
+            this.userTransaction.commit();
+            mesUtil.addSuccess("Os créditos foram salvos com sucesso.");
+        }catch (RollbackException e) {
+            this.userTransaction.rollback();
+            mesUtil.addError(e);
+            e.printStackTrace();
+            throw new CreditoException("Lamento, mas não consegui adicionar os créditos nesse instante, tente novamente mais tarde.");
+        }catch (Exception e) {
+            this.userTransaction.rollback();
             e.printStackTrace();
             throw new CreditoException("Lamento, mas não consegui adicionar os créditos nesse instante, tente novamente mais tarde.");
         }
