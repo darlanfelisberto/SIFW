@@ -5,6 +5,7 @@ import java.math.BigDecimal;
 import java.util.List;
 
 import br.edu.iffar.fw.classBag.bo.CreditosDepositoBO;
+import br.edu.iffar.fw.classBag.db.SessionDataStore;
 import br.edu.iffar.fw.classBag.db.dao.AltenacoesCreditosDAO;
 import br.edu.iffar.fw.classBag.db.dao.UsuariosDAO;
 import br.edu.iffar.fw.classBag.db.model.AlteracoesCreditos;
@@ -45,6 +46,7 @@ public class CreditoAdminBean  implements Serializable,BreadCrumbControl{
 	private boolean rendTelaCredito;
 	
 	@Inject private UsuariosDAO usuariosDAO;
+	@Inject private SessionDataStore sessionDataStore;
 	@Inject private SaldoUserFrament saldoUserF;
 	@Inject private MessagesUtil mesUtil;
 	@Inject private CreditosDepositoBO creditosBO;
@@ -127,7 +129,7 @@ public class CreditoAdminBean  implements Serializable,BreadCrumbControl{
                      new Deposito()
                             .valor(this.valorCredito)
                             .para(this.userSelect)
-                            .realizadoPor(this.usuariosDAO.getUsuarioLogado())
+                            .realizadoPor(this.sessionDataStore.getUsuarioLogado())
             );
 			this.selecionaUser();
 		} catch (CreditoException e) {
@@ -145,7 +147,7 @@ public class CreditoAdminBean  implements Serializable,BreadCrumbControl{
                             .saldo(this.saldoUserF.getSaldo().getSaldo())
                             .retirada(total,this.valorCredito)
                             .para(this.userSelect)
-                            .realizadoPor(this.usuariosDAO.getUsuarioLogado())
+                            .realizadoPor(this.sessionDataStore.getUsuarioLogado())
             );
 			this.selecionaUser();
 		}catch (CreditoException e) {
