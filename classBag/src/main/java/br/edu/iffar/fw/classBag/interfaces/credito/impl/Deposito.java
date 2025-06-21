@@ -13,12 +13,12 @@ import java.time.LocalDateTime;
 
 public class Deposito implements OperacoesCredito<Deposito> {
 
-    Credito credito = new Credito(new TipoCredito(TypeCredito.ENTRADA));
-    AlteracoesCreditos altenacoesCreditos = new AlteracoesCreditos();
-    BigDecimal saldo;
+    private final Credito entrada = new Credito(new TipoCredito(TypeCredito.ENTRADA));
+    private final AlteracoesCreditos altenacoesCreditos = new AlteracoesCreditos();
+    private BigDecimal saldo;
 
     public Deposito  valor(BigDecimal valor) {
-        this.credito.setValor(valor);
+        this.entrada.setValor(valor);
         return this;
     }
 
@@ -28,8 +28,8 @@ public class Deposito implements OperacoesCredito<Deposito> {
     }
 
     public Deposito para(Usuario para) {
-        this.credito.setUsuario(para);
-        this.altenacoesCreditos.setParaCredito(credito);
+        this.entrada.setUsuario(para);
+        this.altenacoesCreditos.setParaCredito(this.entrada);
         return this;
     }
 
@@ -38,13 +38,23 @@ public class Deposito implements OperacoesCredito<Deposito> {
         return this;
     }
 
+    @Override
+    public Credito getSaida() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public Credito getEntrada() {
+        return this.entrada;
+    }
+
     public AlteracoesCreditos getAltenacoesCreditos() {
         return altenacoesCreditos;
     }
 
     @Override
     public Deposito builder() {
-        if(this.credito.getValor().compareTo(BigDecimal.ZERO) > 0){
+        if(this.entrada.getValor().compareTo(BigDecimal.ZERO) > 0){
             throw new CreditoException("Informe um valor maior que 0.");
         }
         return this;

@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 
 public class Retirada implements OperacoesCredito<Retirada> {
 
-    Credito credito = new Credito(new TipoCredito(TypeCredito.RETIRADA));
+    Credito saida = new Credito(new TipoCredito(TypeCredito.RETIRADA));
     AlteracoesCreditos altenacoesCreditos = new AlteracoesCreditos();
     BigDecimal saldo;
     BigDecimal valor;
@@ -30,7 +30,7 @@ public class Retirada implements OperacoesCredito<Retirada> {
         return this;
     }
     public void setValor(){
-        this.credito.setValor(valor.negate());
+        this.saida.setValor(valor.negate());
     }
 
     @Override
@@ -40,14 +40,24 @@ public class Retirada implements OperacoesCredito<Retirada> {
     }
 
     public Retirada para(Usuario para) {
-        this.credito.setUsuario(para);
-        this.altenacoesCreditos.setParaCredito(credito);
+        this.saida.setUsuario(para);
+        this.altenacoesCreditos.setParaCredito(saida);
         return this;
     }
 
     public Retirada realizadoPor(Usuario usuarioLogado) {
         this.altenacoesCreditos.setUsuarioLogado(usuarioLogado);
         return this;
+    }
+
+    @Override
+    public Credito getSaida() {
+        return this.saida;
+    }
+
+    @Override
+    public Credito getEntrada() {
+        throw  new UnsupportedOperationException("Not supported yet.");
     }
 
     public AlteracoesCreditos getAltenacoesCreditos() {

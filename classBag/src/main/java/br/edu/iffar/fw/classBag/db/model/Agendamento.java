@@ -60,8 +60,12 @@ public class Agendamento extends Model implements ScheduleEvent<Agendamento> {
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "refeicao_id",referencedColumnName = "refeicao_id",nullable = false)
 	private Refeicao refeicao;
-	
-	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+
+	/**
+	 * O mapeamento foi alterado, agora temos o CreditoBO e a operacao pagamento, que faz a parte dda catraca e faz o
+	 * salvamento das entidades
+	 */
+	@OneToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "credito_id")
 	private Credito credito;
 

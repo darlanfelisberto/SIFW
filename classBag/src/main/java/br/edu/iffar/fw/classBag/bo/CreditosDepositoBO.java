@@ -1,5 +1,6 @@
 package br.edu.iffar.fw.classBag.bo;
 
+import br.edu.iffar.fw.classBag.db.dao.AgendamentosDAO;
 import br.edu.iffar.fw.classBag.db.dao.AltenacoesCreditosDAO;
 import br.edu.iffar.fw.classBag.db.dao.CreditosDAO;
 import br.edu.iffar.fw.classBag.db.model.*;
@@ -7,6 +8,7 @@ import br.edu.iffar.fw.classBag.enun.TypeCredito;
 import br.edu.iffar.fw.classBag.excecoes.CreditoException;
 import br.edu.iffar.fw.classBag.interfaces.credito.OperacoesCredito;
 import br.edu.iffar.fw.classBag.interfaces.credito.impl.Deposito;
+import br.edu.iffar.fw.classBag.interfaces.credito.impl.Pagamento;
 import br.edu.iffar.fw.classBag.interfaces.credito.impl.Retirada;
 import br.edu.iffar.fw.classBag.interfaces.credito.impl.Transferencia;
 import br.edu.iffar.fw.classBag.util.MessagesUtil;
@@ -30,10 +32,11 @@ public class CreditosDepositoBO {
 
     @Inject private AltenacoesCreditosDAO altenacoesCreditosDAO;
     @Inject private CreditosDAO creditosDAO;
+    @Inject private AgendamentosDAO agendamentosDAO;
     @Inject private MessagesUtil mesUtil;
 	@Inject private UserTransaction userTransaction;
 
-
+    @Transactional
     public void saveOperacaoCredito(OperacoesCredito<?> operacoesCredito) throws CreditoException {
         try {
             this.altenacoesCreditosDAO.persistT(operacoesCredito.getAltenacoesCreditos());
@@ -46,6 +49,18 @@ public class CreditosDepositoBO {
             e.printStackTrace();
             throw new CreditoException("Lamento, mas não consegui adicionar os créditos nesse instante, tente novamente mais tarde.");
         }
+    }
+
+    @Transactional
+    public void savePagamento(Pagamento pagamento) throws CreditoException,RollbackException {
+        this.creditosDAO.persist(pagamento.getSaida());
+        //foi optado por não bloquear quem nao tenha agendamento, mas tbm de naão permitir,kkkk
+        if(!pagamento.getSaida().getAgendamento().isNovo()) {
+            this.agendamentosDAO.merge(pagamento.getSaida().getAgendamento());
+        }else{
+            this.agendamentosDAO.persist(pagamento.getSaida().getAgendamento());
+        }
+        this.altenacoesCreditosDAO.persistT(pagamento.getAltenacoesCreditos());
     }
 
     public void saveOperacaoCredito(Transferencia trans) throws CreditoException, SystemException {

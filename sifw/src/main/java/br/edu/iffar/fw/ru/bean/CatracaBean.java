@@ -5,7 +5,10 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import br.edu.iffar.fw.classBag.bo.CreditosDepositoBO;
+import br.edu.iffar.fw.classBag.db.SessionDataStore;
 import br.edu.iffar.fw.classBag.db.model.*;
+import br.edu.iffar.fw.classBag.interfaces.credito.impl.Pagamento;
 import org.primefaces.PrimeFaces;
 
 import br.edu.iffar.fw.classBag.db.dao.AgendamentosDAO;
@@ -45,6 +48,8 @@ public class CatracaBean implements Serializable{
 	@Inject private RefeicaoDAO refeicaoDAO;
 	@Inject private VinculosAtivosUsuariosDAO vinculosAtivosUsuariosDAO;
 	@Inject private LogDAO logDAO;
+	@Inject private SessionDataStore  sessionDataStore;
+	@Inject private CreditosDepositoBO creditosDepositoBO;
 	
 	private List<TipoRefeicao> listTipoRefeicao;
 	
@@ -52,21 +57,17 @@ public class CatracaBean implements Serializable{
 	private String token = "";
 
 	private TipoRefeicao tipoRefeicao;
-	
-	
+
 	private List<Refeicao> listRefeicaoDoUsuario;
 	private List<VinculosAtivosUsuarios> listVinculosAtivosUsuario;
 	private VinculosAtivosUsuarios vinculoSelecionado = null;
-	
-	private Usuario userLogado;
-	
+
 	private Usuario usuario;
 	private Agendamento agendamento;
 	private Imagen imagen;
 	private Saldo saldo;
 	private String boaRefeicao = null;
-	
-	private Credito credito;
+
 	
 	private boolean tokenRu;
 	
@@ -74,7 +75,6 @@ public class CatracaBean implements Serializable{
 	
 	@PostConstruct
 	private void init() {
-		this.userLogado = this.usuariosDAO.getUsuarioLogado();
 	}
 	
 	public void clearDados() {
@@ -82,7 +82,6 @@ public class CatracaBean implements Serializable{
 		this.usuario = null;
 		this.imagen = null;
 		this.saldo = null;
-		this.credito = null;
 		this.boaRefeicao = null;
 		this.vinculoSelecionado = null;
 		this.listVinculosAtivosUsuario = null;
@@ -111,7 +110,7 @@ public class CatracaBean implements Serializable{
 		}
 		
 		try {
-			this.logDAO.log(new LogLeitura(usuario, userLogado, this.token));
+			this.logDAO.log(new LogLeitura(usuario, this.sessionDataStore.getUsuarioLogado(), this.token));
 		} catch (RollbackException e) {
 			System.out.println(e.getMessage());
 		}
@@ -125,11 +124,9 @@ public class CatracaBean implements Serializable{
 				
 		this.saldo =  this.creditosDAO.findSaldo(this.usuario);
 		this.agendamento = this.agendamentosDAO.findByUserAndDateAndTipoRefeicao(usuario, this.dtReferencia, this.tipoRefeicao);
-		
-		this.credito = (this.agendamento != null && this.agendamento.getCredito() != null ? this.agendamento.getCredito() : null);// this.creditosDAO.existeSaidaCreditoParaHoje(this.usuario,this.tipoRefeicao);
 
-		if(this.credito != null) {
-			this.msgErroSom("Usuário já entrou no RU na data de referẽncia " + this.agendamento.getDtAgendamentoString()+", crédito realizado " + this.credito.getDataString() + ".");
+		if(this.agendamento != null && this.agendamento.getCredito() != null) {
+			this.msgErroSom("Usuário já entrou no RU na data de referẽncia " + this.agendamento.getDtAgendamentoString()+", crédito realizado " +  this.agendamento.getCredito().getDataString() + ".");
 			return;
 		}
 		
@@ -162,20 +159,19 @@ public class CatracaBean implements Serializable{
 	
 	public void msgErroSom(String msg) {
 		this.messagesUtil.addError(msg, "");
-		PrimeFaces.current().executeScript("tocaSomErro()");
+		//so para debug
+//		PrimeFaces.current().executeScript("tocaSomErro()");
 	}
 
 	public void creditar() {
-		if(saldo.getSaldo().compareTo(this.agendamento.getRefeicao().getValor()) >= 0) {
-			this.msgErroSom("Usuário não possui créditos suficiente!");
-			return;
-		}
-		//aqui nao pode usar a dtReferencia, pq  aqui é o momento que ocorreu o credito. Eles podem ser lançados para um agendamento anterior.
-		LocalDateTime data = LocalDateTime.now();
-		this.credito = new Credito(data, this.agendamento, this.agendamento.getRefeicao().getValor(), this.usuario, new TipoCredito(TypeCredito.SAIDA), data);
 		try {
-			this.creditosDAO.mergeT(this.credito);
-			this.boaRefeicao = "Foi debitado " + this.credito.getValor() + " de <b>" + this.usuario.getPessoa().getNome() + "</b>. Boa Refeição!";
+			Pagamento pagamento =  new Pagamento(this.agendamento)
+					.saldo(this.saldo.getSaldo())
+					.para(this.usuario)
+					.realizadoPor(this.sessionDataStore.getUsuarioLogado())
+					.builder();
+			this.creditosDepositoBO.savePagamento(pagamento);
+			this.boaRefeicao = "Foi debitado " + pagamento.getSaida().getValor() + " de <b>" + this.usuario.getPessoa().getNome() + "</b>. Boa Refeição!";
 		} catch (RollbackException e) {
 			messagesUtil.addError(e);
 			this.msgErroSom(ERRO_ADD_CREDITO);
@@ -268,18 +264,12 @@ public class CatracaBean implements Serializable{
 	public List<Refeicao> getRefeicoesDoUsuario(){
 		return this.listRefeicaoDoUsuario;
 	}
-	
-	public Credito getCredito() {
-		return credito;
-	}
 
 	public String getBoaRefeicao() {
 		return boaRefeicao;
 	}
 	
 	public void atualizaBean() {
-		//TODO remover sysout
-		System.out.println("catracaBean.atualizabean");
 	}
 
 	public List<VinculosAtivosUsuarios> getListVinculosAtivosUsuario() {
@@ -303,7 +293,7 @@ public class CatracaBean implements Serializable{
 	}
 	
 	public boolean isRendCreditar() {
-		if(this.credito != null) {
+		if(this.agendamento != null && this.agendamento.getCredito() != null) {
 			return false;
 		}
 		

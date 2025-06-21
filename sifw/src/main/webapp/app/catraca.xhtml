@@ -114,12 +114,12 @@
 									
 									<div class="field col-12 md:col-12">
 										<label><b>Agendamento:</b> </label>
-										<h:outputText value="#{catracaBean.agendamento.agendado ? catracaBean.agendamento.description : ' Não Agendado.'}"  rendered="#{catracaBean.usuario != null and catracaBean.credito == null}"/>
+										<h:outputText value="#{catracaBean.agendamento.agendado ? catracaBean.agendamento.description : ' Não Agendado.'}"  rendered="#{catracaBean.usuario != null and catracaBean.agendamento.credito == null}"/>
 									</div>
 																		
-									<p:outputPanel styleClass="field col-12 md:col-12" rendered="#{catracaBean.credito != null}">
+									<p:outputPanel styleClass="field col-12 md:col-12" rendered="#{catracaBean.agendamento.credito != null}">
 										<label><b>Entrada(crédito):</b></label>
-										<h:outputText value="#{catracaBean.credito.dtCredito}" >
+										<h:outputText value="#{catracaBean.agendamento.credito.dtCredito}" >
 											<f:convertDateTime type="localDate" pattern="'Dia' dd/MM/YYYY 'às' HH:mm"/>
 										</h:outputText>
 									</p:outputPanel>

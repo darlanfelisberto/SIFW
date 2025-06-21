@@ -6,15 +6,7 @@ import java.util.UUID;
 import br.com.feliva.sharedClass.db.Model;
 import br.edu.iffar.fw.classBag.util.MessagesUtil;
 import br.edu.iffar.fw.classBag.util.ValidacaoPersonalizada;
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 
 @Entity
@@ -36,11 +28,11 @@ public class AlteracoesCreditos extends Model implements Serializable,ValidacaoP
 	/**
 	 * Atributo identifica o credito vindo de uma transferencia
 	 */
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "de_credito_id")
 	private Credito deCredito;
-	
-	@OneToOne(cascade = CascadeType.ALL)
+
+	@OneToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "para_credito_id")
 	@NotNull
 	private Credito paraCredito;

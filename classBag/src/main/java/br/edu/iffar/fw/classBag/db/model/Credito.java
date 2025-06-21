@@ -38,7 +38,7 @@ public class Credito extends Model implements Serializable {
 	@NotNull
 	private TipoCredito tipoCredito;
 	
-	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, optional = false, mappedBy = "credito")
+	@OneToOne(fetch = FetchType.LAZY, mappedBy = "credito")
 	private Agendamento agendamento;
 	
 	@Max(value = 200)

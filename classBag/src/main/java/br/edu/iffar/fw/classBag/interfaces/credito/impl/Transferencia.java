@@ -16,10 +16,7 @@ import java.util.List;
 
 public class Transferencia implements OperacoesCredito<Transferencia> {
 
-    @Getter
     private final Credito saida = new Credito(new TipoCredito(TypeCredito.TRANS_SAIDA));;
-
-    @Getter
     private final Credito entrada = new Credito(new TipoCredito(TypeCredito.TRANS_ENTRADA));;
     private BigDecimal saldo;
     private BigDecimal valor;
@@ -56,7 +53,14 @@ public class Transferencia implements OperacoesCredito<Transferencia> {
         throw new CreditoException("Operacao não suporta esta funcionalidade");
     }
 
-    @Override
+    public Credito getSaida() {
+        return saida;
+    }
+
+    public Credito getEntrada() {
+        return entrada;
+    }
+
     public Transferencia builder() {
         if(this.valor.compareTo(BigDecimal.ZERO) <= 0) {
             throw new CreditoException("Informe um valor para a transferência maior que 0.");
